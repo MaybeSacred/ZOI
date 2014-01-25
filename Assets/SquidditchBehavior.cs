@@ -21,6 +21,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	public float rotationDelta;
 	private bool breakingDown;
 	public float firingDistance;
+	public float attachedFiringDistance;
 	public float standOffDistance;
 	public float fireRate;
 	private float fireTimer;
@@ -129,7 +130,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		else if(isAttachedToGameObject)
 		{
 			Vector3 distance = Util.player.transform.position - transform.position;
-			if(distance.magnitude < firingDistance)
+			if(distance.magnitude < attachedFiringDistance)
 			{
 				if(currentLaser != null)
 				{
@@ -138,7 +139,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 				else
 				{
 					RaycastHit hit;
-					if(Physics.Raycast(bulletEmitter.position, distance, out hit, firingDistance))
+					if(Physics.Raycast(bulletEmitter.position, distance, out hit, attachedFiringDistance))
 					{
 						if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
 						{

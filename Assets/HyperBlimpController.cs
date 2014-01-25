@@ -6,8 +6,15 @@ public class HyperBlimpController : BaseEnemy {
 	public Transform[] rings;
 	private int topPiecesLeft;
 	private bool isDamageable = false;
+	public float maxEngageDistance;
+	public float rotationSpeed;
+	public float movementSpeed;
+	public float desiredAltitude;
+	public float altitudeDeadZone;
+	private PlayerController player;
 	void Start () {
 		colliders = new List<GameObject>();
+		player = Util.player;
 	}
 	
 	void Update () {
@@ -21,7 +28,26 @@ public class HyperBlimpController : BaseEnemy {
 		}
 		else
 		{
-			
+			Vector3 playerDistanceXZ = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+			if(playerDistanceXZ.magnitude < maxEngageDistance)
+			{
+				
+			}
+			else
+			{
+				transform.position += transform.forward*movementSpeed*Time.deltaTime;
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(playerDistanceXZ), Time.deltaTime*rotationSpeed);
+			}
+			RaycastHit hit;
+			Physics.Raycast(transform.position, -Vector3.up, out hit, 2*desiredAltitude, Util.PLAYERWEAPONSIGNORELAYERS);
+			if(hit.distance > desiredAltitude + altitudeDeadZone)
+			{
+				transform.position -= new Vector3(0, Time.deltaTime, 0);
+			}
+			else if(hit.distance < desiredAltitude - altitudeDeadZone)
+			{
+				transform.position += new Vector3(0, Time.deltaTime, 0);
+			}
 		}
 	}
 	public override void HealthChange(float shieldDmg, float healthDmg)
