@@ -552,11 +552,11 @@ public class PlayerController : MonoBehaviour {
 				wheels[i].brakeTorque = 0;
 				if(i < 4)
 				{
-					wheels[i].steerAngle = steeringRate*steeringDirection*SpeedSteeringCoupling();
+					wheels[i].steerAngle = -steeringRate*steeringDirection*SpeedSteeringCoupling();
 				}
 				else
 				{
-					wheels[i].steerAngle = -steeringRate*steeringDirection*SpeedSteeringCoupling();
+					wheels[i].steerAngle = steeringRate*steeringDirection*SpeedSteeringCoupling();
 				}
 			}
 		}
