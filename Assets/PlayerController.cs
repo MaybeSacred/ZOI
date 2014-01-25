@@ -2,14 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
+	private int steeringDirection;
 	public bool strafeSteeringEngaged;
-	public float slideEndTime;
+	public bool isStrafeSteeringDefaultOption;
 	private WheelFrictionCurve startWheelFriction;
-	public float slideDuration;
-	private int slideDirection;
-	private float slideTimer;
-	public bool isSliding;
-	public float slidePushForce;
 	private int numFlameParticlesPlaying;
 	public ParticleSystem gameOverExplosion;
 	public ParticleSystem[] flameParticles;
@@ -103,31 +99,49 @@ public class PlayerController : MonoBehaviour {
 		else
 		{
 			keyDown = false;
+			if(Input.GetKey(KeyCode.LeftShift))
+			{
+				strafeSteeringEngaged = !isStrafeSteeringDefaultOption;
+			}
+			else
+			{
+				strafeSteeringEngaged = isStrafeSteeringDefaultOption;
+			}
+			if(Input.GetKey("a") || Input.GetKey("left"))
+			{
+				steeringDirection = -1;
+			}
+			else if(Input.GetKey("d") || Input.GetKey("right"))
+			{
+				steeringDirection = 1;
+			}
+			else
+			{
+				steeringDirection = 0;
+			}
 			if(Input.GetKey("w") || Input.GetKey("up"))
 			{
-				MoveBody(true);
+				if(strafeSteeringEngaged)
+				{
+					MovePlayerControlled(true);
+				}
+				else
+				{
+					MoveFollowCamera(true);
+				}
 				keyDown = true;
 			}
 			if(Input.GetKey("s") || Input.GetKey("down"))
 			{
-				MoveBody(false);
+				if(strafeSteeringEngaged)
+				{
+					MovePlayerControlled(false);
+				}
+				else
+				{
+					MoveFollowCamera(false);
+				}
 				keyDown = true;
-			}
-			if(Input.GetKeyDown("a") || Input.GetKeyDown("left"))
-			{
-				if(!isSliding)
-				{
-					isSliding = true;
-					slideDirection = -1;
-				}
-			}
-			if(Input.GetKeyDown("d") || Input.GetKeyDown("right"))
-			{
-				if(!isSliding)
-				{
-					isSliding = true;
-					slideDirection = 1;
-				}
 			}
 			if(!keyDown)
 			{
@@ -135,27 +149,6 @@ public class PlayerController : MonoBehaviour {
 				{
 					wheels[i].motorTorque = 0;
 					wheels[i].brakeTorque = brakeForce;
-				}
-			}
-			if(isSliding)
-			{
-				for(int i = 0; i < wheels.Length; i++)
-				{
-					wheels[i].sidewaysFriction = new WheelFrictionCurve();
-				}
-				slideTimer += Time.deltaTime;
-				if(slideTimer < slideDuration)
-				{
-					rigidbody.AddForce(new Vector3(slideDirection * slidePushForce * transform.right.x, 0, slideDirection * slidePushForce * transform.right.z));
-				}
-				if(slideTimer > slideEndTime)
-				{
-					isSliding = false;
-					slideTimer = 0;
-					for(int i = 0; i < wheels.Length; i++)
-					{
-						wheels[i].sidewaysFriction = startWheelFriction;
-					}
 				}
 			}
 			if(Input.GetKeyDown("r"))
@@ -533,7 +526,42 @@ public class PlayerController : MonoBehaviour {
 	{
 		colliders.Remove(go);
 	}
-	private void MoveBody(bool forward)
+	private void MovePlayerControlled(bool forward)
+	{
+		if(forward)
+		{
+			for(int i = 0; i < wheels.Length; i++)
+			{
+				wheels[i].motorTorque = forwardAcceleration;
+				wheels[i].brakeTorque = 0;
+				if(i < 4)
+				{
+					wheels[i].steerAngle = -steeringRate*steeringDirection*SpeedSteeringCoupling();
+				}
+				else
+				{
+					wheels[i].steerAngle = steeringRate*steeringDirection*SpeedSteeringCoupling();
+				}
+			}
+		}
+		else
+		{
+			for(int i = 0; i < wheels.Length; i++)
+			{
+				wheels[i].motorTorque = -forwardAcceleration;
+				wheels[i].brakeTorque = 0;
+				if(i < 4)
+				{
+					wheels[i].steerAngle = steeringRate*steeringDirection*SpeedSteeringCoupling();
+				}
+				else
+				{
+					wheels[i].steerAngle = -steeringRate*steeringDirection*SpeedSteeringCoupling();
+				}
+			}
+		}
+	}
+	private void MoveFollowCamera(bool forward)
 	{
 		if(forward)
 		{
