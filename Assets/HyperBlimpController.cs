@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 public class HyperBlimpController : BaseEnemy {
+	private int randomTravelToSideOfPlayer;
 	private List<GameObject> colliders;
 	public Transform[] rings;
 	private int topPiecesLeft;
@@ -15,6 +16,7 @@ public class HyperBlimpController : BaseEnemy {
 	void Start () {
 		colliders = new List<GameObject>();
 		player = Util.player;
+		randomTravelToSideOfPlayer = Random.Range(-1, 1)>=0?1:-1;
 	}
 	
 	void Update () {
@@ -31,7 +33,9 @@ public class HyperBlimpController : BaseEnemy {
 			Vector3 playerDistanceXZ = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
 			if(playerDistanceXZ.magnitude < maxEngageDistance)
 			{
-				
+				Vector3 encirclingVector = randomTravelToSideOfPlayer * Vector3.Cross(playerDistanceXZ, Vector3.up);
+				transform.position += transform.forward*movementSpeed*Time.deltaTime;
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(encirclingVector), Time.deltaTime*rotationSpeed);
 			}
 			else
 			{

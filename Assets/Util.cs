@@ -19,6 +19,16 @@ public class Util : MonoBehaviour {
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("Hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("Hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");
+		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GUI>();

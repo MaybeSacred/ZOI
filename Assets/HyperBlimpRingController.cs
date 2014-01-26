@@ -22,11 +22,11 @@ public class HyperBlimpRingController : MonoBehaviour {
 			lastRotation = currentDesiredAngle;
 			if(temp < 0)
 			{
-				currentDesiredAngle = transform.localRotation*(Quaternion.Euler(-rotationDelta, 0, 0));
+				currentDesiredAngle = transform.localRotation*(Quaternion.Euler(0, 0, -rotationDelta));
 			}
 			else if(temp > 0)
 			{
-				currentDesiredAngle = transform.localRotation*(Quaternion.Euler(rotationDelta, 0, 0));
+				currentDesiredAngle = transform.localRotation*(Quaternion.Euler(0, 0, rotationDelta));
 			}
 			else
 			{

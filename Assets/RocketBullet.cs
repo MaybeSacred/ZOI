@@ -3,6 +3,7 @@ using System.Collections;
 
 public class RocketBullet : BasicBullet {
 	public float homingStrength;
+	public float cubicHomingFactor;
 	public Transform targetedTransform;
 	public float distanceBetweenChecks;
 	public float checkRadius;
@@ -58,7 +59,7 @@ public class RocketBullet : BasicBullet {
 			}
 			else
 			{
-				rigidbody.AddForce(homingStrength*(targetedTransform.position - transform.position).normalized);
+				rigidbody.AddForce(homingStrength*(targetedTransform.position - transform.position).normalized + cubicHomingFactor*(targetedTransform.position - transform.position));
 			}
 		}
 		if(rigidbody.velocity.magnitude > maxSpeed)

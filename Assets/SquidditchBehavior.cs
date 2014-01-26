@@ -43,18 +43,18 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	}
 	void Update () 
 	{
-		if(isAwake)
+		if(deathTimeoutTimer > 0)
 		{
-			if(deathTimeoutTimer > 0)
+			bulletEmitterLight.range = deathGlowConstant*(deathTimeout-deathTimeoutTimer);
+			if(deathTimeoutTimer > deathTimeout)
 			{
-				bulletEmitterLight.range = deathGlowConstant*(deathTimeout-deathTimeoutTimer);
-				if(deathTimeoutTimer > deathTimeout)
-				{
-					Destroy(gameObject);
-				}
-				deathTimeoutTimer += Time.deltaTime;
+				Destroy(gameObject);
 			}
-			else
+			deathTimeoutTimer += Time.deltaTime;
+		}
+		else
+		{
+			if(isAwake)
 			{
 				Vector3 distance = Util.player.transform.position - transform.position;
 				if(distance.magnitude < firingDistance)
@@ -126,36 +126,37 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 				graphics.rotation = Quaternion.Lerp(graphics.rotation, nextRotation, Time.deltaTime*rotationSpeed);
 				graphics.renderer.materials[0].SetFloat("_Cutoff", (maxAlpha-minAlpha)*Mathf.PerlinNoise(0, Time.timeSinceLevelLoad)+minAlpha);
 			}
-		}
-		else if(isAttachedToGameObject)
-		{
-			Vector3 distance = Util.player.transform.position - transform.position;
-			if(distance.magnitude < attachedFiringDistance)
+			else if(isAttachedToGameObject)
 			{
-				if(currentLaser != null)
+				Vector3 distance = Util.player.transform.position - transform.position;
+				if(distance.magnitude < attachedFiringDistance)
 				{
-					FiringHandler();
-				}
-				else
-				{
-					RaycastHit hit;
-					if(Physics.Raycast(bulletEmitter.position, distance, out hit, attachedFiringDistance))
+					if(currentLaser != null)
 					{
-						if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+						FiringHandler();
+					}
+					else
+					{
+						RaycastHit hit;
+						if(Physics.Raycast(bulletEmitter.position, distance, out hit, attachedFiringDistance))
 						{
-							FiringHandler();
+							if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+							{
+								FiringHandler();
+							}
 						}
 					}
 				}
+				bulletEmitterGO.rotation = Quaternion.LookRotation(distance);
+				graphics.renderer.materials[0].SetFloat("_Cutoff", (maxAlpha-minAlpha)*Mathf.PerlinNoise(0, Time.timeSinceLevelLoad)+minAlpha);
 			}
-			bulletEmitterGO.rotation = Quaternion.LookRotation(distance);
-			graphics.renderer.materials[0].SetFloat("_Cutoff", (maxAlpha-minAlpha)*Mathf.PerlinNoise(0, Time.timeSinceLevelLoad)+minAlpha);
 		}
 	}
 	public void DetachFromGameObject()
 	{
 		isAwake = true;
 		isAttachedToGameObject = false;
+		moveToFlitPosition = transform.position;
 		transform.parent = null;
 	}
 	private void FiringHandler()
