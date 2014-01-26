@@ -96,7 +96,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 					if((moveToFlitPosition - transform.position).magnitude < movementError)
 					{
 						RaycastHit info;
-						Physics.Raycast(transform.position, distance.normalized, out info);
+						Physics.Raycast(transform.position, 2*distance.normalized, out info);
 						if(info.collider.tag.Equals("Player"))
 						{
 							GenerateNextMovementPoint(distance);

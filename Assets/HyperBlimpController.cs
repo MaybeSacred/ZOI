@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 
 public class HyperBlimpController : BaseEnemy {
+	/*0-1 Determines how strongly blimp should rotate towards the player once in engagingDistance*/
+	public float encirclingRotationAngle;
 	private int randomTravelToSideOfPlayer;
+	public float deathPullForce;
 	private List<GameObject> colliders;
 	public Transform[] rings;
 	private int topPiecesLeft;
@@ -26,6 +29,7 @@ public class HyperBlimpController : BaseEnemy {
 			{
 				Destroy(gameObject);
 			}
+			rigidbody.AddForce(transform.forward*deathPullForce);
 			deathTimeoutTimer += Time.deltaTime;
 		}
 		else
@@ -34,6 +38,7 @@ public class HyperBlimpController : BaseEnemy {
 			if(playerDistanceXZ.magnitude < maxEngageDistance)
 			{
 				Vector3 encirclingVector = randomTravelToSideOfPlayer * Vector3.Cross(playerDistanceXZ, Vector3.up);
+				encirclingVector = Vector3.Lerp(encirclingVector, playerDistanceXZ, encirclingRotationAngle);
 				transform.position += transform.forward*movementSpeed*Time.deltaTime;
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(encirclingVector), Time.deltaTime*rotationSpeed);
 			}
@@ -43,7 +48,7 @@ public class HyperBlimpController : BaseEnemy {
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(playerDistanceXZ), Time.deltaTime*rotationSpeed);
 			}
 			RaycastHit hit;
-			Physics.Raycast(transform.position, -Vector3.up, out hit, 2*desiredAltitude, Util.PLAYERWEAPONSIGNORELAYERS);
+			Physics.Raycast(transform.position, -Vector3.up, out hit, 2*desiredAltitude, Util.PLAYERWEAPONSIGNORELAYERS & ~(1<<10));
 			if(hit.distance > desiredAltitude + altitudeDeadZone)
 			{
 				transform.position -= new Vector3(0, Time.deltaTime, 0);
