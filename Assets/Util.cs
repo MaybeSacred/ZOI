@@ -15,18 +15,12 @@ public class Util : MonoBehaviour {
 		Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
-		Debug.Log("Hi");Debug.Log("Hi");
-		Debug.Log("hi");Debug.Log("Hi");
-		Debug.Log("hi");Debug.Log("Hi");
-		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("Hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("Hi");Debug.Log("Hi");
-		Debug.Log("hi");Debug.Log("Hi");
-		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");
 		Debug.Log("hi");Debug.Log("Hi");

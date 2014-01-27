@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 public class BlimpRingPiece : MonoBehaviour {
+	public bool isEnginePiece;
 	private List<GameObject> colliders;
 	public float health;
 	private float deathTimeoutTimer;
@@ -11,7 +12,10 @@ public class BlimpRingPiece : MonoBehaviour {
 	public HyperBlimpController blimp;
 	public Material baseMaterial;
 	void Start () {
-		blimp.AddPiece();
+		if(!isEnginePiece)
+		{
+			blimp.AddPiece();
+		}
 		colliders = new List<GameObject>();
 	}
 	
@@ -68,8 +72,11 @@ public class BlimpRingPiece : MonoBehaviour {
 		if(deathTimeoutTimer == 0)
 		{
 			deathTimeoutTimer += Time.deltaTime;
-			attachedSquiddie.DetachFromGameObject();
-			blimp.RemovePiece();
+			if(attachedSquiddie != null)
+			{
+				attachedSquiddie.DetachFromGameObject();
+			}
+			blimp.RemovePiece(isEnginePiece);
 			transform.parent = null;
 			rigidbody.isKinematic = false;
 		}

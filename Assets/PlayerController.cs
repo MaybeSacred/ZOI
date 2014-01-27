@@ -391,13 +391,6 @@ public class PlayerController : MonoBehaviour {
 				Debug.Log("Incorrect tag assignment for tag \"Health Pack\"");
 			}
 		}
-	}
-	public void OnTriggerEnter(Collider other)
-	{
-		RealCollisionHandler(other);
-	}
-	public void OnTriggerStay(Collider other)
-	{
 		if(other.tag.Equals("Laser"))
 		{
 			try
@@ -410,6 +403,14 @@ public class PlayerController : MonoBehaviour {
 				Debug.Log("Incorrect tag assignment for tag \"Bullet\"");
 			}
 		}
+	}
+	public void OnTriggerEnter(Collider other)
+	{
+		RealCollisionHandler(other);
+	}
+	public void OnTriggerStay(Collider other)
+	{
+		RealCollisionHandler(other);
 	}
 	public bool SetLastCheckpoint(Vector3 restartPos, Vector3 restartEulers, int checkpointNumber)
 	{

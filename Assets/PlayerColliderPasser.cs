@@ -11,4 +11,8 @@ public class PlayerColliderPasser : MonoBehaviour {
 	{
 		Util.player.RealCollisionHandler(other);
 	}
+	void OnTriggerStay(Collider other)
+	{
+		Util.player.RealCollisionHandler(other);
+	}
 }

@@ -9,6 +9,7 @@ public class HyperBlimpController : BaseEnemy {
 	private List<GameObject> colliders;
 	public Transform[] rings;
 	private int topPiecesLeft;
+	private int enginePiecesRemaining = 3;
 	private bool isDamageable = false;
 	public float maxEngageDistance;
 	public float rotationSpeed;
@@ -16,6 +17,8 @@ public class HyperBlimpController : BaseEnemy {
 	public float desiredAltitude;
 	public float altitudeDeadZone;
 	private PlayerController player;
+	public float timeToEnginesStopAfterShot;
+	private float timeIntoEnginesOff;
 	void Start () {
 		colliders = new List<GameObject>();
 		player = Util.player;
@@ -29,23 +32,31 @@ public class HyperBlimpController : BaseEnemy {
 			{
 				Destroy(gameObject);
 			}
-			rigidbody.AddForce(transform.forward*deathPullForce);
+			rigidbody.AddForce((-Vector3.up + transform.forward).normalized*deathPullForce);
 			deathTimeoutTimer += Time.deltaTime;
 		}
 		else
 		{
-			Vector3 playerDistanceXZ = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
-			if(playerDistanceXZ.magnitude < maxEngageDistance)
+			if(enginePiecesRemaining > 0)
 			{
-				Vector3 encirclingVector = randomTravelToSideOfPlayer * Vector3.Cross(playerDistanceXZ, Vector3.up);
-				encirclingVector = Vector3.Lerp(encirclingVector, playerDistanceXZ, encirclingRotationAngle);
-				transform.position += transform.forward*movementSpeed*Time.deltaTime;
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(encirclingVector), Time.deltaTime*rotationSpeed);
+				Vector3 playerDistanceXZ = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
+				if(playerDistanceXZ.magnitude < maxEngageDistance)
+				{
+					Vector3 encirclingVector = randomTravelToSideOfPlayer * Vector3.Cross(playerDistanceXZ, Vector3.up);
+					encirclingVector = Vector3.Lerp(encirclingVector, playerDistanceXZ, encirclingRotationAngle);
+					transform.position += transform.forward*movementSpeed*Time.deltaTime;
+					transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(encirclingVector), Time.deltaTime*rotationSpeed);
+				}
+				else
+				{
+					transform.position += transform.forward*movementSpeed*Time.deltaTime;
+					transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(playerDistanceXZ), Time.deltaTime*rotationSpeed);
+				}
 			}
 			else
 			{
-				transform.position += transform.forward*movementSpeed*Time.deltaTime;
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(playerDistanceXZ), Time.deltaTime*rotationSpeed);
+				transform.position += transform.forward*Time.deltaTime*Mathf.Lerp(movementSpeed, 0, timeIntoEnginesOff/timeToEnginesStopAfterShot);
+				timeIntoEnginesOff += Time.deltaTime;
 			}
 			RaycastHit hit;
 			Physics.Raycast(transform.position, -Vector3.up, out hit, 2*desiredAltitude, Util.PLAYERWEAPONSIGNORELAYERS & ~(1<<10));
@@ -107,12 +118,19 @@ public class HyperBlimpController : BaseEnemy {
 		deathTimeoutTimer += Time.deltaTime;
 		rigidbody.isKinematic = false;
 	}
-	public void RemovePiece()
+	public void RemovePiece(bool isEnginePiece)
 	{
-		topPiecesLeft--;
-		if(topPiecesLeft <= 0)
+		if(isEnginePiece)
 		{
-			isDamageable = true;
+			enginePiecesRemaining--;
+		}
+		else
+		{
+			topPiecesLeft--;
+			if(topPiecesLeft <= 0)
+			{
+				isDamageable = true;
+			}
 		}
 	}
 	public void AddPiece()
