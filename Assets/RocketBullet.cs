@@ -13,6 +13,8 @@ public class RocketBullet : BasicBullet {
 	public float maxSpeed;
 	public float timeOutTime;
 	private float timeOutTimer;
+	public float backwardsMovementAngle;
+
 	void Start () {
 		rigidbody.velocity = speed;
 	}
@@ -59,7 +61,8 @@ public class RocketBullet : BasicBullet {
 			}
 			else
 			{
-				rigidbody.AddForce(homingStrength*(targetedTransform.position - transform.position).normalized + cubicHomingFactor*(targetedTransform.position - transform.position));
+				Vector3 distance = targetedTransform.position - transform.position;
+				rigidbody.AddForce(homingStrength*distance.normalized + cubicHomingFactor * Vector3.RotateTowards(distance, -rigidbody.velocity, backwardsMovementAngle, 0).normalized);
 			}
 		}
 		if(rigidbody.velocity.magnitude > maxSpeed)

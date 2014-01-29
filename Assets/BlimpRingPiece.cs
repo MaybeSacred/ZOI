@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class BlimpRingPiece : MonoBehaviour {
+public class BlimpRingPiece : MonoBehaviour, PlayerEvent {
+	private bool isAwake;
 	public bool isEnginePiece;
 	private List<GameObject> colliders;
 	public float health;
@@ -29,33 +30,39 @@ public class BlimpRingPiece : MonoBehaviour {
 			}
 			deathTimeoutTimer += Time.deltaTime;
 		}
-		baseMaterial.mainTextureOffset += new Vector2(0, Time.deltaTime*textureSpeed);
+		else if(isAwake)
+		{
+			baseMaterial.mainTextureOffset += new Vector2(0, Time.deltaTime*textureSpeed);
+		}
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag.Equals("BasicExplosion"))
+		if(isAwake)
 		{
-			try
+			if(other.tag.Equals("BasicExplosion"))
 			{
-				if(!colliders.Contains(other.gameObject))
+				try
 				{
-					colliders.Add(other.gameObject);
-					BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
-					HealthChange(-be.shieldDamage, -be.healthDamage);
-					if(health <= 0)
+					if(!colliders.Contains(other.gameObject))
 					{
-						rigidbody.AddExplosionForce(be.explosionForce, other.transform.position, be.explosionRadius);
+						colliders.Add(other.gameObject);
+						BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
+						HealthChange(-be.shieldDamage, -be.healthDamage);
+						if(health <= 0)
+						{
+							rigidbody.AddExplosionForce(be.explosionForce, other.transform.position, be.explosionRadius);
+						}
 					}
 				}
+				catch(System.InvalidCastException ie)
+				{
+					Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+				}
 			}
-			catch(System.InvalidCastException ie)
+			if(other.tag.Equals("Bullet"))
 			{
-				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+				other.GetComponent<BasicBullet>().DestroyMe();
 			}
-		}
-		if(other.tag.Equals("Bullet"))
-		{
-			other.GetComponent<BasicBullet>().DestroyMe();
 		}
 	}
 	public void HealthChange(float shieldDmg, float healthDmg)
@@ -79,6 +86,15 @@ public class BlimpRingPiece : MonoBehaviour {
 			blimp.RemovePiece(isEnginePiece);
 			transform.parent = null;
 			rigidbody.isKinematic = false;
+			rigidbody.velocity = blimp.rigidbody.velocity;
 		}
+	}
+	public void OnPlayerEnter()
+	{
+		isAwake = true;
+	}
+	public void OnPlayerExit()
+	{
+		
 	}
 }

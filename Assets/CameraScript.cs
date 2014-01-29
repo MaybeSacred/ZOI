@@ -13,6 +13,7 @@ public class CameraScript : MonoBehaviour {
 	private Color dayColor;
 	public Color nightColor;
 	private float realYAngle;
+	public float cameraRaycastOffset;
 	/*Controls how much the camera moves up and down based on x angle*/
 	public float cameraUpDownCoeff;
 	void Start () {
@@ -42,13 +43,9 @@ public class CameraScript : MonoBehaviour {
 		}
 		RaycastHit hit;
 		Physics.Raycast(new Vector3(player.transform.localPosition.x, player.transform.localPosition.y + cameraOffset.y, player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
-		if(hit.distance <=0)
+		if(hit.distance < startZ)
 		{
-
-		}
-		else if(hit.distance < startZ)
-		{
-			cameraOffset.x = Mathf.Lerp(cameraOffset.x, hit.distance, lerpthThpeed*Time.deltaTime);
+			cameraOffset.x = Mathf.Lerp(cameraOffset.x, hit.distance-cameraRaycastOffset, lerpthThpeed*Time.deltaTime);
 		}
 		else
 		{
@@ -57,17 +54,5 @@ public class CameraScript : MonoBehaviour {
 		transform.localPosition = new Vector3(player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
 											  player.transform.localPosition.y + cameraOffset.y, 
 											  player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
-		if(sun.eulerAngles.z < 99)
-		{
-			this.camera.backgroundColor = new Color(nightColor.r + (dayColor.r-nightColor.r)*Mathf.Cos(Mathf.Deg2Rad*sun.eulerAngles.z/1.1f), nightColor.g + (dayColor.g-nightColor.g)*Mathf.Cos(Mathf.Deg2Rad*sun.eulerAngles.z/1.1f), nightColor.b + (dayColor.b-nightColor.b)*Mathf.Cos(Mathf.Deg2Rad*sun.eulerAngles.z/1.1f));
-		}
-		else if(sun.eulerAngles.z > 261)
-		{
-			this.camera.backgroundColor = new Color(nightColor.r + (dayColor.r-nightColor.r)*Mathf.Cos(Mathf.Deg2Rad*(360-sun.eulerAngles.z)/1.1f), nightColor.g + (dayColor.g-nightColor.g)*Mathf.Cos(Mathf.Deg2Rad*(360-sun.eulerAngles.z)/1.1f), nightColor.b + (dayColor.b-nightColor.b)*Mathf.Cos(Mathf.Deg2Rad*(360-sun.eulerAngles.z)/1.1f));
-		}
-		else
-		{
-			this.camera.backgroundColor = nightColor;
-		}
 	}
 }
