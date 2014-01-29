@@ -239,7 +239,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	}
 	public override void RealCollisionHandler(Collider other)
 	{
-		if(!isAttachedToGameObject)
+		if(!isAttachedToGameObject && isAwake)
 		{
 			if(other.tag.Equals("BasicExplosion"))
 			{

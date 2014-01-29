@@ -13,7 +13,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	public float forwardSideStopDistance;
 	private int topPiecesLeft;
 	private int enginePiecesRemaining = 3;
-	private bool isDamageable = false;
 	public float maxEngageDistance;
 	public float rotationSpeed;
 	public float movementSpeed;
@@ -139,7 +138,7 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	}
 	public override void RealCollisionHandler(Collider other)
 	{
-		if(isDamageable && isAwake)
+		if(isAwake)
 		{
 			if(other.tag.Equals("BasicExplosion"))
 			{
@@ -150,7 +149,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 						colliders.Add(other.gameObject);
 						BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
 						HealthChange(-be.shieldDamage, -be.healthDamage);
-						rigidbody.AddExplosionForce(be.explosionForce, be.transform.position, be.explosionRadius);
 					}
 				}
 				catch(System.InvalidCastException ie)
@@ -169,10 +167,13 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 		deathTimeoutTimer += Time.deltaTime;
 		rigidbody.isKinematic = false;
 		rigidbody.velocity = transform.forward*movementSpeed;
-		BlimpRingPiece[] pieces = rings[0].GetComponentsInChildren<BlimpRingPiece>();
-		foreach(BlimpRingPiece p in pieces)
+		foreach(Transform ring in rings)
 		{
-			p.HealthChange(0, float.NegativeInfinity);
+			BlimpRingPiece[] pieces = ring.GetComponentsInChildren<BlimpRingPiece>();
+			foreach(BlimpRingPiece p in pieces)
+			{
+				p.HealthChange(0, float.NegativeInfinity);
+			}
 		}
 	}
 	public void RemovePiece(bool isEnginePiece)
@@ -184,10 +185,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 		else
 		{
 			topPiecesLeft--;
-			if(topPiecesLeft <= 0)
-			{
-				isDamageable = true;
-			}
 		}
 	}
 	public void AddPiece()
