@@ -18,12 +18,10 @@ public class TriStar : BaseEnemy {
 	public float firingRate;
 	private List<GameObject> colliders;
 	void Start () {
-		armMaterial[0] = Instantiate(armMaterial[0]) as Material;
-		armMaterial[1] = Instantiate(armMaterial[1]) as Material;
-		armMaterial[2] = Instantiate(armMaterial[2]) as Material;
-		armMaterial[1].mainTextureOffset = new Vector2(0, .5f);
+		armMaterial[0].mainTextureOffset = new Vector2(0, .5f);
 		armMaterial[1].mainTextureOffset = new Vector2(0, .25f);
 		armMaterial[2].mainTextureOffset = Vector2.zero;
+		
 		colliders = new List<GameObject>();
 	}
 
@@ -51,10 +49,10 @@ public class TriStar : BaseEnemy {
 				if(firingTimer > firingRate)
 				{
 					Util.Fire<BasicBullet>(bb, bulletEmitter.transform.position, Quaternion.LookRotation(Util.player.transform.position-bulletEmitter.transform.position), bb.initialSpeed*(Util.player.transform.position-bulletEmitter.transform.position).normalized, false);
-					firingTimer -= firingRate;
+					firingTimer = 0;
 				}
-				firingTimer += Time.deltaTime;
 			}
+			firingTimer += Time.deltaTime;
 		}
 	}
 	public void OnTriggerEnter(Collider other)
