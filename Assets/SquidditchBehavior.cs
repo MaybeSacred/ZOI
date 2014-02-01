@@ -195,7 +195,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	{
 		Vector3 temp1;
 		Vector3 output = Random.onUnitSphere;
-		int count = 1;
+		int count = 0;
 		while(count < numberOfVectorsToCheck)
 		{
 			temp1 = Random.onUnitSphere;

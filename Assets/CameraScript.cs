@@ -20,6 +20,7 @@ public class CameraScript : MonoBehaviour {
 	public float zoomToFOV;
 	private bool isZoomed;
 	void Start () {
+		yAxisUpperAngleBound += 360;
 		startFOV = camera.fieldOfView;
 		startZ = cameraOffset.x;
 		dayColor = camera.backgroundColor;
@@ -31,16 +32,21 @@ public class CameraScript : MonoBehaviour {
 		mousePos.x = Input.GetAxis("Mouse X");
 		mousePos.y = Input.GetAxis("Mouse Y");
 		Vector3 temp = transform.eulerAngles;
-		if(temp.x > 110)
-			temp.x -=360;
-		transform.eulerAngles += new Vector3(mousePos.y*mouseSensitivity.y, mousePos.x*mouseSensitivity.x, 0);
-		if(temp.x - mousePos.y <= yAxisUpperAngleBound)
+		temp.x += mousePos.y*mouseSensitivity.y;
+		if(temp.x > yAxisLowerAngleBound && temp.x < yAxisUpperAngleBound)
 		{
-			transform.eulerAngles = new Vector3(yAxisUpperAngleBound, transform.eulerAngles.y, 0);
+			if(temp.x > 180)
+			{
+				transform.eulerAngles = new Vector3(yAxisUpperAngleBound, transform.eulerAngles.y + mousePos.x*mouseSensitivity.x, 0);
+			}
+			else
+			{
+				transform.eulerAngles = new Vector3(yAxisLowerAngleBound, transform.eulerAngles.y + mousePos.x*mouseSensitivity.x, 0);
+			}
 		}
-		else if(temp.x - mousePos.y >= yAxisLowerAngleBound)
+		else
 		{
-			transform.eulerAngles = new Vector3(yAxisLowerAngleBound, transform.eulerAngles.y, 0);
+			transform.eulerAngles += new Vector3(mousePos.y*mouseSensitivity.y, mousePos.x*mouseSensitivity.x, 0);
 		}
 		RaycastHit hit;
 		Physics.Raycast(new Vector3(player.transform.localPosition.x, player.transform.localPosition.y + cameraOffset.y, player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
