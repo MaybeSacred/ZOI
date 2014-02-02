@@ -3,18 +3,19 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
-
     #region variables
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	public bool isStrafeSteeringDefaultOption;
+	private float strafeSteeringTimer;
+	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
 	private int numFlameParticlesPlaying;
 	public ParticleSystem gameOverExplosion;
 	public ParticleSystem[] flameParticles;
 	public float centerOfMassAdjustment;
 	public float deathTimeout;
-	private float deathTimeoutTimer;
+	public float deathTimeoutTimer{get; private set;}
 	public Vector3 restartPosition, restartRotation;
 	private int lastCheckpoint = 0;
 	private float lastCheckpointHealth;
@@ -68,7 +69,7 @@ public class PlayerController : MonoBehaviour
 		colliders = new List<GameObject>();
 		shieldMat = shield.renderer.materials[0];
 
-        //secondary weapon placement
+        //secondary weapon setup
 		for(int i = 0; i < possibleSecondaries.Length;i++)
 		{
 			secondaryCannonReloadTimers[i] = secondaryCannonReloadTime[i];
@@ -93,97 +94,92 @@ public class PlayerController : MonoBehaviour
 		else
 		{
 			keyDown = false;
-			if(Input.GetKey(KeyCode.LeftShift))
+			HandleMovementInput();
+           	HandleOtherInput();
+			PrimaryWeaponCheck();
+            SecondaryWeaponCheck();
+            //cannon reloading
+			UpdateTimers();
+			//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
+			UpdatePhysics();
+			//updates tread particles
+			UpdateTreadParticles();
+			UpdateGraphics();
+		}
+	}
+	private void UpdatePhysics()
+	{
+		//handles the max speed
+		Vector2 temp = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
+		if(temp.magnitude > maxSpeed)
+		{
+			temp = temp.normalized*maxSpeed;
+			rigidbody.velocity = new Vector3(temp.x, rigidbody.velocity.y, temp.y);
+		}
+		
+		//handles slope physics
+		float kemp = Vector3.Angle(transform.up, Vector3.up);
+		if(kemp > maxSlope)
+		{
+			for(int i = 0; i < wheels.Length; i++)
 			{
-				strafeSteeringEngaged = !isStrafeSteeringDefaultOption;
-			}
-			else
-			{
-				strafeSteeringEngaged = isStrafeSteeringDefaultOption;
-			}
-			if(Input.GetKey("a") || Input.GetKey("left"))
-			{
-				steeringDirection = -1;
-			}
-			else if(Input.GetKey("d") || Input.GetKey("right"))
-			{
-				steeringDirection = 1;
-			}
-			else
-			{
-				steeringDirection = 0;
-			}
-			if(Input.GetKey("w") || Input.GetKey("up"))
-			{
-				if(strafeSteeringEngaged)
+				wheels[i].motorTorque *=(kemp>maxSlope+10)?0:(10 - kemp + maxSlope)/10;
+				if(!keyDown)
 				{
-					MovePlayerControlled(true);
+					wheels[i].brakeTorque = 0;
+				}
+			}
+		}
+	}
+	private void PrimaryWeaponCheck()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			if(primaryCannonTimer > primaryCannonReloadTime)
+			{
+				if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
+				{
+					RaycastHit hit;
+					Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
+					Quaternion tempQuat;
+					if(hit.distance < 10)
+					{
+						tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-cannonGO.position);
+					}
+					else
+					{
+						tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-cannonGO.position);
+					}
+					Util.Fire(primaryBullet, primaryBulletEmitter.position, tempQuat, 
+					          primaryBullet.initialSpeed*
+					          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
+					             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
+					             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x))), primaryBullet.useGravity);
 				}
 				else
 				{
-					MoveFollowCamera(true);
+					Util.Fire(primaryBullet, primaryBulletEmitter.position, cannonGO.rotation, primaryBullet.initialSpeed*cannonGO.forward, primaryBullet.useGravity);
 				}
-				keyDown = true;
+				cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
+				primaryCannonTimer = 0;
+				cannonFlash.Play();
+				cannonRingFlash.Play();
 			}
-			if(Input.GetKey("s") || Input.GetKey("down"))
+		}
+	}
+	private void SecondaryWeaponCheck()
+	{
+		if(Input.GetMouseButtonDown(1) || Input.GetKeyDown("space"))
+		{
+			secondaryAutoFireTimer = secondaryAutoFireTimes[currentSecondaryWep];
+		}
+		if(Input.GetMouseButton(1) || Input.GetKey("space"))
+		{
+			if(secondaryBulletsLeft[currentSecondaryWep] > 0)
 			{
-                //MovePlayerControlled is false when moving backwards
-				if(strafeSteeringEngaged)
+				if(secondaryAutoFireTimer > secondaryAutoFireTimes[currentSecondaryWep])
 				{
-					MovePlayerControlled(false);
-				}
-				else
-				{
-					MoveFollowCamera(false);
-				}
-				keyDown = true;
-			}
-			if(!keyDown)
-			{
-                //torque and breaking while the vehicle is not being moved by player
-				for(int i = 0; i < wheels.Length; i++)
-				{
-					wheels[i].motorTorque = 0;
-					wheels[i].brakeTorque = brakeForce;
-				}
-			}
-            //unstuck tool
-			if(Input.GetKeyDown("r"))
-			{
-				transform.rotation = Quaternion.identity;
-				transform.localPosition += new Vector3(0, 5, 0);
-            }
-
-            #region weaponcycling
-            if (Input.GetKeyDown("tab"))
-			{
-				currentSecondaryWep++;
-				if(currentSecondaryWep >= possibleSecondaries.Length)
-				{
-					currentSecondaryWep = 0;
-				}
-			}
-			if(Input.GetKeyDown("1"))
-			{
-				currentSecondaryWep = 0;
-			}
-			if(Input.GetKeyDown("2"))
-			{
-				currentSecondaryWep = 1;
-			}
-			if(Input.GetKeyDown("3"))
-			{
-				currentSecondaryWep = 2;
-            }
-
-            #endregion
-
-            #region weapons
-            //primary weapon firing
-            if (Input.GetMouseButtonDown(0))
-			{
-				if(primaryCannonTimer > primaryCannonReloadTime)
-				{
+					Vector3 randomTemp = firingRandomness[currentSecondaryWep]*Vector3.Cross(primaryBulletEmitter.forward, Random.insideUnitSphere);
 					if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 					{
 						RaycastHit hit;
@@ -191,163 +187,182 @@ public class PlayerController : MonoBehaviour
 						Quaternion tempQuat;
 						if(hit.distance < 10)
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-cannonGO.position);
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-secondaryBulletEmitters[currentSecondaryWep].position);
 						}
 						else
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-cannonGO.position);
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-secondaryBulletEmitters[currentSecondaryWep].position);
 						}
-						Util.Fire(primaryBullet, primaryBulletEmitter.position, tempQuat, 
-						          primaryBullet.initialSpeed*
+						Util.Fire(possibleSecondaries[currentSecondaryWep], secondaryBulletEmitters[currentSecondaryWep].position,
+						          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
+						                                    -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
 						          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
 						             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-						             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x))), primaryBullet.useGravity);
+						             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
 					}
 					else
 					{
-						Util.Fire(primaryBullet, primaryBulletEmitter.position, cannonGO.rotation, primaryBullet.initialSpeed*cannonGO.forward, primaryBullet.useGravity);
+						Util.Fire(possibleSecondaries[currentSecondaryWep], secondaryBulletEmitters[currentSecondaryWep].position,
+						          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
+						                                    -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
+						          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
+						             -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
+						             Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
 					}
-					cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
-					primaryCannonTimer = 0;
-					cannonFlash.Play();
-					cannonRingFlash.Play();
-				}
-			}
-
-            //secondary weapon
-			if(Input.GetMouseButtonDown(1) || Input.GetKeyDown("space"))
-			{
-				secondaryAutoFireTimer = secondaryAutoFireTimes[currentSecondaryWep];
-			}
-			if(Input.GetMouseButton(1) || Input.GetKey("space"))
-			{
-				if(secondaryBulletsLeft[currentSecondaryWep] > 0)
-				{
-					if(secondaryAutoFireTimer > secondaryAutoFireTimes[currentSecondaryWep])
+					secondaryCannonReloadTimers[currentSecondaryWep] = 0;
+					secondaryCannonFlashes[currentSecondaryWep].Play();
+					if(secondaryBulletEmitters[currentSecondaryWep] == primaryBulletEmitter)
 					{
-						Vector3 randomTemp = firingRandomness[currentSecondaryWep]*Vector3.Cross(primaryBulletEmitter.forward, Random.insideUnitSphere);
-						if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
-						{
-							RaycastHit hit;
-							Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
-							Quaternion tempQuat;
-							if(hit.distance < 10)
-							{
-								tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-secondaryBulletEmitters[currentSecondaryWep].position);
-							}
-							else
-							{
-								tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-secondaryBulletEmitters[currentSecondaryWep].position);
-							}
-							Util.Fire(possibleSecondaries[currentSecondaryWep], secondaryBulletEmitters[currentSecondaryWep].position,
-							          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-							                                    -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
-							          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-							             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-							             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
-						}
-						else
-						{
-							Util.Fire(possibleSecondaries[currentSecondaryWep], secondaryBulletEmitters[currentSecondaryWep].position,
-							          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
-							                                    -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
-							          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
-							             -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
-							             Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
-						}
-						secondaryCannonReloadTimers[currentSecondaryWep] = 0;
-						secondaryCannonFlashes[currentSecondaryWep].Play();
-						if(secondaryBulletEmitters[currentSecondaryWep] == primaryBulletEmitter)
-						{
-							cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
-							cannonRingFlash.Play();
-						}
-						secondaryBulletsLeft[currentSecondaryWep]--;
-						secondaryAutoFireTimer -= secondaryAutoFireTimes[currentSecondaryWep];
+						cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
+						cannonRingFlash.Play();
 					}
-					else
-					{
-						secondaryAutoFireTimer += Time.deltaTime;
-					}
-				}
-            }
-            #endregion
-
-            //updates tread particles
-            UpdateTreadParticles();
-
-            //cannon reloading
-			primaryCannonTimer += Time.deltaTime;
-			for(int i = 0; i < secondaryCannonReloadTimers.Length; i++)
-			{
-				if(i == currentSecondaryWep)
-				{
-					secondaryCannonReloadTimers[i] += Time.deltaTime;
+					secondaryBulletsLeft[currentSecondaryWep]--;
+					secondaryAutoFireTimer -= secondaryAutoFireTimes[currentSecondaryWep];
 				}
 				else
 				{
-					secondaryCannonReloadTimers[i] += secondaryOfflineReload*Time.deltaTime;
+					secondaryAutoFireTimer += Time.deltaTime;
 				}
 			}
-			if(secondaryCannonReloadTimers[currentSecondaryWep] > secondaryCannonReloadTime[currentSecondaryWep])
+		}
+	}
+	private void HandleMovementInput()
+	{
+		if(Input.GetKey("a") || Input.GetKey("left"))
+		{
+			strafeSteeringEngaged = true;
+			strafeSteeringTimer = 0;
+			steeringDirection = -1;
+		}
+		else if(Input.GetKey("d") || Input.GetKey("right"))
+		{
+			strafeSteeringEngaged = true;
+			strafeSteeringTimer = 0;
+			steeringDirection = 1;
+		}
+		else
+		{
+			steeringDirection = 0;
+			strafeSteeringTimer += Time.deltaTime;
+			if(strafeSteeringTimer > returnToCameraFollowTime)
 			{
-				secondaryBulletsLeft[currentSecondaryWep] = totalSecondaryBullets[currentSecondaryWep];
+				strafeSteeringEngaged = false;
 			}
-
-
-
-			//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
-
-            //handles the max speed
-			Vector2 temp = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
-			if(temp.magnitude > maxSpeed)
+		}
+		if(Input.GetKey("w") || Input.GetKey("up"))
+		{
+			if(strafeSteeringEngaged)
 			{
-				temp = temp.normalized*maxSpeed;
-				rigidbody.velocity = new Vector3(temp.x, rigidbody.velocity.y, temp.y);
-			}
-
-            //handles slope physics
-			float kemp = Vector3.Angle(transform.up, Vector3.up);
-			if(kemp > maxSlope)
-			{
-				for(int i = 0; i < wheels.Length; i++)
-				{
-					wheels[i].motorTorque *=(kemp>maxSlope+10)?0:(10 - kemp + maxSlope)/10;
-					if(!keyDown)
-					{
-						wheels[i].brakeTorque = 0;
-					}
-				}
-			}
-
-            //cannon kickback
-			cannonGraphics.localPosition = Vector3.Lerp(cannonGraphics.localPosition, initialCannonPosition, Time.deltaTime*cannonKickbackRestoreRate);
-
-            //shield regeneration
-			if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
-			{
-				if(shieldPct < 100)
-				{
-					HealthChange(shieldRechargeRate * Time.deltaTime, 0);
-				}
-				shield.renderer.enabled = true;
+				MovePlayerControlled(true);
 			}
 			else
 			{
-				if(shieldPct > 0)
+				MoveFollowCamera(true);
+			}
+			keyDown = true;
+		}
+		if(Input.GetKey("s") || Input.GetKey("down"))
+		{
+			//MovePlayerControlled is false when moving backwards
+			if(strafeSteeringEngaged)
+			{
+				MovePlayerControlled(false);
+			}
+			else
+			{
+				MoveFollowCamera(false);
+			}
+			keyDown = true;
+		}
+		if(!keyDown)
+		{
+			//torque and breaking while the vehicle is not being moved by player
+			strafeSteeringEngaged = false;
+			for(int i = 0; i < wheels.Length; i++)
+			{
+				wheels[i].motorTorque = 0;
+				wheels[i].brakeTorque = brakeForce;
+			}
+		}
+	}
+	private void HandleOtherInput()
+	{
+		//unstuck tool
+		if(Input.GetKeyDown("r"))
+		{
+			transform.rotation = Quaternion.identity;
+			transform.localPosition += new Vector3(0, 5, 0);
+		}
+		/*Weapon cycling*/
+		if (Input.GetKeyDown("tab"))
+		{
+			currentSecondaryWep++;
+			if(currentSecondaryWep >= possibleSecondaries.Length)
+			{
+				currentSecondaryWep = 0;
+			}
+		}
+		if(Input.GetKeyDown("1"))
+		{
+			currentSecondaryWep = 0;
+		}
+		if(Input.GetKeyDown("2"))
+		{
+			currentSecondaryWep = 1;
+		}
+		if(Input.GetKeyDown("3"))
+		{
+			currentSecondaryWep = 2;
+		}
+	}
+	private void UpdateTimers()
+	{
+		primaryCannonTimer += Time.deltaTime;
+		for(int i = 0; i < secondaryCannonReloadTimers.Length; i++)
+		{
+			if(i == currentSecondaryWep)
+			{
+				secondaryCannonReloadTimers[i] += Time.deltaTime;
+			}
+			else
+			{
+				secondaryCannonReloadTimers[i] += secondaryOfflineReload*Time.deltaTime;
+			}
+		}
+		if(secondaryCannonReloadTimers[currentSecondaryWep] > secondaryCannonReloadTime[currentSecondaryWep])
+		{
+			secondaryBulletsLeft[currentSecondaryWep] = totalSecondaryBullets[currentSecondaryWep];
+		}
+	}
+	private void UpdateGraphics()
+	{
+		//cannon kickback
+		cannonGraphics.localPosition = Vector3.Lerp(cannonGraphics.localPosition, initialCannonPosition, Time.deltaTime*cannonKickbackRestoreRate);
+		
+		//shield regeneration
+		if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
+		{
+			if(shieldPct < 100)
+			{
+				HealthChange(shieldRechargeRate * Time.deltaTime, 0);
+			}
+			shield.renderer.enabled = true;
+		}
+		else
+		{
+			if(shieldPct > 0)
+			{
+				if(Time.timeSinceLevelLoad-timeSinceLastHit < 1)
 				{
-					if(Time.timeSinceLevelLoad-timeSinceLastHit < 1)
-					{
-						shieldMat.SetFloat("_Cutoff", (Time.timeSinceLevelLoad-timeSinceLastHit));
-						shieldMat.mainTextureOffset += Random.insideUnitCircle*shieldMaterialRate;
-						shield.renderer.enabled = true;
-					}
+					shieldMat.SetFloat("_Cutoff", (Time.timeSinceLevelLoad-timeSinceLastHit));
+					shieldMat.mainTextureOffset += Random.insideUnitCircle*shieldMaterialRate;
+					shield.renderer.enabled = true;
 				}
-				else
-				{
-					shieldMat.SetFloat("_Cutoff", 1);
-					shield.renderer.enabled = false;
-				}
+			}
+			else
+			{
+				shieldMat.SetFloat("_Cutoff", 1);
+				shield.renderer.enabled = false;
 			}
 		}
 	}
@@ -398,7 +413,7 @@ public class PlayerController : MonoBehaviour
 		}
 
         //health pack
-		if(other.tag.Equals("HealthPack"))
+		else if(other.tag.Equals("HealthPack"))
 		{
 			try
 			{
@@ -416,7 +431,7 @@ public class PlayerController : MonoBehaviour
 				Debug.Log("Incorrect tag assignment for tag \"Health Pack\"");
 			}
 		}
-		if(other.tag.Equals("Laser"))
+		else if(other.tag.Equals("Laser"))
 		{
 			try
 			{
@@ -536,7 +551,7 @@ public class PlayerController : MonoBehaviour
 						numFlameParticlesPlaying++;
 					}
 				}
-                    //half health
+                //half health
 				else if(health/maxHealth < .5f)
 				{
 					if(numFlameParticlesPlaying < 1)
@@ -550,7 +565,8 @@ public class PlayerController : MonoBehaviour
 					health = 0;
 					GameOver();
 				}
-			}//???
+			}
+			//determines when to recharge shield
 			timeSinceLastHit = Time.timeSinceLevelLoad;
 		}
 	}

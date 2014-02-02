@@ -165,8 +165,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	public override void KillMe()
 	{
 		deathTimeoutTimer += Time.deltaTime;
-		rigidbody.isKinematic = false;
-		rigidbody.velocity = transform.forward*movementSpeed;
 		foreach(Transform ring in rings)
 		{
 			BlimpRingPiece[] pieces = ring.GetComponentsInChildren<BlimpRingPiece>();
@@ -175,6 +173,8 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 				p.HealthChange(0, float.NegativeInfinity);
 			}
 		}
+		rigidbody.isKinematic = false;
+		rigidbody.velocity = transform.forward*movementSpeed;
 	}
 	public void RemovePiece(bool isEnginePiece)
 	{
