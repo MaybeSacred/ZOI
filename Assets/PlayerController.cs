@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
-	private int steeringDirection;
+public class PlayerController : MonoBehaviour
+{
+
+    #region variables
+    private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	public bool isStrafeSteeringDefaultOption;
 	private WheelFrictionCurve startWheelFriction;
@@ -12,25 +15,18 @@ public class PlayerController : MonoBehaviour {
 	public float centerOfMassAdjustment;
 	public float deathTimeout;
 	private float deathTimeoutTimer;
-	public Vector3 restartPosition;
-	public Vector3 restartRotation;
+	public Vector3 restartPosition, restartRotation;
 	private int lastCheckpoint = 0;
 	private float lastCheckpointHealth;
 	public ParticleSystem[] wheelGroundEffects;
-	public float minShieldFlicker;
-	public float maxShieldFlicker;
-	public float shieldMaterialRate;
-	public Transform shield;
+	public float minShieldFlicker, maxShieldFlicker, shieldMaterialRate;
+    public Transform shield;
 	private Material shieldMat;
 	private float timeSinceLastHit;
-	public float shieldPct;
-	public float shieldRechargeDelay;
-	public float shieldRechargeRate;
+	public float shieldPct, shieldRechargeDelay, shieldRechargeRate;
 	public WheelCollider[] wheels;
 	public float[] secondaryCannonReloadTimers{get; private set;}
-	public float primaryCannonTimer;
-	public float primaryCannonReloadTime;
-	public float secondaryOfflineReload;
+	public float primaryCannonTimer, primaryCannonReloadTime, secondaryOfflineReload;
 	public float[] secondaryCannonReloadTime;
 	public float[] firingRandomness;
 	public int[] secondaryBulletsLeft{get; private set;}
@@ -38,11 +34,9 @@ public class PlayerController : MonoBehaviour {
 	public ParticleSystem[] secondaryCannonFlashes;
 	private float secondaryAutoFireTimer;
 	public int[] totalSecondaryBullets;
-	public ParticleSystem cannonFlash;
-	public ParticleSystem cannonRingFlash;
+	public ParticleSystem cannonFlash, cannonRingFlash;
 	public Transform primaryBulletEmitter;
-	public Transform cannonGO;
-	public Transform cannonGraphics;
+	public Transform cannonGO, cannonGraphics;
 	private Vector3 initialCannonPosition;
 	public Vector3 cannonKickbackDistance;
 	public float cannonKickbackRestoreRate;
@@ -52,22 +46,18 @@ public class PlayerController : MonoBehaviour {
 	public int currentSecondaryWep{get; private set;}
 	public Transform body;
 	public Transform turret;
-	public float maxSlope;
-	public float autotargetDeltaAngle;
-	public float steeringRate;
-	public float steeringCenteringCoeff;
-	public float bodyRotationEpsilon;
+	public float maxSlope, autotargetDeltaAngle;
+	public float steeringRate, steeringCenteringCoeff, bodyRotationEpsilon;
 	public Camera theCam;
-	public float forwardAcceleration;
-	public float brakeForce;
-	public float maxSpeed;
-	private bool keyDown;
-	public bool wasForwardKeyDown;
-	public float health;
-	public float maxHealth;
+	public float forwardAcceleration, brakeForce, maxSpeed;
+	private bool keyDown, wasForwardKeyDown;
+	public float health, maxHealth;
 	private int numWheelsGrounded;
 	private List<GameObject> colliders;
-	void Start () {
+    #endregion
+   
+    void Start () {
+        //starting physics
 		startWheelFriction = wheels[0].sidewaysFriction;
 		primaryCannonTimer = primaryCannonReloadTime;
 		secondaryCannonReloadTimers = new float[possibleSecondaries.Length];
@@ -77,6 +67,8 @@ public class PlayerController : MonoBehaviour {
 		rigidbody.centerOfMass -= new Vector3(0, centerOfMassAdjustment, 0);
 		colliders = new List<GameObject>();
 		shieldMat = shield.renderer.materials[0];
+
+        //secondary weapon placement
 		for(int i = 0; i < possibleSecondaries.Length;i++)
 		{
 			secondaryCannonReloadTimers[i] = secondaryCannonReloadTime[i];
@@ -88,11 +80,13 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () 
 	{
+        //handles when the player does not exist and is respawning
 		if(deathTimeoutTimer > 0)
 		{
 			deathTimeoutTimer += Time.deltaTime;
 			if(deathTimeoutTimer > deathTimeout)
 			{
+                //spawns the player
 				PlayerDeath();
 			}
 		}
@@ -133,6 +127,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			if(Input.GetKey("s") || Input.GetKey("down"))
 			{
+                //MovePlayerControlled is false when moving backwards
 				if(strafeSteeringEngaged)
 				{
 					MovePlayerControlled(false);
@@ -145,18 +140,22 @@ public class PlayerController : MonoBehaviour {
 			}
 			if(!keyDown)
 			{
+                //torque and breaking while the vehicle is not being moved by player
 				for(int i = 0; i < wheels.Length; i++)
 				{
 					wheels[i].motorTorque = 0;
 					wheels[i].brakeTorque = brakeForce;
 				}
 			}
+            //unstuck tool
 			if(Input.GetKeyDown("r"))
 			{
 				transform.rotation = Quaternion.identity;
 				transform.localPosition += new Vector3(0, 5, 0);
-			}
-			if(Input.GetKeyDown("tab"))
+            }
+
+            #region weaponcycling
+            if (Input.GetKeyDown("tab"))
 			{
 				currentSecondaryWep++;
 				if(currentSecondaryWep >= possibleSecondaries.Length)
@@ -175,8 +174,13 @@ public class PlayerController : MonoBehaviour {
 			if(Input.GetKeyDown("3"))
 			{
 				currentSecondaryWep = 2;
-			}
-			if(Input.GetMouseButtonDown(0))
+            }
+
+            #endregion
+
+            #region weapons
+            //primary weapon firing
+            if (Input.GetMouseButtonDown(0))
 			{
 				if(primaryCannonTimer > primaryCannonReloadTime)
 				{
@@ -209,6 +213,8 @@ public class PlayerController : MonoBehaviour {
 					cannonRingFlash.Play();
 				}
 			}
+
+            //secondary weapon
 			if(Input.GetMouseButtonDown(1) || Input.GetKeyDown("space"))
 			{
 				secondaryAutoFireTimer = secondaryAutoFireTimes[currentSecondaryWep];
@@ -264,8 +270,13 @@ public class PlayerController : MonoBehaviour {
 						secondaryAutoFireTimer += Time.deltaTime;
 					}
 				}
-			}
-			UpdateTreadParticles();
+            }
+            #endregion
+
+            //updates tread particles
+            UpdateTreadParticles();
+
+            //cannon reloading
 			primaryCannonTimer += Time.deltaTime;
 			for(int i = 0; i < secondaryCannonReloadTimers.Length; i++)
 			{
@@ -282,13 +293,20 @@ public class PlayerController : MonoBehaviour {
 			{
 				secondaryBulletsLeft[currentSecondaryWep] = totalSecondaryBullets[currentSecondaryWep];
 			}
+
+
+
 			//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
+
+            //handles the max speed
 			Vector2 temp = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
 			if(temp.magnitude > maxSpeed)
 			{
 				temp = temp.normalized*maxSpeed;
 				rigidbody.velocity = new Vector3(temp.x, rigidbody.velocity.y, temp.y);
 			}
+
+            //handles slope physics
 			float kemp = Vector3.Angle(transform.up, Vector3.up);
 			if(kemp > maxSlope)
 			{
@@ -301,7 +319,11 @@ public class PlayerController : MonoBehaviour {
 					}
 				}
 			}
+
+            //cannon kickback
 			cannonGraphics.localPosition = Vector3.Lerp(cannonGraphics.localPosition, initialCannonPosition, Time.deltaTime*cannonKickbackRestoreRate);
+
+            //shield regeneration
 			if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 			{
 				if(shieldPct < 100)
@@ -356,6 +378,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void RealCollisionHandler(Collider other)
 	{
+        //handles explosions with tags
 		if(other.tag.Equals("BasicExplosion"))
 		{
 			try
@@ -373,6 +396,8 @@ public class PlayerController : MonoBehaviour {
 				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
 			}
 		}
+
+        //health pack
 		if(other.tag.Equals("HealthPack"))
 		{
 			try
@@ -410,6 +435,7 @@ public class PlayerController : MonoBehaviour {
 	}
 	public void OnTriggerStay(Collider other)
 	{
+        //only consistent triggers
 		RealCollisionHandler(other);
 	}
 	public bool SetLastCheckpoint(Vector3 restartPos, Vector3 restartEulers, int checkpointNumber)
@@ -452,6 +478,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			deathTimeoutTimer += Time.deltaTime;
 			gameOverExplosion.Play();
+
+            //tank is forced to stop during gameover
 			for(int i = 0; i < wheels.Length; i++)
 			{
 				wheels[i].motorTorque = 0;
@@ -490,6 +518,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			else
 			{
+                //near death
 				health += healthDmg;
 				if(health/maxHealth < .1f)
 				{
@@ -498,6 +527,7 @@ public class PlayerController : MonoBehaviour {
 						flameParticles[i].Play();
 					}
 				}
+                //low health
 				else if(health/maxHealth < .25f)
 				{
 					if(numFlameParticlesPlaying < 2)
@@ -506,6 +536,7 @@ public class PlayerController : MonoBehaviour {
 						numFlameParticlesPlaying++;
 					}
 				}
+                    //half health
 				else if(health/maxHealth < .5f)
 				{
 					if(numFlameParticlesPlaying < 1)
@@ -513,13 +544,13 @@ public class PlayerController : MonoBehaviour {
 						flameParticles[Mathf.FloorToInt(Random.Range(0, flameParticles.Length))].Play();
 						numFlameParticlesPlaying++;
 					}
-				}
+				}//dead
 				if(health < 0)
 				{
 					health = 0;
 					GameOver();
 				}
-			}
+			}//???
 			timeSinceLastHit = Time.timeSinceLevelLoad;
 		}
 	}
