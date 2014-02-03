@@ -257,6 +257,7 @@ public class PlayerController : MonoBehaviour
 				MovePlayerControlled(true);
 			}
 			else
+
 			{
 				MoveFollowCamera(true);
 			}
