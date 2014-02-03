@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
     #region variables
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
@@ -15,7 +19,11 @@ public class PlayerController : MonoBehaviour
 	public ParticleSystem[] flameParticles;
 	public float centerOfMassAdjustment;
 	public float deathTimeout;
+<<<<<<< HEAD
 	public float deathTimeoutTimer{get; private set;}
+=======
+	private float deathTimeoutTimer;
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 	public Vector3 restartPosition, restartRotation;
 	private int lastCheckpoint = 0;
 	private float lastCheckpointHealth;
@@ -69,7 +77,11 @@ public class PlayerController : MonoBehaviour
 		colliders = new List<GameObject>();
 		shieldMat = shield.renderer.materials[0];
 
+<<<<<<< HEAD
         //secondary weapon setup
+=======
+        //secondary weapon placement
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 		for(int i = 0; i < possibleSecondaries.Length;i++)
 		{
 			secondaryCannonReloadTimers[i] = secondaryCannonReloadTime[i];
@@ -137,7 +149,12 @@ public class PlayerController : MonoBehaviour
 		{
 			if(primaryCannonTimer > primaryCannonReloadTime)
 			{
+<<<<<<< HEAD
 				if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
+=======
+                //MovePlayerControlled is false when moving backwards
+				if(strafeSteeringEngaged)
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 				{
 					RaycastHit hit;
 					Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
@@ -165,6 +182,7 @@ public class PlayerController : MonoBehaviour
 				cannonFlash.Play();
 				cannonRingFlash.Play();
 			}
+<<<<<<< HEAD
 		}
 	}
 	private void SecondaryWeaponCheck()
@@ -176,6 +194,51 @@ public class PlayerController : MonoBehaviour
 		if(Input.GetMouseButton(1) || Input.GetKey("space"))
 		{
 			if(secondaryBulletsLeft[currentSecondaryWep] > 0)
+=======
+			if(!keyDown)
+			{
+                //torque and breaking while the vehicle is not being moved by player
+				for(int i = 0; i < wheels.Length; i++)
+				{
+					wheels[i].motorTorque = 0;
+					wheels[i].brakeTorque = brakeForce;
+				}
+			}
+            //unstuck tool
+			if(Input.GetKeyDown("r"))
+			{
+				transform.rotation = Quaternion.identity;
+				transform.localPosition += new Vector3(0, 5, 0);
+            }
+
+            #region weaponcycling
+            if (Input.GetKeyDown("tab"))
+			{
+				currentSecondaryWep++;
+				if(currentSecondaryWep >= possibleSecondaries.Length)
+				{
+					currentSecondaryWep = 0;
+				}
+			}
+			if(Input.GetKeyDown("1"))
+			{
+				currentSecondaryWep = 0;
+			}
+			if(Input.GetKeyDown("2"))
+			{
+				currentSecondaryWep = 1;
+			}
+			if(Input.GetKeyDown("3"))
+			{
+				currentSecondaryWep = 2;
+            }
+
+            #endregion
+
+            #region weapons
+            //primary weapon firing
+            if (Input.GetMouseButtonDown(0))
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			{
 				if(secondaryAutoFireTimer > secondaryAutoFireTimes[currentSecondaryWep])
 				{
@@ -224,6 +287,7 @@ public class PlayerController : MonoBehaviour
 					secondaryAutoFireTimer += Time.deltaTime;
 				}
 			}
+<<<<<<< HEAD
 		}
 	}
 	private void HandleMovementInput()
@@ -245,6 +309,11 @@ public class PlayerController : MonoBehaviour
 			steeringDirection = 0;
 			strafeSteeringTimer += Time.deltaTime;
 			if(strafeSteeringTimer > returnToCameraFollowTime)
+=======
+
+            //secondary weapon
+			if(Input.GetMouseButtonDown(1) || Input.GetKeyDown("space"))
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			{
 				strafeSteeringEngaged = false;
 			}
@@ -253,9 +322,70 @@ public class PlayerController : MonoBehaviour
 		{
 			if(strafeSteeringEngaged)
 			{
+<<<<<<< HEAD
 				MovePlayerControlled(true);
 			}
 			else
+=======
+				if(secondaryBulletsLeft[currentSecondaryWep] > 0)
+				{
+					if(secondaryAutoFireTimer > secondaryAutoFireTimes[currentSecondaryWep])
+					{
+						Vector3 randomTemp = firingRandomness[currentSecondaryWep]*Vector3.Cross(primaryBulletEmitter.forward, Random.insideUnitSphere);
+						if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
+						{
+							RaycastHit hit;
+							Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
+							Quaternion tempQuat;
+							if(hit.distance < 10)
+							{
+								tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-secondaryBulletEmitters[currentSecondaryWep].position);
+							}
+							else
+							{
+								tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-secondaryBulletEmitters[currentSecondaryWep].position);
+							}
+							Util.Fire(possibleSecondaries[currentSecondaryWep], secondaryBulletEmitters[currentSecondaryWep].position,
+							          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
+							                                    -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
+							          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
+							             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
+							             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
+						}
+						else
+						{
+							Util.Fire(possibleSecondaries[currentSecondaryWep], secondaryBulletEmitters[currentSecondaryWep].position,
+							          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
+							                                    -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
+							          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
+							             -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
+							             Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
+						}
+						secondaryCannonReloadTimers[currentSecondaryWep] = 0;
+						secondaryCannonFlashes[currentSecondaryWep].Play();
+						if(secondaryBulletEmitters[currentSecondaryWep] == primaryBulletEmitter)
+						{
+							cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
+							cannonRingFlash.Play();
+						}
+						secondaryBulletsLeft[currentSecondaryWep]--;
+						secondaryAutoFireTimer -= secondaryAutoFireTimes[currentSecondaryWep];
+					}
+					else
+					{
+						secondaryAutoFireTimer += Time.deltaTime;
+					}
+				}
+            }
+            #endregion
+
+            //updates tread particles
+            UpdateTreadParticles();
+
+            //cannon reloading
+			primaryCannonTimer += Time.deltaTime;
+			for(int i = 0; i < secondaryCannonReloadTimers.Length; i++)
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			{
 				MoveFollowCamera(true);
 			}
@@ -268,10 +398,22 @@ public class PlayerController : MonoBehaviour
 			{
 				MovePlayerControlled(false);
 			}
+<<<<<<< HEAD
 			else
+=======
+
+
+
+			//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
+
+            //handles the max speed
+			Vector2 temp = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
+			if(temp.magnitude > maxSpeed)
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			{
 				MoveFollowCamera(false);
 			}
+<<<<<<< HEAD
 			keyDown = true;
 		}
 		if(!keyDown)
@@ -279,10 +421,17 @@ public class PlayerController : MonoBehaviour
 			//torque and breaking while the vehicle is not being moved by player
 			strafeSteeringEngaged = false;
 			for(int i = 0; i < wheels.Length; i++)
+=======
+
+            //handles slope physics
+			float kemp = Vector3.Angle(transform.up, Vector3.up);
+			if(kemp > maxSlope)
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			{
 				wheels[i].motorTorque = 0;
 				wheels[i].brakeTorque = brakeForce;
 			}
+<<<<<<< HEAD
 		}
 	}
 	private void HandleOtherInput()
@@ -298,6 +447,14 @@ public class PlayerController : MonoBehaviour
 		{
 			currentSecondaryWep++;
 			if(currentSecondaryWep >= possibleSecondaries.Length)
+=======
+
+            //cannon kickback
+			cannonGraphics.localPosition = Vector3.Lerp(cannonGraphics.localPosition, initialCannonPosition, Time.deltaTime*cannonKickbackRestoreRate);
+
+            //shield regeneration
+			if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			{
 				currentSecondaryWep = 0;
 			}
@@ -413,7 +570,11 @@ public class PlayerController : MonoBehaviour
 		}
 
         //health pack
+<<<<<<< HEAD
 		else if(other.tag.Equals("HealthPack"))
+=======
+		if(other.tag.Equals("HealthPack"))
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 		{
 			try
 			{
@@ -551,7 +712,11 @@ public class PlayerController : MonoBehaviour
 						numFlameParticlesPlaying++;
 					}
 				}
+<<<<<<< HEAD
                 //half health
+=======
+                    //half health
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 				else if(health/maxHealth < .5f)
 				{
 					if(numFlameParticlesPlaying < 1)
@@ -565,8 +730,12 @@ public class PlayerController : MonoBehaviour
 					health = 0;
 					GameOver();
 				}
+<<<<<<< HEAD
 			}
 			//determines when to recharge shield
+=======
+			}//???
+>>>>>>> 6eebd0b77dc63e3a1029ef9d46c3a0bab2238de6
 			timeSinceLastHit = Time.timeSinceLevelLoad;
 		}
 	}
