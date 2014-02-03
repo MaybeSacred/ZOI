@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+
     #region variables
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
