@@ -25,44 +25,60 @@ Using GitHub's GUI.
 Using Git's terminal commands. ($ [command] [words and words] means it's a terminal command in this readme, don't type the "$ ")
   - $ cd ZOI to get into the correct repository.
   - Make sure you are in the master branch.
-    >$ git checkout master
+  
+    $ git checkout master
   - If master has not been touched since the last time it was up-to-date.
     - Pull changes from the repository.
-      >$ git pull
+	
+      $ git pull
   - If master has changes from the last time it was up-to-date.
     - Make Git track changes.
-      >$ git status
+	
+      $ git status
     - Commit changes or reset your changes.
       - Commit them.
-        >$ git commit
+	  
+        $ git commit
       - Undo commit.
-        >$ git reset --soft HEAD^
+	  
+        $ git reset --soft HEAD^
       - Reset your repo.
-        >$ git reset --hard HEAD^
+	  
+        $ git reset --hard HEAD^
     - Push changes to remote repository (origin).
-      >$ git push
+	
+      $ git push
     - Now try to pull commit back to master
-      >$ git pull
+	
+      $ git pull
   - At this point, master needs to be up-to-date. Local master commit has to be the same as the remote master.
   - Create or merge master changes onto another branch.
     - Create branch.
-      >$ git branch [other branch name]
+	
+      $ git branch [other branch name]
     - Merge branch.
-      >$ git checkout [other branch name]
-      >$ git merge master          <-- this command merges changes FROM branch, so make sure you were able to checkout [branch name]
+	
+      $ git checkout [other branch name]
+	  
+      $ git merge master          <-- this command merges changes FROM branch, so make sure you were able to checkout [branch name]
   - Go about your work on your local branch and you can forget about Git until you are done working.
   - Once you are done working on your stuff, tell Git to track changes, and then commit them.
-    >$ git status
+  
+    $ git status
     - Now add files to be commited. "$ git add ." adds all files to the commit. Pretty sure "$ git commit -a" adds all too.
-    >$ git commit
+	
+    $ git commit
     - If a text editor appears, you write the name of your commit at the top line, save the file, and exit it.
   - Now that your local branch has your changes committed, time to merge it to your master and commit them to the remote.
   - Checkout your master and merge the changes from your other branch to master.
-    >$ git checkout master
-    >$ git merge [other branch name]
+  
+    $ git checkout master
+	
+    $ git merge [other branch name]
   - I'm pretty sure that after that merge, master has the other branch's commit.
   - Lastly, push your changes to the remote repository.
-    >$ git push
+  
+    $ git push
     
 ================================================================================
 
