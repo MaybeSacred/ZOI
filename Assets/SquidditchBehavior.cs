@@ -13,11 +13,13 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	public float minAcceptableAngle;
 	public float minFlitDistance;
 	public float maxFlitDistance;
+	public float outsideFiringRangeSpeedMultiplier;
 	public float movementSpeed;
 	public float movementError;
 	public float waitTime;
 	private float waitTimer;
 	private Vector3 moveToFlitPosition;
+	private Vector3 oldPosition;
 	public float rotationDelta;
 	private bool breakingDown;
 	public float firingDistance;
@@ -62,6 +64,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 					FiringHandler();
 					if((moveToFlitPosition - transform.position).magnitude < movementError)
 					{
+						waitTimer += Time.deltaTime;
 						if(waitTimer >= waitTime)
 						{
 							RaycastHit info;
@@ -70,25 +73,24 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 							{
 								if(distance.magnitude < standOffDistance)
 								{
-									GenerateNextMovementPoint(Mathf.Sign(Random.Range(-1, 0))*Vector3.Cross(distance, Vector3.up));
+									GenerateNextMovementPoint(Mathf.Sign(Random.Range(-1, 0))*Vector3.Cross(distance, Vector3.up), true);
 								}
 								else
 								{
-									GenerateNextMovementPoint(distance);
+									GenerateNextMovementPoint(distance, true);
 								}
 							}
 							else
 							{
-								GenerateNextMovementPoint(Vector3.up);
+								GenerateNextMovementPoint(Vector3.up, true);
 							}
 							waitTimer = 0;
 							timeIntoMovement = 0;
 						}
-						waitTimer += Time.deltaTime;
 					}
 					else
 					{
-						transform.position = Vector3.Slerp(transform.position, moveToFlitPosition, .5f-.5f*Mathf.Cos(timeIntoMovement*movementSpeed));
+						transform.position = Vector3.Lerp(oldPosition, moveToFlitPosition, .5f-.5f*Mathf.Cos(timeIntoMovement*movementSpeed));
 					}
 				}
 				else
@@ -96,20 +98,20 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 					if((moveToFlitPosition - transform.position).magnitude < movementError)
 					{
 						RaycastHit info;
-						Physics.Raycast(transform.position, 2*distance.normalized, out info);
+						Physics.Raycast(transform.position, distance.normalized, out info);
 						if(info.collider.tag.Equals("Player"))
 						{
-							GenerateNextMovementPoint(distance);
+							GenerateNextMovementPoint(distance, false);
 						}
 						else
 						{
-							GenerateNextMovementPoint(Vector3.up);
+							GenerateNextMovementPoint(Vector3.up, false);
 						}
 						timeIntoMovement = 0;
 					}
 					else
 					{
-						transform.position = Vector3.Slerp(transform.position, moveToFlitPosition, .5f-.5f*Mathf.Cos(timeIntoMovement*movementSpeed));
+						transform.position = Vector3.Lerp(oldPosition, moveToFlitPosition, .5f-.5f*Mathf.Cos(timeIntoMovement*movementSpeed));
 					}
 				}
 				if(Quaternion.Angle(graphics.rotation, nextRotation) < minAngle)
@@ -207,7 +209,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		}
 		return output;
 	}
-	private void GenerateNextMovementPoint(Vector3 distance)
+	private void GenerateNextMovementPoint(Vector3 distance, bool isCloseToPlayer)
 	{
 		distance = distance.normalized;
 		RaycastHit info;
@@ -219,7 +221,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		while(i < 5)
 		{
 			Physics.Raycast(transform.position, possible, out info);
-			if(bestDistanceSoFar < info.distance && bestAngleSoFar > Vector3.Angle(possible, distance))
+			if(bestDistanceSoFar <= info.distance && bestAngleSoFar > Vector3.Angle(possible, distance))
 			{
 				bestSoFar = possible;
 				bestAngleSoFar = Vector3.Angle(possible, distance);
@@ -234,8 +236,16 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		}
 		else 
 		{
-			moveToFlitPosition = transform.position + bestSoFar*Random.Range(minFlitDistance, maxFlitDistance);
+			if(isCloseToPlayer)
+			{
+				moveToFlitPosition = transform.position + bestSoFar*Random.Range(minFlitDistance, maxFlitDistance);
+			}
+			else
+			{
+				moveToFlitPosition = transform.position + bestSoFar*Random.Range(outsideFiringRangeSpeedMultiplier * minFlitDistance, outsideFiringRangeSpeedMultiplier * maxFlitDistance);
+			}
 		}
+		oldPosition = transform.position;
 	}
 	public override void RealCollisionHandler(Collider other)
 	{

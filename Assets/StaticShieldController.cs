@@ -7,7 +7,6 @@ public class StaticShieldController : MonoBehaviour {
 	public float ringMaterialVarianceAlpha;
 	public float originalRingMaterialAlpha;
 	public Transform ring;
-	private Vector3 originalRingScale;
 	public float ringScaleFactor;
 	public float ringScaleRate;
 	private int topPiecesLeft = 3;
@@ -16,7 +15,7 @@ public class StaticShieldController : MonoBehaviour {
 	private float deathTimeoutTimer;
 	public float finalDeathLightRange;
 	void Start () {
-		originalRingScale = ring.localScale;
+	
 	}
 	
 	void Update () {

@@ -11,8 +11,11 @@ public class HealthPack : MonoBehaviour {
 		startY = transform.position.y;
 	}
 	void Update () {
-		transform.localEulerAngles += new Vector3(0, angularSpeed*Mathf.Sin(Time.timeSinceLevelLoad), 0);
-		transform.position = new Vector3(transform.position.x, startY + floatAmplitude*Mathf.Sin(floatSpeed*Time.timeSinceLevelLoad), transform.position.z);
+		if(!Util.isPaused)
+		{
+			transform.localEulerAngles += new Vector3(0, angularSpeed*Mathf.Sin(Time.timeSinceLevelLoad), 0);
+			transform.position = new Vector3(transform.position.x, startY + floatAmplitude*Mathf.Sin(floatSpeed*Time.timeSinceLevelLoad), transform.position.z);
+		}
 	}
 	public void OnTriggerEnter(Collider other)
 	{

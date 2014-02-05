@@ -29,15 +29,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 		player = Util.player;
 		randomTravelToSideOfPlayer = Random.Range(-1, 1)>=0?1:-1;
 		startEngineEmission = enginePS.emissionRate;
-		Debug.Log("hi");
-		Debug.Log("hi");
-		Debug.Log("hi");
-		Debug.Log("hi");
-		Debug.Log("hi");
-		Debug.Log("hi");Debug.Log("hi");
-		Debug.Log("hi");
-		Debug.Log("hi");
-		Debug.Log("hi");Debug.Log("hi");
 	}
 	void Update () {
 		if(deathTimeoutTimer > 0)

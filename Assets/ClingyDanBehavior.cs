@@ -44,8 +44,7 @@ public class ClingyDanBehavior : BaseEnemy {
 						Vector3 temp2 = (bulletEmitter.position-transform.position).normalized;
 						temp = firingRandomness*Vector3.Cross(temp2, temp);
 						Util.Fire(currentBullet, bulletEmitter.position, Quaternion.LookRotation(bulletEmitter.position-transform.position-temp), 
-						          (bulletEmitter.position-transform.position-temp).normalized*currentBullet.initialSpeed, 
-						          currentBullet.useGravity);
+						          (bulletEmitter.position-transform.position-temp).normalized*currentBullet.initialSpeed);
 						currentBurstNum++;
 						fireTimer -= fireRate;
 					}

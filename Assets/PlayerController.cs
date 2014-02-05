@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 
     #region variables
+    public bool isAlive{get; private set;}
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	public bool isStrafeSteeringDefaultOption;
@@ -78,34 +79,38 @@ public class PlayerController : MonoBehaviour
 		}
 		initialCannonPosition = cannonGraphics.localPosition;
 		restartPosition = transform.position;
+		isAlive = true;
 	}
 
 	void Update () 
 	{
         //handles when the player does not exist and is respawning
-		if(deathTimeoutTimer > 0)
+		if(!Util.isPaused)
 		{
-			deathTimeoutTimer += Time.deltaTime;
-			if(deathTimeoutTimer > deathTimeout)
+			if(deathTimeoutTimer > 0)
 			{
-                //spawns the player
-				PlayerDeath();
+				deathTimeoutTimer += Time.deltaTime;
+				if(deathTimeoutTimer > deathTimeout)
+				{
+	                //spawns the player
+					PlayerDeath();
+				}
 			}
-		}
-		else
-		{
-			keyDown = false;
-			HandleMovementInput();
-           	HandleOtherInput();
-			PrimaryWeaponCheck();
-            SecondaryWeaponCheck();
-            //cannon reloading
-			UpdateTimers();
-			//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
-			UpdatePhysics();
-			//updates tread particles
-			UpdateTreadParticles();
-			UpdateGraphics();
+			else
+			{
+				keyDown = false;
+				HandleMovementInput();
+	           	HandleOtherInput();
+				PrimaryWeaponCheck();
+	            SecondaryWeaponCheck();
+	            //cannon reloading
+				UpdateTimers();
+				//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
+				UpdatePhysics();
+				//updates tread particles
+				UpdateTreadParticles();
+				UpdateGraphics();
+			}
 		}
 	}
 	private void UpdatePhysics()
@@ -155,11 +160,11 @@ public class PlayerController : MonoBehaviour
 					          primaryBullet.initialSpeed*
 					          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
 					             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-					             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x))), primaryBullet.useGravity);
+					             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x))));
 				}
 				else
 				{
-					Util.Fire(primaryBullet, primaryBulletEmitter.position, cannonGO.rotation, primaryBullet.initialSpeed*cannonGO.forward, primaryBullet.useGravity);
+					Util.Fire(primaryBullet, primaryBulletEmitter.position, cannonGO.rotation, primaryBullet.initialSpeed*cannonGO.forward);
 				}
 				cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
 				primaryCannonTimer = 0;
@@ -199,7 +204,7 @@ public class PlayerController : MonoBehaviour
 						                                    -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
 						          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
 						             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-						             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
+						             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp).normalized);
 					}
 					else
 					{
@@ -208,7 +213,7 @@ public class PlayerController : MonoBehaviour
 						                                    -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp), possibleSecondaries[currentSecondaryWep].initialSpeed*
 						          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
 						             -Mathf.Sin(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x),
-						             Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp).normalized, possibleSecondaries[currentSecondaryWep].useGravity);
+						             Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*secondaryBulletEmitters[currentSecondaryWep].rotation.eulerAngles.x)) - randomTemp).normalized);
 					}
 					secondaryCannonReloadTimers[currentSecondaryWep] = 0;
 					secondaryCannonFlashes[currentSecondaryWep].Play();
@@ -438,7 +443,7 @@ public class PlayerController : MonoBehaviour
 			try
 			{
 				BasicBullet be = (BasicBullet)(other.GetComponent<BasicBullet>());
-				HealthChange(-be.shieldDamage, -be.healthDamage);
+				HealthChange(-be.shieldDamage*Time.deltaTime, -be.healthDamage*Time.deltaTime);
 			}
 			catch(System.InvalidCastException ie)
 			{
@@ -474,7 +479,6 @@ public class PlayerController : MonoBehaviour
 		Util.player = pc;
 		Destroy(gameObject);*/
 		deathTimeoutTimer = 0;
-		float temp = wheelGroundEffects[0].emissionRate;
 		for(int i = 0; i < wheelGroundEffects.Length; i++)
 		{
 			wheelGroundEffects[i].enableEmission = false;
@@ -488,6 +492,7 @@ public class PlayerController : MonoBehaviour
 		transform.position = restartPosition;
 		transform.eulerAngles = restartRotation;
 		HealthChange(100, lastCheckpointHealth);
+		isAlive = true;
 	}
 	public void GameOver()
 	{
@@ -502,6 +507,7 @@ public class PlayerController : MonoBehaviour
 				wheels[i].motorTorque = 0;
 				wheels[i].brakeTorque = brakeForce;
 			}
+			isAlive = false;
 		}
 	}
 	public void HealthChange(float shieldDmg, float healthDmg)

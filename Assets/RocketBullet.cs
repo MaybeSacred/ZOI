@@ -3,9 +3,8 @@ using System.Collections;
 
 public class RocketBullet : BasicBullet {
 	public float homingStrength;
-	public float cubicHomingFactor;
 	public Transform targetedTransform;
-	public float distanceBetweenChecks;
+	public float timeBetweenChecks;
 	public float checkRadius;
 	public float secondCheckRadius;
 	private float checkTimer;
@@ -13,7 +12,6 @@ public class RocketBullet : BasicBullet {
 	public float maxSpeed;
 	public float timeOutTime;
 	private float timeOutTimer;
-	public float backwardsMovementAngle;
 
 	void Start () {
 		rigidbody.velocity = speed;
@@ -22,7 +20,7 @@ public class RocketBullet : BasicBullet {
 	void Update () {
 		if(targetedTransform == null)
 		{
-			if(checkTimer > distanceBetweenChecks)
+			if(checkTimer > timeBetweenChecks)
 			{
 				if(Physics.CheckCapsule(transform.position, transform.position + transform.forward*2*checkRadius, checkRadius, 1<<10))
 				{
@@ -47,10 +45,9 @@ public class RocketBullet : BasicBullet {
 					}
 				}
 				collider.enabled = true;
-				checkTimer-=distanceBetweenChecks;
+				checkTimer-=timeBetweenChecks;
 			}
 			checkTimer += Time.deltaTime;
-			rigidbody.AddForce(rigidbody.velocity.normalized*rocketStrength);
 		}
 		else
 		{
@@ -62,14 +59,14 @@ public class RocketBullet : BasicBullet {
 			else
 			{
 				Vector3 distance = targetedTransform.position - transform.position;
-				rigidbody.AddForce(homingStrength*distance.normalized + cubicHomingFactor * Vector3.RotateTowards(distance, -rigidbody.velocity, backwardsMovementAngle, 0).normalized);
+				rigidbody.AddTorque(homingStrength*Vector3.Cross(transform.forward, distance.normalized));
 			}
 		}
+		rigidbody.AddForce(transform.forward*rocketStrength);
 		if(rigidbody.velocity.magnitude > maxSpeed)
 		{
-			rigidbody.AddForce(-rigidbody.velocity.normalized*.5f);
+			rigidbody.AddForce(-transform.forward*.5f);
 		}
-		transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
 		if(timeOutCounter > 0)
 		{
 			if(timeOutCounter > endTime)

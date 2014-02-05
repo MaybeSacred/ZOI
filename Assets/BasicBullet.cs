@@ -14,7 +14,6 @@ public class BasicBullet : MonoBehaviour {
 	public float healthDamage;
 	public float timeOutCounter;
 	public float explosionDuration;
-	public bool useGravity;
 	protected float endTime;
 	void Start () {
 		endTime = this.GetComponent<ParticleSystem>().startLifetime + this.GetComponent<ParticleSystem>().duration;

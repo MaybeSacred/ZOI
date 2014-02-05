@@ -48,7 +48,7 @@ public class TriStar : BaseEnemy {
 			{
 				if(firingTimer > firingRate)
 				{
-					Util.Fire<BasicBullet>(bb, bulletEmitter.transform.position, Quaternion.LookRotation(Util.player.transform.position-bulletEmitter.transform.position), bb.initialSpeed*(Util.player.transform.position-bulletEmitter.transform.position).normalized, false);
+					Util.Fire<BasicBullet>(bb, bulletEmitter.transform.position, Quaternion.LookRotation(Util.player.transform.position-bulletEmitter.transform.position), bb.initialSpeed*(Util.player.transform.position-bulletEmitter.transform.position).normalized);
 					firingTimer = 0;
 				}
 			}
