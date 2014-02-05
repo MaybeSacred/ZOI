@@ -1,6 +1,13 @@
 ZOI - Zone of Inaccessibility
 =============================================================================
 
+IMPORTANT:
+
+	Please export all 3D models into .fbx format.
+	Unity can natively read/import those files while other file formats require their respective programs to import, e.g. .blend files for Blender, .mb files for Maya, etc.
+	
+=============================================================================
+
 Git workflow.
   Try not to work on your local master but instead on a seperate local branch.
 
