@@ -27,11 +27,17 @@ public class KatneenBehavior : BaseEnemy {
 	public Transform turret;
 	public Transform[] legs;
 	private List<GameObject> colliders;
+	
 	public LaserBullet currentLaser;
 	private float laserDurationTimer;
 	public float laserDuration;
-	public float laserGroundRate;
+	public float laserLockedOnGroundRate;
+	public float laserLostLockGroundRate;
+	public float deltaAngleForLosingLocked;
 	public float laserRandomness;
+	private Vector3 startPlayerDirection;
+	private bool isLaserLockedOn;
+	
 	void Start () {
 		colliders = new List<GameObject>();
 		shieldMat = (Material)Instantiate(shieldMat);
@@ -39,26 +45,37 @@ public class KatneenBehavior : BaseEnemy {
 	}
 	void Update () 
 	{
-		if(isAwake)
+		if(deathTimeoutTimer > 0)
 		{
-			if(deathTimeoutTimer > 0)
+			currentLaser = null;
+			warningLight.range = deathTimeoutTimer*deathGlowConstant;
+			if(deathTimeoutTimer > deathTimeout)
 			{
-				currentLaser = null;
-				warningLight.range = deathTimeoutTimer*deathGlowConstant;
-				if(deathTimeoutTimer > deathTimeout)
-				{
-					Destroy(transform.parent.gameObject);
-				}
-				deathTimeoutTimer += Time.deltaTime;
+				Destroy(transform.parent.gameObject);
 			}
-			else
+			deathTimeoutTimer += Time.deltaTime;
+		}
+		else
+		{
+			if(isAwake)
 			{
 				Vector3 distance = Util.player.transform.position - turret.transform.position;
 				if(currentLaser != null)
 				{
 					if(laserDurationTimer < laserDuration)
 					{
-						lockedOnPoint = Vector3.MoveTowards(lockedOnPoint, Util.player.transform.position + laserRandomness*Random.insideUnitSphere, Time.deltaTime*laserGroundRate);
+						if(isLaserLockedOn)
+						{
+							lockedOnPoint = Vector3.MoveTowards(lockedOnPoint, Util.player.transform.position + laserRandomness*Random.insideUnitSphere, Time.deltaTime*laserLockedOnGroundRate);
+							if(Vector3.Angle(Util.player.rigidbody.velocity, startPlayerDirection) > deltaAngleForLosingLocked)
+							{
+								isLaserLockedOn = false;
+							}
+						}
+						else
+						{
+							lockedOnPoint = Vector3.MoveTowards(lockedOnPoint, Util.player.transform.position + laserRandomness*Random.insideUnitSphere, Time.deltaTime*laserLostLockGroundRate);
+						}
 						currentLaser.transform.rotation = Quaternion.LookRotation(lockedOnPoint - bulletEmitter.position);
 						RaycastHit hit;
 						Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2));
@@ -93,6 +110,8 @@ public class KatneenBehavior : BaseEnemy {
 								laserDurationTimer = 0;
 								fireTimer -= fireRate;
 								lockedOnDirection = Vector3.zero;
+								isLaserLockedOn = true;
+								startPlayerDirection = Util.player.rigidbody.velocity.normalized;
 							}
 						}
 						else
@@ -235,6 +254,7 @@ public class KatneenBehavior : BaseEnemy {
 			breakingDown = true;
 		}
 	}
+	
 	public override void OnPlayerExit()
 	{
 		if(deathTimeoutTimer <=0)

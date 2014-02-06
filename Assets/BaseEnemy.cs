@@ -8,10 +8,12 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	protected bool isAwake;
 	protected float deathTimeoutTimer;
 	public float deathTimeout;
+	///<summary>Called to handle the final destruction of BaseEnemy</summary>
 	public virtual void KillMe()
 	{
 		Destroy(gameObject);
 	}
+	///<summary>Updates the health of the BaseEnemy, negative values decrease health</summary>
 	public virtual void HealthChange(float shieldDmg, float healthDmg)
 	{
 		if(health > 0)
@@ -28,14 +30,17 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 			}
 		}
 	}
+	///<summary>Synthesizes various Unity collision calls, does not necessarily need to be invoked by derived classes</summary>
 	public virtual void RealCollisionHandler(Collider other)
 	{
 
 	}
+	///<summary>Called when player enters surrounding check collider</summary>
 	public virtual void OnPlayerEnter()
 	{
 		isAwake = true;
 	}
+	///<summary>Called when player exits surrounding check collider</summary>
 	public virtual void OnPlayerExit()
 	{
 		if(deathTimeoutTimer <=0)

@@ -213,7 +213,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	{
 		distance = distance.normalized;
 		RaycastHit info;
-		Vector3 possible = GenerateBiasedVector(distance, 3);
+		Vector3 possible = GenerateBiasedVector(distance, 5);
 		Vector3 bestSoFar = Vector3.zero;
 		float bestDistanceSoFar = 0;
 		float bestAngleSoFar = 360;
@@ -230,15 +230,22 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 			possible = GenerateBiasedVector(distance, 3);
 			i++;
 		}
-		if(bestDistanceSoFar < maxFlitDistance)
+		if(isCloseToPlayer)
 		{
-			moveToFlitPosition = transform.position + bestSoFar*bestDistanceSoFar/2;
-		}
-		else 
-		{
-			if(isCloseToPlayer)
+			if(bestDistanceSoFar < maxFlitDistance)
+			{
+				moveToFlitPosition = transform.position + bestSoFar*bestDistanceSoFar/2;
+			}
+			else 
 			{
 				moveToFlitPosition = transform.position + bestSoFar*Random.Range(minFlitDistance, maxFlitDistance);
+			}
+		}
+		else
+		{
+			if(bestDistanceSoFar < outsideFiringRangeSpeedMultiplier * maxFlitDistance)
+			{
+				moveToFlitPosition = transform.position + bestSoFar * bestDistanceSoFar/2;
 			}
 			else
 			{
