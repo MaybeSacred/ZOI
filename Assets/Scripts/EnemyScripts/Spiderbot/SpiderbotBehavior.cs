@@ -82,17 +82,15 @@ public class SpiderbotBehavior : BaseEnemy {
 		}
 	}
 
-	void OnCollisionEneter(Collider other)
+	void OnCollisionEnter(Collision other)
 	{
 		print("collision1");
-		if(other.tag.Equals("Player")){
-			print("collision2");
+		if(other.collider.tag.Equals("Player")){
 					ParticleSystem ps = Instantiate(explosionPS, transform.position - rigidbody.velocity*Time.fixedDeltaTime, transform.rotation) as ParticleSystem;
 					speed = Vector3.zero;
 					acceleration = Vector3.zero;
 					timeOutCounter += Time.deltaTime;
 					GetComponent<Collider>().enabled = false;
-					GetComponent<ParticleSystem>().Stop();
 					if(GetComponent<MeshRenderer>() != null)
 					{
 						GetComponent<MeshRenderer>().enabled = false;
