@@ -42,27 +42,27 @@ public class SpiderbotBehavior : BaseEnemy {
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(distance), rotationDelta*Time.deltaTime);
 
 				//leg movement
-				if (legTimer<legSpeed)
+				if (0.5*legSpeed<legTimer&&legTimer<legSpeed)
 				{
-					legs[0].rigidbody.AddForce(1,5,0);
-					print("leg");
-					legs[1].rigidbody.AddForce(1,5,0);
+					legs[0].transform.position = new Vector3(legs[0].transform.position.x,legs[0].transform.position.y+0.2f,legs[0].transform.position.z);
+					legs[1].transform.position = new Vector3(legs[1].transform.position.x,legs[1].transform.position.y+0.2f,legs[1].transform.position.z);
 				}
-				else if (legTimer<legSpeed*2)
+				else if (1.5*legSpeed<legTimer&&legTimer<legSpeed*2)
 				{
-					legs[4].rigidbody.AddForce(1,5,0);
-					legs[5].rigidbody.AddForce(1,5,0);
+					legs[4].transform.position = new Vector3(legs[4].transform.position.x,legs[4].transform.position.y+0.2f,legs[4].transform.position.z);
+					legs[5].transform.position = new Vector3(legs[5].transform.position.x,legs[5].transform.position.y+0.2f,legs[5].transform.position.z);
 				}
-				else if (legTimer<legSpeed*3)
+				else if (2.5*legSpeed<legTimer&&legTimer<legSpeed*3)
 				{
-					legs[2].rigidbody.AddForce(1,5,0);
-					legs[3].rigidbody.AddForce(1,5,0);
+					legs[2].transform.position = new Vector3(legs[2].transform.position.x,legs[2].transform.position.y+0.2f,legs[2].transform.position.z);
+					legs[3].transform.position = new Vector3(legs[3].transform.position.x,legs[3].transform.position.y+0.2f,legs[3].transform.position.z);
 				}
-				else if (legTimer<legSpeed*4)
+				else if (3.5*legSpeed<legTimer&&legTimer<legSpeed*4)
 				{
-					legs[6].rigidbody.AddForce(1,5,0);
-					legs[7].rigidbody.AddForce(1,5,0);
-				}else legTimer=0;
+					legs[6].transform.position = new Vector3(legs[6].transform.position.x,legs[6].transform.position.y+0.2f,legs[6].transform.position.z);
+					legs[7].transform.position = new Vector3(legs[7].transform.position.x,legs[7].transform.position.y+0.2f,legs[7].transform.position.z);
+				}else if(legTimer>legSpeed*4)
+					legTimer = 0;
 
 				transform.position = Vector3.Lerp(transform.position,Util.player.transform.position, .5f-.5f*Mathf.Cos(movementSpeed));
 			}
@@ -86,69 +86,9 @@ public class SpiderbotBehavior : BaseEnemy {
 	{
 		print("collision1");
 		if(other.collider.tag.Equals("Player")){
-					ParticleSystem ps = Instantiate(explosionPS, transform.position - rigidbody.velocity*Time.fixedDeltaTime, transform.rotation) as ParticleSystem;
-					speed = Vector3.zero;
-					acceleration = Vector3.zero;
-					timeOutCounter += Time.deltaTime;
-					GetComponent<Collider>().enabled = false;
-					if(GetComponent<MeshRenderer>() != null)
-					{
-						GetComponent<MeshRenderer>().enabled = false;
-					}
-					ps.GetComponent<BasicExplosion>().explosionDuration = explosionDuration;
-					ps.GetComponent<BasicExplosion>().shieldDamage = shieldDamage;
-					ps.GetComponent<BasicExplosion>().healthDamage = healthDamage;
-					ps.GetComponent<BasicExplosion>().side = side;
+
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
-		if(true)
-		{
-			print ("collision");
-			if(other.tag.Equals("BasicExplosion"))
-			{
-				try
-				{
-					if(!colliders.Contains(other.gameObject))
-					{
-						colliders.Add(other.gameObject);
-						BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
-						rigidbody.AddExplosionForce(be.explosionForce, other.transform.position, be.explosionRadius);
-						HealthChange(-be.shieldDamage, -be.healthDamage);
-					}
-				}
-				catch(System.InvalidCastException ie)
-				{
-					Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
-				}
-			}
-			if(other.tag.Equals("Player"))
-			{
-				print("player collision");
-				try
-				{
-					ParticleSystem ps = Instantiate(explosionPS, transform.position - rigidbody.velocity*Time.fixedDeltaTime, transform.rotation) as ParticleSystem;
-					speed = Vector3.zero;
-					acceleration = Vector3.zero;
-					timeOutCounter += Time.deltaTime;
-					GetComponent<Collider>().enabled = false;
-					GetComponent<ParticleSystem>().Stop();
-					if(GetComponent<MeshRenderer>() != null)
-					{
-						GetComponent<MeshRenderer>().enabled = false;
-					}
-					ps.GetComponent<BasicExplosion>().explosionDuration = explosionDuration;
-					ps.GetComponent<BasicExplosion>().shieldDamage = shieldDamage;
-					ps.GetComponent<BasicExplosion>().healthDamage = healthDamage;
-					ps.GetComponent<BasicExplosion>().side = side;
-				}
-				catch(System.InvalidCastException ie)
-				{
-					Debug.Log ("incorrect tag assignment for tag \"Basic Explosion\"");
-				}
-			}
-		}
-	}
+
 }
