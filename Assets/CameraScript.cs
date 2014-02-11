@@ -8,9 +8,6 @@ public class CameraScript : MonoBehaviour {
 	public float yAxisUpperAngleBound, yAxisLowerAngleBound;
 	public Vector2 cameraOffset;
 	public float lerpthThpeed;
-	public Transform sun;
-	private Color dayColor;
-	public Color nightColor;
 	private float realYAngle;
 	public float cameraRaycastOffset;
 	/*Controls how much the camera moves up and down based on x angle*/
@@ -28,9 +25,7 @@ public class CameraScript : MonoBehaviour {
 		yAxisUpperAngleBound += 360;
 		startFOV = camera.fieldOfView;
 		startZ = cameraOffset.x;
-		dayColor = camera.backgroundColor;
 		mousePos = new Vector2();
-		
 	}
 
 	void Update () {
@@ -59,14 +54,16 @@ public class CameraScript : MonoBehaviour {
 					transform.eulerAngles += new Vector3(mousePos.y*mouseSensitivity.y, mousePos.x*mouseSensitivity.x, 0);
 				}
 				RaycastHit hit;
-				Physics.Raycast(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
-				if(hit.distance < startZ)
+				if(Physics.Raycast(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 				{
-					cameraOffset.x = Mathf.Lerp(cameraOffset.x, hit.distance-cameraRaycastOffset, lerpthThpeed*Time.deltaTime);
-				}
-				else
-				{
-					cameraOffset.x = Mathf.Lerp(cameraOffset.x, startZ, lerpthThpeed*Time.deltaTime);
+					if(hit.distance < startZ)
+					{
+						cameraOffset.x = Mathf.Lerp(cameraOffset.x, hit.distance-cameraRaycastOffset, lerpthThpeed*Time.deltaTime);
+					}
+					else
+					{
+						cameraOffset.x = Mathf.Lerp(cameraOffset.x, startZ, lerpthThpeed*Time.deltaTime);
+					}
 				}
 				if(Input.GetAxis("Mouse ScrollWheel") > 0)
 				{

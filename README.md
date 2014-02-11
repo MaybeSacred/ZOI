@@ -89,7 +89,10 @@ Using Git's terminal commands. ($ [command] [words and words] means it's a termi
     
 ================================================================================
 
-Other important data about the project... something
+Ideas for checkpoints:
+Bridges
+Doors
+Scenery that is knocked down i.e. rock that forms bridge
 
 ================================================================================
 
