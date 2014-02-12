@@ -30,7 +30,6 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	public Transform bulletEmitter;
 	public BasicBullet currentBullet;
 	public float deathGlowConstant;
-	private List<GameObject> colliders;
 	public LaserBullet currentLaser;
 	private float laserDurationTimer;
 	public float laserDuration;
@@ -41,7 +40,6 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	void Start () {
 		moveToFlitPosition = transform.position;
 		nextRotation = Random.rotationUniform;
-		colliders = new List<GameObject>();
 	}
 	void Update () 
 	{

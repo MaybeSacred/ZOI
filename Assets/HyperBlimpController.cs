@@ -6,7 +6,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	public float encirclingRotationAngle;
 	private int randomTravelToSideOfPlayer;
 	public float deathPullForce;
-	private List<GameObject> colliders;
 	public ParticleSystem enginePS;
 	public Transform[] rings;
 	public float forwardStopDistance;
@@ -25,7 +24,6 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	public float altitudeChangeSpeed;
 	private float startEngineEmission;
 	void Start () {
-		colliders = new List<GameObject>();
 		player = Util.player;
 		randomTravelToSideOfPlayer = Random.Range(-1, 1)>=0?1:-1;
 		startEngineEmission = enginePS.emissionRate;

@@ -16,13 +16,10 @@ public class TriStar : BaseEnemy {
 	public BasicBullet bb;
 	private float firingTimer;
 	public float firingRate;
-	private List<GameObject> colliders;
 	void Start () {
 		armMaterial[0].mainTextureOffset = new Vector2(0, .5f);
 		armMaterial[1].mainTextureOffset = new Vector2(0, .25f);
 		armMaterial[2].mainTextureOffset = Vector2.zero;
-		
-		colliders = new List<GameObject>();
 	}
 
 	void Update () 

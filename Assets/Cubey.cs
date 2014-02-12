@@ -19,11 +19,9 @@ public class Cubey : BaseEnemy {
 	public float firingRate;
 	private float firingTimer;
 	public Transform bulletEmitter;
-	private List<GameObject> colliders;
 	void Start () {
 		navi = this.GetComponent<NavMeshAgent>();
 		startPos = transform.position;
-		colliders = new List<GameObject>();
 	}
 
 	void Update () {

@@ -283,7 +283,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if(!keyDown)
 		{
-			//torque and breaking while the vehicle is not being moved by player
+			//torque and braking while the vehicle is not being moved by player
 			strafeSteeringEngaged = false;
 			for(int i = 0; i < wheels.Length; i++)
 			{
@@ -327,18 +327,16 @@ public class PlayerController : MonoBehaviour
 		primaryCannonTimer += Time.deltaTime;
 		for(int i = 0; i < secondaryCannonReloadTimers.Length; i++)
 		{
-			if(i == currentSecondaryWep)
+			secondaryCannonReloadTimers[i] += Time.deltaTime;
+			if(secondaryCannonReloadTimers[i] > secondaryCannonReloadTime[i])
 			{
-				secondaryCannonReloadTimers[i] += Time.deltaTime;
+				secondaryBulletsLeft[i]++;
+				if(secondaryBulletsLeft[i] > totalSecondaryBullets[i])
+				{
+					secondaryBulletsLeft[i] = totalSecondaryBullets[i];
+				}
+				secondaryCannonReloadTimers[i] = 0;
 			}
-			else
-			{
-				secondaryCannonReloadTimers[i] += secondaryOfflineReload*Time.deltaTime;
-			}
-		}
-		if(secondaryCannonReloadTimers[currentSecondaryWep] > secondaryCannonReloadTime[currentSecondaryWep])
-		{
-			secondaryBulletsLeft[currentSecondaryWep] = totalSecondaryBullets[currentSecondaryWep];
 		}
 	}
 	private void UpdateGraphics()

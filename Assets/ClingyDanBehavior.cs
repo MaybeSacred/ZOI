@@ -15,9 +15,7 @@ public class ClingyDanBehavior : BaseEnemy {
 	public float firingRandomness;
 	public BasicBullet currentBullet;
 	public float aimingError;
-	private List<GameObject> colliders;
 	void Start () {
-		colliders = new List<GameObject>();
 	}
 
 	void Update () 

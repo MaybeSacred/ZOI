@@ -7,7 +7,6 @@ using System.Collections;
 public class SpiderbotBehavior : BaseEnemy {
 	
 	public float lookAheadTime, rotationDelta, legTimer, legSpeed, movementSpeed;
-	private System.Collections.Generic.List<GameObject> colliders;
 	private bool breakingDown;
 	public GameObject[] legs;
 	

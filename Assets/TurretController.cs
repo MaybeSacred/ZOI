@@ -10,10 +10,7 @@ public class TurretController : MonoBehaviour {
 	public Camera cam;
 	public float turretFollowSensitivity;
 	public float turretSmallAngleFollow;
-	private Quaternion lookToQuat;
-	private Vector3 initialCannonOffset;
 	void Start () {
-		initialCannonOffset = cannonGO.localPosition;
 	}
 
 	void Update ()
@@ -23,6 +20,11 @@ public class TurretController : MonoBehaviour {
 		cannonGO.localEulerAngles = new Vector3(cannonGO.localEulerAngles.x, cannonGO.localEulerAngles.y, 0);
 		transform.localPosition = Vector3.zero;
 		cannonGO.position = fakeCannon.position;
+		float deltaAngle = Vector3.Angle(cannonGO.forward, player.up) - 105;
+		if(deltaAngle > 0)
+		{
+			cannonGO.forward = Vector3.RotateTowards(cannonGO.forward, player.up, Mathf.Deg2Rad*deltaAngle, 0);
+		}
 		if(cam.transform.eulerAngles.x > 100 && cam.transform.eulerAngles.x < 345)
 		{
 			rocketLauncher.localEulerAngles = new Vector3(345, 0, 0);

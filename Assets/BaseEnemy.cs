@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using System.Collections.Generic;
 public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 {
 	public float health;
@@ -8,6 +8,11 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	protected bool isAwake;
 	protected float deathTimeoutTimer;
 	public float deathTimeout;
+	protected List<GameObject> colliders;
+	void Awake()
+	{
+		colliders = new List<GameObject>();
+	}
 	///<summary>Called to handle the final destruction of BaseEnemy</summary>
 	public virtual void KillMe()
 	{
@@ -16,7 +21,7 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	///<summary>Updates the health of the BaseEnemy, negative values decrease health</summary>
 	public virtual void HealthChange(float shieldDmg, float healthDmg)
 	{
-		if(health > 0)
+		if(deathTimeoutTimer <= 0)
 		{
 			health += healthDmg;
 			if(health > maxHealth)

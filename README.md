@@ -94,6 +94,13 @@ Bridges
 Doors
 Scenery that is knocked down i.e. rock that forms bridge
 
+Things to do:
+Implement class to hold player weapon settings
+Update GUI to show all secondaries in their various recharge states
+Update clingy bullets to show more effects
+update tristar code - add animations, movement
+
+
 ================================================================================
 
 2014 Feb 02 - Daniel Dias - First Draft 

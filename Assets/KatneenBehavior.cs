@@ -26,7 +26,6 @@ public class KatneenBehavior : BaseEnemy {
 	private Vector3 lockedOnPoint;
 	public Transform turret;
 	public Transform[] legs;
-	private List<GameObject> colliders;
 	
 	public LaserBullet currentLaser;
 	private float laserDurationTimer;
@@ -39,7 +38,6 @@ public class KatneenBehavior : BaseEnemy {
 	private bool isLaserLockedOn;
 	
 	void Start () {
-		colliders = new List<GameObject>();
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.materials[1] = shieldMat;
 	}

@@ -1128,7 +1128,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: -.122782812, z: 0, w: .992433608}
-  m_LocalPosition: {x: 459.937927, y: 9.9210701, z: 143.78154}
+  m_LocalPosition: {x: 475.606812, y: 8.74556732, z: 146.672546}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -2069,7 +2069,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: .879999995, z: 4.80000019}
+  m_Size: {x: 3, y: .800000012, z: 4.80000019}
   m_Center: {x: 0, y: -.200000003, z: 0}
 --- !u!65 &6500010
 BoxCollider:
@@ -2090,7 +2090,7 @@ ConstantForce:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_Enabled: 1
-  m_Force: {x: 0, y: -150, z: 0}
+  m_Force: {x: 0, y: -250, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -2216,9 +2216,9 @@ MonoBehaviour:
   primaryCannonReloadTime: 3
   secondaryOfflineReload: .333000004
   secondaryCannonReloadTime:
-  - 10
-  - 0
   - 7
+  - 0
+  - 2.5
   firingRandomness:
   - .0299999993
   - .109999999
@@ -2256,8 +2256,8 @@ MonoBehaviour:
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12
   theCam: {fileID: 0}
-  forwardAcceleration: 32
-  brakeForce: 40
+  forwardAcceleration: 40
+  brakeForce: 45
   maxSpeed: 12
   health: 100
   maxHealth: 100
@@ -2377,13 +2377,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600002
 WheelCollider:
@@ -2404,13 +2404,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600004
 WheelCollider:
@@ -2431,13 +2431,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600006
 WheelCollider:
@@ -2458,13 +2458,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600008
 WheelCollider:
@@ -2485,13 +2485,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600010
 WheelCollider:
@@ -2512,13 +2512,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600012
 WheelCollider:
@@ -2539,13 +2539,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!146 &14600014
 WheelCollider:
@@ -2566,13 +2566,13 @@ WheelCollider:
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .400000006
+    stiffnessFactor: .300000012
   m_SidewaysFriction:
     extremumSlip: 1
     extremumValue: 20000
     asymptoteSlip: 2
     asymptoteValue: 10000
-    stiffnessFactor: .0199999996
+    stiffnessFactor: .0149999997
   m_Enabled: 1
 --- !u!198 &19800000
 ParticleSystem:
