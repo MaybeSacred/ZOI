@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.508255, y: .0250000004, z: 17.4786167}
+  m_LocalPosition: {x: 64.559021, y: 8.15332985, z: 27.9064655}
   m_LocalScale: {x: .150000006, y: .150000006, z: 1.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,13 +89,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prettyName: 
   side: 0
-  lifetime: 0
+  lifetime: 10
   explosionPS: {fileID: 19800000, guid: fa6d64ca02e34714fbb4f658e7e4bf67, type: 2}
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
-  initialSpeed: 50
+  initialSpeed: 55
   shieldDamage: 10
-  healthDamage: 6
+  healthDamage: 8
   timeOutCounter: 0
   explosionDuration: .0500000007
 --- !u!136 &13600000
@@ -117,7 +117,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  lengthInSec: 1
+  lengthInSec: .100000001
   startDelay: 0
   speed: 1
   randomSeed: 0
@@ -161,7 +161,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -197,10 +197,10 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 2701123126
         key1:
           serializedVersion: 2
-          rgba: 4294967295
+          rgba: 2768209251
         key2:
           serializedVersion: 2
           rgba: 0
@@ -285,10 +285,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 4294967295
-      minMaxState: 0
+        rgba: 4290117541
+      minMaxState: 1
     startSize:
-      scalar: .699999988
+      scalar: .400000006
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -348,9 +348,9 @@ ParticleSystem:
     maxNumParticles: 1000
   ShapeModule:
     serializedVersion: 2
-    enabled: 0
+    enabled: 1
     type: 0
-    radius: 1
+    radius: .5
     angle: 25
     length: 5
     boxX: 1
@@ -360,7 +360,7 @@ ParticleSystem:
     m_Mesh: {fileID: 0}
     randomDirection: 0
   EmissionModule:
-    enabled: 0
+    enabled: 1
     m_Type: 0
     rate:
       scalar: 40
@@ -817,8 +817,8 @@ ParticleSystem:
     inWorldSpace: 1
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 0
-    multiplier: 1
+    enabled: 1
+    multiplier: .25
   ClampVelocityModule:
     enabled: 0
     x:

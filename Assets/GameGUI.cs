@@ -66,32 +66,32 @@ public class GameGUI : MonoBehaviour {
 			}
 			GUILayout.EndArea();
 		}
-		if (Util.player.possibleSecondaries[Util.player.currentSecondaryWep].name.Equals("PlayerGrenade"))
+		if (Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.name.Equals("PlayerGrenade"))
 		{
-			if(Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep] > 0)
+			if(Util.player.playerWeps[Util.player.currentSecondaryWep].HasBullet())
 			{
 				GUILayout.BeginArea(new Rect(Screen.width/2 + primaryWepStartPoint.x-16, Screen.height/2 - primaryWepStartPoint.y, 16, 48));
-				for(int i = 0; i < Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep]; i++)
+				for(int i = 0; i < Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
 				{
 					GUILayout.Box(secondaryIcon, currentStyle);
 				}
 				GUILayout.EndArea();
 			}
 		}
-		else if (Util.player.possibleSecondaries[Util.player.currentSecondaryWep].name.Equals("PlayerRocket"))
+		else if (Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.name.Equals("PlayerRocket"))
 		{
-			if(Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep] > 0)
+			if(Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft > 0)
 			{
 				GUILayout.BeginArea(new Rect(Screen.width/2 + primaryWepStartPoint.x-16, Screen.height/2 - primaryWepStartPoint.y, 16, 64));
-				for(int i = 0; i < Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep]/2; i++)
+				for(int i = 0; i < Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2; i++)
 				{
 					GUILayout.Box(secondaryIcon, currentStyle);
 				}
 				GUILayout.EndArea();
-				if(Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep] > Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep]/2)
+				if(Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft > Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2)
 				{
 					GUILayout.BeginArea(new Rect(Screen.width/2 + primaryWepStartPoint.x, Screen.height/2 - primaryWepStartPoint.y, 16, 64));
-					for(int i = Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep]/2; i < Util.player.secondaryBulletsLeft[Util.player.currentSecondaryWep]; i++)
+					for(int i = Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2; i < Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
 					{
 						GUILayout.Box(secondaryIcon, currentStyle);
 					}
@@ -99,7 +99,7 @@ public class GameGUI : MonoBehaviour {
 				}
 			}
 		}
-		GUI.Label(new Rect(Screen.width - 350, 0, 350, 20), "Current Secondary: " + Util.player.possibleSecondaries[Util.player.currentSecondaryWep].prettyName, currentStyle);
+		GUI.Label(new Rect(Screen.width - 350, 0, 350, 20), "Current Secondary: " + Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.prettyName, currentStyle);
 		if(timeSinceLastCheckpoint < checkpointDisplayTimeout)
 		{
 			timeSinceLastCheckpoint += Time.deltaTime;
