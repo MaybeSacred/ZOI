@@ -65,6 +65,10 @@ public class CameraScript : MonoBehaviour {
 						cameraOffset.x = Mathf.Lerp(cameraOffset.x, startZ, lerpthThpeed*Time.deltaTime);
 					}
 				}
+				else
+				{
+					cameraOffset.x = Mathf.Lerp(cameraOffset.x, startZ, lerpthThpeed*Time.deltaTime);
+				}
 				if(Input.GetAxis("Mouse ScrollWheel") > 0)
 				{
 					isZoomed = true;

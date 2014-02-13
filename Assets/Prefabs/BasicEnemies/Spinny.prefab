@@ -279,8 +279,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_LocalRotation: {x: -.263365179, y: -.229363427, z: .244708225, w: .904515982}
-  m_LocalPosition: {x: 157.58989, y: 11.0617075, z: -251.069061}
+  m_LocalRotation: {x: -.377007812, y: -.598922908, z: -.00241142814, w: .706506014}
+  m_LocalPosition: {x: 241.558105, y: 26.0189667, z: 132.786179}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400010}
@@ -544,7 +544,7 @@ MonoBehaviour:
   legs: {fileID: 400020}
   lookAheadTime: .150000006
   movementForce: 125
-  initialPopUpForce: 1000
+  initialPopUpForce: 1500
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
   shieldDamage: 30
   healthDamage: 30
@@ -557,7 +557,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 8c4662e8266958542b4b9721195207c5, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2

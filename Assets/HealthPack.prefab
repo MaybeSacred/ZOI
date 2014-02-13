@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
   - 135: {fileID: 13500000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
   m_Name: HealthPack
   m_TagString: HealthPack
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 246.48735, y: 2.37586594, z: 29.4982491}
+  m_LocalPosition: {x: 412.885345, y: 2.18943787, z: 468.211517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,6 +75,20 @@ MonoBehaviour:
   floatSpeed: 2
   angularSpeed: 12
   floatAmplitude: .349999994
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcb8e868900262488f442ec08d7f6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desiredPosition: {x: 0, y: 0, z: 0}
+  desiredRotation: {x: 0, y: 0, z: 0}
+  checkPointNumber: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

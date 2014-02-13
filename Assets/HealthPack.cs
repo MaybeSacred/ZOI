@@ -21,10 +21,7 @@ public class HealthPack : MonoBehaviour {
 	{
 		if(other.tag.Equals("Player"))
 		{
-			if(Util.player.health < Util.player.maxHealth)
-			{
-				Destroy(gameObject);
-			}
+			Destroy(gameObject);
 		}
 	}
 }

@@ -755,6 +755,7 @@ public class PlayerController : MonoBehaviour
 	}
 	[System.Serializable]
 	public class PlayerWepDefinition{
+		
 		public float secondaryCannonReloadTimers{get; private set;}
 		public float secondaryCannonReloadTime;
 		public float firingRandomness;
@@ -770,27 +771,40 @@ public class PlayerController : MonoBehaviour
 		}
 		public void UpdateReloadTimer()
 		{
-			secondaryCannonReloadTimers += Time.deltaTime;
-			if(secondaryCannonReloadTimers > secondaryCannonReloadTime)
+			if(secondaryBulletsLeft < totalSecondaryBullets)
 			{
-				secondaryBulletsLeft++;
-				if(secondaryBulletsLeft > totalSecondaryBullets)
+				if(secondaryCannonReloadTimers > secondaryCannonReloadTime)
 				{
-					secondaryBulletsLeft = totalSecondaryBullets;
+					secondaryBulletsLeft++;
+					if(secondaryBulletsLeft > totalSecondaryBullets)
+					{
+						secondaryBulletsLeft = totalSecondaryBullets;
+					}
+					else
+					{
+						secondaryCannonReloadTimers = 0;
+					}
 				}
-				secondaryCannonReloadTimers = 0;
+				else
+				{
+					secondaryCannonReloadTimers += Time.deltaTime;
+				}
 			}
 		}
 		public bool HasBullet()
 		{
-			return secondaryBulletsLeft > 0?true:false;
+			return secondaryBulletsLeft > 0;
+		}
+		public bool IsFullyLoaded()
+		{
+			return secondaryBulletsLeft == totalSecondaryBullets;
 		}
 		public void UseBullet()
 		{
 			if(secondaryBulletsLeft > 0)
 			{
 				secondaryBulletsLeft--;
-				secondaryCannonReloadTimers = 0;
+				//secondaryCannonReloadTimers = 0;
 				secondaryCannonFlashes.Play();
 			}
 		}

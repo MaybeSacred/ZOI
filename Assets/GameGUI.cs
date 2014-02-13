@@ -6,9 +6,11 @@ public class GameGUI : MonoBehaviour {
 	private float dotUpdateDelta;
 	public Texture2D fireUpdateDot;
 	public Texture2D secondaryIcon;
+	public Texture2D secondaryIconGreyed;
 	public Texture2D shieldBar;
 	public Texture2D healthBar;
 	public Texture2D cursorIcon;
+	public Texture2D rechargingStrip;
 	private float startSecondaryReloadBarScaleX;
 	private float timeSinceLastCheckpoint;
 	public float checkpointDisplayTimeout;
@@ -99,11 +101,57 @@ public class GameGUI : MonoBehaviour {
 				}
 			}
 		}
-		GUI.Label(new Rect(Screen.width - 350, 0, 350, 20), "Current Secondary: " + Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.prettyName, currentStyle);
+		GUI.Box(new Rect(Screen.width - 350, 0, 350, 30), GUIContent.none);
+		GUI.Label(new Rect(Screen.width - 350, 0, 350, 30), Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.prettyName, currentStyle);
+		GUILayout.BeginArea(new Rect(Screen.width - 333, 32, 333, 22));
+		GUILayout.BeginArea(new Rect(0, 0, 64, 22));
+		GUILayout.BeginHorizontal();
+		for(int i = 0; i < Util.player.playerWeps[0].totalSecondaryBullets; i++)
+		{
+			if(i < Util.player.playerWeps[0].secondaryBulletsLeft)
+			{
+				GUILayout.Box(secondaryIcon, currentStyle);
+			}
+			else
+			{
+				GUILayout.Box(secondaryIconGreyed, currentStyle);
+			}
+		}
+		GUILayout.EndHorizontal();
+		if(!Util.player.playerWeps[0].IsFullyLoaded())
+		{
+			GUI.BeginGroup(new Rect(0, 16, Util.player.playerWeps[0].secondaryCannonReloadTimers/Util.player.playerWeps[0].secondaryCannonReloadTime*64, 6));
+			GUI.Label(new Rect(0, 0, 64, 6), rechargingStrip, currentStyle);
+			GUI.EndGroup();
+		}
+		GUILayout.EndArea();
+		GUILayout.BeginArea(new Rect(222, 0, 96, 22));
+		GUILayout.BeginHorizontal();
+		for(int i = 0; i < Util.player.playerWeps[2].totalSecondaryBullets; i++)
+		{
+			if(i < Util.player.playerWeps[2].secondaryBulletsLeft)
+			{
+				GUILayout.Box(secondaryIcon, currentStyle);
+			}
+			else
+			{
+				GUILayout.Box(secondaryIconGreyed, currentStyle);
+			}
+		}
+		GUILayout.EndHorizontal();
+		if(!Util.player.playerWeps[2].IsFullyLoaded())
+		{
+			GUI.BeginGroup(new Rect(0, 16, Util.player.playerWeps[2].secondaryCannonReloadTimers/Util.player.playerWeps[2].secondaryCannonReloadTime*64, 6));
+			GUI.Label(new Rect(0, 0, 64, 6), rechargingStrip, currentStyle);
+			GUI.EndGroup();
+		}
+		GUILayout.EndArea();
+		GUILayout.EndArea();
 		if(timeSinceLastCheckpoint < checkpointDisplayTimeout)
 		{
 			timeSinceLastCheckpoint += Time.deltaTime;
-			GUI.Label(new Rect(Screen.width/2-75, 0, 200, 20), "Checkpoint Reached...", currentStyle);
+			GUI.Box(new Rect(Screen.width/2-125, 0, 250, 30), GUIContent.none);
+			GUI.Label(new Rect(Screen.width/2-125, 0, 250, 30), "Checkpoint Reached...", currentStyle);
 		}
 	}
 	void PauseScreen()
