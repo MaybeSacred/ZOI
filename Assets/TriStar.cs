@@ -17,6 +17,25 @@ public class TriStar : BaseEnemy {
 	private float firingTimer;
 	public float firingRate;
 	void Start () {
+		Material[] materials = new Material[armMaterial.Length];
+		for(int k = 0; k < materials.Length; k++)
+		{
+			materials[k] = Instantiate(armMaterial[k]) as Material;
+		}
+		Transform[] arms = GetComponentsInChildren<Transform>();
+		for(int i = 0; i < arms.Length; i++)
+		{
+			if(arms[i].name.Equals("Arm"))
+			{
+				MeshRenderer[] meshes = arms[i].GetComponentsInChildren<MeshRenderer>();
+				for(int k = 0; k < meshes.Length; k++)
+				{
+					Material[] temp = new Material[]{meshes[k].material, materials[k]};
+					meshes[k].materials = temp;
+				}
+			}
+		}
+		armMaterial = materials;
 		armMaterial[0].mainTextureOffset = new Vector2(0, .5f);
 		armMaterial[1].mainTextureOffset = new Vector2(0, .25f);
 		armMaterial[2].mainTextureOffset = Vector2.zero;

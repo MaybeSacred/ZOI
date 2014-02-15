@@ -378,10 +378,6 @@ GameObject:
   - 33: {fileID: 3300010}
   - 114: {fileID: 11400008}
   - 65: {fileID: 6500008}
-  - 65: {fileID: 6500006}
-  - 65: {fileID: 6500004}
-  - 65: {fileID: 6500002}
-  - 65: {fileID: 6500000}
   - 75: {fileID: 7500000}
   m_Layer: 9
   m_Name: Player
@@ -1128,7 +1124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: -.122782812, z: 0, w: .992433608}
-  m_LocalPosition: {x: 477.80838, y: 2.52742767, z: 150.950958}
+  m_LocalPosition: {x: 472.244843, y: 3.89903116, z: 164.022415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1812,9 +1808,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100030}
   serializedVersion: 2
-  m_Mass: 7
+  m_Mass: 10
   m_Drag: .100000001
-  m_AngularDrag: .300000012
+  m_AngularDrag: .100000001
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
@@ -1827,7 +1823,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   serializedVersion: 2
-  m_Mass: 30
+  m_Mass: 50
   m_Drag: .100000001
   m_AngularDrag: .300000012
   m_UseGravity: 1
@@ -1857,9 +1853,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   serializedVersion: 2
-  m_Mass: 7
+  m_Mass: 10
   m_Drag: .100000001
-  m_AngularDrag: .300000012
+  m_AngularDrag: .100000001
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
@@ -1872,9 +1868,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100084}
   serializedVersion: 2
-  m_Mass: 7
+  m_Mass: 10
   m_Drag: .100000001
-  m_AngularDrag: .300000012
+  m_AngularDrag: .100000001
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
@@ -1887,9 +1883,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100086}
   serializedVersion: 2
-  m_Mass: 7
+  m_Mass: 10
   m_Drag: .100000001
-  m_AngularDrag: .300000012
+  m_AngularDrag: .100000001
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
@@ -2011,54 +2007,6 @@ HingeJoint:
     maxBounce: 1
   m_BreakForce: Infinity
   m_BreakTorque: Infinity
---- !u!65 &6500000
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: .600000024, y: .200000003, z: 1.94000006}
-  m_Center: {x: 1.10000002, y: -.5, z: -2.0999999}
---- !u!65 &6500002
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: .600000024, y: .200000003, z: 1.94000006}
-  m_Center: {x: -1.10000002, y: -.5, z: -2.0999999}
---- !u!65 &6500004
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: .600000024, y: .200000003, z: 1.94000006}
-  m_Center: {x: 1.10000002, y: -.5, z: 2.0999999}
---- !u!65 &6500006
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100044}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: .600000024, y: .200000003, z: 1.94000006}
-  m_Center: {x: -1.10000002, y: -.5, z: 2.0999999}
 --- !u!65 &6500008
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2090,7 +2038,7 @@ ConstantForce:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_Enabled: 1
-  m_Force: {x: 0, y: -250, z: 0}
+  m_Force: {x: 0, y: -600, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}
@@ -2257,8 +2205,8 @@ MonoBehaviour:
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12
   theCam: {fileID: 0}
-  forwardAcceleration: 40
-  brakeForce: 45
+  forwardAcceleration: 45
+  brakeForce: 50
   maxSpeed: 12
   health: 100
   maxHealth: 100

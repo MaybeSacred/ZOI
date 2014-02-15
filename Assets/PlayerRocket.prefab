@@ -69,7 +69,7 @@ Rigidbody:
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
   m_Mass: .200000003
-  m_Drag: 1.25
+  m_Drag: 1.5
   m_AngularDrag: 1
   m_UseGravity: 0
   m_IsKinematic: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
   healthDamage: 40
   timeOutCounter: 0
   explosionDuration: .0500000007
-  homingStrength: 35
+  homingStrength: 40
   targetedTransform: {fileID: 0}
   timeBetweenChecks: .100000001
   checkRadius: 20
