@@ -30,7 +30,7 @@ public class Noclip_Camera : MonoBehaviour
 			}
 		}
 
-		faster = 4;
+		faster = 1;
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
 			faster = 12;
 
