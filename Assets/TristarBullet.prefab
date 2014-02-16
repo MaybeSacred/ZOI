@@ -60,7 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prettyName: 
   side: 0
-  lifetime: 5
+  lifetime: 15
   explosionPS: {fileID: 19800000, guid: 9cabd04f3dc5d9d41b9c42f38f173ab9, type: 2}
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
@@ -69,7 +69,8 @@ MonoBehaviour:
   healthDamage: 10
   timeOutCounter: 0
   explosionDuration: .0500000007
-  homingStrength: 10
+  homingStrength: 15
+  lookAheadTime: .25
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

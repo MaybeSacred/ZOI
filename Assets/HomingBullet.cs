@@ -3,11 +3,12 @@ using System.Collections;
 
 public class HomingBullet : BasicBullet {
 	public float homingStrength;
+	public float lookAheadTime;
 	void Start () {
 	}
 	
 	void Update () {
-		rigidbody.AddForce(homingStrength*(Util.player.transform.position - transform.position).normalized);
+		rigidbody.AddForce(homingStrength*(Util.player.rigidbody.velocity*lookAheadTime + Util.player.transform.position - transform.position).normalized);
 		if(timeOutCounter > 0)
 		{
 			if(timeOutCounter > endTime)

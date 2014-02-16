@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
 	public float health, maxHealth;
 	private int numWheelsGrounded;
 	private List<GameObject> colliders;
+
+	public float maxSpeedRetardingForce;
+
     #endregion
    
     void Start () {
@@ -91,7 +94,7 @@ public class PlayerController : MonoBehaviour
 	            SecondaryWeaponCheck();
 	            //cannon reloading
 				UpdateTimers();
-				//Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
+				Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
 				UpdatePhysics();
 				//updates tread particles
 				UpdateTreadParticles();
@@ -100,15 +103,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 	private void UpdatePhysics()
-	{
-		//handles the max speed
-		Vector2 temp = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
-		if(temp.magnitude > maxSpeed)
-		{
-			temp = temp.normalized*maxSpeed;
-			rigidbody.velocity = new Vector3(temp.x, rigidbody.velocity.y, temp.y);
-		}
-		
+	{		
 		//handles slope physics
 		float kemp = Vector3.Angle(transform.up, Vector3.up);
 		if(kemp > maxSlope)
@@ -364,11 +359,10 @@ public class PlayerController : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		Vector2 temp = new Vector2(rigidbody.velocity.x, rigidbody.velocity.z);
-		if(temp.magnitude > maxSpeed)
+		if(rigidbody.velocity.magnitude > maxSpeed)
 		{
-			temp = temp.normalized*maxSpeed;
-			rigidbody.velocity = new Vector3(temp.x, rigidbody.velocity.y, temp.y);
+			Debug.Log("hi");
+			rigidbody.AddForce(-rigidbody.velocity*maxSpeedRetardingForce);
 		}
 	}
 	public void RealCollisionHandler(Collider other)
