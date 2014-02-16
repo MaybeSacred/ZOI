@@ -349,8 +349,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 158.565247, y: 4.00543594, z: 431.187531}
+  m_LocalRotation: {x: .120829768, y: -.00580658065, z: .0476479791, w: .99151206}
+  m_LocalPosition: {x: 453.268219, y: 17.1786499, z: 23.4744797}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400022}
@@ -934,11 +934,12 @@ MonoBehaviour:
   - {fileID: 400020}
   - {fileID: 400006}
   - {fileID: 400026}
+  attachedBarrier: {fileID: 0}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 22
-  laserLostLockGroundRate: 5
-  deltaAngleForLosingLocked: 75
+  laserLockedOnGroundRate: 20
+  laserLostLockGroundRate: 4
+  deltaAngleForLosingLocked: 90
   laserRandomness: 0
 --- !u!114 &11400004
 MonoBehaviour:
@@ -1073,7 +1074,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 158.565247, y: 6.50543594, z: 431.187531}
+  m_ConnectedAnchor: {x: 453.028503, y: 19.5942993, z: 24.0721169}
   m_Spring: 300
   m_Damper: .300000012
   m_MinDistance: 0

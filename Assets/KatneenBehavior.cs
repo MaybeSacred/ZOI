@@ -26,7 +26,7 @@ public class KatneenBehavior : BaseEnemy {
 	private Vector3 lockedOnPoint;
 	public Transform turret;
 	public Transform[] legs;
-	
+	public BarrierBehavior attachedBarrier;
 	public LaserBullet currentLaser;
 	private float laserDurationTimer;
 	public float laserDuration;
@@ -38,6 +38,10 @@ public class KatneenBehavior : BaseEnemy {
 	private bool isLaserLockedOn;
 	
 	void Start () {
+		if(attachedBarrier != null)
+		{
+			attachedBarrier.RegisterEnemy();
+		}
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.materials[1] = shieldMat;
 	}
@@ -241,6 +245,10 @@ public class KatneenBehavior : BaseEnemy {
 			gameObject.GetComponent<SpringJoint>().breakForce = 0;
 			gameObject.GetComponent<SpringJoint>().breakTorque = 0;
 			rigidbody.constraints = RigidbodyConstraints.None;
+			if(attachedBarrier != null)
+			{
+				attachedBarrier.UnregisterEnemy();
+			}
 			for(int i = 0; i < legs.Length; i++)
 			{
 				Transform[] childrens = legs[i].GetComponentsInChildren<Transform>();
