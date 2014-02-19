@@ -361,7 +361,6 @@ public class PlayerController : MonoBehaviour
 	{
 		if(rigidbody.velocity.magnitude > maxSpeed)
 		{
-			Debug.Log("hi");
 			rigidbody.AddForce(-rigidbody.velocity*maxSpeedRetardingForce);
 		}
 	}
