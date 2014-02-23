@@ -88,6 +88,7 @@ public class CameraScript : MonoBehaviour {
 				transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
 				                                      Util.player.transform.localPosition.y + cameraOffset.y, 
 				                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
+				ShakeCamera();
 			}
 			else
 			{
@@ -96,6 +97,31 @@ public class CameraScript : MonoBehaviour {
 				                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position), deathZoomoutSpeed*Time.deltaTime);
 			}
+		}
+	}
+	float shakeAmplitude;
+	public float maxCameraShakeAmplitude;
+	float shakeTimer;
+	public float minimumCameraShakeAmplitude;
+	public float shakeAmplitudeDecayRate;
+	public float shakeRate;
+	public void ActivateCameraShake(float amplitude)
+	{
+		shakeAmplitude = Mathf.Clamp(amplitude, 0, maxCameraShakeAmplitude);
+		shakeTimer = 0.001f;
+	}
+	private void ShakeCamera()
+	{
+		if(shakeTimer > 0)
+		{
+			shakeAmplitude = Mathf.Lerp(shakeAmplitude, 0, shakeAmplitudeDecayRate * Time.deltaTime);
+			transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, shakeAmplitude * Mathf.Sin(shakeRate * Time.timeSinceLevelLoad));
+			if(shakeAmplitude < minimumCameraShakeAmplitude)
+			{
+				shakeTimer = 0;
+				transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
+			}
+			shakeTimer += Time.deltaTime;
 		}
 	}
 	public int GetCurrentMouseSensitivity()

@@ -7,6 +7,7 @@ public class BarrierBehavior : MonoBehaviour {
 	public Transform leftGate, rightGate;
 	public Vector3 openingVector;
 	public float timeToMove;
+	public float cameraShakeStrength;
 	void Start () {
 		
 	}
@@ -21,6 +22,7 @@ public class BarrierBehavior : MonoBehaviour {
 				Destroy(this);
 			}
 			barrierTimer += Time.deltaTime;
+			Util.mainCamera.ActivateCameraShake(cameraShakeStrength);
 		}
 	}
 

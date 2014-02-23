@@ -99,6 +99,10 @@ MonoBehaviour:
   mouseSensitivityRange: {x: 3, y: 10}
   numberOfMouseSensitivityStates: 10
   cameraIsActiveWhenPaused: 0
+  maxCameraShakeAmplitude: 5
+  minimumCameraShakeAmplitude: .00499999989
+  shakeAmplitudeDecayRate: 2.5
+  shakeRate: 53
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,7 +171,7 @@ MonoBehaviour:
     m_ContentOffset: {x: 0, y: 0}
     m_FixedWidth: 0
     m_FixedHeight: 0
-    m_StretchWidth: 1
+    m_StretchWidth: 0
     m_StretchHeight: 0
   primaryWepStartPoint: {x: 50, y: 40}
   fireUpdateDot: {fileID: 2800000, guid: 2f938f29dae6c2f47a0d346b60eb95a1, type: 3}

@@ -5,6 +5,7 @@ public class Util : MonoBehaviour {
 	public static readonly int PLAYERSIDE = 0;
 	public static readonly int ENEMYSIDE = 1;
 	public static PlayerController player;
+	public static CameraScript mainCamera;
 	public static Terrain currentTerrain;
 	public static float[] outsideBounds;
 	public static readonly float GRAVITY = .333f;
@@ -18,6 +19,7 @@ public class Util : MonoBehaviour {
 		PLAYERWEAPONSIGNORELAYERS = ~(1<<LayerMask.NameToLayer("Player") | 1<<LayerMask.NameToLayer("Ignore Raycast") | 1<<LayerMask.NameToLayer("BulletLayer"));
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();
+		mainCamera = this.GetComponentInChildren<CameraScript>();
 		currentTerrain = GetComponentInChildren<Terrain>();
 		if(currentTerrain == null)
 		{
