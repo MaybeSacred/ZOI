@@ -107,6 +107,10 @@ MonoBehaviour:
   mouseSensitivityRange: {x: 0, y: 0}
   numberOfMouseSensitivityStates: 0
   cameraIsActiveWhenPaused: 0
+  maxCameraShakeAmplitude: 0
+  minimumCameraShakeAmplitude: 0
+  shakeAmplitudeDecayRate: 0
+  shakeRate: 0
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

@@ -14,7 +14,7 @@ public class GameGUI : MonoBehaviour {
 	private float startSecondaryReloadBarScaleX;
 	private float timeSinceLastCheckpoint;
 	public float checkpointDisplayTimeout;
-	
+	public bool debug;
 	public GUIContent decrementMouseSensitivityButton;
 	public GUIContent incrementMouseSensitivityButton;
 	public GUIStyle decrementMouseSensitivityButtonStyle;
@@ -30,6 +30,7 @@ public class GameGUI : MonoBehaviour {
 		if(Util.player.isAlive && !Util.isPaused)
 		{
 			InGameGUI();
+			DebugStats();
 		}
 		if(Util.isPaused)
 		{
@@ -176,5 +177,15 @@ public class GameGUI : MonoBehaviour {
 	public void CheckpointReached()
 	{
 		timeSinceLastCheckpoint = 0;
+	}
+	private void DebugStats()
+	{
+		if(debug)
+		{
+			GUILayout.BeginArea(new Rect(0, Screen.height-100, 300, 100));
+			GUILayout.Label(Util.player.rigidbody.velocity.magnitude.ToString());
+			GUILayout.Label(Util.mainCamera.distanceToTarget.ToString());
+			GUILayout.EndArea();
+		}
 	}
 }

@@ -715,22 +715,17 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   deathTimeout: 0
-  armMaterial:
-  - {fileID: 2100000, guid: 3768dafdc96217f44bdbeb486cf08ed9, type: 2}
-  - {fileID: 2100000, guid: 4835c3d15c3b93941b1a3aa22afb1434, type: 2}
-  - {fileID: 2100000, guid: f10e49c7f6afe3947af4d39aba936455, type: 2}
-  duration: .330000013
-  GraphicalObject: {fileID: 100026}
+  graphicalObject: {fileID: 0}
+  legs: {fileID: 0}
   lookAheadTime: 0
-  rotationDelta: 0
-  movementSpeed: 0
-  side: 0
-  lifetime: 0
+  movementForce: 0
+  initialPopUpForce: 0
   explosionPS: {fileID: 0}
   shieldDamage: 0
   healthDamage: 0
   timeOutCounter: 0
   explosionDuration: 0
+  awakeningLeeWayTime: 0
 --- !u!146 &14600000
 WheelCollider:
   m_ObjectHideFlags: 1

@@ -94,7 +94,6 @@ public class PlayerController : MonoBehaviour
 	            SecondaryWeaponCheck();
 	            //cannon reloading
 				UpdateTimers();
-				Debug.Log(Mathf.Sqrt(rigidbody.velocity.x*rigidbody.velocity.x + rigidbody.velocity.z*rigidbody.velocity.z));
 				UpdatePhysics();
 				//updates tread particles
 				UpdateTreadParticles();

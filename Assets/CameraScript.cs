@@ -20,6 +20,7 @@ public class CameraScript : MonoBehaviour {
 	private int mouseSensitivityState;
 	public int numberOfMouseSensitivityStates;
 	public bool cameraIsActiveWhenPaused;
+	public float distanceToTarget{get; private set;}
 	void Start () {
 		SetCurrentMouseSensitivity(numberOfMouseSensitivityStates/2);
 		yAxisUpperAngleBound += 360;
@@ -88,6 +89,8 @@ public class CameraScript : MonoBehaviour {
 				transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
 				                                      Util.player.transform.localPosition.y + cameraOffset.y, 
 				                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
+				Physics.Raycast(transform.position, transform.forward, out hit, float.PositiveInfinity);
+				distanceToTarget = hit.distance;
 				ShakeCamera();
 			}
 			else
