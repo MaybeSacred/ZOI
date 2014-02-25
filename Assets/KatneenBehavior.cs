@@ -104,6 +104,7 @@ public class KatneenBehavior : BaseEnemy {
 							{
 								lockedOnDirection = distance + lookAheadTime*Util.player.rigidbody.velocity;
 								lockedOnPoint = Util.player.transform.position + lookAheadTime*Util.player.rigidbody.velocity;
+								startPlayerDirection = Util.player.rigidbody.velocity.normalized;
 							}
 							turret.rotation = Quaternion.RotateTowards(turret.rotation, Quaternion.LookRotation(lockedOnDirection), rotationDelta*Time.deltaTime);
 							if(fireTimer > fireRate)
@@ -113,7 +114,6 @@ public class KatneenBehavior : BaseEnemy {
 								fireTimer -= fireRate;
 								lockedOnDirection = Vector3.zero;
 								isLaserLockedOn = true;
-								startPlayerDirection = Util.player.rigidbody.velocity.normalized;
 							}
 						}
 						else

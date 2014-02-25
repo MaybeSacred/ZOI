@@ -54,7 +54,6 @@ public class PlayerController : MonoBehaviour
 	private List<GameObject> colliders;
 
 	public float maxSpeedRetardingForce;
-
     #endregion
    
     void Start () {
@@ -408,7 +407,8 @@ public class PlayerController : MonoBehaviour
 			try
 			{
 				BasicBullet be = (BasicBullet)(other.GetComponent<BasicBullet>());
-				HealthChange(-be.shieldDamage*Time.deltaTime, -be.healthDamage*Time.deltaTime);
+				Debug.Log(Time.fixedDeltaTime);
+				HealthChange(-be.shieldDamage*Time.fixedDeltaTime, -be.healthDamage*Time.fixedDeltaTime);
 			}
 			catch(System.InvalidCastException ie)
 			{
@@ -535,7 +535,7 @@ public class PlayerController : MonoBehaviour
 						numFlameParticlesPlaying++;
 					}
 				}//dead
-				if(health < 0)
+				if(health <= 0)
 				{
 					health = 0;
 					GameOver();

@@ -2125,13 +2125,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeps:
-  - secondaryCannonReloadTime: 8
+  - secondaryCannonReloadTime: 10
     firingRandomness: .0299999993
     secondaryBulletEmitters: {fileID: 400072}
     secondaryCannonFlashes: {fileID: 19800010}
     possibleSecondaries: {fileID: 11400000, guid: d31d7132e8faf0c44ac17d449eea3e08,
       type: 2}
-    secondaryAutoFireTimes: 1
+    secondaryAutoFireTimes: .5
     totalSecondaryBullets: 3
   - secondaryCannonReloadTime: 0
     firingRandomness: .125
@@ -2141,13 +2141,13 @@ MonoBehaviour:
       type: 2}
     secondaryAutoFireTimes: .0700000003
     totalSecondaryBullets: 1
-  - secondaryCannonReloadTime: 3
+  - secondaryCannonReloadTime: 4
     firingRandomness: 0
     secondaryBulletEmitters: {fileID: 400094}
     secondaryCannonFlashes: {fileID: 19800008}
     possibleSecondaries: {fileID: 11400000, guid: e015884f125455941a11fa195578db70,
       type: 2}
-    secondaryAutoFireTimes: .165999994
+    secondaryAutoFireTimes: .200000003
     totalSecondaryBullets: 6
   strafeSteeringEngaged: 0
   isStrafeSteeringDefaultOption: 0
@@ -2207,7 +2207,7 @@ MonoBehaviour:
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12
   theCam: {fileID: 0}
-  forwardAcceleration: 42
+  forwardAcceleration: 41
   brakeForce: 60
   maxSpeed: 10
   health: 100

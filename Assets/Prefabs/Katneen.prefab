@@ -927,7 +927,7 @@ MonoBehaviour:
   warningLight: {fileID: 10800000}
   finalWarningLightRange: 5
   postShotLightDropoff: 2
-  lookAheadTime: 2.5
+  lookAheadTime: 2
   deathGlowConstant: 10
   turret: {fileID: 400002}
   legs:
@@ -937,9 +937,9 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 20
-  laserLostLockGroundRate: 4
-  deltaAngleForLosingLocked: 90
+  laserLockedOnGroundRate: 18
+  laserLostLockGroundRate: 6
+  deltaAngleForLosingLocked: 120
   laserRandomness: 0
 --- !u!114 &11400004
 MonoBehaviour:
