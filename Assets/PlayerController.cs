@@ -420,6 +420,27 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 
+		if(other.tag.Equals("Freeze"))
+		{
+			try
+			{
+				if(!colliders.Contains(other.gameObject))
+				{
+					WebActions wa= (WebActions)other.GetComponent<WebActions>();
+					colliders.Add(other.gameObject);
+					controlsDisabled = true;
+					frozenTransform = true;
+					initialFrozenPosition = transform.position;
+					disabledControlsDuration = wa.freezeTime;
+					hitsAgain= other.gameObject;
+				}
+			}
+			catch
+				{
+					Debug.Log ("Incorrect tag assignment for tag \"Freeze\"");
+				}
+		}
+
         //health pack
 		else if(other.tag.Equals("HealthPack"))
 		{
