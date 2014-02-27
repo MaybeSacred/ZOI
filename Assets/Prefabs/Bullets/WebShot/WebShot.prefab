@@ -11,10 +11,10 @@ GameObject:
   - 33: {fileID: 3300000}
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300000}
-  - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: testbullet
+  m_Name: WebShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11400000
+--- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -82,20 +82,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdf447b0581fe3e4db97bad0bce65eb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 809dce1131f8d3f4c89cded0feda1993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prettyName: 
   side: 0
-  lifetime: 5
-  explosionPS: {fileID: 19800000, guid: 96762f286204f2d43837408d9cd0f2e2, type: 2}
+  lifetime: 10
+  explosionPS: {fileID: 0}
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
   initialSpeed: 0
-  shieldDamage: 5
-  healthDamage: 5
+  shieldDamage: 0
+  healthDamage: 0
   timeOutCounter: 0
-  explosionDuration: .00999999978
+  explosionDuration: 0
+  web: {fileID: 100000, guid: 5b8fab50d34f95f4a8c75f8e31d9b5c7, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
