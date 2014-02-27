@@ -236,8 +236,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_LocalRotation: {x: -.377007812, y: -.598922908, z: -.00241142814, w: .706506014}
-  m_LocalPosition: {x: 241.623581, y: 26.1228256, z: 132.982712}
+  m_LocalRotation: {x: .0562167987, y: -.483270288, z: .303337395, w: .819314361}
+  m_LocalPosition: {x: -188.885727, y: 19.0909328, z: 21.2014313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400010}
@@ -478,23 +478,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 100016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0e32a5df5a9c664e936f3bf6d3d60c8, type: 3}
+  m_Script: {fileID: 11500000, guid: ca864c8737a77b74b8230caf92af41fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
   maxHealth: 50
-  deathTimeout: 3
+  deathTimeout: .5
+  attachedBarrier: {fileID: 0}
   graphicalObject: {fileID: 400010}
   legs: {fileID: 400020}
-  lookAheadTime: .150000006
-  movementForce: 125
-  initialPopUpForce: 1500
+  lookAheadTime: .200000003
+  movementForce: 25
+  initialPopUpForce: 1000
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 30
-  healthDamage: 30
-  timeOutCounter: 0
+  shieldDamage: 33
+  healthDamage: 33
+  timeOutCounter: 3
   explosionDuration: .100000001
-  awakeningLeeWayTime: .330000013
+  awakeningLeeWayTime: .200000003
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

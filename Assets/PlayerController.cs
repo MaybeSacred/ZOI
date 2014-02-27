@@ -100,8 +100,7 @@ public class PlayerController : MonoBehaviour
 				UpdateGraphics();
 			}
 		}
-		//if controls turned off starts counting time til renabled
-		if(controlsDisabled)
+		else if(controlsDisabled)
 		{
 			disabledControlsTimer+=Time.deltaTime;
 
@@ -182,7 +181,6 @@ public class PlayerController : MonoBehaviour
 			{
 				if(secondaryAutoFireTimer > playerWeps[currentSecondaryWep].secondaryAutoFireTimes)
 				{
-					Vector3 randomTemp = playerWeps[currentSecondaryWep].firingRandomness*Vector3.Cross(primaryBulletEmitter.forward, Random.insideUnitSphere);
 					if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 					{
 						RaycastHit hit;
@@ -196,21 +194,15 @@ public class PlayerController : MonoBehaviour
 						{
 							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeps[currentSecondaryWep].secondaryBulletEmitters.position);
 						}
+						Vector3 randomTemp = Util.GenerateRandomVector3(tempQuat*Vector3.forward, playerWeps[currentSecondaryWep].firingRandomness);
 						Util.Fire(playerWeps[currentSecondaryWep].possibleSecondaries, playerWeps[currentSecondaryWep].secondaryBulletEmitters.position,
-						          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-						                                    -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp), playerWeps[currentSecondaryWep].possibleSecondaries.initialSpeed*
-						          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-						             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-						             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x)) - randomTemp).normalized);
+						          Quaternion.LookRotation(randomTemp), playerWeps[currentSecondaryWep].possibleSecondaries.initialSpeed*randomTemp.normalized);
 					}
 					else
 					{
+						Vector3 randomTemp = Util.GenerateRandomVector3(playerWeps[currentSecondaryWep].secondaryBulletEmitters.forward, playerWeps[currentSecondaryWep].firingRandomness);
 						Util.Fire(playerWeps[currentSecondaryWep].possibleSecondaries, playerWeps[currentSecondaryWep].secondaryBulletEmitters.position,
-						          Quaternion.LookRotation(new Vector3(Mathf.Sin(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.x),
-						                                    -Mathf.Sin(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.x), Mathf.Cos(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.x)) - randomTemp), playerWeps[currentSecondaryWep].possibleSecondaries.initialSpeed*
-						          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.x),
-						             -Mathf.Sin(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.x),
-						             Mathf.Cos(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*playerWeps[currentSecondaryWep].secondaryBulletEmitters.rotation.eulerAngles.x)) - randomTemp).normalized);
+						          Quaternion.LookRotation(randomTemp), playerWeps[currentSecondaryWep].possibleSecondaries.initialSpeed * randomTemp.normalized);
 					}
 					if(playerWeps[currentSecondaryWep].secondaryBulletEmitters == primaryBulletEmitter)
 					{
@@ -452,7 +444,6 @@ public class PlayerController : MonoBehaviour
 			try
 			{
 				BasicBullet be = (BasicBullet)(other.GetComponent<BasicBullet>());
-				Debug.Log(Time.fixedDeltaTime);
 				HealthChange(-be.shieldDamage*Time.fixedDeltaTime, -be.healthDamage*Time.fixedDeltaTime);
 			}
 			catch(System.InvalidCastException ie)

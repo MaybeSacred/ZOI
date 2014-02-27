@@ -60,6 +60,10 @@ public class ClingyDanBehavior : BaseEnemy {
 	public override void KillMe ()
 	{
 		deathTimeoutTimer += Time.deltaTime;
+		if(attachedBarrier != null)
+		{
+			attachedBarrier.UnregisterEnemy();
+		}
 		FixedJoint[] joints = GetComponentsInChildren<FixedJoint>();
 		for(int i = 0; i < joints.Length; i++)
 		{

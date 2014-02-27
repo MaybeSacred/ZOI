@@ -9,6 +9,7 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	protected float deathTimeoutTimer;
 	public float deathTimeout;
 	protected List<GameObject> colliders;
+	public BarrierBehavior attachedBarrier;
 	void Awake()
 	{
 		colliders = new List<GameObject>();
