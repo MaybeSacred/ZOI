@@ -26,7 +26,6 @@ public class KatneenBehavior : BaseEnemy {
 	private Vector3 lockedOnPoint;
 	public Transform turret;
 	public Transform[] legs;
-	public BarrierBehavior attachedBarrier;
 	public LaserBullet currentLaser;
 	private float laserDurationTimer;
 	public float laserDuration;
