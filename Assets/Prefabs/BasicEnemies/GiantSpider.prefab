@@ -567,7 +567,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 446.893311, y: 13.6352863, z: 62.7098846}
+  m_LocalPosition: {x: 457.797729, y: 14.5122967, z: 86.9245453}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400024}
@@ -1359,7 +1359,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.262268066, y: -.00208044052, z: .00249195099}
+  m_ConnectedAnchor: {x: -.262268066, y: -.00208044052, z: .00249290466}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1388,7 +1388,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .160583496, y: -.0409157276, z: .075928688}
+  m_ConnectedAnchor: {x: .160583496, y: -.0409157276, z: .0759277344}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1649,7 +1649,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.0216217041, y: -2.38418579e-07, z: .0490293503}
+  m_ConnectedAnchor: {x: -.0216217041, y: -2.38418579e-07, z: .049030304}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1678,7 +1678,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .116394043, y: -.0219128132, z: -.178277016}
+  m_ConnectedAnchor: {x: .116394043, y: -.0219128132, z: -.178276062}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1798,6 +1798,7 @@ MonoBehaviour:
   health: 500
   maxHealth: 500
   deathTimeout: 1
+  attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 30
   legSpeed: .00999999978
@@ -1813,7 +1814,7 @@ MonoBehaviour:
   stunDuration: 2
   bulletEmitter: {fileID: 400004}
   cinematicAngle: {fileID: 400006}
-  currentBullet: {fileID: 11400000, guid: f58a32b428b575d498828da42f48bfa4, type: 2}
+  currentBullet: {fileID: 11400002, guid: 4e348f98e7a69904c833d687f601c7b0, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
