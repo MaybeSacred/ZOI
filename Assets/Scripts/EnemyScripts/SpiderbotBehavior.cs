@@ -96,7 +96,7 @@ public class SpiderbotBehavior : BaseEnemy {
 						//Util.mainCamera.SendMessage("SpiderEating",cinematicAngle.transform);
 
 
-						Util.FireVel (currentBullet,bulletEmitter.position, Quaternion.LookRotation(bulletEmitter.position-transform.position),
+						Util.FireVel (currentBullet,bulletEmitter.position, Quaternion.LookRotation(bulletEmitter.position-transform.position-temp),
 						           BallisticVel(Util.player.transform,60f));
 
 						//non-ballistic Projectile
@@ -149,7 +149,7 @@ public class SpiderbotBehavior : BaseEnemy {
 	}
 	//handles ballistic motion of the projectile 
 	private Vector3 BallisticVel(Transform target,float angle) {
-		Vector3 dir = target.position+ target.rigidbody.velocity- bulletEmitter.transform.position;  // get target direction
+		Vector3 dir = target.position+ target.rigidbody.velocity- transform.position;  // get target direction
 		float h = dir.y;  // get height difference
 		dir.y = 0;  // retain only the horizontal direction
 		float dist = dir.magnitude ;  // get horizontal distance
