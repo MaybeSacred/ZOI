@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	public bool isStrafeSteeringDefaultOption;
-	private float strafeSteeringTimer;
+	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
 	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
 	private int numFlameParticlesPlaying;
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 	public ParticleSystem cannonFlash, cannonRingFlash;
 	public Transform primaryBulletEmitter;
 	public Transform cannonGO, cannonGraphics;
-	private Vector3 initialCannonPosition;
+	private Vector3 initialCannonPosition, initialFrozenPosition;
 	public Vector3 cannonKickbackDistance;
 	public float cannonKickbackRestoreRate;
 	public BasicBullet primaryBullet;
@@ -48,10 +48,11 @@ public class PlayerController : MonoBehaviour
 	public float steeringRate, steeringCenteringCoeff, bodyRotationEpsilon;
 	public Camera theCam;
 	public float forwardAcceleration, brakeForce, maxSpeed;
-	private bool keyDown, wasForwardKeyDown;
+	private bool keyDown, wasForwardKeyDown, controlsDisabled, frozenTransform;
 	public float health, maxHealth;
 	private int numWheelsGrounded;
 	private List<GameObject> colliders;
+	private GameObject hitsAgain;
 
 	public float maxSpeedRetardingForce;
     #endregion
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
 	void Update () 
 	{
         //handles when the player does not exist and is respawning
-		if(!Util.isPaused)
+		if(!Util.isPaused&&!controlsDisabled)
 		{
 			if(deathTimeoutTimer > 0)
 			{
@@ -97,6 +98,25 @@ public class PlayerController : MonoBehaviour
 				//updates tread particles
 				UpdateTreadParticles();
 				UpdateGraphics();
+			}
+		}
+		//if controls turned off starts counting time til renabled
+		if(controlsDisabled)
+		{
+			disabledControlsTimer+=Time.deltaTime;
+
+			if(disabledControlsTimer>disabledControlsDuration)
+			{
+				controlsDisabled = false;
+				frozenTransform = false;
+				if(colliders.Contains(hitsAgain))
+					colliders.Remove(hitsAgain);
+				disabledControlsTimer = 0;
+
+			}
+			if(frozenTransform)
+			{
+				transform.position = initialFrozenPosition;
 			}
 		}
 	}
@@ -360,6 +380,33 @@ public class PlayerController : MonoBehaviour
 			rigidbody.AddForce(-rigidbody.velocity*maxSpeedRetardingForce);
 		}
 	}
+
+	public void OnCollisionEnter(Collision other)
+	{
+		if(other.gameObject.tag.Equals("Spider"))
+		{
+			try
+			{
+				if(!colliders.Contains(other.collider.gameObject))
+				{
+					SpiderbotBehavior be = (SpiderbotBehavior)other.collider.gameObject.GetComponent<SpiderbotBehavior>();
+					colliders.Add(other.collider.gameObject);
+					Util.mainCamera.SendMessage("SpiderEating",be.cinematicAngle.transform);
+					controlsDisabled = true;
+					frozenTransform = true;
+					initialFrozenPosition = transform.position;
+					disabledControlsDuration = be.stunDuration;
+					hitsAgain = other.collider.gameObject;
+					HealthChange(-be.shieldDamage, -be.healthDamage);
+				}
+			}
+			catch
+			{
+				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+			}
+		}
+	}
+
 	public void RealCollisionHandler(Collider other)
 	{
         //handles explosions with tags

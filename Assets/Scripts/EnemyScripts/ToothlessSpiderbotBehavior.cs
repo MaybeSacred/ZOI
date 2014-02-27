@@ -1,24 +1,22 @@
-﻿using System.Collections;
-using UnityEngine;
-//using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections;
 
-//@Chris Tansey
-//contact: cmtansey@gatech.edu
-public class SpiderbotBehavior : BaseEnemy {
-	
+public class ToothlessSpiderbotBehavior : BaseEnemy {
+
 	public float lookAheadTime, rotationDelta, legSpeed, movementSpeed;
 	public GameObject[] legs;
-
+	
 	public float movementForce, fireRate,numBursts, firingRandomness, reloadTime;
-	public float shieldDamage, healthDamage, stunDuration;
-	private float currentBurstNum,fireTimer, legTimer,hitDistance;
+	public float shieldDamage;
+	public float healthDamage;
+	private float currentBurstNum,fireTimer, legTimer,hitDistance, deathTimeoutTimer ;
 	public Transform bulletEmitter, cinematicAngle;
 	public BasicBullet currentBullet;
-
+	
 	
 	// Use this for initialization
 	void Start () {
-
+		
 	}
 	
 	// Update is called once per frame
@@ -32,10 +30,10 @@ public class SpiderbotBehavior : BaseEnemy {
 			if(true)
 			{
 				legTimer+=Time.deltaTime;
-
+				
 				//handles looking at player
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position+Util.player.rigidbody.velocity*lookAheadTime), rotationDelta*Time.deltaTime);
-
+				
 				#region legMovement
 				//leg movement
 				if (0.5*legSpeed<legTimer&&legTimer<legSpeed)
@@ -59,10 +57,10 @@ public class SpiderbotBehavior : BaseEnemy {
 					legs[7].transform.position = new Vector3(legs[7].transform.position.x,legs[7].transform.position.y+0.4f,legs[7].transform.position.z);
 				}else if(legTimer>legSpeed*4)
 					legTimer = 0;
-
+				
 				#endregion
-
-
+				
+				
 				#region movementHandling
 				//raycast offsets spider to touch ground
 				RaycastHit hit;
@@ -70,18 +68,18 @@ public class SpiderbotBehavior : BaseEnemy {
 				{
 					hitDistance = hit.distance;
 					//Debug.DrawRay(transform.position,Vector3.down,Color.green);
-
+					
 				}
-
+				
 				//alternate movement option
 				//transform.position = Vector3.Lerp(transform.position,Util.player.transform.position, .5f-.5f*Mathf.Cos(movementSpeed));
-
+				
 				SteerTowardsRigidBody(Util.player.transform.position - (transform.position/*-new Vector3(0,-hitDistance,0)*/) + Util.player.rigidbody.velocity*lookAheadTime);
-
+				
 				//bulletEmitter = new Vector3 (transform.position.x, transform.position.y, transform.position.z + Vector3.forward*9);
-
+				
 				#endregion
-
+				
 				#region fireProjectile
 				if(currentBurstNum < numBursts)
 				{
@@ -91,19 +89,19 @@ public class SpiderbotBehavior : BaseEnemy {
 						Vector3 temp = Random.insideUnitSphere;
 						Vector3 temp2 = (bulletEmitter.position-transform.position).normalized;
 						temp = firingRandomness*Vector3.Cross(temp2, temp);
-
+						
 						//debug for spider eating player Event
 						//Util.mainCamera.SendMessage("SpiderEating",cinematicAngle.transform);
-
-
+						
+						
 						Util.FireVel (currentBullet,bulletEmitter.position, Quaternion.LookRotation(bulletEmitter.position-transform.position-temp),
-						           BallisticVel(Util.player.transform,60f));
-
+						              BallisticVel(Util.player.transform,60f));
+						
 						//non-ballistic Projectile
 						/*Util.Fire(currentBullet, bulletEmitter.position, Quaternion.LookRotation(bulletEmitter.position-transform.position-temp), 
 						          (bulletEmitter.position-transform.position-temp).normalized*currentBullet.initialSpeed);*/
-
-
+						
+						
 						currentBurstNum++;
 						fireTimer -= fireRate;
 					}
@@ -117,7 +115,7 @@ public class SpiderbotBehavior : BaseEnemy {
 				}
 				fireTimer += Time.deltaTime;
 				#endregion
-
+				
 			}
 		}
 		
@@ -160,5 +158,4 @@ public class SpiderbotBehavior : BaseEnemy {
 		float vel = Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a));
 		return vel * dir.normalized;
 	}
-
 }

@@ -21,12 +21,16 @@ public class CameraScript : MonoBehaviour {
 	public int numberOfMouseSensitivityStates;
 	public bool cameraIsActiveWhenPaused;
 	public float distanceToTarget{get; private set;}
+	private Vector3 beforeSpiderPos, spiderPos;
+	private bool spiderFeeding;
+	public float feedTimer, feedDuration;
 	void Start () {
 		SetCurrentMouseSensitivity(numberOfMouseSensitivityStates/2);
 		yAxisUpperAngleBound += 360;
 		startFOV = camera.fieldOfView;
 		startZ = cameraOffset.x;
 		mousePos = new Vector2();
+		feedDuration = 2f;
 	}
 
 	void Update () {
@@ -101,6 +105,18 @@ public class CameraScript : MonoBehaviour {
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position), deathZoomoutSpeed*Time.deltaTime);
 			}
 		}
+
+		if (spiderFeeding) {
+			feedTimer+= Time.deltaTime;
+			transform.position = spiderPos;
+			transform.LookAt(Util.player.transform.position);
+			
+			if(feedTimer>feedDuration){
+				spiderFeeding = false;
+				//transform.position = beforeSpiderPos;
+				feedTimer =0;
+			}
+		}
 	}
 	float shakeAmplitude;
 	public float maxCameraShakeAmplitude;
@@ -144,5 +160,15 @@ public class CameraScript : MonoBehaviour {
 		mouseSensitivityState = Mathf.Clamp(sensitivity, 0, numberOfMouseSensitivityStates);
 		mouseSensitivity = Vector2.Lerp(Vector2.one*mouseSensitivityRange.x, Vector2.one*mouseSensitivityRange.y, ((float)mouseSensitivityState)/numberOfMouseSensitivityStates);
 		mouseSensitivity.y = -mouseSensitivity.y;
+	}
+
+	void SpiderEating(Transform Spider)
+	{
+		beforeSpiderPos = transform.position;
+		transform.position = Spider.position;
+		spiderPos = Spider.position;
+		transform.LookAt (Util.player.transform.position);
+		spiderFeeding = true;
+		
 	}
 }
