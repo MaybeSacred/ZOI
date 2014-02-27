@@ -35,6 +35,12 @@ public class Util : MonoBehaviour {
 		bb.speed = inSpeed;
 	}
 
+	public static void FireVel<T>(T t, Vector3 inPosition, Quaternion inRotation, Vector3 inSpeed) where T: BasicBullet
+	{
+			T bb = (T)Instantiate (t, inPosition, inRotation);
+			bb.rigidbody.velocity = inSpeed;
+	}
+
 	public static void FlipPausedState ()
 	{
 		isPaused = !isPaused;
