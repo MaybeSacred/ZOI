@@ -137,9 +137,7 @@ public class PlayerController : MonoBehaviour
 					}
 					Util.Fire(primaryBullet, primaryBulletEmitter.position, tempQuat, 
 					          primaryBullet.initialSpeed*
-					          (new Vector3(Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-					             -Mathf.Sin(Mathf.Deg2Rad*tempQuat.eulerAngles.x),
-					             Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.y)*Mathf.Cos(Mathf.Deg2Rad*tempQuat.eulerAngles.x))));
+					          (tempQuat*Vector3.forward).normalized);
 				}
 				else
 				{

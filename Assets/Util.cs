@@ -53,4 +53,24 @@ public class Util : MonoBehaviour {
 		T bb = (T)Instantiate(t, (endPosition-beginPosition)/2+beginPosition, inRotation);
 		return bb;
 	}
+	/// <summary>
+	/// Generates a random normalized Vector3 at most maxTheta radians away from input vector
+	/// </summary>
+	/// <returns>The random vector3.</returns>
+	/// <param name="inVec">In vec.</param>
+	/// <param name="maxTheta">Max theta.</param>
+	public static Vector3 GenerateRandomVector3(Vector3 inVec, float maxTheta)
+	{
+		Vector3 ranVec = Random.onUnitSphere;
+		float ranFloat = Random.Range(0, maxTheta);
+		ranVec = (Vector3.Cross(inVec, ranVec).normalized);
+		if(ranFloat > Mathf.PI/2)
+		{
+			return Vector3.RotateTowards(-inVec, ranVec, Mathf.PI-ranFloat, 0);
+		}
+		else
+		{
+			return Vector3.RotateTowards(inVec, ranVec, ranFloat, 0);
+		}
+	}
  }
