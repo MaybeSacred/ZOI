@@ -12,6 +12,7 @@ public class SpiderbotBehavior : BaseEnemy {
 	public float movementForce, fireRate,numBursts, firingRandomness, reloadTime;
 	public float shieldDamage, healthDamage, stunDuration;
 	private float currentBurstNum,fireTimer, legTimer,hitDistance;
+	public float legMovementHeight;
 	public Transform bulletEmitter, cinematicAngle;
 	public BasicBullet currentBullet;
 
@@ -39,23 +40,23 @@ public class SpiderbotBehavior : BaseEnemy {
 				//leg movement
 				if (0.5*legSpeed<legTimer&&legTimer<legSpeed)
 				{
-					legs[0].transform.position = new Vector3(legs[0].transform.position.x,legs[0].transform.position.y+Time.deltaTime,legs[0].transform.position.z);
-					legs[1].transform.position = new Vector3(legs[1].transform.position.x,legs[1].transform.position.y+Time.deltaTime,legs[1].transform.position.z);
+					legs[0].transform.position = new Vector3(legs[0].transform.position.x,legs[0].transform.position.y+Time.deltaTime*legMovementHeight,legs[0].transform.position.z);
+					legs[1].transform.position = new Vector3(legs[1].transform.position.x,legs[1].transform.position.y+Time.deltaTime*legMovementHeight,legs[1].transform.position.z);
 				}
 				else if (1.5*legSpeed<legTimer&&legTimer<legSpeed*2)
 				{
-					legs[4].transform.position = new Vector3(legs[4].transform.position.x,legs[4].transform.position.y+Time.deltaTime,legs[4].transform.position.z);
-					legs[5].transform.position = new Vector3(legs[5].transform.position.x,legs[5].transform.position.y+Time.deltaTime,legs[5].transform.position.z);
+					legs[4].transform.position = new Vector3(legs[4].transform.position.x,legs[4].transform.position.y+Time.deltaTime*legMovementHeight,legs[4].transform.position.z);
+					legs[5].transform.position = new Vector3(legs[5].transform.position.x,legs[5].transform.position.y+Time.deltaTime*legMovementHeight,legs[5].transform.position.z);
 				}
 				else if (2.5*legSpeed<legTimer&&legTimer<legSpeed*3)
 				{
-					legs[2].transform.position = new Vector3(legs[2].transform.position.x,legs[2].transform.position.y+Time.deltaTime,legs[2].transform.position.z);
-					legs[3].transform.position = new Vector3(legs[3].transform.position.x,legs[3].transform.position.y+Time.deltaTime,legs[3].transform.position.z);
+					legs[2].transform.position = new Vector3(legs[2].transform.position.x,legs[2].transform.position.y+Time.deltaTime*legMovementHeight,legs[2].transform.position.z);
+					legs[3].transform.position = new Vector3(legs[3].transform.position.x,legs[3].transform.position.y+Time.deltaTime*legMovementHeight,legs[3].transform.position.z);
 				}
 				else if (3.5*legSpeed<legTimer&&legTimer<legSpeed*4)
 				{
-					legs[6].transform.position = new Vector3(legs[6].transform.position.x,legs[6].transform.position.y+Time.deltaTime,legs[6].transform.position.z);
-					legs[7].transform.position = new Vector3(legs[7].transform.position.x,legs[7].transform.position.y+Time.deltaTime,legs[7].transform.position.z);
+					legs[6].transform.position = new Vector3(legs[6].transform.position.x,legs[6].transform.position.y+Time.deltaTime*legMovementHeight,legs[6].transform.position.z);
+					legs[7].transform.position = new Vector3(legs[7].transform.position.x,legs[7].transform.position.y+Time.deltaTime*legMovementHeight,legs[7].transform.position.z);
 				}else if(legTimer>legSpeed*4)
 					legTimer = 0;
 
