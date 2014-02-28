@@ -20,7 +20,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	private float shieldPct = 100;
 	public float timeSinceLastHit;
 	public Transform shield;
-	private Material shieldMat;
+	public Material shieldMat;
 	public float shieldRechargeDelay;
 	public float shieldRechargeRate;
 	public float shieldMaterialRate;
@@ -45,7 +45,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	{
 		HealthChange(100, maxHealth);
 		navAgent = GetComponent<NavMeshAgent>();
-		shieldMat = Instantiate(shieldMat) as Material;
+		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
 	}
 	void OnTriggerEnter(Collider other)

@@ -97,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 420.507446, y: 24.9764309, z: 73.0674896}
+  m_LocalPosition: {x: 455.507538, y: 22.5570526, z: 90.5854034}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400006}
@@ -296,7 +296,7 @@ Animator:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 51eca496de7c3064a9c18952ad23dbd0, type: 2}
+  m_Controller: {fileID: 9100000, guid: dd53c95895c58614fa892ff1d0f2e391, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5528808277d47e439b854b6910072a6, type: 3}
+  m_Script: {fileID: 11500000, guid: 77ca9ab0d3b57d14f879360a23b08cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lookAheadTime: .150000006
@@ -323,11 +323,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c47186b8d2142704e944215b890531fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 34b56b29123e6374d9f17a4f532996e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveTimer: 0
-  moveDuration: 0
+  moveDuration: 3
   anim: {fileID: 9500000}
   moving: 1
   parent: {fileID: 100000}

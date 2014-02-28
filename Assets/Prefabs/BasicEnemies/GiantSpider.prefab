@@ -567,7 +567,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 457.797729, y: 14.5122967, z: 86.9245453}
+  m_LocalPosition: {x: 457.046356, y: 17.3826637, z: 113.35778}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400024}
@@ -1330,7 +1330,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 8.76417616e-05, y: -.951984167, z: -.039528206}
+  m_ConnectedAnchor: {x: 8.75808619e-05, y: -.951984167, z: -.0395297743}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1388,7 +1388,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .160583496, y: -.0409157276, z: .0759277344}
+  m_ConnectedAnchor: {x: .160583496, y: -.040915966, z: .0759277344}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1446,7 +1446,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.94347465e-05, y: -.951991081, z: -.0395267308}
+  m_ConnectedAnchor: {x: 2.94860365e-05, y: -.951991081, z: -.0395251587}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1475,7 +1475,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.109580994, y: -1.07288361e-05, z: .214513779}
+  m_ConnectedAnchor: {x: -.109580994, y: -1.09672546e-05, z: .214513779}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1620,7 +1620,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 7.34472487e-05, y: -.951978981, z: -.0395292938}
+  m_ConnectedAnchor: {x: 7.34472487e-05, y: -.951978981, z: -.0395277217}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1649,7 +1649,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.0216217041, y: -2.38418579e-07, z: .049030304}
+  m_ConnectedAnchor: {x: -.0216217041, y: 0, z: .049030304}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1678,7 +1678,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .116394043, y: -.0219128132, z: -.178276062}
+  m_ConnectedAnchor: {x: .116394043, y: -.0219130516, z: -.178276062}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1707,7 +1707,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 8.52024168e-05, y: -.951986253, z: -.0395266749}
+  m_ConnectedAnchor: {x: 8.51487493e-05, y: -.951986253, z: -.039528247}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1736,7 +1736,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 1.00000763, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .0795288086, y: -.0319926739, z: -.113275528}
+  m_ConnectedAnchor: {x: .0795288086, y: -.0319929123, z: -.113275528}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1792,29 +1792,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 100048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3398ff1aff22b084d89d44dd021ec9b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ffd5b5099899df4eb64936c4a334db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 500
   maxHealth: 500
-  deathTimeout: 1
+  deathTimeout: 5
   attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 30
   legSpeed: .00999999978
   movementSpeed: 0
-  legs: []
+  legs:
+  - {fileID: 100024}
+  - {fileID: 100040}
+  - {fileID: 100000}
+  - {fileID: 100046}
+  - {fileID: 100010}
+  - {fileID: 100032}
+  - {fileID: 100012}
+  - {fileID: 100022}
   movementForce: 120
-  fireRate: 2
+  fireRate: 3
   numBursts: 1
   firingRandomness: 0
   reloadTime: 5
   shieldDamage: 50
-  healthDamage: 300
+  healthDamage: 50
   stunDuration: 2
   bulletEmitter: {fileID: 400004}
   cinematicAngle: {fileID: 400006}
-  currentBullet: {fileID: 11400002, guid: 4e348f98e7a69904c833d687f601c7b0, type: 2}
+  currentBullet: {fileID: 11400002, guid: de18facba0cb57c43b805e373cadfab8, type: 2}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
