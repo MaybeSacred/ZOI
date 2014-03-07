@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public class RiggedyAnnBehavior : BaseEnemy {
 	public List<RiggedyAnnBehavior> friends;
 	public Transform graphics;
-	public Transform meshParent;
 	public float yGraphicsOffset;
 	private NavMeshAgent navAgent;
 	private float timer;
@@ -25,7 +24,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	public float shieldRechargeRate;
 	public float shieldMaterialRate;
 	/// <summary>
-	/// Together, detectionRange and detectionAngle define a sight cone in front of the hellment
+	/// Together, detectionRange and detectionAngle define a sight cone in front of the hellmet
 	/// </summary>
 	public float detectionRange;
 	public float detectionAngle;
@@ -47,13 +46,11 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		navAgent = GetComponent<NavMeshAgent>();
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
+		isAwake = true;
 	}
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.tag.Equals("Player"))
-		{
-			
-		}
+		RealCollisionHandler(other);
 	}
 	void Update ()
 	{
@@ -70,31 +67,35 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		}
 		else
 		{
-			if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
+			if(isAwake)
 			{
-				if(shieldPct < 100)
+				MoveTowardsPlayer(Util.player.transform.position);
+				if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 				{
-					HealthChange(shieldRechargeRate * Time.deltaTime, 0);
-				}
-				shield.renderer.enabled = true;
-				shield.collider.enabled = true;
-			}
-			else
-			{
-				if(shieldPct > 0)
-				{
+					if(shieldPct < 100)
+					{
+						HealthChange(shieldRechargeRate * Time.deltaTime, 0);
+					}
 					shield.renderer.enabled = true;
 					shield.collider.enabled = true;
-					if(Time.timeSinceLevelLoad-timeSinceLastHit < 1)
-					{
-						shield.renderer.materials[1].SetFloat("_Cutoff", (Time.timeSinceLevelLoad-timeSinceLastHit));
-						shield.renderer.materials[1].mainTextureOffset += Random.insideUnitCircle*shieldMaterialRate;
-					}
 				}
 				else
 				{
-					shield.renderer.enabled = false;
-					shield.collider.enabled = false;
+					if(shieldPct > 0)
+					{
+						shield.renderer.enabled = true;
+						shield.collider.enabled = true;
+						if(Time.timeSinceLevelLoad-timeSinceLastHit < 1)
+						{
+							shield.renderer.materials[1].SetFloat("_Cutoff", (Time.timeSinceLevelLoad-timeSinceLastHit));
+							shield.renderer.materials[1].mainTextureOffset += Random.insideUnitCircle*shieldMaterialRate;
+						}
+					}
+					else
+					{
+						shield.renderer.enabled = false;
+						shield.collider.enabled = false;
+					}
 				}
 			}
 		}
@@ -103,7 +104,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	{
 		if(updateCounter%framesToSkip ==0)
 		{
-			navAgent.SetDestination(Util.player.transform.position);
+			navAgent.SetDestination(vectorToPlayer);
 		}
 		updateCounter++;
 	}
@@ -111,9 +112,37 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	{
 		if(deathTimeoutTimer <= 0)
 		{
-			graphics.gameObject.AddComponent<Rigidbody>();
+			rigidbody.isKinematic = false;
+			graphics.gameObject.GetComponent<SpringJoint>().breakForce = 0;
 			navAgent.enabled = false;
 			deathTimeoutTimer = .0001f;
+		}
+	}
+	public override void RealCollisionHandler(Collider other)
+	{
+		if(isAwake)
+		{
+			if(other.tag.Equals("BasicExplosion"))
+			{
+				try
+				{
+					if(!colliders.Contains(other.gameObject))
+					{
+						colliders.Add(other.gameObject);
+						BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
+						rigidbody.AddExplosionForce(be.explosionForce, other.transform.position, be.explosionRadius);
+						HealthChange(-be.shieldDamage, -be.healthDamage);
+					}
+				}
+				catch(System.InvalidCastException ie)
+				{
+					Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+				}
+			}
+			if(other.tag.Equals("Bullet"))
+			{
+				other.GetComponent<BasicBullet>().DestroyMe();
+			}
 		}
 	}
 	public override void HealthChange(float shieldDmg, float healthDmg)

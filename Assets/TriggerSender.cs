@@ -19,11 +19,13 @@ public class TriggerSender : MonoBehaviour {
 		{
 			if(other.name.Equals("KatneenCenterMesh"))
 			{
-				attachedEventHandlers.Add(other.transform.parent);
+				if(!attachedEventHandlers.Contains(other.transform.parent))
+					attachedEventHandlers.Add(other.transform.parent);
 			}
-			else
+			else if(other.gameObject.GetComponent<MonoBehaviour>() is BaseEnemy)
 			{
-				attachedEventHandlers.Add(other.transform);
+				if(!attachedEventHandlers.Contains(other.transform.parent))
+					attachedEventHandlers.Add(other.transform);
 			}
 		}
 		else if(other.tag.Equals("Player"))
