@@ -355,6 +355,7 @@ GameObject:
   - 23: {fileID: 2300032}
   - 54: {fileID: 5400032}
   - 114: {fileID: 11400000}
+  - 195: {fileID: 19500000}
   m_Layer: 10
   m_Name: GiantSpider
   m_TagString: Spider
@@ -567,7 +568,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 457.046356, y: 17.3826637, z: 113.35778}
+  m_LocalPosition: {x: 435.644897, y: 23.6434956, z: 92.1969528}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400024}
@@ -1313,10 +1314,10 @@ Rigidbody:
   m_GameObject: {fileID: 100048}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_Drag: .100000001
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1330,7 +1331,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 8.75808619e-05, y: -.951984167, z: -.0395297743}
+  m_ConnectedAnchor: {x: 8.77026614e-05, y: -.951984167, z: -.0395266339}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1446,7 +1447,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.94860365e-05, y: -.951991081, z: -.0395251587}
+  m_ConnectedAnchor: {x: 2.93834582e-05, y: -.951991081, z: -.0395283028}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1620,7 +1621,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .999999523, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 7.34472487e-05, y: -.951978981, z: -.0395277217}
+  m_ConnectedAnchor: {x: 7.34472487e-05, y: -.951978981, z: -.0395308696}
   m_UseSpring: 1
   m_Spring:
     spring: 40
@@ -1801,7 +1802,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 30
-  legSpeed: .00999999978
+  legSpeed: .200000003
   movementSpeed: 0
   legs:
   - {fileID: 100024}
@@ -1812,7 +1813,7 @@ MonoBehaviour:
   - {fileID: 100032}
   - {fileID: 100012}
   - {fileID: 100022}
-  movementForce: 50
+  movementForce: 0
   fireRate: 10
   numBursts: 1
   firingRandomness: 0
@@ -1820,10 +1821,11 @@ MonoBehaviour:
   shieldDamage: 50
   healthDamage: 50
   stunDuration: 2
-  legMovementHeight: 2.5
+  legMovementHeight: 20
   bulletEmitter: {fileID: 400004}
   cinematicAngle: {fileID: 400006}
   currentBullet: {fileID: 11400002, guid: de18facba0cb57c43b805e373cadfab8, type: 2}
+  navi: {fileID: 19500000}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1831,11 +1833,11 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100048}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: .5
+  m_Center: {x: 0, y: -2, z: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1844,7 +1846,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100000}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1857,7 +1859,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100010}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1870,7 +1872,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100012}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1883,7 +1885,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100022}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1896,7 +1898,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100024}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1909,7 +1911,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100032}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1922,7 +1924,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 100040}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
@@ -1935,11 +1937,31 @@ CapsuleCollider:
   m_GameObject: {fileID: 100046}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &19500000
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100048}
+  m_Enabled: 1
+  m_Radius: 4
+  m_Speed: 8
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 10
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 0
+  m_Height: 4
+  m_BaseOffset: 1.60000002
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
