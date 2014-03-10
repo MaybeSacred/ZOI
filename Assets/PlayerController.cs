@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	public bool isStrafeSteeringDefaultOption;
-	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
+	public float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
 	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
 	private int numFlameParticlesPlaying;
@@ -73,6 +73,16 @@ public class PlayerController : MonoBehaviour
 
 	void Update () 
 	{
+
+		if(colliders.Contains(hitsAgain))
+		{
+			disabledControlsTimer+=Time.deltaTime;
+			if(disabledControlsTimer>(disabledControlsDuration+2f))
+			{	
+				colliders.Remove(hitsAgain);
+				disabledControlsTimer = 0;
+			}
+		}
         //handles when the player does not exist and is respawning
 		if(!Util.isPaused&&!controlsDisabled)
 		{
@@ -108,9 +118,6 @@ public class PlayerController : MonoBehaviour
 			{
 				controlsDisabled = false;
 				frozenTransform = false;
-				if(colliders.Contains(hitsAgain))
-					colliders.Remove(hitsAgain);
-				disabledControlsTimer = 0;
 
 			}
 			if(frozenTransform)
@@ -411,6 +418,28 @@ public class PlayerController : MonoBehaviour
 					BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
 					colliders.Add(other.gameObject);
 					rigidbody.AddExplosionForce(be.explosionForce, other.transform.position, be.explosionRadius);
+					HealthChange(-be.shieldDamage, -be.healthDamage);
+				}
+			}
+			catch
+			{
+				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+			}
+		}
+		if(other.gameObject.tag.Equals("Spider"))
+		{
+			try
+			{
+				if(!colliders.Contains(other.gameObject))
+				{
+					SpiderbotBehavior be = (SpiderbotBehavior)other.gameObject.GetComponent<SpiderbotBehavior>();
+					colliders.Add(other.gameObject);
+					Util.mainCamera.SendMessage("SpiderEating",be.cinematicAngle.transform);
+					controlsDisabled = true;
+					frozenTransform = true;
+					initialFrozenPosition = transform.position;
+					disabledControlsDuration = be.stunDuration;
+					hitsAgain = other.gameObject;
 					HealthChange(-be.shieldDamage, -be.healthDamage);
 				}
 			}

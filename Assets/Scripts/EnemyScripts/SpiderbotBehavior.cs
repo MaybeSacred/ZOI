@@ -15,6 +15,7 @@ public class SpiderbotBehavior : BaseEnemy {
 	public float legMovementHeight;
 	public Transform bulletEmitter, cinematicAngle;
 	public BasicBullet currentBullet;
+	public NavMeshAgent navi;
 
 	// Use this for initialization
 	void Start () {
@@ -75,8 +76,9 @@ public class SpiderbotBehavior : BaseEnemy {
 
 				//alternate movement option
 				//transform.position = Vector3.Lerp(transform.position,Util.player.transform.position, .5f-.5f*Mathf.Cos(movementSpeed));
-
-				SteerTowardsRigidBody(Util.player.transform.position - (transform.position/*-new Vector3(0,-hitDistance,0)*/) + Util.player.rigidbody.velocity*lookAheadTime);
+				
+				navi.SetDestination(Util.player.transform.position);
+				//SteerTowardsRigidBody(Util.player.transform.position - (transform.position/*-new Vector3(0,-hitDistance,0)*/) + Util.player.rigidbody.velocity*lookAheadTime);
 
 				//bulletEmitter = new Vector3 (transform.position.x, transform.position.y, transform.position.z + Vector3.forward*9);
 
