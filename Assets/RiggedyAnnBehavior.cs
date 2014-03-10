@@ -34,11 +34,12 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	/// Defines when the bot gives up and returns to patrolling
 	/// </summary>
 	public float detectionTimeout;
-	private float detectionTimeoutTimer;
+	private float detectionTimeoutTimer, dodgeDist, dodgeTimer, dodgeDuration;
 	public float healthRechargeRate;
 	private Vector3 medianPoint;
 	public float maxAcceptableDistFromPatrolMedian;
 	private bool isUnderAttack;
+	private bool danger;
 	
 	void Start()
 	{
@@ -47,6 +48,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
 		isAwake = true;
+		dodgeDuration = 2f;
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -69,6 +71,23 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		{
 			if(isAwake)
 			{
+				if(danger)
+				{
+					//this dodge is fast, but is instant to dodge the bullet
+
+					transform.position = new Vector3(transform.position.x+dodgeDist,transform.position.y,transform.position.z);
+					danger = false;
+					//this dodge is too slow, but is relative to Time.deltaTime
+
+//					dodgeTimer+=Time.deltaTime;
+//					if(dodgeTimer<dodgeDuration)
+//						transform.Translate(dodgeDist*Time.deltaTime,0,0);
+//					else
+//					{
+//						dodgeTimer = 0;
+//						danger = false;
+//					}
+				}
 				MoveTowardsPlayer(Util.player.transform.position);
 				if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 				{
@@ -107,6 +126,12 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			navAgent.SetDestination(vectorToPlayer);
 		}
 		updateCounter++;
+	}
+
+	void Jump(float dist)
+	{
+		dodgeDist = dist;
+		danger = true;
 	}
 	public override void KillMe()
 	{

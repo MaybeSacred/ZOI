@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	public bool isStrafeSteeringDefaultOption;
-	public float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
+	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
 	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
 	private int numFlameParticlesPlaying;
