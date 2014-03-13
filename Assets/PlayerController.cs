@@ -77,12 +77,14 @@ public class PlayerController : MonoBehaviour
 		if(colliders.Contains(hitsAgain))
 		{
 			disabledControlsTimer+=Time.deltaTime;
-			if(disabledControlsTimer>(disabledControlsDuration+2f))
+			//change this to delay to disable 1-hit
+			if(disabledControlsTimer>(disabledControlsDuration+0f))
 			{	
 				colliders.Remove(hitsAgain);
 				disabledControlsTimer = 0;
 			}
-		}
+		}else if (disabledControlsTimer>disabledControlsDuration+0f)
+			disabledControlsTimer = 0;
         //handles when the player does not exist and is respawning
 		if(!Util.isPaused&&!controlsDisabled)
 		{
@@ -430,7 +432,7 @@ public class PlayerController : MonoBehaviour
 		{
 			try
 			{
-				if(!colliders.Contains(other.gameObject))
+				if(!colliders.Contains(other.gameObject)||(disabledControlsTimer==0&&deathTimeoutTimer==0))
 				{
 					SpiderbotBehavior be = (SpiderbotBehavior)other.gameObject.GetComponent<SpiderbotBehavior>();
 					colliders.Add(other.gameObject);

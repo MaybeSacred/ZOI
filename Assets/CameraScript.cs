@@ -23,14 +23,14 @@ public class CameraScript : MonoBehaviour {
 	public float distanceToTarget{get; private set;}
 	private Vector3 beforeSpiderPos, spiderPos;
 	private bool spiderFeeding;
-	public float feedTimer, feedDuration;
+	public float feedTimer, feedDuration, feedTimeStart;
 	void Start () {
 		SetCurrentMouseSensitivity(numberOfMouseSensitivityStates/2);
 		yAxisUpperAngleBound += 360;
 		startFOV = camera.fieldOfView;
 		startZ = cameraOffset.x;
 		mousePos = new Vector2();
-		feedDuration = 2f;
+		feedDuration = 5f;
 	}
 
 	void Update () {
@@ -108,10 +108,11 @@ public class CameraScript : MonoBehaviour {
 
 		if (spiderFeeding) {
 			feedTimer+= Time.deltaTime;
-			transform.position = spiderPos;
+			transform.position = Vector3.Slerp(beforeSpiderPos, spiderPos, (Time.time-feedTimeStart)*0.5f);
 			transform.LookAt(Util.player.transform.position);
 			
 			if(feedTimer>feedDuration){
+				print ("feed count");
 				spiderFeeding = false;
 				//transform.position = beforeSpiderPos;
 				feedTimer =0;
@@ -165,10 +166,10 @@ public class CameraScript : MonoBehaviour {
 	void SpiderEating(Transform Spider)
 	{
 		beforeSpiderPos = transform.position;
-		transform.position = Spider.position;
+		transform.position = Vector3.Lerp (beforeSpiderPos, Spider.position, Time.deltaTime);
 		spiderPos = Spider.position;
 		transform.LookAt (Util.player.transform.position);
 		spiderFeeding = true;
-		
+		feedTimeStart = Time.time;
 	}
 }
