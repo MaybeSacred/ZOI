@@ -16,7 +16,7 @@ GameObject:
   - 145: {fileID: 14500000}
   m_Layer: 10
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Deflective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ GameObject:
   - 114: {fileID: 11400006}
   m_Layer: 10
   m_Name: Graphics
-  m_TagString: Untagged
+  m_TagString: Deflective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -56,7 +56,7 @@ GameObject:
   - 136: {fileID: 13600000}
   m_Layer: 2
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Deflective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ GameObject:
   - 114: {fileID: 11400002}
   m_Layer: 10
   m_Name: RiggedyAnne
-  m_TagString: Untagged
+  m_TagString: Deflective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ GameObject:
   - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: SixthSense
-  m_TagString: Untagged
+  m_TagString: Deflective
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 445.664734, y: 9.51498413, z: 96.7580643}
+  m_LocalPosition: {x: 449.113403, y: 7.25357008, z: 101.281242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400004}
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca8c675e02edb2841b561caad156c796, type: 3}
   m_Name: 
@@ -435,7 +435,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5400004}
   m_Anchor: {x: 0, y: .499999523, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: -.365466326, z: 0}
+  m_ConnectedAnchor: {x: 0, y: -.365465939, z: 0}
   m_Spring: 5
   m_Damper: .25
   m_MinDistance: 0
@@ -451,7 +451,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 5400000}
   m_Anchor: {x: 0, y: .499999762, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 1.125, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 1.12499952, z: 0}
   m_Spring: 20
   m_Damper: .200000003
   m_MinDistance: 0

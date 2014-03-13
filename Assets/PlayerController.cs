@@ -153,6 +153,7 @@ public class PlayerController : MonoBehaviour
 				if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 				{
 					RaycastHit hit;
+					Debug.DrawRay(theCam.transform.position, theCam.transform.forward, Color.green);
 					Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
 					Quaternion tempQuat;
 					if(hit.distance < 10)
