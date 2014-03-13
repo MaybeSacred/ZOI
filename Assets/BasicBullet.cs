@@ -35,10 +35,16 @@ public class BasicBullet : MonoBehaviour {
 		}
 		lifetimeTimer += Time.deltaTime;
 	}
-	
-	public void OnCollisionEnter()
+
+	public void OnCollisionEnter(Collision other)
 	{
-		DestroyMe();
+		print (other.gameObject.tag);
+		if(other.gameObject.tag.Equals("Deflective"))
+		{
+			print("oh god");
+			rigidbody.velocity = new Vector3(0f,-initialSpeed/10f,(initialSpeed/5f));
+		}
+		else DestroyMe();
 	}
 	public virtual void DestroyMe()
 	{
