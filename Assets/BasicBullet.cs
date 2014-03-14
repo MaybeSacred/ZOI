@@ -29,7 +29,7 @@ public class BasicBullet : MonoBehaviour {
 			}
 			timeOutCounter += Time.deltaTime;
 		}
-		if(lifetimeTimer > lifetime)
+		else if(lifetimeTimer > lifetime)
 		{
 			timeOutCounter += Time.deltaTime;
 		}
@@ -38,13 +38,7 @@ public class BasicBullet : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision other)
 	{
-		print (other.gameObject.tag);
-		if(other.gameObject.tag.Equals("Deflective"))
-		{
-			print("oh god");
-			rigidbody.velocity = new Vector3(0f,-initialSpeed/10f,(initialSpeed/5f));
-		}
-		else DestroyMe();
+		DestroyMe();
 	}
 	public virtual void DestroyMe()
 	{

@@ -24,7 +24,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	public float shieldRechargeRate;
 	public float shieldMaterialRate;
 	/// <summary>
-	/// Together, detectionRange and detectionAngle define a sight cone in front of the hellmet
+	/// Together, detectionRange and detectionAngle define a sight cone in front of the riggedyAnne
 	/// </summary>
 	public float detectionRange;
 	public float detectionAngle;
@@ -34,7 +34,9 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	/// Defines when the bot gives up and returns to patrolling
 	/// </summary>
 	public float detectionTimeout;
-	private float detectionTimeoutTimer, dodgeDist, dodgeTimer, dodgeDuration;
+	public float dodgeDuration;
+	public float maxDodgeDistance;
+	private float detectionTimeoutTimer, currentDodgeDistance, dodgeTimer;
 	public float healthRechargeRate;
 	private Vector3 medianPoint;
 	public float maxAcceptableDistFromPatrolMedian;
@@ -48,7 +50,6 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
 		isAwake = true;
-		dodgeDuration = 2f;
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -73,28 +74,25 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			{
 				if(danger)
 				{
-					//this dodge is fast, but is instant to dodge the bullet
-
-					transform.position = new Vector3(transform.position.x+dodgeDist,transform.position.y,transform.position.z);
-					danger = false;
-					//this dodge is too slow, but is relative to Time.deltaTime
-
-//					dodgeTimer+=Time.deltaTime;
-//					if(dodgeTimer<dodgeDuration)
-//						transform.Translate(dodgeDist*Time.deltaTime,0,0);
-//					else
-//					{
-//						dodgeTimer = 0;
-//						danger = false;
-//					}
+					if(dodgeTimer < dodgeDuration)
+					{
+						rigidbody.MovePosition(rigidbody.position + transform.right * currentDodgeDistance * Time.deltaTime / dodgeDuration);
+						dodgeTimer += Time.deltaTime;
+					}
+					else
+					{
+						dodgeTimer = 0;
+						danger = false;
+						navAgent.enabled = true;
+					}
 				}
-				MoveTowardsPlayer(Util.player.transform.position);
+				else
+				{
+					MoveTowardsPlayer(Util.player.transform.position);
+				}
 				if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 				{
-					if(shieldPct < 100)
-					{
-						HealthChange(shieldRechargeRate * Time.deltaTime, 0);
-					}
+					HealthChange(shieldRechargeRate * Time.deltaTime, 0);
 					shield.renderer.enabled = true;
 					shield.collider.enabled = true;
 				}
@@ -121,17 +119,57 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	private void MoveTowardsPlayer(Vector3 vectorToPlayer)
 	{
-		if(updateCounter%framesToSkip ==0)
+		if(updateCounter%framesToSkip == 0)
 		{
 			navAgent.SetDestination(vectorToPlayer);
 		}
 		updateCounter++;
 	}
 
-	void Jump(float dist)
+	void Jump(bool bulletEntered)
 	{
-		dodgeDist = dist;
-		danger = true;
+		if(!danger)
+		{
+			RaycastHit hit;
+			bool rightHit = Physics.Raycast(transform.position, transform.right, out hit, maxDodgeDistance);
+			float rightDistance = hit.distance;
+			bool leftHit = Physics.Raycast(transform.position, -transform.right, out hit, maxDodgeDistance);
+			if(rightHit && leftHit)
+			{
+				if(hit.distance > rightDistance)
+				{
+					//dodge left
+					currentDodgeDistance = -Random.Range(maxDodgeDistance/2, maxDodgeDistance);
+				}
+				else
+				{
+					currentDodgeDistance = Random.Range(maxDodgeDistance/2, maxDodgeDistance);
+				}
+			}
+			else if(rightHit)
+			{
+				currentDodgeDistance = -Random.Range(maxDodgeDistance/2, maxDodgeDistance);
+			}
+			else if(leftHit)
+			{
+				currentDodgeDistance = Random.Range(maxDodgeDistance/2, maxDodgeDistance);
+			}
+			else
+			{
+				if(Random.Range(-1, 1) >= 0)
+				{
+					//dodge left
+					currentDodgeDistance = -Random.Range(maxDodgeDistance/2, maxDodgeDistance);
+				}
+				else
+				{
+					currentDodgeDistance = Random.Range(maxDodgeDistance/2, maxDodgeDistance);
+				}
+			}
+			navAgent.enabled = false;
+			danger = true;
+			dodgeTimer = 0;
+		}
 	}
 	public override void KillMe()
 	{

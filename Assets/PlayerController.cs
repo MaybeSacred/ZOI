@@ -377,7 +377,7 @@ public class PlayerController : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		if(rigidbody.velocity.magnitude > maxSpeed)
+		if(rigidbody.velocity.magnitude >= maxSpeed)
 		{
 			rigidbody.AddForce(-rigidbody.velocity*maxSpeedRetardingForce);
 		}
@@ -458,7 +458,7 @@ public class PlayerController : MonoBehaviour
 			{
 				if(!colliders.Contains(other.gameObject))
 				{
-					WebActions wa= (WebActions)other.GetComponent<WebActions>();
+					WebActions wa = (WebActions)other.GetComponent<WebActions>();
 					colliders.Add(other.gameObject);
 					controlsDisabled = true;
 					frozenTransform = true;
@@ -473,7 +473,6 @@ public class PlayerController : MonoBehaviour
 				}
 		}
 
-        //health pack
 		else if(other.tag.Equals("HealthPack"))
 		{
 			try
