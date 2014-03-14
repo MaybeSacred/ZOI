@@ -43,6 +43,8 @@ public class BasicBullet : MonoBehaviour {
 		if(other.gameObject.tag.Equals("Deflective")&&deflectable)
 		{
 			rigidbody.velocity = new Vector3(0f,initialSpeed/10f,(initialSpeed/5f));
+			//knocks off the Deflective tag once deflective
+			other.gameObject.tag = "Untagged";
 		}
 		else DestroyMe();
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class RiggedyAnnBehavior : BaseEnemy {
 	public List<RiggedyAnnBehavior> friends;
+	public GameObject DeflectiveSurface;
 	public Transform graphics;
 	public float yGraphicsOffset;
 	private NavMeshAgent navAgent;
@@ -13,7 +14,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	
 	public float firingDistance;
 	public float fireRate;
-	private float fireTimer;
+	public float fireTimer, deflectTimer;
 	public Transform bulletEmitter;
 	public BasicBullet currentBullet;
 	private float shieldPct = 100;
@@ -35,7 +36,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	/// </summary>
 	public float detectionTimeout;
 	private float detectionTimeoutTimer, dodgeDist, dodgeTimer, dodgeDuration;
-	public float healthRechargeRate;
+	public float healthRechargeRate, deflectCooldownDuration;
 	private Vector3 medianPoint;
 	public float maxAcceptableDistFromPatrolMedian;
 	private bool isUnderAttack;
@@ -88,6 +89,17 @@ public class RiggedyAnnBehavior : BaseEnemy {
 						danger = false;
 					}
 				}
+				//deflective ability
+				if(DeflectiveSurface.tag.Equals("Untagged"))
+				{
+					deflectTimer+=Time.deltaTime;
+					if(deflectTimer>deflectCooldownDuration)
+					{
+						DeflectiveSurface.tag="Deflective";
+						deflectTimer = 0;
+					}
+				}
+
 				MoveTowardsPlayer(Util.player.transform.position);
 				if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 				{

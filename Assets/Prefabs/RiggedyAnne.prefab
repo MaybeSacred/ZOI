@@ -154,7 +154,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 172.39328, y: 7.33620262, z: -210.053085}
+  m_LocalPosition: {x: 172.39328, y: 3.56737328, z: -210.053085}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400010}
@@ -343,12 +343,15 @@ MonoBehaviour:
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
   friends: []
+  DeflectiveSurface: {fileID: 100002}
   graphics: {fileID: 400002}
   yGraphicsOffset: 0
   graphicsRotationSpeed: 0
   framesToSkip: 5
   firingDistance: 60
   fireRate: 3
+  fireTimer: 0
+  deflectTimer: 0
   bulletEmitter: {fileID: 400010}
   currentBullet: {fileID: 11400000, guid: 517567a3ae0128b4c9817060e3d7c656, type: 2}
   timeSinceLastHit: 0
@@ -363,6 +366,7 @@ MonoBehaviour:
   foundDetectionAngle: 60
   detectionTimeout: 5
   healthRechargeRate: 25
+  deflectCooldownDuration: 6
   maxAcceptableDistFromPatrolMedian: 100
 --- !u!114 &11400004
 MonoBehaviour:
@@ -425,8 +429,8 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}
@@ -437,7 +441,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
