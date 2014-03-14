@@ -32,7 +32,7 @@ public class CameraScript : MonoBehaviour {
 		mousePos = new Vector2();
 		feedDuration = 5f;
 	}
-
+	
 	void Update () {
 		if(!Util.isPaused || cameraIsActiveWhenPaused)
 		{
@@ -59,7 +59,16 @@ public class CameraScript : MonoBehaviour {
 					transform.eulerAngles += new Vector3(mousePos.y*mouseSensitivity.y, mousePos.x*mouseSensitivity.x, 0);
 				}
 				RaycastHit hit;
-				Debug.DrawRay(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, Color.blue);
+				RaycastHit detect;
+				
+				if(Physics.Raycast(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), 5000f*new Vector3(transform.forward.x, transform.forward.y, transform.forward.z).normalized, out detect))
+				{
+					if(detect.collider.gameObject.tag.Equals("Deflective"))
+					{
+						detect.collider.gameObject.SendMessage("Dodge");
+					}
+				}
+				Debug.DrawRay(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), 5000f*new Vector3(transform.forward.x, transform.forward.y, transform.forward.z).normalized, Color.blue);
 				if(Physics.Raycast(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, out hit, 2*startZ, Util.PLAYERWEAPONSIGNORELAYERS))
 				{
 					if(hit.distance < startZ)
@@ -106,7 +115,7 @@ public class CameraScript : MonoBehaviour {
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position), deathZoomoutSpeed*Time.deltaTime);
 			}
 		}
-
+		
 		if (spiderFeeding) {
 			feedTimer+= Time.deltaTime;
 			transform.position = Vector3.Slerp(beforeSpiderPos, spiderPos, (Time.time-feedTimeStart)*0.5f);
@@ -163,7 +172,7 @@ public class CameraScript : MonoBehaviour {
 		mouseSensitivity = Vector2.Lerp(Vector2.one*mouseSensitivityRange.x, Vector2.one*mouseSensitivityRange.y, ((float)mouseSensitivityState)/numberOfMouseSensitivityStates);
 		mouseSensitivity.y = -mouseSensitivity.y;
 	}
-
+	
 	void SpiderEating(Transform Spider)
 	{
 		beforeSpiderPos = transform.position;

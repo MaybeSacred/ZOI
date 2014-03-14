@@ -14,6 +14,7 @@ public class BasicBullet : MonoBehaviour {
 	public float healthDamage;
 	public float timeOutCounter;
 	public float explosionDuration;
+	public bool deflectable;
 	protected float endTime;
 	void Start () {
 		endTime = this.GetComponent<ParticleSystem>().startLifetime + this.GetComponent<ParticleSystem>().duration;
@@ -38,7 +39,13 @@ public class BasicBullet : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision other)
 	{
-		DestroyMe();
+		print (other.gameObject);
+		if(other.gameObject.tag.Equals("Deflective")&&deflectable)
+		{
+			rigidbody.velocity = new Vector3(0f,initialSpeed/10f,(initialSpeed/5f));
+		}
+		else DestroyMe();
+
 	}
 	public virtual void DestroyMe()
 	{

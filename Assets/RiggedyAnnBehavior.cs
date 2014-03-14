@@ -34,9 +34,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	/// Defines when the bot gives up and returns to patrolling
 	/// </summary>
 	public float detectionTimeout;
-	public float dodgeDuration;
-	public float maxDodgeDistance;
-	private float detectionTimeoutTimer, currentDodgeDistance, dodgeTimer;
+	private float detectionTimeoutTimer, dodgeDist, dodgeTimer, dodgeDuration;
 	public float healthRechargeRate;
 	private Vector3 medianPoint;
 	public float maxAcceptableDistFromPatrolMedian;
@@ -50,6 +48,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
 		isAwake = true;
+		dodgeDuration = 2f;
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -74,24 +73,25 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			{
 				if(danger)
 				{
-					if(dodgeTimer < dodgeDuration)
-					{
-						rigidbody.MovePosition(rigidbody.position + transform.right * currentDodgeDistance * Time.deltaTime / dodgeDuration);
-						dodgeTimer += Time.deltaTime;
-					}
+					//this dodge is fast, but is instant to dodge the bullet
+					
+					//					transform.position = new Vector3(transform.position.x+dodgeDist,transform.position.y,transform.position.z);
+					//					danger = false;
+					//this dodge is too slow, but is relative to Time.deltaTime
+					
+					dodgeTimer+=Time.deltaTime;
+					if(dodgeTimer<dodgeDuration)
+						transform.Translate(dodgeDist*Time.deltaTime,0,0);
 					else
 					{
 						dodgeTimer = 0;
 						danger = false;
-						navAgent.enabled = true;
 					}
 				}
-				else
-				{
-					MoveTowardsPlayer(Util.player.transform.position);
-				}
+				MoveTowardsPlayer(Util.player.transform.position);
 				if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 				{
+
 					HealthChange(shieldRechargeRate * Time.deltaTime, 0);
 					shield.renderer.enabled = true;
 					shield.collider.enabled = true;
@@ -119,57 +119,17 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	private void MoveTowardsPlayer(Vector3 vectorToPlayer)
 	{
-		if(updateCounter%framesToSkip == 0)
+		if(updateCounter%framesToSkip ==0)
 		{
 			navAgent.SetDestination(vectorToPlayer);
 		}
 		updateCounter++;
 	}
-
-	void Jump(bool bulletEntered)
+	
+	void Jump(float dist)
 	{
-		if(!danger)
-		{
-			RaycastHit hit;
-			bool rightHit = Physics.Raycast(transform.position, transform.right, out hit, maxDodgeDistance);
-			float rightDistance = hit.distance;
-			bool leftHit = Physics.Raycast(transform.position, -transform.right, out hit, maxDodgeDistance);
-			if(rightHit && leftHit)
-			{
-				if(hit.distance > rightDistance)
-				{
-					//dodge left
-					currentDodgeDistance = -Random.Range(maxDodgeDistance/2, maxDodgeDistance);
-				}
-				else
-				{
-					currentDodgeDistance = Random.Range(maxDodgeDistance/2, maxDodgeDistance);
-				}
-			}
-			else if(rightHit)
-			{
-				currentDodgeDistance = -Random.Range(maxDodgeDistance/2, maxDodgeDistance);
-			}
-			else if(leftHit)
-			{
-				currentDodgeDistance = Random.Range(maxDodgeDistance/2, maxDodgeDistance);
-			}
-			else
-			{
-				if(Random.Range(-1, 1) >= 0)
-				{
-					//dodge left
-					currentDodgeDistance = -Random.Range(maxDodgeDistance/2, maxDodgeDistance);
-				}
-				else
-				{
-					currentDodgeDistance = Random.Range(maxDodgeDistance/2, maxDodgeDistance);
-				}
-			}
-			navAgent.enabled = false;
-			danger = true;
-			dodgeTimer = 0;
-		}
+		dodgeDist = dist;
+		danger = true;
 	}
 	public override void KillMe()
 	{
@@ -204,7 +164,10 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			}
 			if(other.tag.Equals("Bullet"))
 			{
-				other.GetComponent<BasicBullet>().DestroyMe();
+				BasicBullet bb = (BasicBullet) other.GetComponent<BasicBullet>();
+
+				if(!bb.deflectable)
+					other.GetComponent<BasicBullet>().DestroyMe();
 			}
 		}
 	}
