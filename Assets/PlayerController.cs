@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 		{
 			disabledControlsTimer+=Time.deltaTime;
 			//change this to delay to disable 1-hit
-			if(disabledControlsTimer>(disabledControlsDuration+0f))
+			if(disabledControlsTimer>(disabledControlsDuration+1f))
 			{	
 				colliders.Remove(hitsAgain);
 				disabledControlsTimer = 0;

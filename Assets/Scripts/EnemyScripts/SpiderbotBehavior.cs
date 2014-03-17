@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 
 //@Chris Tansey
 //contact: cmtansey@gatech.edu
@@ -32,11 +32,14 @@ public class SpiderbotBehavior : BaseEnemy {
 		} else {
 			if(true)
 			{
-				legTimer+=Time.deltaTime;
+
 
 				//handles looking at player
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position+Util.player.rigidbody.velocity*lookAheadTime), rotationDelta*Time.deltaTime);
-
+				if(navi.remainingDistance>10f)
+				{
+					transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position+Util.player.rigidbody.velocity*lookAheadTime), rotationDelta*Time.deltaTime);
+					legTimer+=Time.deltaTime;
+				}else legTimer = 0;
 				#region legMovement
 				//leg movement
 				if (0.5*legSpeed<legTimer&&legTimer<legSpeed)
@@ -149,6 +152,29 @@ public class SpiderbotBehavior : BaseEnemy {
 			
 		}
 	}
+
+	public void RealCollisionHandler(Collider other)
+	{
+		if(other.tag.Equals("BasicExplosion"))
+		{
+			try
+			{
+				if(!colliders.Contains(other.gameObject))
+				{
+
+					colliders.Add(other.gameObject);
+					BasicExplosion be = (BasicExplosion)other.GetComponent<BasicExplosion>();
+					HealthChange(-be.shieldDamage, -be.healthDamage);
+					rigidbody.AddExplosionForce(be.explosionForce, be.transform.position, be.explosionRadius);
+				}
+			}
+			catch(System.InvalidCastException ie)
+			{
+				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+			}
+		}
+	}
+	
 	//handles ballistic motion of the projectile 
 	private Vector3 BallisticVel(Transform target,float angle) {
 		Vector3 dir = target.position+ target.rigidbody.velocity- bulletEmitter.transform.position;  // get target direction

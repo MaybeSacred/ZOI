@@ -19,6 +19,6 @@ public class ShieldReacter : EnemyColliderPasser {
 				}
 			}
 		}
-		realParents.RealCollisionHandler(other);
+		realParents.SendMessage("RealCollisionHandler",other);
 	}
 }

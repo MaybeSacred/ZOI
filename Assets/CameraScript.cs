@@ -30,7 +30,7 @@ public class CameraScript : MonoBehaviour {
 		startFOV = camera.fieldOfView;
 		startZ = cameraOffset.x;
 		mousePos = new Vector2();
-		feedDuration = 5f;
+		feedDuration = 3f;
 	}
 	
 	void Update () {
