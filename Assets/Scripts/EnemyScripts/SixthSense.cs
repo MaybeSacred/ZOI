@@ -30,12 +30,6 @@ public class SixthSense : MonoBehaviour {
 	{
 		
 		
-		//}
-		//			catch
-		//			{
-		//				Debug.Log("Incorrect tag assignment for tag \"Bullet\"");
-		//			}
-		
 	}
 	public void OnTriggerEnter(Collider other)
 	{

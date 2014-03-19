@@ -2150,7 +2150,6 @@ MonoBehaviour:
     secondaryAutoFireTimes: .200000003
     totalSecondaryBullets: 6
   strafeSteeringEngaged: 0
-  isStrafeSteeringDefaultOption: 0
   returnToCameraFollowTime: 3
   gameOverExplosion: {fileID: 19800014}
   flameParticles:
@@ -2187,9 +2186,7 @@ MonoBehaviour:
   - {fileID: 14600006}
   - {fileID: 14600004}
   - {fileID: 14600014}
-  primaryCannonTimer: 0
   primaryCannonReloadTime: 3
-  secondaryOfflineReload: .333000004
   cannonFlash: {fileID: 19800010}
   cannonRingFlash: {fileID: 19800002}
   primaryBulletEmitter: {fileID: 400072}
@@ -2197,15 +2194,15 @@ MonoBehaviour:
   cannonGraphics: {fileID: 400012}
   cannonKickbackDistance: {x: 0, y: 0, z: 1}
   cannonKickbackRestoreRate: 2.25
-  primaryBullet: {fileID: 11400000, guid: a009fc0e60b86074f90a63f684c756be, type: 2}
+  primaryBullet: {fileID: 11400000, guid: a69af5fa9509ca54c8867b5ab7a36d25, type: 2}
   body: {fileID: 400044}
   turret: {fileID: 400048}
   maxSlope: 45
   slopeLinearDropOff: 25
   autotargetDeltaAngle: 75
-  steeringRate: 11
+  steeringRate: 12
   steeringCenteringCoeff: .660000026
-  bodyRotationEpsilon: 12
+  bodyRotationEpsilon: 12.5
   theCam: {fileID: 0}
   forwardAcceleration: 41
   brakeForce: 60

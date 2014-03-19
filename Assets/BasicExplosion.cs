@@ -3,20 +3,24 @@ using System.Collections;
 
 public class BasicExplosion : MonoBehaviour {
 	public int side;
-	private float checkTime, currentTime;
+	private float particleStopTime, currentTime;
 	public float shieldDamage;
 	public float healthDamage;
 	public float explosionForce;
 	public float explosionDuration;
 	public float explosionRadius;
-	void Start () 
+	void Start ()
 	{
-		checkTime = GetComponent<ParticleSystem>().duration + GetComponent<ParticleSystem>().startLifetime;
+		particleStopTime = GetComponent<ParticleSystem>().duration + GetComponent<ParticleSystem>().startLifetime;
 	}
-
+	public void SetDamageVariables(float sd, float hd)
+	{
+		shieldDamage = sd;
+		healthDamage = hd;
+	}
 	void Update () 
 	{
-		if(currentTime > checkTime)
+		if(currentTime > particleStopTime)
 		{
 			Destroy(gameObject);
 		}

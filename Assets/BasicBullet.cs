@@ -13,7 +13,6 @@ public class BasicBullet : MonoBehaviour {
 	public float shieldDamage;
 	public float healthDamage;
 	public float timeOutCounter;
-	public float explosionDuration;
 	public bool deflectable;
 	protected float endTime;
 	void Start () {
@@ -39,21 +38,21 @@ public class BasicBullet : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision other)
 	{
-		print (other.gameObject);
 		if(other.gameObject.tag.Equals("Deflective")&&deflectable)
 		{
 			rigidbody.velocity = new Vector3(0f,initialSpeed/10f,(initialSpeed/5f));
 			//knocks off the Deflective tag once deflective
 			other.gameObject.tag = "Untagged";
 		}
-		else DestroyMe();
-
+		else 
+		{
+			DestroyMe();
+		}
 	}
 	public virtual void DestroyMe()
 	{
 		ParticleSystem ps = Instantiate(explosionPS, transform.position - rigidbody.velocity*Time.fixedDeltaTime, transform.rotation) as ParticleSystem;
-		speed = Vector3.zero;
-		acceleration = Vector3.zero;
+		rigidbody.isKinematic = true;
 		timeOutCounter += Time.deltaTime;
 		GetComponent<Collider>().enabled = false;
 		GetComponent<ParticleSystem>().Stop();
@@ -61,9 +60,6 @@ public class BasicBullet : MonoBehaviour {
 		{
 			GetComponent<MeshRenderer>().enabled = false;
 		}
-		ps.GetComponent<BasicExplosion>().explosionDuration = explosionDuration;
-		ps.GetComponent<BasicExplosion>().shieldDamage = shieldDamage;
-		ps.GetComponent<BasicExplosion>().healthDamage = healthDamage;
-		ps.GetComponent<BasicExplosion>().side = side;
+		ps.GetComponent<BasicExplosion>().SetDamageVariables(shieldDamage, healthDamage);
 	}
 }

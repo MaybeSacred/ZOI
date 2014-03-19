@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public PlayerWepDefinition[] playerWeps;
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
-	public bool isStrafeSteeringDefaultOption;
 	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
 	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
@@ -32,7 +31,8 @@ public class PlayerController : MonoBehaviour
 	private float timeSinceLastHit;
 	public float shieldPct, shieldRechargeDelay, shieldRechargeRate;
 	public WheelCollider[] wheels;
-	public float primaryCannonTimer, primaryCannonReloadTime, secondaryOfflineReload;
+	public float primaryCannonTimer{get; private set;}
+	public float primaryCannonReloadTime;
 	private float secondaryAutoFireTimer;
 	public ParticleSystem cannonFlash, cannonRingFlash;
 	public Transform primaryBulletEmitter;
