@@ -3,20 +3,17 @@ using System.Collections.Generic;
 
 public class RiggedyAnnBehavior : BaseEnemy {
 	public List<RiggedyAnnBehavior> friends;
-	public GameObject DeflectiveSurface;
 	public Transform graphics;
-	public float yGraphicsOffset;
 	private NavMeshAgent navAgent;
-	public float graphicsRotationSpeed;
 	private int updateCounter;
 	public int framesToSkip;
 	
 	public float fireRate;
-	public float fireTimer, deflectTimer;
+	private float fireTimer, deflectTimer;
 	public Transform bulletEmitter;
 	public BasicBullet currentBullet;
 	private float shieldPct = 100;
-	public float timeSinceLastHit;
+	private float timeSinceLastHit;
 	public Transform shield;
 	public Material shieldMat;
 	public float shieldRechargeDelay;
@@ -24,19 +21,13 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	public float shieldMaterialRate;
 	public float standoffDistance;
 	/// <summary>
-	/// Together, detectionRange and detectionAngle define a sight cone in front of the riggedyAnne
-	/// </summary>
-	public float detectionRange;
-	public float detectionAngle;
-	public float foundDetectionRange;
-	public float foundDetectionAngle;
-	/// <summary>
 	/// Defines when the bot gives up and returns to patrolling
 	/// </summary>
 	public float detectionTimeout;
+	public float maxDodgeDistance;
 	private float detectionTimeoutTimer, dodgeDist, dodgeTimer;
 	public float dodgeDuration;
-	public float healthRechargeRate, deflectCooldownDuration;
+	public float healthRechargeRate;
 	private Vector3 medianPoint;
 	public float maxAcceptableDistFromPatrolMedian;
 	private bool isUnderAttack;
@@ -87,6 +78,8 @@ public class RiggedyAnnBehavior : BaseEnemy {
 				Vector3 vectorToPlayer = Util.player.transform.position - transform.position;
 				if(vectorToPlayer.magnitude < standoffDistance)
 				{
+					Vector3 randomHemisphere = Util.GenerateRandomVector3(vectorToPlayer.normalized, Mathf.PI/2);
+					randomHemisphere.y = 0;
 					
 				}
 				else
@@ -148,16 +141,18 @@ public class RiggedyAnnBehavior : BaseEnemy {
 				{
 					if(hit.distance < rightDistance)
 					{
-						dodgeDist = dist;
+						dodgeDist = Random.Range(maxDodgeDistance/2, maxDodgeDistance)/dodgeDuration;
 					}
 					else
 					{
 						//go left
+						dodgeDist = -Random.Range(maxDodgeDistance/2, maxDodgeDistance)/dodgeDuration;
 					}
 				}
 				else
 				{
 					//go right
+					dodgeDist = Random.Range(maxDodgeDistance/2, maxDodgeDistance)/dodgeDuration;
 				}
 			}
 			else
@@ -165,10 +160,12 @@ public class RiggedyAnnBehavior : BaseEnemy {
 				if(rightHit)
 				{
 					//go left
+					dodgeDist = -Random.Range(maxDodgeDistance/2, maxDodgeDistance)/dodgeDuration;
 				}
 				else
 				{
 					//go random
+					dodgeDist = (Random.Range(-1, 1)>0?1:-1) * Random.Range(maxDodgeDistance/2, maxDodgeDistance)/dodgeDuration;
 				}
 			}
 			danger = true;
