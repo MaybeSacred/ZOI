@@ -11,6 +11,7 @@ public class SceneryExplosionAccepterAdder : MonoBehaviour {
 			if(temp[i].rigidbody != null)
 			{
 				temp[i].gameObject.AddComponent<SceneryCollisionReacter>();
+				temp[i].gameObject.AddComponent<NavMeshObstacle>();
 			}
 		}
 	}

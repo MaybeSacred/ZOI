@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public PlayerWepDefinition[] playerWeps;
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
-	public bool isStrafeSteeringDefaultOption;
 	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
 	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
@@ -32,7 +31,8 @@ public class PlayerController : MonoBehaviour
 	private float timeSinceLastHit;
 	public float shieldPct, shieldRechargeDelay, shieldRechargeRate;
 	public WheelCollider[] wheels;
-	public float primaryCannonTimer, primaryCannonReloadTime, secondaryOfflineReload;
+	public float primaryCannonTimer{get; private set;}
+	public float primaryCannonReloadTime;
 	private float secondaryAutoFireTimer;
 	public ParticleSystem cannonFlash, cannonRingFlash;
 	public Transform primaryBulletEmitter;
@@ -73,6 +73,18 @@ public class PlayerController : MonoBehaviour
 
 	void Update () 
 	{
+
+		if(colliders.Contains(hitsAgain))
+		{
+			disabledControlsTimer+=Time.deltaTime;
+			//change this to delay to disable 1-hit
+			if(disabledControlsTimer>(disabledControlsDuration+1f))
+			{	
+				colliders.Remove(hitsAgain);
+				disabledControlsTimer = 0;
+			}
+		}else if (disabledControlsTimer>disabledControlsDuration+0f)
+			disabledControlsTimer = 0;
         //handles when the player does not exist and is respawning
 		if(!Util.isPaused&&!controlsDisabled)
 		{
@@ -108,9 +120,6 @@ public class PlayerController : MonoBehaviour
 			{
 				controlsDisabled = false;
 				frozenTransform = false;
-				if(colliders.Contains(hitsAgain))
-					colliders.Remove(hitsAgain);
-				disabledControlsTimer = 0;
 
 			}
 			if(frozenTransform)
@@ -144,6 +153,7 @@ public class PlayerController : MonoBehaviour
 				if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 				{
 					RaycastHit hit;
+					Debug.DrawRay(theCam.transform.position, theCam.transform.forward, Color.green);
 					Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
 					Quaternion tempQuat;
 					if(hit.distance < 10)
@@ -367,7 +377,7 @@ public class PlayerController : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		if(rigidbody.velocity.magnitude > maxSpeed)
+		if(rigidbody.velocity.magnitude >= maxSpeed)
 		{
 			rigidbody.AddForce(-rigidbody.velocity*maxSpeedRetardingForce);
 		}
@@ -419,8 +429,50 @@ public class PlayerController : MonoBehaviour
 				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
 			}
 		}
+		if(other.gameObject.tag.Equals("Spider"))
+		{
+			try
+			{
+				if(!colliders.Contains(other.gameObject)||(disabledControlsTimer==0&&deathTimeoutTimer==0))
+				{
+					SpiderbotBehavior be = (SpiderbotBehavior)other.gameObject.GetComponent<SpiderbotBehavior>();
+					colliders.Add(other.gameObject);
+					Util.mainCamera.SendMessage("SpiderEating",be.cinematicAngle.transform);
+					controlsDisabled = true;
+					frozenTransform = true;
+					initialFrozenPosition = transform.position;
+					disabledControlsDuration = be.stunDuration;
+					hitsAgain = other.gameObject;
+					HealthChange(-be.shieldDamage, -be.healthDamage);
+				}
+			}
+			catch
+			{
+				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+			}
+		}
 
-        //health pack
+		if(other.tag.Equals("Freeze"))
+		{
+			try
+			{
+				if(!colliders.Contains(other.gameObject))
+				{
+					WebActions wa = (WebActions)other.GetComponent<WebActions>();
+					colliders.Add(other.gameObject);
+					controlsDisabled = true;
+					frozenTransform = true;
+					initialFrozenPosition = transform.position;
+					disabledControlsDuration = wa.freezeTime;
+					hitsAgain= other.gameObject;
+				}
+			}
+			catch
+				{
+					Debug.Log ("Incorrect tag assignment for tag \"Freeze\"");
+				}
+		}
+
 		else if(other.tag.Equals("HealthPack"))
 		{
 			try

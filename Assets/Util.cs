@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Diagnostics;
 
 public class Util : MonoBehaviour {
 	public static readonly int PLAYERSIDE = 0;
@@ -23,7 +24,7 @@ public class Util : MonoBehaviour {
 		currentTerrain = GetComponentInChildren<Terrain>();
 		if(currentTerrain == null)
 		{
-			Debug.Log("No Terrain was loaded");
+			UnityEngine.Debug.Log("No Terrain was loaded");
 		}
 	}
 	/*Handles details of firing a BasicBullet
