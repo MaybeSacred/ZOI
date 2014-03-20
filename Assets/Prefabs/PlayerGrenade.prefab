@@ -97,7 +97,8 @@ MonoBehaviour:
   shieldDamage: 50
   healthDamage: 300
   timeOutCounter: 0
-  explosionDuration: .100000001
+  deflectable: 1
+  deflectionSpeed: 15
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
