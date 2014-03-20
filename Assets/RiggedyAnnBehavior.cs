@@ -7,12 +7,10 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	public Transform graphics;
 	public float yGraphicsOffset;
 	private NavMeshAgent navAgent;
-	private float timer;
 	public float graphicsRotationSpeed;
 	private int updateCounter;
 	public int framesToSkip;
 	
-	public float firingDistance;
 	public float fireRate;
 	public float fireTimer, deflectTimer;
 	public Transform bulletEmitter;
@@ -24,6 +22,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	public float shieldRechargeDelay;
 	public float shieldRechargeRate;
 	public float shieldMaterialRate;
+	public float standoffDistance;
 	/// <summary>
 	/// Together, detectionRange and detectionAngle define a sight cone in front of the riggedyAnne
 	/// </summary>
@@ -35,7 +34,8 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	/// Defines when the bot gives up and returns to patrolling
 	/// </summary>
 	public float detectionTimeout;
-	private float detectionTimeoutTimer, dodgeDist, dodgeTimer, dodgeDuration;
+	private float detectionTimeoutTimer, dodgeDist, dodgeTimer;
+	public float dodgeDuration;
 	public float healthRechargeRate, deflectCooldownDuration;
 	private Vector3 medianPoint;
 	public float maxAcceptableDistFromPatrolMedian;
@@ -49,7 +49,6 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
 		isAwake = true;
-		dodgeDuration = 2f;
 	}
 	void OnTriggerEnter(Collider other)
 	{
@@ -74,74 +73,106 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			{
 				if(danger)
 				{
-					//this dodge is fast, but is instant to dodge the bullet
-					
-					//					transform.position = new Vector3(transform.position.x+dodgeDist,transform.position.y,transform.position.z);
-					//					danger = false;
-					//this dodge is too slow, but is relative to Time.deltaTime
-					
-					dodgeTimer+=Time.deltaTime;
-					if(dodgeTimer<dodgeDuration)
-						transform.Translate(dodgeDist*Time.deltaTime,0,0);
+					dodgeTimer += Time.deltaTime;
+					if(dodgeTimer < dodgeDuration)
+					{
+						transform.Translate(dodgeDist*Time.deltaTime*transform.right);
+					}
 					else
 					{
 						dodgeTimer = 0;
 						danger = false;
 					}
 				}
-				//deflective ability
-				if(DeflectiveSurface.tag.Equals("Untagged"))
+				Vector3 vectorToPlayer = Util.player.transform.position - transform.position;
+				if(vectorToPlayer.magnitude < standoffDistance)
 				{
-					deflectTimer+=Time.deltaTime;
-					if(deflectTimer>deflectCooldownDuration)
-					{
-						DeflectiveSurface.tag="Deflective";
-						deflectTimer = 0;
-					}
-				}
-
-				MoveTowardsPlayer(Util.player.transform.position);
-				if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
-				{
-
-					HealthChange(shieldRechargeRate * Time.deltaTime, 0);
-					shield.renderer.enabled = true;
-					shield.collider.enabled = true;
+					
 				}
 				else
 				{
-					if(shieldPct > 0)
-					{
-						shield.renderer.enabled = true;
-						shield.collider.enabled = true;
-						if(Time.timeSinceLevelLoad-timeSinceLastHit < 1)
-						{
-							shield.renderer.materials[1].SetFloat("_Cutoff", (Time.timeSinceLevelLoad-timeSinceLastHit));
-							shield.renderer.materials[1].mainTextureOffset += Random.insideUnitCircle*shieldMaterialRate;
-						}
-					}
-					else
-					{
-						shield.renderer.enabled = false;
-						shield.collider.enabled = false;
-					}
+					MoveTowardsPlayer(Util.player.transform.position);
 				}
+				UpdateShield();
+			}
+		}
+	}
+	private void UpdateShield()
+	{
+		if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
+		{
+			
+			HealthChange(shieldRechargeRate * Time.deltaTime, 0);
+			shield.renderer.enabled = true;
+			shield.collider.enabled = true;
+		}
+		else
+		{
+			if(shieldPct > 0)
+			{
+				shield.renderer.enabled = true;
+				shield.collider.enabled = true;
+				if(Time.timeSinceLevelLoad-timeSinceLastHit < 1)
+				{
+					shield.renderer.materials[1].SetFloat("_Cutoff", (Time.timeSinceLevelLoad-timeSinceLastHit));
+					shield.renderer.materials[1].mainTextureOffset += Random.insideUnitCircle*shieldMaterialRate;
+				}
+			}
+			else
+			{
+				shield.renderer.enabled = false;
+				shield.collider.enabled = false;
 			}
 		}
 	}
 	private void MoveTowardsPlayer(Vector3 vectorToPlayer)
 	{
-		if(updateCounter%framesToSkip ==0)
+		if(updateCounter%framesToSkip == 0)
 		{
 			navAgent.SetDestination(vectorToPlayer);
 		}
 		updateCounter++;
 	}
-	
-	void Jump(float dist)
+	public void Jump()
 	{
-		dodgeDist = dist;
-		danger = true;
+		if(!danger)
+		{
+			RaycastHit hit;
+			float rightDistance;
+			bool rightHit;
+			rightHit = Physics.SphereCast(transform.position, shield.localScale.x, transform.right, out hit);
+			rightDistance = hit.distance;
+			if(Physics.SphereCast(transform.position, shield.localScale.x, -transform.right, out hit))
+			{
+				if(rightHit)
+				{
+					if(hit.distance < rightDistance)
+					{
+						dodgeDist = dist;
+					}
+					else
+					{
+						//go left
+					}
+				}
+				else
+				{
+					//go right
+				}
+			}
+			else
+			{
+				if(rightHit)
+				{
+					//go left
+				}
+				else
+				{
+					//go random
+				}
+			}
+			danger = true;
+		}
 	}
 	public override void KillMe()
 	{
@@ -176,10 +207,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			}
 			if(other.tag.Equals("Bullet"))
 			{
-				BasicBullet bb = (BasicBullet) other.GetComponent<BasicBullet>();
-
-				if(!bb.deflectable)
-					other.GetComponent<BasicBullet>().DestroyMe();
+				other.GetComponent<BasicBullet>().DestroyMe();
 			}
 		}
 	}

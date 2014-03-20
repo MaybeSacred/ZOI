@@ -60,15 +60,14 @@ public class CameraScript : MonoBehaviour {
 				}
 				RaycastHit hit;
 				RaycastHit detect;
-				
-				if(Physics.Raycast(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), 5000f*new Vector3(transform.forward.x, transform.forward.y, transform.forward.z).normalized, out detect))
+				if(Physics.Raycast(transform.position, transform.forward, out detect))
 				{
 					if(detect.collider.gameObject.tag.Equals("Deflective"))
 					{
-						detect.collider.gameObject.SendMessage("Dodge");
+						detect.collider.gameObject.GetComponent<SixthSense>().Dodge();
 					}
 				}
-				Debug.DrawRay(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), 5000f*new Vector3(transform.forward.x, transform.forward.y, transform.forward.z).normalized, Color.blue);
+				Debug.DrawRay(transform.position, transform.forward, Color.blue);
 				if(Physics.Raycast(new Vector3(Util.player.transform.localPosition.x, Util.player.transform.localPosition.y + cameraOffset.y, Util.player.transform.localPosition.z), new Vector3(-transform.forward.x, 0, -transform.forward.z).normalized, out hit, 2*startZ, Util.PLAYERWEAPONSIGNORELAYERS))
 				{
 					if(hit.distance < startZ)

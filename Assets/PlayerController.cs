@@ -884,7 +884,6 @@ public class PlayerController : MonoBehaviour
 			if(secondaryBulletsLeft > 0)
 			{
 				secondaryBulletsLeft--;
-				//secondaryCannonReloadTimers = 0;
 				secondaryCannonFlashes.Play();
 			}
 		}
