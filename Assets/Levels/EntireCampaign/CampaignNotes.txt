@@ -1,0 +1,40 @@
+These are just things that are being jotted down so that we don't forget in case things get deleted.
+
+Fog is going to get progressively weaker as the game progresses.
+
+Stays the Same Throughout
+	Fog Mode                Exponential
+	Linear Fog Start        100
+	Linear Fog End          4000
+	Skybox Material         Eerie2_skybox
+	Halo Strength           Not Decided
+	Flare Strength          Not Decided
+	Flare Fade Speed        Not Decided
+
+Ambient Light goes from (100,100,100) at the beginning
+	to (0,0,0) when the player enters the cave
+
+Start Campaign - Opening
+	Fog Density	0.01
+
+Beginning of Flatlakes
+	Fog Density	0.008
+
+Beginning of Alleyway
+	Fog Density	0.007
+
+End of Alleyway
+	Fog Density	0.003
+
+Crossing the Light Bridge
+	Fog Density	0.0015
+
+At the end of the mountain range split (after the gorge)
+	Fog Density	0.0012
+
+Entrance to Cavern
+	Fog Density	0.0006
+
+Switch between Mountain and Cavern Object
+	Fog Density	0.0000
+	- Turn off Fog at that point.

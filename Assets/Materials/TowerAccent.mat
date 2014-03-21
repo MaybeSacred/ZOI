@@ -43,16 +43,16 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Illum
+          name: _Cube
         second:
-          m_Texture: {fileID: 2800000, guid: 0f00a384bba4a7e40a3d83323ffac1cb, type: 3}
+          m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Cube
+          name: _Illum
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 0f00a384bba4a7e40a3d83323ffac1cb, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -83,7 +83,7 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .539400041, g: .539400041, b: .539400041, a: 1}
+        second: {r: .629064679, g: .629064679, b: .629064679, a: 1}
       data:
         first:
           name: _OutlineColor
