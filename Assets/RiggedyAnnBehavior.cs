@@ -10,7 +10,8 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	
 	public float fireRate;
 	private float fireTimer, deflectTimer;
-	public Transform bulletEmitter;
+	public Transform cannonBulletEmitter;
+	public Transform rocketBulletEmitter;
 	public BasicBullet currentBullet;
 	private float shieldPct = 100;
 	private float timeSinceLastHit;
@@ -73,19 +74,25 @@ public class RiggedyAnnBehavior : BaseEnemy {
 					{
 						dodgeTimer = 0;
 						danger = false;
+						navAgent.enabled = true;
+						navAgent.SetDestination(transform.position);
 					}
-				}
-				Vector3 vectorToPlayer = Util.player.transform.position - transform.position;
-				if(vectorToPlayer.magnitude < standoffDistance)
-				{
-					Vector3 randomHemisphere = Util.GenerateRandomVector3(vectorToPlayer.normalized, Mathf.PI/2);
-					randomHemisphere.y = 0;
-					
 				}
 				else
 				{
-					MoveTowardsPlayer(Util.player.transform.position);
+					Vector3 vectorToPlayer = Util.player.transform.position - transform.position;
+					if(vectorToPlayer.magnitude < standoffDistance)
+					{
+						Vector3 randomHemisphere = Util.GenerateRandomVector3(vectorToPlayer.normalized, Mathf.PI/2);
+						randomHemisphere.y = 0;
+						
+					}
+					else
+					{
+						MoveTowardsPlayer(Util.player.transform.position);
+					}
 				}
+				graphics.rigidbody.AddRelativeTorque(Vector3.up);
 				UpdateShield();
 			}
 		}
@@ -169,6 +176,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 				}
 			}
 			danger = true;
+			navAgent.enabled = false;
 		}
 	}
 	public override void KillMe()

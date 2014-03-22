@@ -29,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 169.84404, y: .969451368, z: -207.578766}
+  m_LocalPosition: {x: 284.1828, y: .969415128, z: -87.8961868}
   m_LocalScale: {x: .129999995, y: .129999995, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf447b0581fe3e4db97bad0bce65eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prettyName: Kronos Heavy Cannon
+  prettyName: Annie's Cannon
   side: 0
   lifetime: 1000
   explosionPS: {fileID: 19800000, guid: a4bc0a095297a3a4784333298213522d, type: 2}
@@ -288,7 +288,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: .699999988
+      scalar: .600000024
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -361,9 +361,9 @@ ParticleSystem:
     randomDirection: 0
   EmissionModule:
     enabled: 1
-    m_Type: 0
+    m_Type: 1
     rate:
-      scalar: 35
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -714,7 +714,7 @@ ParticleSystem:
       minMaxState: 0
     inWorldSpace: 0
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       scalar: -1
       maxCurve:
@@ -817,7 +817,7 @@ ParticleSystem:
     inWorldSpace: 1
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 0
+    enabled: 1
     multiplier: 1
   ClampVelocityModule:
     enabled: 0
