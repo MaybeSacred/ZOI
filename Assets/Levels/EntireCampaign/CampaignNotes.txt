@@ -7,9 +7,9 @@ Stays the Same Throughout
 	Linear Fog Start        100
 	Linear Fog End          4000
 	Skybox Material         Eerie2_skybox
-	Halo Strength           Not Decided
-	Flare Strength          Not Decided
-	Flare Fade Speed        Not Decided
+	Halo Strength           Undecided
+	Flare Strength          Undecided
+	Flare Fade Speed        Undecided
 
 Ambient Light goes from (100,100,100) at the beginning
 	to (0,0,0) when the player enters the cave
@@ -38,3 +38,68 @@ Entrance to Cavern
 Switch between Mountain and Cavern Object
 	Fog Density	0.0000
 	- Turn off Fog at that point.
+
+
+
+
+Wind Zone Settings to get progressively weaker. (Currently Unchanged)
+Start
+	Mode                    Directional
+	Radius                  20
+	Wind Main               1.2
+	Wind Turbulence         4
+	Wind Pule Magnitude     2
+	Wind Pulse Frequency    0.05
+
+End
+	Mode                    Directional
+	Radius                  20
+	Wind Main               1.2
+	Wind Turbulence         4
+	Wind Pule Magnitude     2
+	Wind Pulse Frequency    0.05
+
+
+
+Snow Settings to get progressively weaker. (Currently unchanged)
+Start
+	Weather
+		Duration				5.00
+		Looping					Yes
+		Prewarm					No
+		Start Delay				0
+		Start Lifetime			9
+		Start Speed				0
+		Start Size				0.4, 0.5	- Random Between 2 Constants
+		Start Rotation			0
+		Start Color				WHITE (255,255,255)
+		Gravity Multiplier		0
+		Inherit Velocity		0
+		Simulation Space		World
+		Play On Awake			Yes
+		Max Particles			20000
+	Emission
+		Rate					350
+								Time
+		Bursts					Time Particles
+	Shape - Entire Thing Constant
+	Velocity over Lifetime
+								Random Between 2 Constants
+		x						0, 0
+		y						-7, -5
+		z						0, 0
+	External Forces
+		Multiplier				1
+	Renderer
+		Render Mode				Billboard
+		Normal Direction		1
+		Material				Default-Particle
+		Sort Mode				None
+		Sorting Fudge			0
+		Cast Shadows			Yes
+		Receive Shadows			Yes
+		Max Particle Size		0.5
+		
+	Resimulate				Yes
+	Wireframe				No
+	
