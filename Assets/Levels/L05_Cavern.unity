@@ -145,6 +145,7 @@ GameObject:
   - 33: {fileID: 64763851}
   - 23: {fileID: 64763850}
   - 64: {fileID: 64763852}
+  - 64: {fileID: 64763853}
   m_Layer: 0
   m_Name: Cavern
   m_TagString: Untagged
@@ -194,6 +195,19 @@ MeshFilter:
   m_GameObject: {fileID: 64763848}
   m_Mesh: {fileID: 4300022, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
 --- !u!64 &64763852
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 64763848}
+  m_Material: {fileID: 13400000, guid: d5ca9ccdafe490c4094ad5319a6fa674, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300022, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+--- !u!64 &64763853
 MeshCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -21204,6 +21218,47 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+--- !u!1 &1689152335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1689152337}
+  - 114: {fileID: 1689152336}
+  m_Layer: 0
+  m_Name: NextLevelLoadReceivingEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1689152336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689152335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e941176accae1c746ab9531d7ea69d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankTransform: {fileID: 2068505774}
+  tankAndWorld: {fileID: 345928225}
+  nextTrigger: {fileID: 0}
+--- !u!4 &1689152337
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1689152335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1706746173
 GameObject:
   m_ObjectHideFlags: 0

@@ -5968,6 +5968,7 @@ GameObject:
   - 4: {fileID: 417185965}
   - 33: {fileID: 417185967}
   - 23: {fileID: 417185966}
+  - 64: {fileID: 417185968}
   m_Layer: 0
   m_Name: LightBridgeLarge_End_01
   m_TagString: Untagged
@@ -6017,6 +6018,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 680368450}
   m_GameObject: {fileID: 417185964}
   m_Mesh: {fileID: 4300018, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+--- !u!64 &417185968
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 417185964}
+  m_Material: {fileID: 13400000, guid: b30666d8709043049817173b175aca78, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300018, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
 --- !u!1 &423819846
 GameObject:
   m_ObjectHideFlags: 0
@@ -6027,6 +6041,7 @@ GameObject:
   - 4: {fileID: 423819847}
   - 33: {fileID: 423819849}
   - 23: {fileID: 423819848}
+  - 64: {fileID: 423819850}
   m_Layer: 0
   m_Name: Gorge_MeshPart1
   m_TagString: Untagged
@@ -6076,6 +6091,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 680368450}
   m_GameObject: {fileID: 423819846}
+  m_Mesh: {fileID: 4300022, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+--- !u!64 &423819850
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 423819846}
+  m_Material: {fileID: 13400000, guid: e1db661ac1db60947a9f23da16e431d2, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300022, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
 --- !u!1 &425460826
 GameObject:
@@ -6322,6 +6350,7 @@ GameObject:
   - 4: {fileID: 621437105}
   - 33: {fileID: 621437107}
   - 23: {fileID: 621437106}
+  - 64: {fileID: 621437108}
   m_Layer: 0
   m_Name: Gorge_MeshPart2
   m_TagString: Untagged
@@ -6372,6 +6401,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 680368450}
   m_GameObject: {fileID: 621437104}
+  m_Mesh: {fileID: 4300024, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+--- !u!64 &621437108
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 621437104}
+  m_Material: {fileID: 13400000, guid: e1db661ac1db60947a9f23da16e431d2, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300024, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
 --- !u!1 &623302681
 GameObject:
@@ -9080,6 +9122,7 @@ GameObject:
   - 4: {fileID: 752365875}
   - 33: {fileID: 752365877}
   - 23: {fileID: 752365876}
+  - 64: {fileID: 752365878}
   m_Layer: 0
   m_Name: LightBridgeLarge_End_02
   m_TagString: Untagged
@@ -9129,6 +9172,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 680368450}
   m_GameObject: {fileID: 752365874}
   m_Mesh: {fileID: 4300016, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+--- !u!64 &752365878
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 752365874}
+  m_Material: {fileID: 13400000, guid: b30666d8709043049817173b175aca78, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300016, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
 --- !u!1 &788368358
 GameObject:
   m_ObjectHideFlags: 0
@@ -9139,6 +9195,7 @@ GameObject:
   - 4: {fileID: 788368359}
   - 33: {fileID: 788368361}
   - 23: {fileID: 788368360}
+  - 64: {fileID: 788368362}
   m_Layer: 0
   m_Name: GorgeBottom
   m_TagString: Untagged
@@ -9186,6 +9243,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 680368450}
   m_GameObject: {fileID: 788368358}
+  m_Mesh: {fileID: 4300006, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+--- !u!64 &788368362
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788368358}
+  m_Material: {fileID: 13400000, guid: d5ca9ccdafe490c4094ad5319a6fa674, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300006, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
 --- !u!1 &791532151
 GameObject:
@@ -11897,6 +11967,58 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+--- !u!1 &962089497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 962089500}
+  - 65: {fileID: 962089499}
+  - 114: {fileID: 962089498}
+  m_Layer: 12
+  m_Name: NextLevelTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &962089498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962089497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be76068da08117749965f2f331d82dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canReturn: 0
+--- !u!65 &962089499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962089497}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 50, z: 60}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &962089500
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 962089497}
+  m_LocalRotation: {x: 0, y: .00784811471, z: 0, w: .999969244}
+  m_LocalPosition: {x: -842.353027, y: -204.183548, z: -8981.05176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1034167625
 GameObject:
   m_ObjectHideFlags: 0
@@ -21638,6 +21760,47 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 932811222}
+--- !u!1 &1536235158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1536235160}
+  - 114: {fileID: 1536235159}
+  m_Layer: 0
+  m_Name: NextLevelLoadReceivingEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1536235159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1536235158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e941176accae1c746ab9531d7ea69d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tankTransform: {fileID: 683828457}
+  tankAndWorld: {fileID: 110660254}
+  nextTrigger: {fileID: 962089498}
+--- !u!4 &1536235160
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1536235158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1542078769
 GameObject:
   m_ObjectHideFlags: 0
@@ -24270,6 +24433,7 @@ GameObject:
   - 4: {fileID: 1962804299}
   - 33: {fileID: 1962804301}
   - 23: {fileID: 1962804300}
+  - 64: {fileID: 1962804302}
   m_Layer: 0
   m_Name: Gorge_MeshPart0
   m_TagString: Untagged
@@ -24319,6 +24483,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 680368450}
   m_GameObject: {fileID: 1962804298}
+  m_Mesh: {fileID: 4300020, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+--- !u!64 &1962804302
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1962804298}
+  m_Material: {fileID: 13400000, guid: e1db661ac1db60947a9f23da16e431d2, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300020, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
 --- !u!1 &2000031080
 GameObject:
