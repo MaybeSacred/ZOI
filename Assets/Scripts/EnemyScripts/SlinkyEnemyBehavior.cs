@@ -14,6 +14,7 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 	public Transform bulletEmitter;
 	public LaserBullet currentBullet;
 	public GameObject child;
+	public int squashHealthDamage, squashShieldDamage;
 	//debugger for finding Vector3 positions
 	//public GameObject debugObject;
 

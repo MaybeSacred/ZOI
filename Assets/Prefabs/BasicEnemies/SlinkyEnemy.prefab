@@ -48,9 +48,10 @@ GameObject:
   - 65: {fileID: 6500002}
   - 23: {fileID: 2300002}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400006}
   m_Layer: 0
   m_Name: upperLeg
-  m_TagString: Untagged
+  m_TagString: Squash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 262.790405, y: 11.5916281, z: -153.49942}
+  m_LocalPosition: {x: 230.251663, y: 11.5916071, z: -82.3573303}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400006}
@@ -331,6 +332,8 @@ MonoBehaviour:
   bulletEmitter: {fileID: 0}
   currentBullet: {fileID: 0}
   child: {fileID: 100008}
+  squashHealthDamage: 100
+  squashShieldDamage: 100
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -362,6 +365,20 @@ MonoBehaviour:
   explosionAccepter: {fileID: 0}
   realParents: {fileID: 11400000}
   reactionSystem: {fileID: 400000}
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4aaa4154a6969418490d76ffa973f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldDamage: 0
+  healthDamage: 0
+  slinkyParent: {fileID: 11400000}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public PlayerWepDefinition[] playerWeps;
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
-	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration;
+	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration, hitsAgainTimer, hitsAgainOffsetDuration;
 	public float returnToCameraFollowTime;
 	private WheelFrictionCurve startWheelFriction;
 	private int numFlameParticlesPlaying;
@@ -53,6 +53,8 @@ public class PlayerController : MonoBehaviour
 	private int numWheelsGrounded;
 	private List<GameObject> colliders;
 	private GameObject hitsAgain;
+	private List<GameObject> hitsAgainSansDisabled;
+	private bool collidersBacklogged;
 
 	public float maxSpeedRetardingForce;
     #endregion
@@ -69,11 +71,30 @@ public class PlayerController : MonoBehaviour
 		initialCannonPosition = cannonGraphics.localPosition;
 		restartPosition = transform.position;
 		isAlive = true;
+		hitsAgainOffsetDuration = 2f;
+		hitsAgainSansDisabled = new List<GameObject> ();
 	}
 
 	void Update () 
 	{
-
+		//collects collider objects that need to hit multiple times and delays their next collision detection
+		if (collidersBacklogged) 
+		{
+			hitsAgainTimer+=Time.deltaTime;
+			if(hitsAgainTimer>(hitsAgainOffsetDuration))
+			{
+				foreach(GameObject x in hitsAgainSansDisabled)
+				{
+					if(colliders.Contains(x))
+					{
+						colliders.Remove(x);
+						hitsAgainSansDisabled.Remove(x);
+					}
+				}
+				hitsAgainTimer = 0;
+				collidersBacklogged = false;
+			}
+		}
 		if(colliders.Contains(hitsAgain))
 		{
 			disabledControlsTimer+=Time.deltaTime;
@@ -385,6 +406,26 @@ public class PlayerController : MonoBehaviour
 
 	public void OnCollisionEnter(Collision other)
 	{
+		if(other.gameObject.tag.Equals("Squash"))
+		   {
+			try
+			{	
+				if(!colliders.Contains (other.collider.gameObject))
+				{
+					Squash s = other.collider.gameObject.GetComponent<Squash>();
+					HealthChange(-s.shieldDamage, -s.healthDamage);
+					colliders.Add(other.collider.gameObject);
+					print (other.collider.gameObject);
+					hitsAgainSansDisabled.Add(s.gameObject);
+					collidersBacklogged = true;
+				}
+			}
+			catch
+			{
+				Debug.Log ("incorrect tag assignment for tag \"Squash\"");
+			}
+		}
+
 		if(other.gameObject.tag.Equals("Spider"))
 		{
 			try
@@ -404,7 +445,7 @@ public class PlayerController : MonoBehaviour
 			}
 			catch
 			{
-				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
+				Debug.Log("Incorrect tag assignment for tag \"Spider\"");
 			}
 		}
 	}
