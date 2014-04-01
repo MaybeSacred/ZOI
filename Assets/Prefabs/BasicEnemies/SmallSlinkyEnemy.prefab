@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3300000}
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300000}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -130,7 +131,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 435.886017, y: 21.4726486, z: 35.2733688}
+  m_LocalPosition: {x: 259.640228, y: 6.28053904, z: -177.796066}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400008}
@@ -296,7 +297,7 @@ Animator:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c9b4eb363534d8042970d606485902c0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 75ab5bef2529a68479f5da0c62a2db34, type: 2}
   m_CullingMode: 0
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
@@ -312,6 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ca9ab0d3b57d14f879360a23b08cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 200
+  maxHealth: 200
+  deathTimeout: 1
+  attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 60
   firingDistance: 0
@@ -325,6 +330,7 @@ MonoBehaviour:
   currentLaser: {fileID: 0}
   bulletEmitter: {fileID: 0}
   currentBullet: {fileID: 0}
+  child: {fileID: 100006}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -341,6 +347,21 @@ MonoBehaviour:
   anim: {fileID: 9500000}
   moving: 1
   parent: {fileID: 100008}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5210407ce09b2348b07d6b64a029ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 1
+  explosionAccepter: {fileID: 0}
+  realParents: {fileID: 11400000}
+  reactionSystem: {fileID: 400006}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

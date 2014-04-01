@@ -28,6 +28,7 @@ GameObject:
   - 33: {fileID: 3300004}
   - 135: {fileID: 13500000}
   - 23: {fileID: 2300004}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 455.507538, y: 22.5570526, z: 90.5854034}
+  m_LocalPosition: {x: 262.790405, y: 11.5916281, z: -153.49942}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400006}
@@ -312,9 +313,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ca9ab0d3b57d14f879360a23b08cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 2000
+  maxHealth: 2000
+  deathTimeout: 1
+  attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 30
+  firingDistance: 0
+  fireTimer: 0
+  fireRate: 0
+  laserTimer: 0
+  laserDuration: 0
   navi: {fileID: 19500000}
+  miniSlinky: 0
+  armedSlinky: 0
+  currentLaser: {fileID: 0}
+  bulletEmitter: {fileID: 0}
+  currentBullet: {fileID: 0}
+  child: {fileID: 100008}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,6 +347,21 @@ MonoBehaviour:
   anim: {fileID: 9500000}
   moving: 1
   parent: {fileID: 100000}
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5210407ce09b2348b07d6b64a029ace, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageModifier: 1
+  explosionAccepter: {fileID: 0}
+  realParents: {fileID: 11400000}
+  reactionSystem: {fileID: 400000}
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

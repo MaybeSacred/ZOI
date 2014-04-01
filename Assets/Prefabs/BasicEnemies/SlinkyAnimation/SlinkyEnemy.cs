@@ -8,6 +8,7 @@ public class SlinkyEnemy : MonoBehaviour {
 	public bool moving;
 	private bool offsetLate;
 	public GameObject parent;
+	SlinkyEnemyBehavior be;
 
 	// Use this for initialization
 	void Start () {
@@ -16,6 +17,7 @@ public class SlinkyEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("slinkyIdle")) 
 		{
 			offsetLate =true;
@@ -30,5 +32,10 @@ public class SlinkyEnemy : MonoBehaviour {
 			offsetLate=false;
 		}
 	
+	}
+	void SetMoving(bool move)
+	{
+		anim.SetBool ("isMoving", move);
+		moving = move;
 	}
 }

@@ -30,7 +30,7 @@ public class SpiderbotBehavior : BaseEnemy {
 			}
 			deathTimeoutTimer += Time.deltaTime;
 		} else {
-			if(true)
+			if(isAwake)
 			{
 
 
