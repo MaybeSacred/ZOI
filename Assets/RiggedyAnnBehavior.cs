@@ -135,7 +135,8 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	public void Jump()
 	{
-		if(!danger)
+		float chance = Random.Range (0, 3f);
+		if(chance>2.5f)
 		{
 			RaycastHit hit;
 			float rightDistance;
