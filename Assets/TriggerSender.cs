@@ -27,6 +27,11 @@ public class TriggerSender : MonoBehaviour {
 				if(!attachedEventHandlers.Contains(other.transform.parent))
 					attachedEventHandlers.Add(other.transform);
 			}
+			else if(other.transform.parent.GetComponent<MonoBehaviour>() is BaseEnemy)
+			{
+				if(!attachedEventHandlers.Contains(other.transform.parent))
+					attachedEventHandlers.Add(other.transform.parent);
+			}
 		}
 		else if(other.tag.Equals("Player"))
 		{

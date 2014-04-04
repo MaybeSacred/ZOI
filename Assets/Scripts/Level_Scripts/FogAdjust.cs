@@ -40,8 +40,6 @@ public class FogAdjust : MonoBehaviour
 
 	public void OnHelperTrigger(FogAdjust_Helper triggerCollidedWith)
 	{
-		Debug.Log("OnHelperTrigger activated");
-
 		if (null == triggerCollidedWith.nextTrigger)
 		{
 			gameObject.SetActive(false);

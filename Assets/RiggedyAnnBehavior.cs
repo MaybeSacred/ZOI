@@ -40,7 +40,6 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		navAgent = GetComponent<NavMeshAgent>();
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.material = shieldMat;
-		isAwake = true;
 	}
 	void OnTriggerEnter(Collider other)
 	{

@@ -50,7 +50,7 @@ public class BasicBullet : MonoBehaviour {
 		}
 		else 
 		{
-			DestroyMe();
+			//DestroyMe();
 		}
 	}
 	public virtual void DestroyMe()

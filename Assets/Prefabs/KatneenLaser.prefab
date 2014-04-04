@@ -217,10 +217,11 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
   initialSpeed: 0
-  shieldDamage: 10
-  healthDamage: 10
+  shieldDamage: 20
+  healthDamage: 20
   timeOutCounter: 3
-  explosionDuration: .0299999993
+  deflectable: 0
+  deflectionSpeed: 0
   endPointEffect: {fileID: 400000, guid: 231f7fd46bd2d094caf2626526fc7fa7, type: 2}
   laserEffect: {fileID: 19800000}
   outerTransparency: {fileID: 2100000, guid: 94de39151034da54b918a5f18e8d4f84, type: 2}

@@ -1140,8 +1140,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
-  m_LocalRotation: {x: 0, y: -.122782812, z: 0, w: .992433608}
-  m_LocalPosition: {x: 264.292358, y: 5.06645584, z: -81.8438263}
+  m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
+  m_LocalPosition: {x: 142.850098, y: 2.83788228, z: -415.584961}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1930,7 +1930,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.900008738, y: -.722940445, z: -1.59999824}
+  m_ConnectedAnchor: {x: -.899977148, y: -.722940445, z: -1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1959,7 +1959,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899991333, y: -.722940445, z: 1.59999692}
+  m_ConnectedAnchor: {x: -.900004506, y: -.722940445, z: 1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1988,7 +1988,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899991333, y: -.722940445, z: -1.59999692}
+  m_ConnectedAnchor: {x: .900004506, y: -.722940445, z: -1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2017,7 +2017,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .900008738, y: -.722940445, z: 1.59999824}
+  m_ConnectedAnchor: {x: .899977148, y: -.722940445, z: 1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2044,7 +2044,7 @@ MeshCollider:
   m_GameObject: {fileID: 100050}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
@@ -2238,7 +2238,7 @@ MonoBehaviour:
   maxSpeed: 10
   health: 100
   maxHealth: 100
-  maxSpeedRetardingForce: 90
+  maxSpeedRetardingForce: 80
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

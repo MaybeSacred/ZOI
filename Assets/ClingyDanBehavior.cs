@@ -16,6 +16,7 @@ public class ClingyDanBehavior : BaseEnemy {
 	public BasicBullet currentBullet;
 	public float aimingError;
 	void Start () {
+		currentBurstNum = numBursts;
 	}
 
 	void Update () 

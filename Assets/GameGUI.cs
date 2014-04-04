@@ -32,7 +32,7 @@ public class GameGUI : MonoBehaviour {
 			InGameGUI();
 			DebugStats();
 		}
-		if(Util.isPaused)
+		else if(Util.isPaused)
 		{
 			PauseScreen();
 		}
