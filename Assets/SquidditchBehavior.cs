@@ -37,6 +37,8 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	public float laserRandomness;
 	private float timeIntoMovement;
 	public bool isAttachedToGameObject;
+	private float laserAngularMomentum;
+	public float laserMomentumDecay;
 	void Start () {
 		moveToFlitPosition = transform.position;
 		nextRotation = Random.rotationUniform;
@@ -165,10 +167,12 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		{
 			if(laserDurationTimer < laserDuration)
 			{
-				currentLaser.transform.rotation = Quaternion.LookRotation(Util.player.transform.position - bulletEmitter.position);
+				Quaternion lookAtPlayerQuat = Quaternion.LookRotation(Util.player.transform.position - bulletEmitter.position);
+				currentLaser.transform.rotation = Quaternion.Slerp(currentLaser.transform.rotation, lookAtPlayerQuat, .09f*Time.deltaTime*(laserAngularMomentum));
+				Debug.Log(laserAngularMomentum);
+				laserAngularMomentum = (1-laserMomentumDecay)*Quaternion.Angle(lookAtPlayerQuat, currentLaser.transform.rotation) + laserMomentumDecay*laserAngularMomentum;
 				RaycastHit hit;
-				Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2));
-				if(hit.distance != 0)
+				if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
 				{
 					currentLaser.transform.localScale =  new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, hit.distance/2f);
 					currentLaser.transform.position = currentLaser.transform.forward*hit.distance/2f+bulletEmitter.position;
@@ -184,7 +188,14 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		{
 			if(fireTimer > fireRate)
 			{
-				currentLaser = (LaserBullet)Util.FireLaserType(currentBullet, bulletEmitter.position, Util.player.transform.position, Quaternion.LookRotation(Util.player.transform.position - bulletEmitter.position));
+				currentLaser = (LaserBullet)Util.FireLaserType(currentBullet, bulletEmitter.position, Util.player.transform.position, Quaternion.LookRotation(Util.GenerateRandomVector3(Util.player.transform.position - bulletEmitter.position, .12f)));
+				RaycastHit hit;
+				if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
+				{
+					currentLaser.transform.localScale =  new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, hit.distance/2f);
+					currentLaser.transform.position = currentLaser.transform.forward*hit.distance/2f+bulletEmitter.position;
+				}
+				laserAngularMomentum = Quaternion.Angle(Quaternion.LookRotation(Util.player.transform.position - transform.position), currentLaser.transform.rotation);
 				laserDurationTimer = 0;
 				fireTimer = 0;
 			}

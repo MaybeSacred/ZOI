@@ -236,8 +236,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
-  m_LocalRotation: {x: .267502517, y: .671105742, z: .2163717, w: .656690776}
-  m_LocalPosition: {x: 378.064209, y: 31.2458534, z: 1625.60071}
+  m_LocalRotation: {x: .282264203, y: .684653103, z: .2412958, w: .627178967}
+  m_LocalPosition: {x: 397.417419, y: 27.4594307, z: 1625.67529}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400010}
@@ -488,11 +488,11 @@ MonoBehaviour:
   graphicalObject: {fileID: 400010}
   legs: {fileID: 400020}
   lookAheadTime: .200000003
-  movementForce: 40
+  movementForce: 55
   initialPopUpForce: 1000
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 33
-  healthDamage: 33
+  shieldDamage: 34
+  healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
   awakeningLeeWayTime: .200000003

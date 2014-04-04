@@ -60,7 +60,7 @@ public class CameraScript : MonoBehaviour {
 				}
 				RaycastHit hit;
 				RaycastHit detect;
-				if(Physics.Raycast(transform.position, transform.forward, out detect))
+				if(Physics.Raycast(transform.position, transform.forward, out detect, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 				{
 					if(detect.collider.gameObject.tag.Equals("Deflective"))
 					{
@@ -102,15 +102,14 @@ public class CameraScript : MonoBehaviour {
 				transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
 				                                      Util.player.transform.localPosition.y + cameraOffset.y, 
 				                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
-				Physics.Raycast(transform.position, transform.forward, out hit, float.PositiveInfinity);
-				distanceToTarget = hit.distance;
+				distanceToTarget = detect.distance;
 				ShakeCamera();
 			}
 			else
 			{
-				transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
-				                                      Util.player.transform.localPosition.y + cameraOffset.y+2*Util.player.deathTimeoutTimer, 
-				                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
+				//transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
+				//                                      Util.player.transform.localPosition.y + cameraOffset.y+2*Util.player.deathTimeoutTimer, 
+				//                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
 				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Util.player.transform.position-transform.position), deathZoomoutSpeed*Time.deltaTime);
 			}
 		}

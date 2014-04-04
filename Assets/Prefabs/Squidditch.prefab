@@ -113,7 +113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 495.357819, y: 17.0635376, z: 1866.76074}
+  m_LocalPosition: {x: 384.895203, y: 2.88826394, z: 2013.34656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400000}
@@ -244,9 +244,9 @@ MonoBehaviour:
   rotationSpeed: 3
   minAngle: 5
   minAcceptableAngle: 45
-  minFlitDistance: 9
-  maxFlitDistance: 18
-  outsideFiringRangeSpeedMultiplier: 2
+  minFlitDistance: 8
+  maxFlitDistance: 14
+  outsideFiringRangeSpeedMultiplier: 2.25
   movementSpeed: 2
   movementError: .150000006
   waitTime: .5
@@ -254,15 +254,16 @@ MonoBehaviour:
   firingDistance: 40
   attachedFiringDistance: 50
   standOffDistance: 10
-  fireRate: 1
+  fireRate: 1.75
   bulletEmitter: {fileID: 400006}
   currentBullet: {fileID: 11400000, guid: e97c907a7819d934e9db7042f4f1774e, type: 2}
   deathGlowConstant: 1.65999997
   currentLaser: {fileID: 0}
-  laserDuration: .5
+  laserDuration: 1.5
   laserGroundRate: 0
   laserRandomness: 0
   isAttachedToGameObject: 0
+  laserMomentumDecay: .981999993
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -61,6 +61,7 @@ public class WheelEnemy : BaseEnemy {
 	private void SteerTowardsRigidBody(Vector3 direction)
 	{
 		direction.Normalize();
+		direction.y += .1f;
 		rigidbody.AddForce(direction*movementForce);
 	}
 	void OnCollisionEnter(Collision other)

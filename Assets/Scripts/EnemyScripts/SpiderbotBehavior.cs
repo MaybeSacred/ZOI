@@ -188,5 +188,8 @@ public class SpiderbotBehavior : BaseEnemy {
 		float vel = Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a));
 		return vel * dir.normalized;
 	}
-
+	public override void OnPlayerExit()
+	{
+		
+	}
 }
