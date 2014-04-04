@@ -1486,6 +1486,7 @@ GameObject:
   - 4: {fileID: 365131554}
   - 33: {fileID: 365131556}
   - 23: {fileID: 365131555}
+  - 64: {fileID: 365131557}
   m_Layer: 0
   m_Name: Boulder_1
   m_TagString: Untagged
@@ -1533,6 +1534,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 1307102398}
   m_GameObject: {fileID: 365131553}
+  m_Mesh: {fileID: 4300020, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
+--- !u!64 &365131557
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 365131553}
+  m_Material: {fileID: 13400000, guid: d5ca9ccdafe490c4094ad5319a6fa674, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300020, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
 --- !u!1 &365246330
 GameObject:
@@ -6533,6 +6547,7 @@ GameObject:
   - 4: {fileID: 617683308}
   - 33: {fileID: 617683310}
   - 23: {fileID: 617683309}
+  - 64: {fileID: 617683311}
   m_Layer: 0
   m_Name: Boulder_3
   m_TagString: Untagged
@@ -6580,6 +6595,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 1307102398}
   m_GameObject: {fileID: 617683307}
+  m_Mesh: {fileID: 4300024, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
+--- !u!64 &617683311
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 617683307}
+  m_Material: {fileID: 13400000, guid: d5ca9ccdafe490c4094ad5319a6fa674, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300024, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
 --- !u!1 &623302681
 GameObject:
@@ -11034,6 +11062,7 @@ GameObject:
   - 4: {fileID: 964002204}
   - 33: {fileID: 964002206}
   - 23: {fileID: 964002205}
+  - 64: {fileID: 964002207}
   m_Layer: 0
   m_Name: Boulder_2
   m_TagString: Untagged
@@ -11081,6 +11110,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 1307102398}
   m_GameObject: {fileID: 964002203}
+  m_Mesh: {fileID: 4300022, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
+--- !u!64 &964002207
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 964002203}
+  m_Material: {fileID: 13400000, guid: d5ca9ccdafe490c4094ad5319a6fa674, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300022, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
 --- !u!1 &968995899
 GameObject:
@@ -15206,6 +15248,7 @@ GameObject:
   - 33: {fileID: 1388632689}
   - 23: {fileID: 1388632688}
   - 95: {fileID: 1388632687}
+  - 64: {fileID: 1388632691}
   m_Layer: 0
   m_Name: spikeTower
   m_TagString: Untagged
@@ -15269,6 +15312,19 @@ Transform:
   m_LocalScale: {x: 25, y: 25, z: 25}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!64 &1388632691
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1388632686}
+  m_Material: {fileID: 13400000, guid: b30666d8709043049817173b175aca78, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: a1ce5c48d6cdd8e45a9a06fa521691ed, type: 3}
 --- !u!1 &1438819630
 GameObject:
   m_ObjectHideFlags: 0
@@ -22534,6 +22590,7 @@ GameObject:
   - 4: {fileID: 1812349627}
   - 33: {fileID: 1812349626}
   - 23: {fileID: 1812349625}
+  - 64: {fileID: 1812349628}
   m_Layer: 0
   m_Name: Boulder_4
   m_TagString: Untagged
@@ -22582,6 +22639,19 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1175436133}
+--- !u!64 &1812349628
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1812349624}
+  m_Material: {fileID: 13400000, guid: d5ca9ccdafe490c4094ad5319a6fa674, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300026, guid: 270589274195dde4cb3e7ed5c26c7599, type: 3}
 --- !u!1 &1823018942
 GameObject:
   m_ObjectHideFlags: 0
