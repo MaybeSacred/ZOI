@@ -40,16 +40,16 @@ public class FogAdjust : MonoBehaviour
 
 	public void OnHelperTrigger(FogAdjust_Helper triggerCollidedWith)
 	{
-		if (null == triggerCollidedWith.nextTrigger)
-		{
-			gameObject.SetActive(false);
-			return;
-		}
-
 		if (triggerCollidedWith.fogDensity == 0.0f)
 		{
 			gameObject.SetActive(false);
 			RenderSettings.fog = false;
+		}
+
+		if (null == triggerCollidedWith.nextTrigger)
+		{
+			gameObject.SetActive(false);
+			return;
 		}
 
 		previousSqrDistance = Vector3.SqrMagnitude(triggerCollidedWith.nextTrigger.transform.position - player.position);
