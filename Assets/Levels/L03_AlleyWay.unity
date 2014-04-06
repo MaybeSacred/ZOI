@@ -165,6 +165,10 @@ Prefab:
       propertyPath: m_ConnectedAnchor.y
       value: -.722946167
       objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
+      propertyPath: maxSpeed
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
   m_RootGameObject: {fileID: 851591791}
@@ -2440,7 +2444,7 @@ Transform:
   m_PrefabInternal: {fileID: 1927683893}
   m_GameObject: {fileID: 106559273}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -800, y: 4700, z: -10380}
+  m_LocalPosition: {x: -800, y: 4700, z: -9080}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917804434}
@@ -2498,7 +2502,7 @@ Transform:
   m_PrefabInternal: {fileID: 1927683893}
   m_GameObject: {fileID: 112900160}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -800, y: 4220, z: -10380}
+  m_LocalPosition: {x: -800, y: 4220, z: -9080}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917804434}
@@ -2730,7 +2734,7 @@ MeshCollider:
   m_GameObject: {fileID: 336682748}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_SmoothSphereCollisions: 0
   m_Convex: 1
@@ -10321,7 +10325,7 @@ Transform:
   m_PrefabInternal: {fileID: 1927683893}
   m_GameObject: {fileID: 690713980}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -800, y: 4220, z: -10380}
+  m_LocalPosition: {x: -800, y: 4220, z: -9080}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917804434}
@@ -11664,10 +11668,10 @@ MonoBehaviour:
   theCam: {fileID: 494211179}
   forwardAcceleration: 41
   brakeForce: 60
-  maxSpeed: 10
+  maxSpeed: 40
   health: 100
   maxHealth: 100
-  maxSpeedRetardingForce: 90
+  maxSpeedRetardingForce: 80
 --- !u!33 &851591796
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22578,7 +22582,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 663238f12fc44544eaeac103b1335aae, type: 2}
+  - {fileID: 2100000, guid: b9724ca90f45bb24c828f5fe94cb4449, type: 2}
+  - {fileID: 2100000, guid: 61d628e20068edd4d9b378864c514001, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -22643,7 +22648,7 @@ Transform:
   m_PrefabInternal: {fileID: 1927683893}
   m_GameObject: {fileID: 1862495285}
   m_LocalRotation: {x: -.707106888, y: 0, z: -0, w: .707106769}
-  m_LocalPosition: {x: -800, y: 4220, z: -10380}
+  m_LocalPosition: {x: -800, y: 4220, z: -9080}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1917804434}
@@ -22922,6 +22927,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 42b6e85a8bb2f9f41b76f4efbc2d9589, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9724ca90f45bb24c828f5fe94cb4449, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42b6e85a8bb2f9f41b76f4efbc2d9589, type: 3}
   m_RootGameObject: {fileID: 1917804433}
@@ -24315,6 +24324,7 @@ GameObject:
   - 4: {fileID: 2055252693}
   - 33: {fileID: 2055252695}
   - 23: {fileID: 2055252694}
+  - 64: {fileID: 2055252696}
   m_Layer: 0
   m_Name: Gorge
   m_TagString: Untagged
@@ -24362,4 +24372,17 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 1927683893}
   m_GameObject: {fileID: 2055252692}
+  m_Mesh: {fileID: 4300002, guid: 42b6e85a8bb2f9f41b76f4efbc2d9589, type: 3}
+--- !u!64 &2055252696
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2055252692}
+  m_Material: {fileID: 13400000, guid: e1db661ac1db60947a9f23da16e431d2, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300002, guid: 42b6e85a8bb2f9f41b76f4efbc2d9589, type: 3}

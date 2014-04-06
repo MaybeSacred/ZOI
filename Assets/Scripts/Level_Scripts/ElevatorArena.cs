@@ -152,7 +152,7 @@ public class ElevatorArena : MonoBehaviour
 			ElevatorUpdate = Idle;
 			idleTimeSeconds = 3f;
 			NextElevatorUpdate = GotoFirstFloor;
-			parameterTIncreaseRate = 1 / 8f;
+			parameterTIncreaseRate = 1 / 30f;
 			SetupBezierCurve();
 			//Debug.Log ("Idle before going to First Floor");
 		}
@@ -191,7 +191,7 @@ public class ElevatorArena : MonoBehaviour
 			ElevatorUpdate = Idle;
 			idleTimeSeconds = 15f;
 			NextElevatorUpdate = GotoSecondFloor;
-			parameterTIncreaseRate = 1 / 8f;
+			parameterTIncreaseRate = 1 / 30f;
 			SetupBezierCurve();
 		}
 	}
@@ -210,7 +210,7 @@ public class ElevatorArena : MonoBehaviour
 			ElevatorUpdate = Idle;
 			idleTimeSeconds = 15f;
 			NextElevatorUpdate = GotoTopFloor;
-			parameterTIncreaseRate = 1 / 18f;
+			parameterTIncreaseRate = 1 / 40f;
 			SetupBezierCurve();
 		}
 	}
@@ -245,10 +245,10 @@ public class ElevatorArena : MonoBehaviour
 	private Vector3 finalDoorRightPosition;
 	private void OpenLargeDoors()
 	{
-		if (parameterT < 30)
+		if (parameterT < 20)
 		{
-			finalDoorLeftPosition.x -= 0.5f * 0.4f * Time.fixedDeltaTime;
-			finalDoorRightPosition.x += 0.5f * 0.4f * Time.fixedDeltaTime;
+			finalDoorLeftPosition.x -= 0.4f * Time.fixedDeltaTime;
+			finalDoorRightPosition.x += 0.4f * Time.fixedDeltaTime;
 
 			parameterT += Time.fixedDeltaTime;
 			
