@@ -79,7 +79,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-  m_NavMesh: {fileID: 0}
+  m_NavMesh: {fileID: 19400000, guid: 980041512f0c6e64ba9073c16b84a138, type: 2}
 --- !u!1 &599219
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   m_Name: Cavern_010
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &5955459
@@ -1218,7 +1218,7 @@ GameObject:
   m_Name: Cavern_011
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &172161068
@@ -3732,7 +3732,7 @@ GameObject:
   m_Name: Cavern_014
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 3
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &343890495
@@ -4151,7 +4151,7 @@ GameObject:
   m_Name: Cavern_007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &397029322
@@ -4757,7 +4757,7 @@ GameObject:
   m_Name: Cavern_005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &513444231
@@ -6063,7 +6063,7 @@ GameObject:
   m_Name: Cavern_006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &552398405
@@ -6193,7 +6193,7 @@ GameObject:
   m_Name: Cavern_013
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &572716080
@@ -9175,7 +9175,7 @@ GameObject:
   m_Name: Cavern_009
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 4
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &669482987
@@ -10634,7 +10634,7 @@ GameObject:
   m_Name: Cavern_004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &762082880
@@ -16028,7 +16028,7 @@ GameObject:
   m_Name: Cavern_012
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 4
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1022754642
@@ -18445,8 +18445,8 @@ GameObject:
   m_Name: Cavern_000
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 4294967263
   m_IsActive: 1
 --- !u!4 &1139848062
 Transform:
@@ -19842,7 +19842,7 @@ GameObject:
   m_Name: Cavern_008
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1248940963
@@ -21883,8 +21883,8 @@ GameObject:
   m_Name: Cavern_015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1403380857
 Transform:
@@ -23629,7 +23629,7 @@ GameObject:
   m_Name: Cavern_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1542531986
@@ -31299,7 +31299,7 @@ GameObject:
   m_Name: Cavern_003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 5
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2039487635
@@ -31971,7 +31971,7 @@ Prefab:
       objectReference: {fileID: 2100000, guid: a14de2ea879b4d943a3fc3a12067b962, type: 2}
     - target: {fileID: 100026, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967263
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -33640,6 +33640,70 @@ Prefab:
     - target: {fileID: 2300388, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100030, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100048, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100032, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100034, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100036, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100038, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100040, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100042, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100044, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100050, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100574, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100574, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e956fb79bbc0fd14f8ffa6a5c8708d2f, type: 3}
