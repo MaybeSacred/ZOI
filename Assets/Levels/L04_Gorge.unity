@@ -73,7 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-  m_NavMesh: {fileID: 0}
+  m_NavMesh: {fileID: 19400000, guid: 5bab05df52913b844bc01687eb633722, type: 2}
 --- !u!1 &1372381
 GameObject:
   m_ObjectHideFlags: 0
@@ -6171,8 +6171,8 @@ GameObject:
   m_Name: Moutain_small_range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &310954136
 Transform:
@@ -7864,6 +7864,54 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 58d5eb7fb3faa4f46b6426d427f4f216, type: 2}
+    - target: {fileID: 100006, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100060, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100060, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100068, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100068, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100074, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100072, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100074, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100072, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100070, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100070, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
   m_RootGameObject: {fileID: 1750858338}
@@ -19287,8 +19335,8 @@ GameObject:
   m_Name: Cavern_015
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 5
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1224447498
 Transform:
@@ -19359,8 +19407,8 @@ GameObject:
   m_Name: Cavern
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 5
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1241152820
 Transform:
@@ -23220,8 +23268,8 @@ GameObject:
   m_Name: Cavern_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 5
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1671972769
 Transform:
@@ -23547,8 +23595,8 @@ GameObject:
   m_Name: LightBridgeLarge_Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1793333553
 Transform:
@@ -23619,8 +23667,8 @@ GameObject:
   m_Name: Gorge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 4
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1796668860
 Transform:
