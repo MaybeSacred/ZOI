@@ -16,6 +16,9 @@ public class SpiderbotBehavior : BaseEnemy {
 	public Transform bulletEmitter, cinematicAngle;
 	public BasicBullet currentBullet;
 	public NavMeshAgent navi;
+	public GameObject Hitbox;
+	public GameObject explosionPos;
+	bool dying;
 
 	// Use this for initialization
 	void Start () {
@@ -25,14 +28,28 @@ public class SpiderbotBehavior : BaseEnemy {
 	// Update is called once per frame
 	void Update () {
 		if (deathTimeoutTimer > 0) {
+			if(dying ==false)
+			{
+				Destroy(Hitbox);
+				SphereCollider mycollider = (SphereCollider) GetComponent<SphereCollider>();
+				mycollider.center = new Vector3(0f,0f,0f);
+				mycollider.radius = 0.5f;
+			}
+			bool dead =true;
+			print ("owie");
+			KillMe();
 			if (deathTimeoutTimer > deathTimeout) {
-				Destroy (gameObject);
+				Destroy(gameObject);
 			}
 			deathTimeoutTimer += Time.deltaTime;
 		} else {
-			if(isAwake)
+			if(true)
 			{
-
+				if(health <= 0)
+				{
+					print ("ow");
+					KillMe();
+				}
 
 				//handles looking at player
 				if(navi.remainingDistance>10f)
@@ -138,11 +155,29 @@ public class SpiderbotBehavior : BaseEnemy {
 	}
 	public override void KillMe ()
 	{
+		/*Hitbox.rigidbody.useGravity = true;
+		Hitbox.rigidbody.isKinematic = false;
+		Hitbox.rigidbody.constraints = RigidbodyConstraints.None;*/
+		rigidbody.isKinematic = false;
+		rigidbody.useGravity = true;
+		gameObject.collider.isTrigger = false;
+		gameObject.rigidbody.mass = 2;
+		gameObject.collider.tag = "Untagged";
+
+		navi.enabled = false;
+		//gameObject.collider.enabled = false;
+		gameObject.rigidbody.AddExplosionForce (18.0f, bulletEmitter.transform.position,-0.1f);
 		deathTimeoutTimer += Time.deltaTime;
-		FixedJoint[] joints = GetComponentsInChildren<FixedJoint>();
+		HingeJoint[] joints = GetComponentsInChildren<HingeJoint>();
+		float x = 3f;
 		for(int i = 0; i < joints.Length; i++)
 		{
-			joints[i].breakForce = joints[i].breakTorque = 0;
+			if(x<0.01f)
+			{
+				joints[i].breakForce = joints[i].breakTorque = 0;
+
+			}
+			x = Random.Range(0f,3f);
 		}
 	}
 	
