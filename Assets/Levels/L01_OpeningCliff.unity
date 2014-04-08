@@ -24736,7 +24736,7 @@ MonoBehaviour:
   theCam: {fileID: 589199158}
   forwardAcceleration: 41
   brakeForce: 60
-  maxSpeed: 40
+  maxSpeed: 10
   health: 100
   maxHealth: 100
   maxSpeedRetardingForce: 80
@@ -39119,9 +39119,21 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 589199158}
-    - target: {fileID: 11400008, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
-      propertyPath: maxSpeed
-      value: 40
+    - target: {fileID: 5900002, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: -.8999843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900002, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: 1.59988165
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900004, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
+      propertyPath: m_ConnectedAnchor.x
+      value: .8999843
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900004, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
+      propertyPath: m_ConnectedAnchor.z
+      value: -1.59988165
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
