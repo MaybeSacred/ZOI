@@ -22,7 +22,7 @@ public class SpiderbotBehavior : BaseEnemy {
 
 	// Use this for initialization
 	void Start () {
-
+		isAwake = true;
 	}
 	
 	// Update is called once per frame

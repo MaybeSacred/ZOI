@@ -415,7 +415,6 @@ public class PlayerController : MonoBehaviour
 					Squash s = other.collider.gameObject.GetComponent<Squash>();
 					HealthChange(-s.shieldDamage, -s.healthDamage);
 					colliders.Add(other.collider.gameObject);
-					print (other.collider.gameObject);
 					hitsAgainSansDisabled.Add(s.gameObject);
 					collidersBacklogged = true;
 				}
