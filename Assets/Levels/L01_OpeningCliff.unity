@@ -15,7 +15,7 @@ RenderSettings:
   m_Fog: 1
   m_FogColor: {r: .625216246, g: .662305355, b: .720588207, a: .0196078438}
   m_FogMode: 2
-  m_FogDensity: .00999999978
+  m_FogDensity: .0399999991
   m_LinearFogStart: 100
   m_LinearFogEnd: 4000
   m_AmbientLight: {r: .392156869, g: .392156869, b: .392156869, a: 1}
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f85ae30f256674c8e6e3771830d9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogDensity: .00899999961
+  fogDensity: .00999999978
   previousTrigger: {fileID: 0}
   nextTrigger: {fileID: 1291647191}
 --- !u!65 &24383526
@@ -25171,7 +25171,7 @@ Transform:
   m_PrefabInternal: {fileID: 1454918800}
   m_GameObject: {fileID: 845233775}
   m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: 3.47546387, y: 2.60288787, z: 27.3588867}
+  m_LocalPosition: {x: 3.47546387, y: -.306029677, z: 27.3588867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1079157989}
@@ -40024,7 +40024,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.60288787
+      value: -.306029677
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_LocalPosition.z
