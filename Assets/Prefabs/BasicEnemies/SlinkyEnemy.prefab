@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: -.707106829}
-  m_LocalPosition: {x: 230.251663, y: 11.5916071, z: -82.3573303}
+  m_LocalPosition: {x: 902.388733, y: 175.799988, z: -1240.14062}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 400006}
@@ -316,10 +316,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2000
   maxHealth: 2000
-  deathTimeout: 1
+  deathTimeout: 4
   attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
-  rotationDelta: 30
+  rotationDelta: 60
   firingDistance: 0
   fireTimer: 0
   fireRate: 0
@@ -332,8 +332,10 @@ MonoBehaviour:
   bulletEmitter: {fileID: 0}
   currentBullet: {fileID: 0}
   child: {fileID: 100008}
+  sphere: {fileID: 100002}
   squashHealthDamage: 100
   squashShieldDamage: 100
+  explosion: {fileID: 19800000, guid: 2f5f0f6999d91474c97a741aa0acd9ec, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
