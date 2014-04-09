@@ -1315,6 +1315,58 @@ ParticleSystemRenderer:
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
+--- !u!1 &22850201
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 22850202}
+  - 65: {fileID: 22850204}
+  - 114: {fileID: 22850203}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_015
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &22850202
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22850201}
+  m_LocalRotation: {x: .0314521044, y: -.61736387, z: -.0399940126, w: .785030723}
+  m_LocalPosition: {x: 779.917358, y: 83.562767, z: 1652.13928}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &22850203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22850201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &22850204
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 22850201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 212.23848, y: 1, z: 43.9024391}
+  m_Center: {x: -64.6076431, y: 0, z: 100.17588}
 --- !u!1 &24383523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,6 +1765,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 566536224}
   m_GameObject: {fileID: 48739215}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &51652945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 51652948}
+  - 65: {fileID: 51652947}
+  - 114: {fileID: 51652946}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_008
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &51652946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51652945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &51652947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51652945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 58.5581055, y: 1, z: 79.1789551}
+  m_Center: {x: -18.1770535, y: .000751892338, z: 83.7145004}
+--- !u!4 &51652948
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51652945}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.23923683, y: 115.68084, z: 1135.61829}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
 --- !u!1 &55572927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,6 +2013,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2024458338}
   m_GameObject: {fileID: 64048909}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &70429101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 70429102}
+  - 65: {fileID: 70429104}
+  - 114: {fileID: 70429103}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_003
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &70429102
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70429101}
+  m_LocalRotation: {x: -.014814252, y: -.602322757, z: .000531390368, w: .798115015}
+  m_LocalPosition: {x: 117.171776, y: 145.346268, z: 1293.52734}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &70429103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70429101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &70429104
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70429101}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120.748444, y: 1, z: 111.911682}
+  m_Center: {x: -40.4961357, y: 0, z: 59.3317413}
 --- !u!1 &72710868
 GameObject:
   m_ObjectHideFlags: 0
@@ -3458,6 +3614,58 @@ MonoBehaviour:
   laserRandomness: 0
   isAttachedToGameObject: 0
   laserMomentumDecay: .981999993
+--- !u!1 &111469832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 111469833}
+  - 65: {fileID: 111469835}
+  - 114: {fileID: 111469834}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_010
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &111469833
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111469832}
+  m_LocalRotation: {x: 0, y: -.602105021, z: 0, w: .798416972}
+  m_LocalPosition: {x: 116.390114, y: 113.368362, z: 1436.30701}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &111469834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111469832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &111469835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 111469832}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120.051544, y: 1, z: 94.8203506}
+  m_Center: {x: -40.8467789, y: 0, z: 50.7886162}
 --- !u!1 &112381034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,6 +3969,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1358905082}
   m_GameObject: {fileID: 144164857}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &148605445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 148605446}
+  - 65: {fileID: 148605448}
+  - 114: {fileID: 148605447}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_011
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148605446
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148605445}
+  m_LocalRotation: {x: 0, y: -.0217349939, z: 0, w: .999763787}
+  m_LocalPosition: {x: 210.418152, y: 109.487198, z: 1346.21887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &148605447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148605445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &148605448
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 148605445}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 196.173187, y: 1, z: 43.9024429}
+  m_Center: {x: -72.6400146, y: 0, z: 100.175827}
 --- !u!1 &152964131
 GameObject:
   m_ObjectHideFlags: 0
@@ -3908,6 +4168,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2047532184}
   m_GameObject: {fileID: 153192806}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &155934681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 155934682}
+  - 65: {fileID: 155934684}
+  - 114: {fileID: 155934683}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_025
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &155934682
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155934681}
+  m_LocalRotation: {x: .00770852854, y: -.691027164, z: -.00806240272, w: .722742796}
+  m_LocalPosition: {x: 763.508911, y: 31.9054298, z: 1856.03101}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &155934683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155934681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &155934684
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 155934681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 127.623596, y: 1, z: 43.9024353}
+  m_Center: {x: -106.916336, y: -.00104139175, z: 100.172699}
 --- !u!1 &180979875
 GameObject:
   m_ObjectHideFlags: 0
@@ -16377,6 +16689,58 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 812780116}
+--- !u!1 &529271744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 529271745}
+  - 65: {fileID: 529271747}
+  - 114: {fileID: 529271746}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_023
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &529271745
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529271744}
+  m_LocalRotation: {x: 0, y: -.545077026, z: 0, w: .838385999}
+  m_LocalPosition: {x: 719.425354, y: 55.446991, z: 1451.68652}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &529271746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529271744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &529271747
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529271744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 212.238464, y: 1, z: 58.6350403}
+  m_Center: {x: -64.6081238, y: 0, z: 107.541122}
 --- !u!1 &530204961
 GameObject:
   m_ObjectHideFlags: 0
@@ -19844,6 +20208,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1454918800}
   m_GameObject: {fileID: 646286247}
   m_Mesh: {fileID: 4300012, guid: 695966a65a50739478abe1375cc5ec50, type: 3}
+--- !u!1 &651056859
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 651056860}
+  - 65: {fileID: 651056862}
+  - 114: {fileID: 651056861}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_002
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &651056860
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 651056859}
+  m_LocalRotation: {x: -.0146051822, y: -.345620006, z: .0396135859, w: .937424362}
+  m_LocalPosition: {x: 79.3815308, y: 140.850677, z: 1156.02161}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &651056861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 651056859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &651056862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 651056859}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 58.5581055, y: 1, z: 79.1789551}
+  m_Center: {x: -18.1770535, y: .000751892338, z: 83.7145004}
 --- !u!1 &667813942
 GameObject:
   m_ObjectHideFlags: 0
@@ -24081,6 +24497,58 @@ Transform:
   - {fileID: 1845744277}
   - {fileID: 710587741}
   m_Father: {fileID: 928642706}
+--- !u!1 &765363646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 765363647}
+  - 65: {fileID: 765363649}
+  - 114: {fileID: 765363648}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_020
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &765363647
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765363646}
+  m_LocalRotation: {x: 0, y: -.0217349939, z: 0, w: .999763787}
+  m_LocalPosition: {x: 196.405884, y: 49.9244232, z: 1349.72009}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &765363648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765363646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &765363649
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 765363646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 196.173187, y: 1, z: 43.9024429}
+  m_Center: {x: -72.6400146, y: 0, z: 100.175827}
 --- !u!1 &769953984
 GameObject:
   m_ObjectHideFlags: 0
@@ -24210,6 +24678,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 846335247}
   m_GameObject: {fileID: 777213583}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &781217630
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 781217631}
+  - 65: {fileID: 781217633}
+  - 114: {fileID: 781217632}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_013
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &781217631
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781217630}
+  m_LocalRotation: {x: 0, y: .194619089, z: 0, w: .980878949}
+  m_LocalPosition: {x: 521.484009, y: 105.282928, z: 1267.33459}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &781217632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781217630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &781217633
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 781217630}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 212.23848, y: 1, z: 43.9024391}
+  m_Center: {x: -64.6076431, y: 0, z: 100.17588}
 --- !u!1 &789742022
 GameObject:
   m_ObjectHideFlags: 0
@@ -24424,6 +24944,58 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &797727732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 797727733}
+  - 65: {fileID: 797727735}
+  - 114: {fileID: 797727734}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_021
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &797727733
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797727732}
+  m_LocalRotation: {x: 0, y: .0738630295, z: 0, w: .997268438}
+  m_LocalPosition: {x: 358.88208, y: 55.2649841, z: 1340.60095}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &797727734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797727732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &797727735
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797727732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 196.173187, y: 1, z: 43.9024429}
+  m_Center: {x: -72.6400146, y: 0, z: 100.175827}
 --- !u!1 &798585711
 GameObject:
   m_ObjectHideFlags: 0
@@ -24736,7 +25308,7 @@ MonoBehaviour:
   theCam: {fileID: 589199158}
   forwardAcceleration: 41
   brakeForce: 60
-  maxSpeed: 10
+  maxSpeed: 40
   health: 100
   maxHealth: 100
   maxSpeedRetardingForce: 80
@@ -25046,6 +25618,57 @@ Prefab:
   m_RootGameObject: {fileID: 928642705}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &895946035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 895946036}
+  m_Layer: 12
+  m_Name: FallDeathTriggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &895946036
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 895946035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1473035240}
+  - {fileID: 651056860}
+  - {fileID: 51652948}
+  - {fileID: 70429102}
+  - {fileID: 1994453616}
+  - {fileID: 1859581602}
+  - {fileID: 1413716582}
+  - {fileID: 111469833}
+  - {fileID: 981077295}
+  - {fileID: 1232270956}
+  - {fileID: 148605446}
+  - {fileID: 1309465119}
+  - {fileID: 1826461377}
+  - {fileID: 765363647}
+  - {fileID: 1994271977}
+  - {fileID: 797727733}
+  - {fileID: 781217631}
+  - {fileID: 1473522407}
+  - {fileID: 1224391389}
+  - {fileID: 529271745}
+  - {fileID: 22850202}
+  - {fileID: 1861983079}
+  - {fileID: 1344374844}
+  - {fileID: 155934682}
+  - {fileID: 1501153274}
+  m_Father: {fileID: 0}
 --- !u!1 &898885921
 GameObject:
   m_ObjectHideFlags: 0
@@ -28681,6 +29304,58 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1751090359}
+--- !u!1 &981077294
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 981077295}
+  - 65: {fileID: 981077297}
+  - 114: {fileID: 981077296}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_005
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &981077295
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981077294}
+  m_LocalRotation: {x: 0, y: -.021735426, z: 0, w: .999763846}
+  m_LocalPosition: {x: 234.04538, y: 150.632492, z: 1314.17529}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &981077296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981077294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &981077297
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 981077294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 196.173187, y: 1, z: 43.9024429}
+  m_Center: {x: -72.6400146, y: 0, z: 100.175827}
 --- !u!1 &986890966
 GameObject:
   m_ObjectHideFlags: 0
@@ -34380,6 +35055,58 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 489565818}
+--- !u!1 &1224391388
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1224391389}
+  - 65: {fileID: 1224391391}
+  - 114: {fileID: 1224391390}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_014
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1224391389
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1224391388}
+  m_LocalRotation: {x: 0, y: -.545076609, z: 0, w: .838386297}
+  m_LocalPosition: {x: 733.285217, y: 105.282928, z: 1451.68652}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1224391390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1224391388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1224391391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1224391388}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 212.238464, y: 1, z: 51.1188278}
+  m_Center: {x: -64.6074524, y: 0, z: 103.783134}
 --- !u!1001 &1230036326
 Prefab:
   m_ObjectHideFlags: 0
@@ -34432,6 +35159,58 @@ Prefab:
   m_RootGameObject: {fileID: 1556742692}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1232270955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1232270956}
+  - 65: {fileID: 1232270958}
+  - 114: {fileID: 1232270957}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_019
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1232270956
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232270955}
+  m_LocalRotation: {x: -.0580991246, y: -.599385321, z: .0769913718, w: .794628322}
+  m_LocalPosition: {x: 102.111221, y: 47.7148819, z: 1434.87219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1232270957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232270955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1232270958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232270955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120.051544, y: 1, z: 71.3517914}
+  m_Center: {x: -40.8559494, y: 0, z: 62.5264854}
 --- !u!1 &1236814076
 GameObject:
   m_ObjectHideFlags: 0
@@ -36716,6 +37495,58 @@ Prefab:
   m_RootGameObject: {fileID: 521516051}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1309465118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1309465119}
+  - 65: {fileID: 1309465121}
+  - 114: {fileID: 1309465120}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_006
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1309465119
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1309465118}
+  m_LocalRotation: {x: 0, y: -.0217349939, z: 0, w: .999763787}
+  m_LocalPosition: {x: 353.332031, y: 149.830994, z: 1298.83875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1309465120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1309465118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1309465121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1309465118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 260.96106, y: 1, z: 109.407745}
+  m_Center: {x: 29.6144238, y: 0, z: 96.1194534}
 --- !u!1 &1315321936
 GameObject:
   m_ObjectHideFlags: 0
@@ -36849,6 +37680,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2024458338}
   m_GameObject: {fileID: 1327376862}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1344374843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1344374844}
+  - 65: {fileID: 1344374846}
+  - 114: {fileID: 1344374845}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_016
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344374844
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344374843}
+  m_LocalRotation: {x: .031451989, y: -.617363751, z: -.0399939865, w: .785030723}
+  m_LocalPosition: {x: 825.196289, y: 58.7382812, z: 1826.46448}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1344374845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344374843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1344374846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344374843}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 127.623596, y: 1, z: 43.9024353}
+  m_Center: {x: -106.916336, y: -.00104139175, z: 100.172699}
 --- !u!1 &1352712909
 GameObject:
   m_ObjectHideFlags: 0
@@ -37696,6 +38579,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1787344136}
   m_GameObject: {fileID: 1410934954}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1413716581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1413716582}
+  - 65: {fileID: 1413716584}
+  - 114: {fileID: 1413716583}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_018
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1413716582
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1413716581}
+  m_LocalRotation: {x: -.0148139978, y: -.602322936, z: .000530999969, w: .798114896}
+  m_LocalPosition: {x: 78.3525696, y: 37.6025352, z: 1356.7522}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1413716583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1413716581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1413716584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1413716581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120.748444, y: 1, z: 28.2304382}
+  m_Center: {x: -40.486599, y: -1.70710427e-05, z: 64.7841415}
 --- !u!1 &1414158902
 GameObject:
   m_ObjectHideFlags: 0
@@ -39134,6 +40069,10 @@ Prefab:
     - target: {fileID: 5900004, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_ConnectedAnchor.z
       value: -1.59988165
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400008, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
+      propertyPath: maxSpeed
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
@@ -40588,6 +41527,110 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2044925064}
   m_GameObject: {fileID: 1472016014}
   m_Mesh: {fileID: 4300002, guid: fd2cbd9a78cc2354386be5613a5852a0, type: 3}
+--- !u!1 &1473035239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1473035240}
+  - 65: {fileID: 1473035242}
+  - 114: {fileID: 1473035241}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473035240
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473035239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.1428223, y: 116.304573, z: 1071.09888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1473035241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473035239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1473035242
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473035239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 175.635452, y: 1, z: 111.667603}
+  m_Center: {x: -57.345192, y: 0, z: 116.053223}
+--- !u!1 &1473522406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1473522407}
+  - 65: {fileID: 1473522409}
+  - 114: {fileID: 1473522408}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_022
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473522407
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473522406}
+  m_LocalRotation: {x: 0, y: .141378164, z: 0, w: .989955723}
+  m_LocalPosition: {x: 515.654175, y: 55.446991, z: 1291.8855}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1473522408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473522406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1473522409
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1473522406}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 251.904419, y: 1, z: 55.1099243}
+  m_Center: {x: -44.7744446, y: 0, z: 94.5706635}
 --- !u!1 &1490794894
 GameObject:
   m_ObjectHideFlags: 0
@@ -42031,6 +43074,58 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1304133022}
   m_GameObject: {fileID: 1496892179}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1501153273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1501153274}
+  - 65: {fileID: 1501153276}
+  - 114: {fileID: 1501153275}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_026
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1501153274
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501153273}
+  m_LocalRotation: {x: -.0504522882, y: -.689225852, z: .0527686924, w: .72085911}
+  m_LocalPosition: {x: 770.712585, y: 54.8581276, z: 1939.38184}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1501153275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501153273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1501153276
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1501153273}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 121.304108, y: 1, z: 44.4525108}
+  m_Center: {x: -110.081039, y: .000426144747, z: 99.9078369}
 --- !u!1 &1503975753
 GameObject:
   m_ObjectHideFlags: 0
@@ -45672,9 +46767,10 @@ GameObject:
   - 23: {fileID: 1672745890}
   - 114: {fileID: 1672745889}
   - 136: {fileID: 1672745888}
+  - 54: {fileID: 1672745892}
   m_Layer: 0
   m_Name: Hitbox
-  m_TagString: Deflective
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45751,6 +46847,22 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2024458338}
   m_GameObject: {fileID: 1672745886}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1672745892
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400034, guid: 760618e60ec930e48b586c8aee68a45e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2024458338}
+  m_GameObject: {fileID: 1672745886}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1674735978
 GameObject:
   m_ObjectHideFlags: 0
@@ -50457,6 +51569,58 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
+--- !u!1 &1826461376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1826461377}
+  - 65: {fileID: 1826461379}
+  - 114: {fileID: 1826461378}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_007
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826461377
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1826461376}
+  m_LocalRotation: {x: 0, y: -.0217349939, z: 0, w: .999763787}
+  m_LocalPosition: {x: 593.741211, y: 162.468994, z: 1251.25122}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1826461378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1826461376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1826461379
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1826461376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 259.031464, y: 1, z: 197.063156}
+  m_Center: {x: -4.2833972, y: 0, z: 175.781433}
 --- !u!1 &1828425370
 GameObject:
   m_ObjectHideFlags: 0
@@ -51843,6 +53007,110 @@ MeshFilter:
   m_PrefabInternal: {fileID: 846335247}
   m_GameObject: {fileID: 1856090903}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1859581601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1859581602}
+  - 65: {fileID: 1859581604}
+  - 114: {fileID: 1859581603}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_004
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1859581602
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859581601}
+  m_LocalRotation: {x: 0, y: -.602105021, z: 0, w: .798416972}
+  m_LocalPosition: {x: 128.600266, y: 147.853622, z: 1407.5282}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1859581603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859581601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1859581604
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1859581601}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 106.122894, y: 1, z: 94.8203583}
+  m_Center: {x: -47.8109894, y: 0, z: 50.7882423}
+--- !u!1 &1861983078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1861983079}
+  - 65: {fileID: 1861983081}
+  - 114: {fileID: 1861983080}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_024
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1861983079
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1861983078}
+  m_LocalRotation: {x: .0309454463, y: -.649079025, z: -.0403872095, w: .759017646}
+  m_LocalPosition: {x: 757.000854, y: 33.2203598, z: 1662.20764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1861983080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1861983078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1861983081
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1861983078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 212.238495, y: 1, z: 49.7876625}
+  m_Center: {x: -64.6065598, y: -.000320229185, z: 103.118584}
 --- !u!1 &1862401494
 GameObject:
   m_ObjectHideFlags: 0
@@ -52815,6 +54083,110 @@ Transform:
   m_Children:
   - {fileID: 1529670778}
   m_Father: {fileID: 1119803549}
+--- !u!1 &1994271976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1994271977}
+  - 65: {fileID: 1994271979}
+  - 114: {fileID: 1994271978}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_012
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1994271977
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994271976}
+  m_LocalRotation: {x: 0, y: .073863104, z: 0, w: .997268438}
+  m_LocalPosition: {x: 370.203796, y: 105.282928, z: 1323.55981}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1994271978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994271976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1994271979
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994271976}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 196.173187, y: 1, z: 43.9024429}
+  m_Center: {x: -72.6400146, y: 0, z: 100.175827}
+--- !u!1 &1994453615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1994453616}
+  - 65: {fileID: 1994453618}
+  - 114: {fileID: 1994453617}
+  m_Layer: 12
+  m_Name: FallDeathTrigger_009
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1994453616
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994453615}
+  m_LocalRotation: {x: -.0148139978, y: -.602322936, z: .000530999969, w: .798114896}
+  m_LocalPosition: {x: 93.6748123, y: 111.861748, z: 1325.38464}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 895946036}
+--- !u!114 &1994453617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994453615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8f3566afccfe94983fa113ff104dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!65 &1994453618
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1994453615}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120.748444, y: 1, z: 111.911682}
+  m_Center: {x: -40.4961357, y: 0, z: 59.3317413}
 --- !u!1 &2001948072
 GameObject:
   m_ObjectHideFlags: 0
@@ -55552,6 +56924,7 @@ Transform:
   - {fileID: 1815982561}
   - {fileID: 530204962}
   - {fileID: 925782233}
+  - {fileID: 2134398763}
   m_Father: {fileID: 0}
 --- !u!195 &2036896152
 NavMeshAgent:
@@ -55562,8 +56935,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 2036896149}
   m_Enabled: 1
   m_Radius: 4
-  m_Speed: 5
-  m_Acceleration: 7
+  m_Speed: 10
+  m_Acceleration: 14
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 8
@@ -55588,7 +56961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   maxHealth: 500
-  deathTimeout: 5
+  deathTimeout: 10
   attachedBarrier: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 30
@@ -55616,6 +56989,8 @@ MonoBehaviour:
   cinematicAngle: {fileID: 530204962}
   currentBullet: {fileID: 11400002, guid: de18facba0cb57c43b805e373cadfab8, type: 2}
   navi: {fileID: 2036896152}
+  Hitbox: {fileID: 1672745886}
+  explosionPos: {fileID: 0}
 --- !u!23 &2036896154
 Renderer:
   m_ObjectHideFlags: 0
@@ -56860,6 +58235,32 @@ Transform:
   m_Children:
   - {fileID: 1251078016}
   m_Father: {fileID: 929714159}
+--- !u!1 &2134398762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100018, guid: 760618e60ec930e48b586c8aee68a45e, type: 2}
+  m_PrefabInternal: {fileID: 2024458338}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2134398763}
+  m_Layer: 0
+  m_Name: explosionPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2134398763
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400018, guid: 760618e60ec930e48b586c8aee68a45e, type: 2}
+  m_PrefabInternal: {fileID: 2024458338}
+  m_GameObject: {fileID: 2134398762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2036896151}
 --- !u!1 &2142616346
 GameObject:
   m_ObjectHideFlags: 0
