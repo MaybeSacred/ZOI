@@ -36,18 +36,16 @@ public class SpiderbotBehavior : BaseEnemy {
 				mycollider.radius = 0.5f;
 			}
 			bool dead =true;
-			print ("owie");
 			KillMe();
 			if (deathTimeoutTimer > deathTimeout) {
 				Destroy(gameObject);
 			}
 			deathTimeoutTimer += Time.deltaTime;
 		} else {
-			if(true)
+			if(isAwake)
 			{
 				if(health <= 0)
 				{
-					print ("ow");
 					KillMe();
 				}
 

@@ -13,14 +13,16 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 	public LaserBullet currentLaser;
 	public Transform bulletEmitter;
 	public LaserBullet currentBullet;
-	public GameObject child;
+	public GameObject child, sphere;
+	Rigidbody[] childrenBodies;
 	public int squashHealthDamage, squashShieldDamage;
+	public ParticleSystem explosion;
 	//debugger for finding Vector3 positions
 	//public GameObject debugObject;
 
 	// Use this for initialization
 	void Start () {
-
+		childrenBodies = gameObject.GetComponentsInChildren<Rigidbody> ();
 	
 	}
 	
@@ -31,9 +33,11 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 				else
 						isAwake = true;
 		if (deathTimeoutTimer > 0) {
+			if(deathTimeoutTimer<0.5f)
+				KillMe ();
 			if (deathTimeoutTimer > deathTimeout) 
 			{
-				Destroy (gameObject);
+				Destroy(gameObject);
 			}
 					deathTimeoutTimer += Time.deltaTime;
 			} else 
@@ -144,4 +148,35 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 		}
 	}
 	#endregion
+
+	public override void KillMe ()
+	{
+		child.SendMessage ("SetMoving", false);
+		navi.enabled = false;
+		child.SendMessage ("DisableAnimation");
+		sphere.renderer.enabled = false;
+		for(int i = 0; i < childrenBodies.Length; i++)
+		{
+			childrenBodies[i].isKinematic = false;
+			childrenBodies[i].useGravity = true;
+			childrenBodies[i].mass = 2;
+			childrenBodies[i].collider.tag = "Untagged";
+
+		}
+
+		ParticleSystem particles =(ParticleSystem) Instantiate (explosion, transform.position, transform.rotation);
+		particles.enableEmission = true;
+
+		for(int i = 0; i < childrenBodies.Length; i++)
+		{
+			childrenBodies[i].AddExplosionForce(50.0f, transform.position, -0.1f);
+			
+		}
+
+
+		//gameObject.collider.enabled = false;
+		//gameObject.rigidbody.AddExplosionForce (18.0f, bulletEmitter.transform.position,-0.1f);
+		deathTimeoutTimer += Time.deltaTime;
+
+	}
 }

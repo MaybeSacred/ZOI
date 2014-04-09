@@ -38,4 +38,9 @@ public class SlinkyEnemy : MonoBehaviour {
 		anim.SetBool ("isMoving", move);
 		moving = move;
 	}
+
+	void DisableAnimation()
+	{
+		anim.enabled = false;
+	}
 }
