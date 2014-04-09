@@ -64,13 +64,13 @@ public class FogAdjust : MonoBehaviour
 
 	void Update()
 	{
-		float interpolation = 10f * Vector3.SqrMagnitude(upcomingTrigger.transform.position - player.position) / previousSqrDistance;
+		float interpolation = 50f * Vector3.SqrMagnitude(upcomingTrigger.transform.position - player.position) / previousSqrDistance;
 
 		//Debug.Log("interpolation = " + interpolation + ", Mathf.Round(interpolation) = " + Mathf.Round (interpolation) + ", currentInterpolation * 10 = " + (currentInterpolation * 10));
 
-		if (Mathf.Round(interpolation) < currentInterpolation * 10)
+		if (Mathf.Round(interpolation) < currentInterpolation * 50)
 		{
-			currentInterpolation = Mathf.Round(interpolation) * 0.1f;
+			currentInterpolation = Mathf.Round(interpolation) * 0.02f;
 			RenderSettings.fogDensity = (currentInterpolation) * previousFogDensity + (1 - currentInterpolation) * nextFogDensity;
 		}
 	}
