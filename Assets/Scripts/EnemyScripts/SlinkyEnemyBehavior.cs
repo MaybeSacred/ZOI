@@ -28,10 +28,10 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Util.isPaused)
+		/*if (Util.isPaused)
 						isAwake = false;
 				else
-						isAwake = true;
+						isAwake = true;*/
 		if (deathTimeoutTimer > 0) {
 			if(deathTimeoutTimer<0.5f)
 				KillMe ();
