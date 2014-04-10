@@ -109,6 +109,7 @@ GameObject:
   - 33: {fileID: 3300004}
   - 23: {fileID: 2300004}
   - 64: {fileID: 6400000}
+  - 54: {fileID: 5400002}
   m_Layer: 10
   m_Name: KatneenCenterMesh
   m_TagString: Untagged
@@ -349,8 +350,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: .120829768, y: -.00580658065, z: .0476479791, w: .99151206}
-  m_LocalPosition: {x: 453.268219, y: 17.1786499, z: 23.4744797}
+  m_LocalRotation: {x: 0, y: .94334805, z: 0, w: .331804991}
+  m_LocalPosition: {x: 578.096924, y: -3.52163649, z: -6136.70068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400022}
@@ -765,6 +766,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
+--- !u!54 &5400002
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!64 &6400000
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -911,7 +927,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 750
   maxHealth: 750
+  isAwake: 0
   deathTimeout: 5
+  attachedBarrier: {fileID: 0}
   shield: {fileID: 400032}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
   shieldRechargeDelay: 5
@@ -934,7 +952,6 @@ MonoBehaviour:
   - {fileID: 400020}
   - {fileID: 400006}
   - {fileID: 400026}
-  attachedBarrier: {fileID: 0}
   currentLaser: {fileID: 0}
   laserDuration: 3
   laserLockedOnGroundRate: 18
@@ -1074,7 +1091,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 453.028503, y: 19.5942993, z: 24.0721169}
+  m_ConnectedAnchor: {x: 578.096924, y: -1.02163649, z: -6136.70068}
   m_Spring: 300
   m_Damper: .300000012
   m_MinDistance: 0
