@@ -40,11 +40,10 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 				Destroy(gameObject);
 			}
 					deathTimeoutTimer += Time.deltaTime;
-			} else 
-			{
-				#region Activity Handler
+		} else 
+		{
+				#region ActivityHandler
 				if (isAwake) {
-					print ("why");
 						child.SendMessage ("SetMoving", true);
 						navi.enabled = true;
 						if (armedSlinky) {
@@ -73,12 +72,11 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 
 						//GUI for location of steering target
 						//debugObject.SendMessage ("sendPosition", navi.steeringTarget);
-						} else {
-								child.SendMessage ("SetMoving", false);
-								navi.enabled = false;
-						}
-						#endregion
+				} else {
+						child.SendMessage ("SetMoving", false);
 				}
+				#endregion
+		}
 	}
 	//handles moving the slinky forward relative to its animation cycle.
 	void moveOffset()
@@ -179,5 +177,11 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 		//gameObject.rigidbody.AddExplosionForce (18.0f, bulletEmitter.transform.position,-0.1f);
 		deathTimeoutTimer += Time.deltaTime;
 
+	}
+	public override void OnPlayerEnter()
+	{
+			isAwake = true;
+		Destroy (rigidbody);
+		collider.enabled = false;
 	}
 }

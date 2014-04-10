@@ -22,6 +22,15 @@ public class TriggerSender : MonoBehaviour {
 				if(!attachedEventHandlers.Contains(other.transform.parent))
 					attachedEventHandlers.Add(other.transform.parent);
 			}
+			if(other.gameObject.name.Equals("SmallSlinkyEnemy")||other.gameObject.name.Equals("SlinkyEnemy"))
+			{
+				if(!attachedEventHandlers.Contains(other.transform))
+				{
+					print ("slinky Handled");
+
+					attachedEventHandlers.Add(other.transform);
+				}
+			}
 			else if(other.gameObject.GetComponent<MonoBehaviour>() is BaseEnemy)
 			{
 				if(!attachedEventHandlers.Contains(other.transform.parent))
