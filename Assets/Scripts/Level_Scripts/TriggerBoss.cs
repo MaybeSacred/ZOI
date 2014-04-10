@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class TriggerBoss : MonoBehaviour {
 
 	public List<Transform> bossList;
+	public GameObject dummies;
+	public PlayerController player;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,8 @@ public class TriggerBoss : MonoBehaviour {
 				if(enemy != null)
 				{
 					((PlayerEvent)enemy.GetComponent<MonoBehaviour>()).OnPlayerEnter();
+					Destroy (dummies);
+					player.SendMessage("ResetRespawnPosition",transform.position);
 				}
 			}
 		}

@@ -169,7 +169,6 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 			{
 				Quaternion lookAtPlayerQuat = Quaternion.LookRotation(Util.player.transform.position - bulletEmitter.position);
 				currentLaser.transform.rotation = Quaternion.Slerp(currentLaser.transform.rotation, lookAtPlayerQuat, .09f*Time.deltaTime*(laserAngularMomentum));
-				Debug.Log(laserAngularMomentum);
 				laserAngularMomentum = (1-laserMomentumDecay)*Quaternion.Angle(lookAtPlayerQuat, currentLaser.transform.rotation) + laserMomentumDecay*laserAngularMomentum;
 				RaycastHit hit;
 				if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
