@@ -44,6 +44,7 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 			{
 				#region Activity Handler
 				if (isAwake) {
+					print ("why");
 						child.SendMessage ("SetMoving", true);
 						navi.enabled = true;
 						if (armedSlinky) {
