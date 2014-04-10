@@ -26,7 +26,6 @@ public class TriggerSender : MonoBehaviour {
 			{
 				if(!attachedEventHandlers.Contains(other.transform))
 				{
-					print ("slinky Handled");
 
 					attachedEventHandlers.Add(other.transform);
 				}
