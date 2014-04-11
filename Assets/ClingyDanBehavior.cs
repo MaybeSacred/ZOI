@@ -17,6 +17,10 @@ public class ClingyDanBehavior : BaseEnemy {
 	public BasicBullet currentBullet;
 	void Start () {
 		currentBurstNum = numBursts;
+		if(attachedBarrier != null)
+		{
+			attachedBarrier.RegisterEnemy();
+		}
 	}
 
 	void Update () 
@@ -83,15 +87,18 @@ public class ClingyDanBehavior : BaseEnemy {
 	}
 	public override void KillMe ()
 	{
-		deathTimeoutTimer += Time.deltaTime;
-		if(attachedBarrier != null)
+		if(!breakingDown)
 		{
-			attachedBarrier.UnregisterEnemy();
-		}
-		FixedJoint[] joints = GetComponentsInChildren<FixedJoint>();
-		for(int i = 0; i < joints.Length; i++)
-		{
-			joints[i].breakForce = joints[i].breakTorque = 0;
+			deathTimeoutTimer += Time.deltaTime;
+			if(attachedBarrier != null)
+			{
+				attachedBarrier.UnregisterEnemy();
+			}
+			FixedJoint[] joints = GetComponentsInChildren<FixedJoint>();
+			for(int i = 0; i < joints.Length; i++)
+			{
+				joints[i].breakForce = joints[i].breakTorque = 0;
+			}
 		}
 	}
 	void OnTriggerEnter(Collider other)

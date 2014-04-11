@@ -443,16 +443,16 @@ MonoBehaviour:
   maxHealth: 500
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
-  lookAheadTime: .330000013
+  firingDistance: 100
+  usesEnemyScriptColliders: 1
   turret: {fileID: 400006}
   rotationDelta: 60
   numBursts: 3
   fireRate: .125
-  reloadTime: 2.5
+  reloadTime: 3
   bulletEmitter: {fileID: 400002}
-  firingRandomness: .0799999982
+  firingRandomness: .0850000009
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
-  aimingError: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

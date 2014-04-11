@@ -39,7 +39,6 @@ public class BarrierBehavior : MonoBehaviour {
 			if((barrierTimer > timeToMove))
 			{
 					Destroy(this);
-
 			}
 			barrierTimer += Time.deltaTime;
 			Util.mainCamera.ActivateCameraShake(cameraShakeStrength);

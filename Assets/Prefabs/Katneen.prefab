@@ -350,8 +350,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: -.0596782863, y: .135365665, z: -.0557213202, w: .987425864}
-  m_LocalPosition: {x: 273.387604, y: 11.6362038, z: 1892.9209}
+  m_LocalRotation: {x: -.0346923061, y: .012350861, z: -.0795304701, w: .996152043}
+  m_LocalPosition: {x: -56.587101, y: -9.32205963, z: 1752.1156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400022}
@@ -779,7 +779,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!64 &6400000
 MeshCollider:
@@ -1090,7 +1090,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 273.622314, y: 14.1028719, z: 1892.5885}
+  m_ConnectedAnchor: {x: -56.1931229, y: -6.85970306, z: 1751.93787}
   m_Spring: 300
   m_Damper: .300000012
   m_MinDistance: 0
