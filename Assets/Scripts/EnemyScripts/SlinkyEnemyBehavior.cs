@@ -150,6 +150,11 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 
 	public override void KillMe ()
 	{
+		if(attachedBarrier != null&&calledBarrier==false)
+		{
+			calledBarrier= true;
+			attachedBarrier.UnregisterEnemy();
+		}
 		child.SendMessage ("SetMoving", false);
 		navi.enabled = false;
 		child.SendMessage ("DisableAnimation");
