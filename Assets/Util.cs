@@ -7,7 +7,6 @@ public class Util : MonoBehaviour {
 	public static readonly int ENEMYSIDE = 1;
 	public static PlayerController player;
 	public static CameraScript mainCamera;
-	public static Terrain currentTerrain;
 	public static float[] outsideBounds;
 	public static readonly float GRAVITY = .333f;
 	public static GameGUI theGUI;
@@ -21,12 +20,7 @@ public class Util : MonoBehaviour {
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();
 		mainCamera = this.GetComponentInChildren<CameraScript>();
-		currentTerrain = GetComponentInChildren<Terrain>();
 		ms = this.GetComponentInChildren<MusicSystem>();
-		if(currentTerrain == null)
-		{
-			UnityEngine.Debug.Log("No Terrain was loaded");
-		}
 	}
 	/*Handles details of firing a BasicBullet
 	 *Should be used by all objects attempting to fire a bullet
