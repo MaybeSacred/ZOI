@@ -17,10 +17,7 @@ public class ClingyDanBehavior : BaseEnemy {
 	public BasicBullet currentBullet;
 	void Start () {
 		currentBurstNum = numBursts;
-		if(attachedBarrier != null)
-		{
-			attachedBarrier.RegisterEnemy();
-		}
+
 	}
 
 	void Update () 
