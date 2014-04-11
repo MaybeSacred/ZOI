@@ -152,6 +152,11 @@ public class SpiderbotBehavior : BaseEnemy {
 	}
 	public override void KillMe ()
 	{
+		if(attachedBarrier != null&&calledBarrier ==false)
+		{
+			calledBarrier =true;
+			attachedBarrier.UnregisterEnemy();
+		}
 		/*Hitbox.rigidbody.useGravity = true;
 		Hitbox.rigidbody.isKinematic = false;
 		Hitbox.rigidbody.constraints = RigidbodyConstraints.None;*/

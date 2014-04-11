@@ -299,6 +299,11 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	}
 	public override void KillMe()
 	{
+		if(attachedBarrier != null&&calledBarrier==false)
+		{
+			calledBarrier= true;
+			attachedBarrier.UnregisterEnemy();
+		}
 		deathTimeoutTimer += Time.deltaTime;
 		rigidbody.useGravity = true;
 		rigidbody.isKinematic = false;

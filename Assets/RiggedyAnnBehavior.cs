@@ -181,6 +181,11 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	public override void KillMe()
 	{
+		if(attachedBarrier != null&&calledBarrier==false)
+		{
+			calledBarrier = true;
+			attachedBarrier.UnregisterEnemy();
+		}
 		if(deathTimeoutTimer <= 0)
 		{
 			rigidbody.isKinematic = false;

@@ -6,6 +6,7 @@ public class TriggerBoss : MonoBehaviour {
 	public List<Transform> bossList;
 	public GameObject dummies;
 	public PlayerController player;
+	public BarrierBehavior doors;
 
 	// Use this for initialization
 	void Start () {
@@ -27,7 +28,9 @@ public class TriggerBoss : MonoBehaviour {
 				{
 					((PlayerEvent)enemy.GetComponent<MonoBehaviour>()).OnPlayerEnter();
 					Destroy (dummies);
-					player.SendMessage("ResetRespawnPosition",transform.position);
+					player.SetLastCheckpoint(transform.position,Util.player.restartRotation, 2);
+					doors.CloseDoors();
+
 				}
 			}
 		}
