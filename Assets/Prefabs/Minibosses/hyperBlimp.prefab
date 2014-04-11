@@ -1076,7 +1076,7 @@ GameObject:
   - 4: {fileID: 400124}
   - 54: {fileID: 5400038}
   - 114: {fileID: 11400044}
-  - 64: {fileID: 6400014}
+  - 136: {fileID: 13600002}
   m_Layer: 10
   m_Name: hyperBlimp
   m_TagString: Untagged
@@ -1279,7 +1279,6 @@ GameObject:
   - 114: {fileID: 11400050}
   - 33: {fileID: 3300042}
   - 95: {fileID: 9500000}
-  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: Graphics
   m_TagString: Untagged
@@ -2114,7 +2113,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
   m_LocalRotation: {x: 0, y: -.794832647, z: 0, w: .606828749}
-  m_LocalPosition: {x: 542.719543, y: 45.6392937, z: 1574.13379}
+  m_LocalPosition: {x: 761.825562, y: 98.948967, z: 1919.23035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400066}
@@ -3368,19 +3367,6 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 2c7c67b3406e982489f426d889847909, type: 3}
---- !u!64 &6400014
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100124}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_SmoothSphereCollisions: 0
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: 5c5b224cfb6a045468ba461064b43258, type: 3}
 --- !u!64 &6400016
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -5103,17 +5089,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.75
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &13600000
+--- !u!136 &13600002
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100148}
+  m_GameObject: {fileID: 100124}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .319999993
-  m_Height: 5.25
+  m_Radius: 4.90999985
+  m_Height: 32
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800000

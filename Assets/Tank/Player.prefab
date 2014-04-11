@@ -1141,8 +1141,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
-  m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: 99.3061523, y: 13.3003883, z: -448.324585}
+  m_LocalRotation: {x: 0, y: -.0746415257, z: 0, w: -.997210443}
+  m_LocalPosition: {x: 94.1822205, y: 9.81768417, z: -522.266479}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1931,7 +1931,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899977148, y: -.722940445, z: -1.60004127}
+  m_ConnectedAnchor: {x: -.899995983, y: -.722940445, z: -1.59992707}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1960,7 +1960,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.900004506, y: -.722940445, z: 1.60000205}
+  m_ConnectedAnchor: {x: -.899984419, y: -.722940445, z: 1.60003769}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1989,7 +1989,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .900004506, y: -.722940445, z: -1.60000205}
+  m_ConnectedAnchor: {x: .899984419, y: -.722940445, z: -1.60003769}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2018,7 +2018,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899977148, y: -.722940445, z: 1.60004127}
+  m_ConnectedAnchor: {x: .899995983, y: -.722940445, z: 1.59992707}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2239,7 +2239,7 @@ MonoBehaviour:
       type: 2}
     secondaryAutoFireTimes: .200000003
     totalSecondaryBullets: 6
-    soundEffect: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: 84bbc36dea3138d40adb7d34c922e474, type: 3}
   primaryWeapClip: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   strafeSteeringEngaged: 0
   returnToCameraFollowTime: 3
