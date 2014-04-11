@@ -197,6 +197,7 @@ public class PlayerController : MonoBehaviour
 				}
 				cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
 				primaryCannonTimer = 0;
+				aSource.PlayOneShot(primaryWeapClip);
 				cannonFlash.Play();
 				cannonRingFlash.Play();
 			}

@@ -14,7 +14,11 @@ public class BasicExplosion : MonoBehaviour {
 	void Start ()
 	{
 		particleStopTime = GetComponent<ParticleSystem>().duration + GetComponent<ParticleSystem>().startLifetime;
-		GetComponent<AudioSource>().Play();
+		AudioSource source = GetComponent<AudioSource>();
+		if(audio != null)
+		{
+			audio.Play();
+		}
 	}
 	public void SetDamageVariables(float sd, float hd)
 	{

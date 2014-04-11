@@ -2083,7 +2083,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2091,9 +2091,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2102,8 +2102,8 @@ AudioSource:
     m_Curve:
     - time: 0
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -2.74251652
+      outSlope: -2.74251652
       tangentMode: 0
     - time: 1
       value: 0
@@ -2212,18 +2212,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d51c7aa5378d34c80dda7d00f18a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeps:
+  playerWeaps:
   - secondaryCannonReloadTime: 10
     firingRandomness: .0299999993
     secondaryBulletEmitters: {fileID: 400072}
     secondaryCannonFlashes: {fileID: 19800010}
     possibleSecondaries: {fileID: 11400000, guid: d31d7132e8faf0c44ac17d449eea3e08,
       type: 2}
-    secondaryAutoFireTimes: .5
+    secondaryAutoFireTimes: 1
     totalSecondaryBullets: 3
-    soundEffect: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   - secondaryCannonReloadTime: 0
-    firingRandomness: .125
+    firingRandomness: .100000001
     secondaryBulletEmitters: {fileID: 400010}
     secondaryCannonFlashes: {fileID: 19800034}
     possibleSecondaries: {fileID: 11400000, guid: 1d2226000c2eaf8439b11ea0e43e3d1c,
@@ -2231,7 +2231,7 @@ MonoBehaviour:
     secondaryAutoFireTimes: .0700000003
     totalSecondaryBullets: 1
     soundEffect: {fileID: 8300000, guid: ec1d5501f7557e14391592c7d67cd1ec, type: 3}
-  - secondaryCannonReloadTime: 4
+  - secondaryCannonReloadTime: 5
     firingRandomness: 0
     secondaryBulletEmitters: {fileID: 400094}
     secondaryCannonFlashes: {fileID: 19800008}
@@ -2240,6 +2240,7 @@ MonoBehaviour:
     secondaryAutoFireTimes: .200000003
     totalSecondaryBullets: 6
     soundEffect: {fileID: 0}
+  primaryWeapClip: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   strafeSteeringEngaged: 0
   returnToCameraFollowTime: 3
   gameOverExplosion: {fileID: 19800014}
