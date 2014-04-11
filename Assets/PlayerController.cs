@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
 {
     #region variables
     public bool isAlive{get; private set;}
-    public PlayerWepDefinition[] playerWeps;
+    public PlayerWepDefinition[] playerWeaps;
+    public AudioClip primaryWeapClip;
     private int steeringDirection;
 	public bool strafeSteeringEngaged;
 	private float strafeSteeringTimer, disabledControlsTimer, disabledControlsDuration, hitsAgainTimer, hitsAgainOffsetDuration;
@@ -55,12 +56,13 @@ public class PlayerController : MonoBehaviour
 	private GameObject hitsAgain;
 	private List<GameObject> hitsAgainSansDisabled;
 	private bool collidersBacklogged;
-
+	private AudioSource aSource;
 	public float maxSpeedRetardingForce;
     #endregion
    
     void Start () {
         //starting physics
+        aSource = GetComponentInChildren<AudioSource>();
 		startWheelFriction = wheels[0].sidewaysFriction;
 		primaryCannonTimer = primaryCannonReloadTime;
 		lastCheckpointHealth = maxHealth;
@@ -204,13 +206,13 @@ public class PlayerController : MonoBehaviour
 	{
 		if(Input.GetMouseButtonDown(1) || Input.GetKeyDown("space"))
 		{
-			secondaryAutoFireTimer = playerWeps[currentSecondaryWep].secondaryAutoFireTimes;
+			secondaryAutoFireTimer = playerWeaps[currentSecondaryWep].secondaryAutoFireTimes;
 		}
 		if(Input.GetMouseButton(1) || Input.GetKey("space"))
 		{
-			if(playerWeps[currentSecondaryWep].secondaryBulletsLeft > 0)
+			if(playerWeaps[currentSecondaryWep].secondaryBulletsLeft > 0)
 			{
-				if(secondaryAutoFireTimer > playerWeps[currentSecondaryWep].secondaryAutoFireTimes)
+				if(secondaryAutoFireTimer > playerWeaps[currentSecondaryWep].secondaryAutoFireTimes)
 				{
 					if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 					{
@@ -219,29 +221,30 @@ public class PlayerController : MonoBehaviour
 						Quaternion tempQuat;
 						if(hit.distance < 10)
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-playerWeps[currentSecondaryWep].secondaryBulletEmitters.position);
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
 						}
 						else
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeps[currentSecondaryWep].secondaryBulletEmitters.position);
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
 						}
-						Vector3 randomTemp = Util.GenerateRandomVector3(tempQuat*Vector3.forward, playerWeps[currentSecondaryWep].firingRandomness);
-						Util.Fire(playerWeps[currentSecondaryWep].possibleSecondaries, playerWeps[currentSecondaryWep].secondaryBulletEmitters.position,
-						          Quaternion.LookRotation(randomTemp), playerWeps[currentSecondaryWep].possibleSecondaries.initialSpeed*randomTemp.normalized);
+						Vector3 randomTemp = Util.GenerateRandomVector3(tempQuat*Vector3.forward, playerWeaps[currentSecondaryWep].firingRandomness);
+						Util.Fire(playerWeaps[currentSecondaryWep].possibleSecondaries, playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position,
+						          Quaternion.LookRotation(randomTemp), playerWeaps[currentSecondaryWep].possibleSecondaries.initialSpeed*randomTemp.normalized);
 					}
 					else
 					{
-						Vector3 randomTemp = Util.GenerateRandomVector3(playerWeps[currentSecondaryWep].secondaryBulletEmitters.forward, playerWeps[currentSecondaryWep].firingRandomness);
-						Util.Fire(playerWeps[currentSecondaryWep].possibleSecondaries, playerWeps[currentSecondaryWep].secondaryBulletEmitters.position,
-						          Quaternion.LookRotation(randomTemp), playerWeps[currentSecondaryWep].possibleSecondaries.initialSpeed * randomTemp.normalized);
+						Vector3 randomTemp = Util.GenerateRandomVector3(playerWeaps[currentSecondaryWep].secondaryBulletEmitters.forward, playerWeaps[currentSecondaryWep].firingRandomness);
+						Util.Fire(playerWeaps[currentSecondaryWep].possibleSecondaries, playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position,
+						          Quaternion.LookRotation(randomTemp), playerWeaps[currentSecondaryWep].possibleSecondaries.initialSpeed * randomTemp.normalized);
 					}
-					if(playerWeps[currentSecondaryWep].secondaryBulletEmitters == primaryBulletEmitter)
+					if(playerWeaps[currentSecondaryWep].secondaryBulletEmitters == primaryBulletEmitter)
 					{
 						cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
 						cannonRingFlash.Play();
 					}
-					playerWeps[currentSecondaryWep].UseBullet();
-					secondaryAutoFireTimer -= playerWeps[currentSecondaryWep].secondaryAutoFireTimes;
+					aSource.PlayOneShot(playerWeaps[currentSecondaryWep].soundEffect);
+					playerWeaps[currentSecondaryWep].UseBullet();
+					secondaryAutoFireTimer -= playerWeaps[currentSecondaryWep].secondaryAutoFireTimes;
 				}
 				else
 				{
@@ -322,7 +325,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyDown("tab"))
 		{
 			currentSecondaryWep++;
-			if(currentSecondaryWep >= playerWeps.Length)
+			if(currentSecondaryWep >= playerWeaps.Length)
 			{
 				currentSecondaryWep = 0;
 			}
@@ -343,9 +346,9 @@ public class PlayerController : MonoBehaviour
 	private void UpdateTimers()
 	{
 		primaryCannonTimer += Time.deltaTime;
-		for(int i = 0; i < playerWeps.Length; i++)
+		for(int i = 0; i < playerWeaps.Length; i++)
 		{
-			playerWeps[i].UpdateReloadTimer();
+			playerWeaps[i].UpdateReloadTimer();
 		}
 	}
 	private void UpdateGraphics()
@@ -361,6 +364,10 @@ public class PlayerController : MonoBehaviour
 				HealthChange(shieldRechargeRate * Time.deltaTime, 0);
 			}
 			shield.renderer.enabled = true;
+			if(Time.timeSinceLevelLoad > timeSinceLastHit + 2*shieldRechargeDelay)
+			{
+				Util.ms.playBattleMusic(false);
+			}
 		}
 		else
 		{
@@ -669,6 +676,7 @@ public class PlayerController : MonoBehaviour
 					GameOver();
 				}
 			}
+			Util.ms.playBattleMusic(true);
 			//determines when to recharge shield
 			timeSinceLastHit = Time.timeSinceLevelLoad;
 		}
@@ -885,6 +893,7 @@ public class PlayerController : MonoBehaviour
 		public BasicBullet possibleSecondaries;
 		public float secondaryAutoFireTimes;
 		public int totalSecondaryBullets;
+		public AudioClip soundEffect;
 		public PlayerWepDefinition() {
 			secondaryBulletsLeft = totalSecondaryBullets;
 			secondaryCannonReloadTimers = secondaryCannonReloadTime;

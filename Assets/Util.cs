@@ -12,7 +12,7 @@ public class Util : MonoBehaviour {
 	public static readonly float GRAVITY = .333f;
 	public static GameGUI theGUI;
 	public static int PLAYERWEAPONSIGNORELAYERS;
-
+	public static MusicSystem ms;
 	public static float currentTimeScale = 1;
 
 	public static bool isPaused{get; private set;}
@@ -22,6 +22,7 @@ public class Util : MonoBehaviour {
 		theGUI = this.GetComponentInChildren<GameGUI>();
 		mainCamera = this.GetComponentInChildren<CameraScript>();
 		currentTerrain = GetComponentInChildren<Terrain>();
+		ms = this.GetComponentInChildren<MusicSystem>();
 		if(currentTerrain == null)
 		{
 			UnityEngine.Debug.Log("No Terrain was loaded");
@@ -48,10 +49,12 @@ public class Util : MonoBehaviour {
 		if(isPaused)
 		{
 			Time.timeScale = 0;
+			ms.pauseMusic(true);
 		}
 		else
 		{
 			Time.timeScale = currentTimeScale;
+			ms.pauseMusic(false);
 		}
 	}
 

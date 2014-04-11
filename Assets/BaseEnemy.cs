@@ -49,10 +49,7 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	///<summary>Called when player exits surrounding check collider</summary>
 	public virtual void OnPlayerExit()
 	{
-		if(deathTimeoutTimer <=0)
-		{
-			isAwake = false;
-		}
+		
 	}
 }
 

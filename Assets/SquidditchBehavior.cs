@@ -188,6 +188,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 			if(fireTimer > fireRate)
 			{
 				currentLaser = (LaserBullet)Util.FireLaserType(currentBullet, bulletEmitter.position, Util.player.transform.position, Quaternion.LookRotation(Util.GenerateRandomVector3(Util.player.transform.position - bulletEmitter.position, .12f)));
+				GetComponent<AudioSource>().Play();
 				RaycastHit hit;
 				if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
 				{

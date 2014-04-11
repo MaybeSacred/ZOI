@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 public class GameGUI : MonoBehaviour {
 	public GUIStyle currentStyle;
@@ -69,32 +69,32 @@ public class GameGUI : MonoBehaviour {
 			}
 			GUILayout.EndArea();
 		}
-		if (Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.name.Equals("PlayerGrenade"))
+		if (Util.player.playerWeaps[Util.player.currentSecondaryWep].possibleSecondaries.name.Equals("PlayerGrenade"))
 		{
-			if(Util.player.playerWeps[Util.player.currentSecondaryWep].HasBullet())
+			if(Util.player.playerWeaps[Util.player.currentSecondaryWep].HasBullet())
 			{
 				GUILayout.BeginArea(new Rect(Screen.width/2 + primaryWepStartPoint.x-16, Screen.height/2 - primaryWepStartPoint.y, 16, 48));
-				for(int i = 0; i < Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
+				for(int i = 0; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
 				{
 					GUILayout.Box(secondaryIcon, currentStyle);
 				}
 				GUILayout.EndArea();
 			}
 		}
-		else if (Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.name.Equals("PlayerRocket"))
+		else if (Util.player.playerWeaps[Util.player.currentSecondaryWep].possibleSecondaries.name.Equals("PlayerRocket"))
 		{
-			if(Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft > 0)
+			if(Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft > 0)
 			{
 				GUILayout.BeginArea(new Rect(Screen.width/2 + primaryWepStartPoint.x-16, Screen.height/2 - primaryWepStartPoint.y, 16, 64));
-				for(int i = 0; i < Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2; i++)
+				for(int i = 0; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2; i++)
 				{
 					GUILayout.Box(secondaryIcon, currentStyle);
 				}
 				GUILayout.EndArea();
-				if(Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft > Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2)
+				if(Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft > Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2)
 				{
 					GUILayout.BeginArea(new Rect(Screen.width/2 + primaryWepStartPoint.x, Screen.height/2 - primaryWepStartPoint.y, 16, 64));
-					for(int i = Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2; i < Util.player.playerWeps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
+					for(int i = Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft/2; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
 					{
 						GUILayout.Box(secondaryIcon, currentStyle);
 					}
@@ -103,13 +103,13 @@ public class GameGUI : MonoBehaviour {
 			}
 		}
 		GUI.Box(new Rect(Screen.width - 350, 0, 350, 30), GUIContent.none);
-		GUI.Label(new Rect(Screen.width - 350, 0, 350, 30), Util.player.playerWeps[Util.player.currentSecondaryWep].possibleSecondaries.prettyName, currentStyle);
+		GUI.Label(new Rect(Screen.width - 350, 0, 350, 30), Util.player.playerWeaps[Util.player.currentSecondaryWep].possibleSecondaries.prettyName, currentStyle);
 		GUILayout.BeginArea(new Rect(Screen.width - 333, 32, 333, 22));
 		GUILayout.BeginArea(new Rect(0, 0, 64, 22));
 		GUILayout.BeginHorizontal();
-		for(int i = 0; i < Util.player.playerWeps[0].totalSecondaryBullets; i++)
+		for(int i = 0; i < Util.player.playerWeaps[0].totalSecondaryBullets; i++)
 		{
-			if(i < Util.player.playerWeps[0].secondaryBulletsLeft)
+			if(i < Util.player.playerWeaps[0].secondaryBulletsLeft)
 			{
 				GUILayout.Box(secondaryIcon, currentStyle);
 			}
@@ -119,18 +119,18 @@ public class GameGUI : MonoBehaviour {
 			}
 		}
 		GUILayout.EndHorizontal();
-		if(!Util.player.playerWeps[0].IsFullyLoaded())
+		if(!Util.player.playerWeaps[0].IsFullyLoaded())
 		{
-			GUI.BeginGroup(new Rect(0, 16, Util.player.playerWeps[0].secondaryCannonReloadTimers/Util.player.playerWeps[0].secondaryCannonReloadTime*64, 6));
+			GUI.BeginGroup(new Rect(0, 16, Util.player.playerWeaps[0].secondaryCannonReloadTimers/Util.player.playerWeaps[0].secondaryCannonReloadTime*64, 6));
 			GUI.Label(new Rect(0, 0, 64, 6), rechargingStrip, currentStyle);
 			GUI.EndGroup();
 		}
 		GUILayout.EndArea();
 		GUILayout.BeginArea(new Rect(222, 0, 96, 22));
 		GUILayout.BeginHorizontal();
-		for(int i = 0; i < Util.player.playerWeps[2].totalSecondaryBullets; i++)
+		for(int i = 0; i < Util.player.playerWeaps[2].totalSecondaryBullets; i++)
 		{
-			if(i < Util.player.playerWeps[2].secondaryBulletsLeft)
+			if(i < Util.player.playerWeaps[2].secondaryBulletsLeft)
 			{
 				GUILayout.Box(secondaryIcon, currentStyle);
 			}
@@ -140,9 +140,9 @@ public class GameGUI : MonoBehaviour {
 			}
 		}
 		GUILayout.EndHorizontal();
-		if(!Util.player.playerWeps[2].IsFullyLoaded())
+		if(!Util.player.playerWeaps[2].IsFullyLoaded())
 		{
-			GUI.BeginGroup(new Rect(0, 16, Util.player.playerWeps[2].secondaryCannonReloadTimers/Util.player.playerWeps[2].secondaryCannonReloadTime*64, 6));
+			GUI.BeginGroup(new Rect(0, 16, Util.player.playerWeaps[2].secondaryCannonReloadTimers/Util.player.playerWeaps[2].secondaryCannonReloadTime*64, 6));
 			GUI.Label(new Rect(0, 0, 64, 6), rechargingStrip, currentStyle);
 			GUI.EndGroup();
 		}

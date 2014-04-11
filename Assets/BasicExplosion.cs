@@ -4,7 +4,9 @@ using System.Collections;
 public class BasicExplosion : MonoBehaviour {
 	public int side;
 	private float particleStopTime, currentTime;
+	[HideInInspector]
 	public float shieldDamage;
+	[HideInInspector]
 	public float healthDamage;
 	public float explosionForce;
 	public float explosionDuration;
@@ -12,6 +14,7 @@ public class BasicExplosion : MonoBehaviour {
 	void Start ()
 	{
 		particleStopTime = GetComponent<ParticleSystem>().duration + GetComponent<ParticleSystem>().startLifetime;
+		GetComponent<AudioSource>().Play();
 	}
 	public void SetDamageVariables(float sd, float hd)
 	{

@@ -2,7 +2,8 @@ using UnityEngine;
 using System.Collections.Generic;
 
 public class ClingyDanBehavior : BaseEnemy {
-	public float lookAheadTime;
+	public float firingDistance;
+	public bool usesEnemyScriptColliders;
 	public Transform turret;
 	public float rotationDelta;
 	private bool breakingDown;
@@ -14,7 +15,6 @@ public class ClingyDanBehavior : BaseEnemy {
 	public Transform bulletEmitter;
 	public float firingRandomness;
 	public BasicBullet currentBullet;
-	public float aimingError;
 	void Start () {
 		currentBurstNum = numBursts;
 	}
@@ -31,32 +31,55 @@ public class ClingyDanBehavior : BaseEnemy {
 		}
 		else
 		{
-			if(isAwake)
+			if(usesEnemyScriptColliders)
 			{
-				Vector3 distance = Util.player.transform.position - turret.position + Util.player.rigidbody.velocity*lookAheadTime;
-				turret.rotation = Quaternion.RotateTowards(turret.rotation, Quaternion.LookRotation(distance), rotationDelta*Time.deltaTime);
-				if(currentBurstNum < numBursts)
+				if(isAwake)
 				{
-					if(fireTimer > fireRate)
-					{
-						Vector3 randVector = Util.GenerateRandomVector3(bulletEmitter.forward, firingRandomness);
-						Util.Fire(currentBullet, bulletEmitter.position, Quaternion.LookRotation(randVector), 
-						          randVector*currentBullet.initialSpeed);
-						currentBurstNum++;
-						fireTimer -= fireRate;
-					}
+					Vector3 distance = Util.player.transform.position - turret.position;
+					distance += Util.player.rigidbody.velocity*(distance.magnitude/currentBullet.initialSpeed);
+					turret.rotation = Quaternion.RotateTowards(turret.rotation, Quaternion.LookRotation(distance), rotationDelta*Time.deltaTime);
+					GunUpdate();
+				}
+			}
+			else
+			{
+				Vector3 distance = Util.player.transform.position - turret.position;
+				Vector3 attackPoint = distance + Util.player.rigidbody.velocity*(distance.magnitude/currentBullet.initialSpeed);
+				turret.rotation = Quaternion.RotateTowards(turret.rotation, Quaternion.LookRotation(attackPoint), rotationDelta*Time.deltaTime);
+				if(distance.magnitude < firingDistance)
+				{
+					isAwake = true;
+					GunUpdate();
 				}
 				else
 				{
-					if(fireTimer > reloadTime)
-					{
-						fireTimer -= reloadTime;
-						currentBurstNum = 0;
-					}
+					isAwake = false;
 				}
-				fireTimer += Time.deltaTime;
 			}
 		}
+	}
+	private void GunUpdate()
+	{
+		if(currentBurstNum < numBursts)
+		{
+			if(fireTimer > fireRate)
+			{
+				Vector3 randVector = Util.GenerateRandomVector3(bulletEmitter.forward, firingRandomness);
+				Util.Fire(currentBullet, bulletEmitter.position, Quaternion.LookRotation(randVector), 
+				          randVector*currentBullet.initialSpeed);
+				currentBurstNum++;
+				fireTimer -= fireRate;
+			}
+		}
+		else
+		{
+			if(fireTimer > reloadTime)
+			{
+				fireTimer -= reloadTime;
+				currentBurstNum = 0;
+			}
+		}
+		fireTimer += Time.deltaTime;
 	}
 	public override void KillMe ()
 	{

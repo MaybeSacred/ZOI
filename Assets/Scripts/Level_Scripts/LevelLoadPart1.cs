@@ -3,11 +3,11 @@ using System.Collections;
 
 public class LevelLoadPart1: MonoBehaviour
 {
-	private Vector3 startingPosition;
-	private Quaternion startingRotation;
+	private Vector3 startingPos;
+	private Quaternion startingRot;
 
-	private Vector3 cameraPosition;
-	private Quaternion cameraRotation;
+	private Vector3 cameraPos;
+	private Quaternion cameraRot;
 
 	private Collider thisTrigger;
 
@@ -23,12 +23,12 @@ public class LevelLoadPart1: MonoBehaviour
 	{
 		if (tank.tag == "Player")
 		{
-			startingPosition = tank.transform.position;
-			startingRotation = tank.transform.rotation;
+			startingPos = tank.transform.position;
+			startingRot = tank.transform.rotation;
 
 			Transform cameraTransform = tank.transform.parent.GetComponentInChildren<Camera>().transform;
-			cameraRotation = cameraTransform.rotation;
-			cameraPosition = cameraTransform.position;
+			cameraRot = cameraTransform.rotation;
+			cameraPos = cameraTransform.position;
 
 			thisTrigger.enabled = canReturn;
 
@@ -44,7 +44,6 @@ public class LevelLoadPart1: MonoBehaviour
 	public int GetLoadInfo(ref Vector3 startingPosition, ref Quaternion startingRotation, ref Vector3 cameraPosition, ref Quaternion cameraRotation)
 	{
 		int errorCode = 0x0;
-
 		if (null == startingPosition)
 			errorCode = errorCode | 0x1;
 		if (null == startingRotation)
@@ -54,11 +53,11 @@ public class LevelLoadPart1: MonoBehaviour
 		if (null == cameraRotation)
 			errorCode = errorCode | 0x8;
 
-		startingPosition = this.startingPosition;
-		startingRotation = this.startingRotation;
+		startingPosition = this.startingPos;
+		startingRotation = this.startingRot;
 
-		cameraPosition = this.cameraPosition;
-		cameraRotation = this.cameraRotation;
+		cameraPosition = this.cameraPos;
+		cameraRotation = this.cameraRot;
 
 		return errorCode;
 	}

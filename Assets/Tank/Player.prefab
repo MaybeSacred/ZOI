@@ -120,6 +120,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400014}
+  - 82: {fileID: 8200000}
   m_Layer: 9
   m_Name: CannonGO
   m_TagString: Untagged
@@ -1141,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: 142.850098, y: 2.83788228, z: -415.584961}
+  m_LocalPosition: {x: 99.3061523, y: 13.3003883, z: -448.324585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -2073,6 +2074,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.70000005, y: .50999999, z: 2.4000001}
   m_Center: {x: 0, y: .119999997, z: -.600000024}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -2162,6 +2221,7 @@ MonoBehaviour:
       type: 2}
     secondaryAutoFireTimes: .5
     totalSecondaryBullets: 3
+    soundEffect: {fileID: 0}
   - secondaryCannonReloadTime: 0
     firingRandomness: .125
     secondaryBulletEmitters: {fileID: 400010}
@@ -2170,6 +2230,7 @@ MonoBehaviour:
       type: 2}
     secondaryAutoFireTimes: .0700000003
     totalSecondaryBullets: 1
+    soundEffect: {fileID: 8300000, guid: ec1d5501f7557e14391592c7d67cd1ec, type: 3}
   - secondaryCannonReloadTime: 4
     firingRandomness: 0
     secondaryBulletEmitters: {fileID: 400094}
@@ -2178,6 +2239,7 @@ MonoBehaviour:
       type: 2}
     secondaryAutoFireTimes: .200000003
     totalSecondaryBullets: 6
+    soundEffect: {fileID: 0}
   strafeSteeringEngaged: 0
   returnToCameraFollowTime: 3
   gameOverExplosion: {fileID: 19800014}
@@ -2235,7 +2297,7 @@ MonoBehaviour:
   theCam: {fileID: 0}
   forwardAcceleration: 41
   brakeForce: 60
-  maxSpeed: 10
+  maxSpeed: 12
   health: 100
   maxHealth: 100
   maxSpeedRetardingForce: 80
@@ -2719,7 +2781,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10915,7 +10977,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -13009,7 +13071,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -15103,7 +15165,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -22156,15 +22218,15 @@ ParticleSystem:
     plane3: {fileID: 0}
     plane4: {fileID: 0}
     plane5: {fileID: 0}
-    dampen: .00999999978
-    bounce: .25
+    dampen: .25
+    bounce: .100000001
     energyLossOnCollision: 0
     minKillSpeed: 0
     particleRadius: .00999999978
     collidesWith:
       serializedVersion: 2
       m_Bits: 4294967295
-    quality: 1
+    quality: 0
     voxelSize: .5
     collisionMessages: 0
   SubModule:
