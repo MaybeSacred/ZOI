@@ -27,7 +27,7 @@ public class TriggerBoss : MonoBehaviour {
 				{
 					((PlayerEvent)enemy.GetComponent<MonoBehaviour>()).OnPlayerEnter();
 					Destroy (dummies);
-					player.SendMessage("ResetRespawnPosition",transform.position);
+					player.SetLastCheckpoint(transform.position,Util.player.restartRotation, 2);
 				}
 			}
 		}

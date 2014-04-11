@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 
 public class BarrierBehavior : MonoBehaviour {
-	private int attachedEnemies;
+	public int attachedEnemies;
 	private float barrierTimer;
 	public Transform leftGate, rightGate;
 	public Vector3 openingVector;
 	public float timeToMove;
 	public float cameraShakeStrength;
+	public bool closeBehindPlayer;
 	void Start () {
 		
 	}
@@ -17,7 +18,7 @@ public class BarrierBehavior : MonoBehaviour {
 		{
 			leftGate.position += openingVector*Time.deltaTime;
 			rightGate.position -= openingVector*Time.deltaTime;
-			if(barrierTimer > timeToMove)
+			if((barrierTimer > timeToMove)&&closeBehindPlayer==false)
 			{
 				Destroy(this);
 			}

@@ -10,13 +10,23 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	public float deathTimeout;
 	protected List<GameObject> colliders;
 	public BarrierBehavior attachedBarrier;
+	protected bool calledBarrier;
 	void Awake()
 	{
+		if(attachedBarrier != null)
+		{
+			attachedBarrier.RegisterEnemy();
+		}
 		colliders = new List<GameObject>();
 	}
 	///<summary>Called to handle the final destruction of BaseEnemy</summary>
 	public virtual void KillMe()
 	{
+		if(attachedBarrier != null&& calledBarrier==false)
+		{
+			calledBarrier = true;
+			attachedBarrier.UnregisterEnemy();
+		}
 		Destroy(gameObject);
 	}
 	///<summary>Updates the health of the BaseEnemy, negative values decrease health</summary>

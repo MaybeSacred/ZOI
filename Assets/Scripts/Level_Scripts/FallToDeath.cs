@@ -10,6 +10,7 @@ public class FallToDeath : MonoBehaviour
 		if (tank.tag == "Player")
 		{
 			Debug.Log("Player has fallen to his death.");
+			player.PlayerDeath();
 			// Call player.deathSomething();
 			// Reset to Checkpoint
 		}

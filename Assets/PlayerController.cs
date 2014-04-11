@@ -565,7 +565,7 @@ public class PlayerController : MonoBehaviour
 		}
 		return false;
 	}
-	private void PlayerDeath()
+	public void PlayerDeath()
 	{
 		/*PlayerController pc = ((GameObject)Instantiate(this.gameObject, restartPosition, Quaternion.Euler(restartRotation))).GetComponent<PlayerController>();
 		theCam.GetComponent<CameraScript>().player = pc;
