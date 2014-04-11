@@ -22,7 +22,7 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 
 	// Use this for initialization
 	void Start () {
-		childrenBodies = gameObject.GetComponentsInChildren<Rigidbody> ();
+
 	
 	}
 	
@@ -182,6 +182,7 @@ public class SlinkyEnemyBehavior : BaseEnemy {
 	{
 			isAwake = true;
 		Destroy (rigidbody);
+		childrenBodies = gameObject.GetComponentsInChildren<Rigidbody> ();
 		collider.enabled = false;
 	}
 }

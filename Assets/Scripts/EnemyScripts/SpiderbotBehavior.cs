@@ -174,9 +174,11 @@ public class SpiderbotBehavior : BaseEnemy {
 		float x = 3f;
 		for(int i = 0; i < joints.Length; i++)
 		{
-			if(x<0.01f)
+			joints[i].collider.enabled = true;
+			if(x<0.02f)
 			{
-				joints[i].breakForce = joints[i].breakTorque = 0;
+
+					joints[i].breakForce = joints[i].breakTorque = 0;
 
 			}
 			x = Random.Range(0f,3f);
