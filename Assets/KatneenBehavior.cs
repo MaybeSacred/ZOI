@@ -26,6 +26,7 @@ public class KatneenBehavior : BaseEnemy {
 	private Vector3 lockedOnPoint;
 	public Transform turret;
 	public Transform[] legs;
+	[HideInInspector]
 	public LaserBullet currentLaser;
 	private float laserDurationTimer;
 	public float laserDuration;
@@ -35,7 +36,7 @@ public class KatneenBehavior : BaseEnemy {
 	public float laserRandomness;
 	private Vector3 startPlayerDirection;
 	private bool isLaserLockedOn;
-	
+	public ParticleSystem deathPS;
 	void Start () {
 		if(attachedBarrier != null)
 		{
@@ -109,6 +110,7 @@ public class KatneenBehavior : BaseEnemy {
 							if(fireTimer > fireRate)
 							{
 								currentLaser = (LaserBullet)Util.FireLaserType(currentBullet, bulletEmitter.position, lockedOnDirection+turret.position, Quaternion.LookRotation(lockedOnDirection+turret.position - bulletEmitter.position));
+								GetComponent<AudioSource>().Play();
 								laserDurationTimer = 0;
 								fireTimer -= fireRate;
 								lockedOnDirection = Vector3.zero;
