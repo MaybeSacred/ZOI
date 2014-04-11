@@ -55,7 +55,8 @@ public class WheelEnemy : BaseEnemy {
 	{
 		if(isAwake)
 		{
-			SteerTowardsRigidBody(Util.player.transform.position - transform.position + Util.player.rigidbody.velocity*lookAheadTime);
+			Vector3 distance = Util.player.transform.position - transform.position;
+			SteerTowardsRigidBody(distance + Util.player.rigidbody.velocity*distance.magnitude/(rigidbody.velocity.magnitude < .05f? .05f: rigidbody.velocity.magnitude));
 		}
 	}
 	private void SteerTowardsRigidBody(Vector3 direction)

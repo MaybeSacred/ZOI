@@ -36,23 +36,23 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Illum
+          name: _Cube
         second:
-          m_Texture: {fileID: 2800000, guid: 4a056241e2722dc46a7262a8e7073fd9, type: 3}
+          m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _Cube
+          name: _Illum
         second:
-          m_Texture: {fileID: 8900000, guid: b995d4bd9d11078d11005b9844295342, type: 3}
+          m_Texture: {fileID: 2800000, guid: 4a056241e2722dc46a7262a8e7073fd9, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
           name: _Outline
-        second: .010999999
+        second: .00499999896
       data:
         first:
           name: _Shininess
