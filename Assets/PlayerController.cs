@@ -177,15 +177,21 @@ public class PlayerController : MonoBehaviour
 				{
 					RaycastHit hit;
 					Debug.DrawRay(theCam.transform.position, theCam.transform.forward, Color.green);
-					Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
 					Quaternion tempQuat;
-					if(hit.distance < 10)
+					if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 					{
-						tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-cannonGO.position);
+						if(hit.distance < 10)
+						{
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-cannonGO.position);
+						}
+						else
+						{
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-cannonGO.position);
+						}
 					}
 					else
 					{
-						tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-cannonGO.position);
+						tempQuat = Quaternion.LookRotation(primaryBulletEmitter.forward);
 					}
 					Util.Fire(primaryBullet, primaryBulletEmitter.position, tempQuat, 
 					          primaryBullet.initialSpeed*
@@ -218,15 +224,21 @@ public class PlayerController : MonoBehaviour
 					if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 					{
 						RaycastHit hit;
-						Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS);
 						Quaternion tempQuat;
-						if(hit.distance < 10)
+						if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
+							if(hit.distance < 10)
+							{
+								tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
+							}
+							else
+							{
+								tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
+							}
 						}
 						else
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
+							tempQuat = Quaternion.LookRotation(playerWeaps[currentSecondaryWep].secondaryBulletEmitters.forward);
 						}
 						Vector3 randomTemp = Util.GenerateRandomVector3(tempQuat*Vector3.forward, playerWeaps[currentSecondaryWep].firingRandomness);
 						Util.Fire(playerWeaps[currentSecondaryWep].possibleSecondaries, playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position,

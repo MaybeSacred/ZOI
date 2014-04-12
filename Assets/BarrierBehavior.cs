@@ -32,10 +32,10 @@ public class BarrierBehavior : MonoBehaviour {
 			}
 
 			Util.mainCamera.ActivateCameraShake(cameraShakeStrength);
-		}else if(barrierTimer > 0&&closingDoors==true)
+		}else if(barrierTimer > 0 && closingDoors==true)
 		{
-			leftGate.position -= openingVector*Time.deltaTime;
-			rightGate.position += openingVector*Time.deltaTime;
+			leftGate.localPosition -= openingVector*Time.deltaTime;
+			rightGate.localPosition += openingVector*Time.deltaTime;
 			if((barrierTimer > timeToMove))
 			{
 					Destroy(this);
