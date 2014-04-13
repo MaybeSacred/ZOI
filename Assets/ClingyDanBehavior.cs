@@ -96,6 +96,7 @@ public class ClingyDanBehavior : BaseEnemy {
 			{
 				joints[i].breakForce = joints[i].breakTorque = 0;
 			}
+			breakingDown = true;
 		}
 	}
 	void OnTriggerEnter(Collider other)
@@ -125,14 +126,4 @@ public class ClingyDanBehavior : BaseEnemy {
 	{
 		KillMe();
 	}
-	/*private Vector3 IterativeSolver(Vector3 firerPos, float firerMagnitude, Vector3 fireePos, Vector3 fireeVel)
-	{
-		float t = 0;
-		Vector3 firerVel = (fireePos - firerPos).normalized*firerMagnitude;
-		while(((fireeVel*t+fireePos)-(firerVel*t+firerPos)).magnitude > aimingError)
-		{
-			
-		}
-		return firerVel;
-	}*/
 }

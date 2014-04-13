@@ -22,6 +22,7 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	///<summary>Called to handle the final destruction of BaseEnemy</summary>
 	public virtual void KillMe()
 	{
+		Util.theGUI.RemoveRadarObject(transform);
 		if(attachedBarrier != null&& calledBarrier==false)
 		{
 			calledBarrier = true;
@@ -55,6 +56,7 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	public virtual void OnPlayerEnter()
 	{
 		isAwake = true;
+		Util.theGUI.AddRadarObject(transform, GameGUI.RadarObject.OBJECTTYPE.ENEMY);
 	}
 	///<summary>Called when player exits surrounding check collider</summary>
 	public virtual void OnPlayerExit()

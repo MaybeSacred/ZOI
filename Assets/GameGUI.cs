@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 public class GameGUI : MonoBehaviour {
 	public GUIStyle currentStyle;
 	public Vector2 primaryWepStartPoint;
@@ -20,6 +20,22 @@ public class GameGUI : MonoBehaviour {
 	public GUIStyle decrementMouseSensitivityButtonStyle;
 	public GUIStyle incrementMouseSensitivityButtonStyle;
 	private CameraScript theCamera;
+	public Texture2D radarBackgroundTexture;
+	public Texture2D nearEnemyBlipSameHeight, nearEnemyBlipDifferentHeight, farEnemyBlip,
+		checkpointBlip;
+	
+	private List<RadarObject> radar;
+	public struct RadarObject
+	{
+		public Transform objectTransform;
+		public OBJECTTYPE type;
+		public enum OBJECTTYPE{ENEMY, CHECKPOINT};
+		public RadarObject(Transform o, OBJECTTYPE t)
+		{
+			objectTransform = o;
+			type = t;
+		}
+	}
 	void Start () {
 		theCamera = GetComponent<CameraScript>();
 		timeSinceLastCheckpoint = checkpointDisplayTimeout;
@@ -27,14 +43,14 @@ public class GameGUI : MonoBehaviour {
 	}
 	void OnGUI()
 	{
-		if(Util.player.isAlive && !Util.isPaused)
+		if(Util.isPaused)
+		{
+			PauseScreen();
+		}
+		else
 		{
 			InGameGUI();
 			DebugStats();
-		}
-		else if(Util.isPaused)
-		{
-			PauseScreen();
 		}
 	}
 	void Update () {
@@ -154,6 +170,7 @@ public class GameGUI : MonoBehaviour {
 			GUI.Box(new Rect(Screen.width/2-125, 0, 250, 30), GUIContent.none);
 			GUI.Label(new Rect(Screen.width/2-125, 0, 250, 30), "Checkpoint Reached...", currentStyle);
 		}
+		DrawRadar();
 	}
 	void PauseScreen()
 	{
@@ -172,6 +189,38 @@ public class GameGUI : MonoBehaviour {
 		}
 		GUI.TextArea(new Rect(0, 0, 224, 48), theCamera.GetCurrentMouseSensitivity().ToString(), currentStyle);
 		GUI.EndGroup();
+		GUI.EndGroup();
+	}
+	public void AddRadarObject(Transform theObject, RadarObject.OBJECTTYPE type)
+	{
+		foreach(RadarObject r in radar)
+		{
+			if(r.objectTransform == theObject)
+			{
+				return;
+			}
+		}
+		radar.Add(new RadarObject(theObject, type));
+	}
+	public void RemoveRadarObject(Transform theObject)
+	{
+		RadarObject objToRemove = new RadarObject(null, RadarObject.OBJECTTYPE.CHECKPOINT);
+		foreach(RadarObject r in radar)
+		{
+			if(r.objectTransform == theObject)
+			{
+				objToRemove = r;
+			}
+		}
+		if(objToRemove.objectTransform != null)
+		{
+			radar.Remove(objToRemove);
+		}
+	}
+	private void DrawRadar()
+	{
+		GUI.BeginGroup(new Rect(0, Screen.height - radarBackgroundTexture.height, radarBackgroundTexture.width, radarBackgroundTexture.height));
+		GUI.Box(new Rect(0, 0, radarBackgroundTexture.width, radarBackgroundTexture.height), radarBackgroundTexture, currentStyle);
 		GUI.EndGroup();
 	}
 	public void CheckpointReached()
