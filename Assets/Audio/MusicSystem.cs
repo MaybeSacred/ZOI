@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MusicSystem: MonoBehaviour {
+
+
 	
 	[Range(0f,1f)]
 	public float MasterVolume = 1;
@@ -25,6 +27,7 @@ public class MusicSystem: MonoBehaviour {
 	
 	public List<AudioSource> audioSources = new List<AudioSource>();
 	public List<Group> groups = new List<Group>();
+	private Hashtable direction = new Hashtable();
 	public List<float> volumes = new List<float>();
 	
 	private Hashtable lerpStarts = new Hashtable();
@@ -66,24 +69,24 @@ public class MusicSystem: MonoBehaviour {
 	}
 
 	private void adjustVolumes(){
-		for (int counter = 0; counter < audioSources.Count; counter++){
+		for (int counter = 0; counter < audioSources.Capacity; counter++){
 			
 			float currentVol = audioSources[counter].volume;
-
+			
 			//Calc desired volume
 			float desiredVol = volumes[counter];
 			desiredVol = desiredVol - (1 - MasterVolume);
-
+			
 			if (groups[counter] == Group.Battle){
 				desiredVol = desiredVol - (1 - BattleVolume);
 			}else{
 				desiredVol = desiredVol - (1 - BackgroundVolume);
 			}
-
+			
 			if (paused){
 				desiredVol = desiredVol - (1 - PauseVolume);
 			}
-
+			
 			desiredVol = Mathf.Clamp (desiredVol, 0, 1);
 			
 			//If Volumes are not equal
@@ -94,6 +97,16 @@ public class MusicSystem: MonoBehaviour {
 					lerpStarts.Add(counter, Time.time);
 					origVolumes.Add (counter, currentVol);
 					
+					//Save whether we are fading up or down
+					direction.Add(counter, currentVol > desiredVol ? true : false);
+				}
+				
+				//If the fade direction has changed before we finished
+				if ((bool)direction[counter] != currentVol > desiredVol ? true : false){
+					lerpStarts.Remove(counter);
+					origVolumes.Remove(counter);
+					direction.Remove(counter);
+					return;
 				}
 				
 				//Lerp or round to the desired value
@@ -111,10 +124,12 @@ public class MusicSystem: MonoBehaviour {
 					//Remove the saved time and volume
 					lerpStarts.Remove(counter);
 					origVolumes.Remove(counter);
+					direction.Remove(counter);
 				}
 			}
 		}
 	}
+
 
 	private void randomizePhrases(){
 		for (int counter = 0; counter < audioSources.Capacity; counter++){
