@@ -5181,7 +5181,7 @@ Transform:
   m_PrefabInternal: {fileID: 738936296}
   m_GameObject: {fileID: 449727109}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 57.587101, y: 75.4997635, z: -28.2800236}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 20.1316776, y: 20.1316776, z: 20.1316776}
   m_Children: []
   m_Father: {fileID: 940476730}
@@ -6101,7 +6101,7 @@ MonoBehaviour:
       type: 2}
     secondaryAutoFireTimes: .200000003
     totalSecondaryBullets: 6
-    soundEffect: {fileID: 0}
+    soundEffect: {fileID: 8300000, guid: 84bbc36dea3138d40adb7d34c922e474, type: 3}
   primaryWeapClip: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   strafeSteeringEngaged: 0
   returnToCameraFollowTime: 3
