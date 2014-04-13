@@ -20,10 +20,10 @@ public class GameGUI : MonoBehaviour {
 	public GUIStyle decrementMouseSensitivityButtonStyle;
 	public GUIStyle incrementMouseSensitivityButtonStyle;
 	private CameraScript theCamera;
-	public Texture2D radarBackgroundTexture;
+	public Texture2D radarBackgroundTexture, radarBackgroundPingTexture;
 	public Texture2D nearEnemyBlipSameHeight, nearEnemyBlipDifferentHeight, farEnemyBlip,
 		checkpointBlip;
-	
+	public float NEARRADARDISTANCE;
 	private List<RadarObject> radar;
 	public struct RadarObject
 	{
@@ -37,6 +37,7 @@ public class GameGUI : MonoBehaviour {
 		}
 	}
 	void Start () {
+		radar = new List<RadarObject>();
 		theCamera = GetComponent<CameraScript>();
 		timeSinceLastCheckpoint = checkpointDisplayTimeout;
 		dotUpdateDelta = Util.player.primaryCannonReloadTime/4;
@@ -221,6 +222,10 @@ public class GameGUI : MonoBehaviour {
 	{
 		GUI.BeginGroup(new Rect(0, Screen.height - radarBackgroundTexture.height, radarBackgroundTexture.width, radarBackgroundTexture.height));
 		GUI.Box(new Rect(0, 0, radarBackgroundTexture.width, radarBackgroundTexture.height), radarBackgroundTexture, currentStyle);
+		foreach(RadarObject r in radar)
+		{
+			//GUI.Box();
+		}
 		GUI.EndGroup();
 	}
 	public void CheckpointReached()

@@ -50,8 +50,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -4.90621948, y: 0, z: -432.19165}
+  m_LocalRotation: {x: 0, y: .939692616, z: 0, w: -.342020124}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -85,7 +85,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 15000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -626,7 +626,7 @@ MonoBehaviour:
   cursorIcon: {fileID: 2800000, guid: 77f78428b519e0a4a8aaad845f68b4eb, type: 3}
   rechargingStrip: {fileID: 2800000, guid: e1493163f3cb00647a04647970a2db33, type: 3}
   checkpointDisplayTimeout: 3
-  debug: 1
+  debug: 0
   decrementMouseSensitivityButton:
     m_Text: 
     m_Image: {fileID: 2800000, guid: bbafa8aa8da273141b8065a4046b9755, type: 3}
@@ -753,6 +753,14 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  radarBackgroundTexture: {fileID: 2800000, guid: ad262ca1fb4bc3f4eb619ea65ef33be5,
+    type: 3}
+  radarBackgroundPingTexture: {fileID: 2800000, guid: 86272d4e2a9162546b949149e5c43d09,
+    type: 3}
+  nearEnemyBlipSameHeight: {fileID: 0}
+  nearEnemyBlipDifferentHeight: {fileID: 0}
+  farEnemyBlip: {fileID: 0}
+  checkpointBlip: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -769,8 +777,8 @@ MonoBehaviour:
   BackgroundVolume: .949999988
   PauseVolume: .550000012
   pauseFade: 1000
-  fadeIn: 3000
-  fadeOut: 3000
+  fadeIn: 0
+  fadeOut: 2000
   audioSources:
   - {fileID: 8200012}
   - {fileID: 8200010}
