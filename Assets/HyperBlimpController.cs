@@ -154,6 +154,7 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	public override void KillMe()
 	{
 		deathTimeoutTimer += Time.deltaTime;
+		Util.theGUI.RemoveRadarObject(transform);
 		foreach(Transform ring in rings)
 		{
 			BlimpRingPiece[] pieces = ring.GetComponentsInChildren<BlimpRingPiece>();
@@ -179,9 +180,5 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 	public void AddPiece()
 	{
 		topPiecesLeft++;
-	}
-	public override void OnPlayerExit()
-	{
-		
 	}
 }

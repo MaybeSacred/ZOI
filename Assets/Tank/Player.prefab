@@ -1141,8 +1141,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
-  m_LocalRotation: {x: 0, y: -.0746415257, z: 0, w: -.997210443}
-  m_LocalPosition: {x: 94.1822205, y: 9.81768417, z: -522.266479}
+  m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
+  m_LocalPosition: {x: -6.8163147, y: .52897644, z: 8.99768066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1931,7 +1931,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899995983, y: -.722940445, z: -1.59992707}
+  m_ConnectedAnchor: {x: -.899977148, y: -.722946167, z: -1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1960,7 +1960,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899984419, y: -.722940445, z: 1.60003769}
+  m_ConnectedAnchor: {x: -.900004506, y: -.722946167, z: 1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1989,7 +1989,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899984419, y: -.722940445, z: -1.60003769}
+  m_ConnectedAnchor: {x: .900004506, y: -.722946167, z: -1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2018,7 +2018,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899995983, y: -.722940445, z: 1.59992707}
+  m_ConnectedAnchor: {x: .899977148, y: -.722946167, z: 1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2060,7 +2060,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.79999995, y: .649999976, z: 5.32999992}
+  m_Size: {x: 2.4000001, y: .649999976, z: 5.32999992}
   m_Center: {x: 0, y: -.150000006, z: 0}
 --- !u!65 &6500010
 BoxCollider:
@@ -2296,12 +2296,12 @@ MonoBehaviour:
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12.5
   theCam: {fileID: 0}
-  forwardAcceleration: 41
+  forwardAcceleration: 40
   brakeForce: 60
-  maxSpeed: 12
+  maxSpeed: 15
   health: 100
   maxHealth: 100
-  maxSpeedRetardingForce: 80
+  maxSpeedRetardingForce: 70
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

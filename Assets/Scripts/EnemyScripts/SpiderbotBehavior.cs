@@ -157,6 +157,7 @@ public class SpiderbotBehavior : BaseEnemy {
 			calledBarrier =true;
 			attachedBarrier.UnregisterEnemy();
 		}
+		Util.theGUI.RemoveRadarObject(transform);
 		/*Hitbox.rigidbody.useGravity = true;
 		Hitbox.rigidbody.isKinematic = false;
 		Hitbox.rigidbody.constraints = RigidbodyConstraints.None;*/

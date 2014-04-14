@@ -113,6 +113,7 @@ public class WheelEnemy : BaseEnemy {
 	public override void KillMe()
 	{
 		ParticleSystem ps = Instantiate(explosionPS, transform.position, transform.rotation) as ParticleSystem;
+		Util.theGUI.RemoveRadarObject(transform);
 		ps.GetComponent<BasicExplosion>().explosionDuration = explosionDuration;
 		ps.GetComponent<BasicExplosion>().shieldDamage = shieldDamage;
 		ps.GetComponent<BasicExplosion>().healthDamage = healthDamage;
@@ -122,6 +123,7 @@ public class WheelEnemy : BaseEnemy {
 	public override void OnPlayerEnter()
 	{
 		isAwakeningLeeWayTimer += Time.deltaTime;
+		Util.theGUI.AddRadarObject(transform, GameGUI.RadarObject.OBJECTTYPE.ENEMY);
 		isAwakening = true;
 		rigidbody.useGravity = true;
 		rigidbody.AddForce(initialPopUpForce * transform.right);

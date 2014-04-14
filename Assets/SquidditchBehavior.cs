@@ -229,12 +229,20 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		int i = 0;
 		while(i < 5)
 		{
-			Physics.Raycast(transform.position, possible, out info);
-			if(bestDistanceSoFar <= info.distance && bestAngleSoFar > Vector3.Angle(possible, distance))
+			if(Physics.Raycast(transform.position, possible, out info))
+			{
+				if(bestDistanceSoFar <= info.distance && bestAngleSoFar > Vector3.Angle(possible, distance))
+				{
+					bestSoFar = possible;
+					bestAngleSoFar = Vector3.Angle(possible, distance);
+					bestDistanceSoFar = info.distance;
+				}
+			}
+			else if(bestAngleSoFar > Vector3.Angle(possible, distance))
 			{
 				bestSoFar = possible;
 				bestAngleSoFar = Vector3.Angle(possible, distance);
-				bestDistanceSoFar = info.distance;
+				bestDistanceSoFar = float.PositiveInfinity;
 			}
 			possible = GenerateBiasedVector(distance, 3);
 			i++;

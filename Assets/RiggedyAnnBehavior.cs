@@ -181,13 +181,13 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	public override void KillMe()
 	{
-		if(attachedBarrier != null&&calledBarrier==false)
-		{
-			calledBarrier = true;
-			attachedBarrier.UnregisterEnemy();
-		}
 		if(deathTimeoutTimer <= 0)
 		{
+			if(attachedBarrier != null)
+			{
+				attachedBarrier.UnregisterEnemy();
+			}
+			Util.theGUI.RemoveRadarObject(transform);
 			rigidbody.isKinematic = false;
 			graphics.gameObject.GetComponent<SpringJoint>().breakForce = 0;
 			navAgent.enabled = false;
