@@ -246,6 +246,7 @@ public class KatneenBehavior : BaseEnemy {
 			gameObject.GetComponent<SpringJoint>().breakForce = 0;
 			gameObject.GetComponent<SpringJoint>().breakTorque = 0;
 			rigidbody.constraints = RigidbodyConstraints.None;
+			Util.theGUI.RemoveRadarObject(transform);
 			if(attachedBarrier != null)
 			{
 				attachedBarrier.UnregisterEnemy();

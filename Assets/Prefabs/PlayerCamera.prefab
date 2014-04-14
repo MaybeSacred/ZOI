@@ -757,10 +757,17 @@ MonoBehaviour:
     type: 3}
   radarBackgroundPingTexture: {fileID: 2800000, guid: 86272d4e2a9162546b949149e5c43d09,
     type: 3}
-  nearEnemyBlipSameHeight: {fileID: 0}
-  nearEnemyBlipDifferentHeight: {fileID: 0}
-  farEnemyBlip: {fileID: 0}
-  checkpointBlip: {fileID: 0}
+  nearEnemyBlipSameHeight: {fileID: 2800000, guid: fd10dca94dec43f4e86b18fc5d6cc9d0,
+    type: 3}
+  nearEnemyBlipDifferentHeight: {fileID: 2800000, guid: f08e39d315c158f479b29e421a592a58,
+    type: 3}
+  farEnemyBlip: {fileID: 2800000, guid: 3628c4faa9b835443b112358faf3d0ab, type: 3}
+  nearCheckpointBlip: {fileID: 2800000, guid: 7c3e21eca95c2324cab0fe7fd0cb0443, type: 3}
+  farCheckpointBlip: {fileID: 2800000, guid: 7060f11fba10bd946918b937407b6263, type: 3}
+  NEARRADARDISTANCE: 60
+  RADARGRAPHICALDISTANCE: 78
+  FARRADARGRAPHICALRADIUS: 80
+  radarMaxHeightDifference: 10
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -22,8 +22,14 @@ public class GameGUI : MonoBehaviour {
 	private CameraScript theCamera;
 	public Texture2D radarBackgroundTexture, radarBackgroundPingTexture;
 	public Texture2D nearEnemyBlipSameHeight, nearEnemyBlipDifferentHeight, farEnemyBlip,
-		checkpointBlip;
+		nearCheckpointBlip, farCheckpointBlip;
 	public float NEARRADARDISTANCE;
+	/// <summary>
+	/// This depends on the graphical radius of the radar circle graphic
+	/// </summary>
+	public float RADARGRAPHICALDISTANCE;
+	public float FARRADARGRAPHICALRADIUS;
+	public float radarMaxHeightDifference;
 	private List<RadarObject> radar;
 	public struct RadarObject
 	{
@@ -222,9 +228,45 @@ public class GameGUI : MonoBehaviour {
 	{
 		GUI.BeginGroup(new Rect(0, Screen.height - radarBackgroundTexture.height, radarBackgroundTexture.width, radarBackgroundTexture.height));
 		GUI.Box(new Rect(0, 0, radarBackgroundTexture.width, radarBackgroundTexture.height), radarBackgroundTexture, currentStyle);
+		Vector3 xzCamera = new Vector3(Util.mainCamera.transform.forward.x, 0, Util.mainCamera.transform.forward.z);
 		foreach(RadarObject r in radar)
 		{
-			//GUI.Box();
+			if(r.type == RadarObject.OBJECTTYPE.ENEMY)
+			{
+				Vector3 vectorToRO = r.objectTransform.position - Util.player.transform.position;
+				Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
+				float angle = Vector3.Angle(Vector3.forward, xzCamera);
+				xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;// Vector3.RotateTowards(xzVectorToRO, xzCamera, angle, 0);
+				if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
+				{
+					if(Mathf.Abs(vectorToRO.y) > radarMaxHeightDifference)
+					{
+						xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+						GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipDifferentHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipDifferentHeight.height/2,
+						                 nearEnemyBlipDifferentHeight.width, nearEnemyBlipDifferentHeight.height), nearEnemyBlipDifferentHeight, currentStyle);
+					}
+					else
+					{
+						xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+						GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipSameHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipSameHeight.height/2,
+					    	nearEnemyBlipSameHeight.width, nearEnemyBlipSameHeight.height), nearEnemyBlipSameHeight, currentStyle);
+					}
+				}
+				else
+				{
+					xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
+					GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - farEnemyBlip.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - farEnemyBlip.height/2,
+					 farEnemyBlip.width, farEnemyBlip.height), farEnemyBlip, currentStyle);
+				}
+			}
+			else if(r.type == RadarObject.OBJECTTYPE.CHECKPOINT)
+			{
+				
+			}
+			else
+			{
+				Debug.Log("WTF Mate?");
+			}
 		}
 		GUI.EndGroup();
 	}
@@ -236,7 +278,7 @@ public class GameGUI : MonoBehaviour {
 	{
 		if(debug)
 		{
-			GUILayout.BeginArea(new Rect(0, Screen.height-100, 300, 100));
+			GUILayout.BeginArea(new Rect(0, Screen.height-425, 300, 100));
 			GUILayout.Label(Util.player.rigidbody.velocity.magnitude.ToString());
 			GUILayout.Label(Util.mainCamera.distanceToTarget.ToString());
 			GUILayout.EndArea();

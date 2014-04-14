@@ -291,6 +291,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		if(!isAttachedToGameObject)
 		{
 			isAwake = true;
+			Util.theGUI.AddRadarObject(transform, GameGUI.RadarObject.OBJECTTYPE.ENEMY);
 		}
 	}
 	void OnTriggerEnter(Collider other)
@@ -309,6 +310,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		rigidbody.isKinematic = false;
 		currentLaser = null;
 		gameObject.layer = LayerMask.NameToLayer("Default");
+		Util.theGUI.RemoveRadarObject(transform);
 	}
 	public override void OnPlayerExit()
 	{
