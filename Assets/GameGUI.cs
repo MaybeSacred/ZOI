@@ -235,8 +235,7 @@ public class GameGUI : MonoBehaviour {
 			{
 				Vector3 vectorToRO = r.objectTransform.position - Util.player.transform.position;
 				Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
-				float angle = Vector3.Angle(Vector3.forward, xzCamera);
-				xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;// Vector3.RotateTowards(xzVectorToRO, xzCamera, angle, 0);
+				xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;
 				if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
 				{
 					if(Mathf.Abs(vectorToRO.y) > radarMaxHeightDifference)
@@ -254,9 +253,12 @@ public class GameGUI : MonoBehaviour {
 				}
 				else
 				{
+					Matrix4x4 backup = GUI.matrix;
+					GUIUtility.RotateAroundPivot(Vector3.Angle(xzVectorToRO, xzCamera), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2));
 					xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
 					GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - farEnemyBlip.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - farEnemyBlip.height/2,
 					 farEnemyBlip.width, farEnemyBlip.height), farEnemyBlip, currentStyle);
+					GUI.matrix = backup;
 				}
 			}
 			else if(r.type == RadarObject.OBJECTTYPE.CHECKPOINT)
