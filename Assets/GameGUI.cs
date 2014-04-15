@@ -37,10 +37,12 @@ public class GameGUI : MonoBehaviour {
 		public Transform objectTransform;
 		public OBJECTTYPE type;
 		public enum OBJECTTYPE{ENEMY, CHECKPOINT};
-		public RadarObject(Transform o, OBJECTTYPE t)
+		public string name;
+		public RadarObject(Transform o, OBJECTTYPE t, string n)
 		{
 			objectTransform = o;
 			type = t;
+			name = n;
 		}
 	}
 	void Start () {
@@ -208,7 +210,7 @@ public class GameGUI : MonoBehaviour {
 				return;
 			}
 		}
-		radar.Add(new RadarObject(theObject, type));
+		radar.Add(new RadarObject(theObject, type, theObject.name));
 	}
 	public void RemoveRadarObject(Transform theObject)
 	{
@@ -232,43 +234,50 @@ public class GameGUI : MonoBehaviour {
 		Vector3 xzCamera = new Vector3(Util.mainCamera.transform.forward.x, 0, Util.mainCamera.transform.forward.z);
 		foreach(RadarObject r in radar)
 		{
-			if(r.type == RadarObject.OBJECTTYPE.ENEMY)
+			if(r.objectTransform != null)
 			{
-				Vector3 vectorToRO = r.objectTransform.position - Util.player.transform.position;
-				Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
-				xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;
-				if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
+				if(r.type == RadarObject.OBJECTTYPE.ENEMY)
 				{
-					if(Mathf.Abs(vectorToRO.y) > radarMaxHeightDifference)
+					Vector3 vectorToRO = r.objectTransform.position - Util.player.transform.position;
+					Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
+					xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;
+					if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
 					{
-						xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
-						GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipDifferentHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipDifferentHeight.height/2,
-						                 nearEnemyBlipDifferentHeight.width, nearEnemyBlipDifferentHeight.height), nearEnemyBlipDifferentHeight, currentStyle);
+						if(Mathf.Abs(vectorToRO.y) > radarMaxHeightDifference)
+						{
+							xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+							GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipDifferentHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipDifferentHeight.height/2,
+							                 nearEnemyBlipDifferentHeight.width, nearEnemyBlipDifferentHeight.height), nearEnemyBlipDifferentHeight, currentStyle);
+						}
+						else
+						{
+							xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+							GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipSameHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipSameHeight.height/2,
+						    	nearEnemyBlipSameHeight.width, nearEnemyBlipSameHeight.height), nearEnemyBlipSameHeight, currentStyle);
+						}
 					}
 					else
 					{
-						xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
-						GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipSameHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipSameHeight.height/2,
-					    	nearEnemyBlipSameHeight.width, nearEnemyBlipSameHeight.height), nearEnemyBlipSameHeight, currentStyle);
+						Matrix4x4 backup = GUI.matrix;
+						xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
+						GUIUtility.RotateAroundPivot(Vector3.Angle(xzVectorToRO, xzCamera), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, Screen.height - radarBackgroundTexture.height/2 - xzVectorToRO.z));
+						GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - farEnemyBlip.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - farEnemyBlip.height/2,
+						 farEnemyBlip.width, farEnemyBlip.height), farEnemyBlip, currentStyle);
+						GUI.matrix = backup;
 					}
+				}
+				else if(r.type == RadarObject.OBJECTTYPE.CHECKPOINT)
+				{
+					
 				}
 				else
 				{
-					Matrix4x4 backup = GUI.matrix;
-					xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
-					GUIUtility.RotateAroundPivot(Vector3.Angle(xzVectorToRO, xzCamera), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, Screen.height - radarBackgroundTexture.height/2 - xzVectorToRO.z));
-					GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - farEnemyBlip.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - farEnemyBlip.height/2,
-					 farEnemyBlip.width, farEnemyBlip.height), farEnemyBlip, currentStyle);
-					GUI.matrix = backup;
+					Debug.Log("WTF Mate?");
 				}
-			}
-			else if(r.type == RadarObject.OBJECTTYPE.CHECKPOINT)
-			{
-				
 			}
 			else
 			{
-				Debug.Log("WTF Mate?");
+				radar.Remove(r);
 			}
 		}
 		GUI.EndGroup();

@@ -121,7 +121,7 @@ MonoBehaviour:
   healthDamage: 0
   explosionForce: 1500
   explosionDuration: .100000001
-  explosionRadius: 12
+  explosionRadius: 8
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -132,7 +132,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 12
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800000
 ParticleSystem:
@@ -184,7 +184,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 110
+      scalar: 75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -199,7 +199,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .636363626
+          value: .666666687
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -301,7 +301,7 @@ ParticleSystem:
         rgba: 4294967295
       minMaxState: 0
     startSize:
-      scalar: 2.5
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -316,7 +316,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .400000006
+          value: .666666687
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -346,7 +346,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 3
-    gravityModifier: .600000024
+    gravityModifier: .5
     inheritVelocity: 0
     maxNumParticles: 5000
   ShapeModule:
@@ -398,7 +398,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 5000
+    cnt0: 1000
     cnt1: 30
     cnt2: 30
     cnt3: 30
@@ -416,8 +416,8 @@ ParticleSystem:
         m_Curve:
         - time: 0
           value: .774847865
-          inSlope: 1.47667372
-          outSlope: 1.47667372
+          inSlope: 4.39596701
+          outSlope: 4.39596701
           tangentMode: 0
         - time: 1
           value: 0
@@ -607,17 +607,12 @@ ParticleSystem:
   VelocityModule:
     enabled: 0
     x:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
-          value: 1
+          value: .379807681
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -638,19 +633,14 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 1
     y:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -671,19 +661,14 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 1
     z:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
-          value: 1
+          value: 0
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -704,7 +689,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 1
     inWorldSpace: 0
   ForceModule:
     enabled: 0
@@ -810,7 +795,7 @@ ParticleSystem:
     inWorldSpace: 0
     randomizePerFrame: 0
   ExternalForcesModule:
-    enabled: 0
+    enabled: 1
     multiplier: 1
   ClampVelocityModule:
     enabled: 1
@@ -914,7 +899,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     magnitude:
-      scalar: 4
+      scalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:

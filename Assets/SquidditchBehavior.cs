@@ -308,6 +308,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 	}
 	public override void KillMe()
 	{
+		Util.theGUI.RemoveRadarObject(transform);
 		if(attachedBarrier != null&&calledBarrier==false)
 		{
 			calledBarrier= true;
@@ -318,10 +319,5 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		rigidbody.isKinematic = false;
 		currentLaser = null;
 		gameObject.layer = LayerMask.NameToLayer("Default");
-		Util.theGUI.RemoveRadarObject(transform);
-	}
-	public override void OnPlayerExit()
-	{
-		
 	}
 }
