@@ -260,7 +260,7 @@ public class GameGUI : MonoBehaviour {
 					{
 						Matrix4x4 backup = GUI.matrix;
 						xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
-						GUIUtility.RotateAroundPivot(Vector3.Angle(xzVectorToRO, xzCamera), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, Screen.height - radarBackgroundTexture.height/2 - xzVectorToRO.z));
+						GUIUtility.RotateAroundPivot(Vector3.Angle(-Vector3.forward, xzVectorToRO), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, radarBackgroundTexture.height/2 - xzVectorToRO.z));
 						GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - farEnemyBlip.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - farEnemyBlip.height/2,
 						 farEnemyBlip.width, farEnemyBlip.height), farEnemyBlip, currentStyle);
 						GUI.matrix = backup;
@@ -274,10 +274,6 @@ public class GameGUI : MonoBehaviour {
 				{
 					Debug.Log("WTF Mate?");
 				}
-			}
-			else
-			{
-				radar.Remove(r);
 			}
 		}
 		GUI.EndGroup();
