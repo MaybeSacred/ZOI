@@ -28,9 +28,7 @@ public class TriggerBoss : MonoBehaviour {
 				{
 					((PlayerEvent)enemy.GetComponent<MonoBehaviour>()).OnPlayerEnter();
 					Destroy (dummies);
-					player.SetLastCheckpoint(transform.position,Util.player.restartRotation, 2);
 					doors.CloseDoors();
-
 				}
 			}
 		}

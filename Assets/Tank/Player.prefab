@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: -6.8163147, y: .52897644, z: 8.99768066}
+  m_LocalPosition: {x: 99.3061523, y: 3.2184608, z: -448.324585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1931,7 +1931,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899977148, y: -.722946167, z: -1.60004127}
+  m_ConnectedAnchor: {x: -.899977148, y: -.722940445, z: -1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1960,7 +1960,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.900004506, y: -.722946167, z: 1.60000205}
+  m_ConnectedAnchor: {x: -.900004506, y: -.722940445, z: 1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1989,7 +1989,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .900004506, y: -.722946167, z: -1.60000205}
+  m_ConnectedAnchor: {x: .900004506, y: -.722940445, z: -1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2018,7 +2018,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899977148, y: -.722946167, z: 1.60004127}
+  m_ConnectedAnchor: {x: .899977148, y: -.722940445, z: 1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2223,12 +2223,12 @@ MonoBehaviour:
     totalSecondaryBullets: 3
     soundEffect: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   - secondaryCannonReloadTime: 0
-    firingRandomness: .100000001
+    firingRandomness: .109999999
     secondaryBulletEmitters: {fileID: 400010}
     secondaryCannonFlashes: {fileID: 19800034}
     possibleSecondaries: {fileID: 11400000, guid: 1d2226000c2eaf8439b11ea0e43e3d1c,
       type: 2}
-    secondaryAutoFireTimes: .0700000003
+    secondaryAutoFireTimes: .0599999987
     totalSecondaryBullets: 1
     soundEffect: {fileID: 8300000, guid: ec1d5501f7557e14391592c7d67cd1ec, type: 3}
   - secondaryCannonReloadTime: 5

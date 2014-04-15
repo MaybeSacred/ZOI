@@ -990,7 +990,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   shield: {fileID: 400032}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
-  shieldRechargeDelay: 5
+  shieldRechargeDelay: 7
   shieldRechargeRate: 33.2999992
   shieldMaterialRate: .0500000007
   rotationDelta: 30
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   - {fileID: 400026}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 18
+  laserLockedOnGroundRate: 21
   laserLostLockGroundRate: 6
   deltaAngleForLosingLocked: 120
   laserRandomness: 0

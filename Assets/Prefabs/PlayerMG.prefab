@@ -95,9 +95,10 @@ MonoBehaviour:
   speed: {x: 0, y: 0, z: 0}
   initialSpeed: 120
   shieldDamage: 3
-  healthDamage: 9
+  healthDamage: 10
   timeOutCounter: 0
-  explosionDuration: .0500000007
+  deflectable: 0
+  deflectionSpeed: 0
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 	public float deathTimeout;
 	public float deathTimeoutTimer{get; private set;}
 	public Vector3 restartPosition, restartRotation;
-	private int lastCheckpoint = 0;
+	private CheckpointBehaviour lastCheckpoint;
 	private float lastCheckpointHealth;
 	public ParticleSystem[] wheelGroundEffects;
 	public float minShieldFlicker, maxShieldFlicker, shieldMaterialRate;
@@ -542,7 +542,7 @@ public class PlayerController : MonoBehaviour
 					if(!colliders.Contains(other.gameObject))
 					{
 						colliders.Add(other.gameObject);
-						HealthChange(0, other.GetComponent<HealthPack>().deltaHealth);
+						HealthChange(0, 100);
 					}
 				}
 			}
@@ -573,14 +573,14 @@ public class PlayerController : MonoBehaviour
         //only consistent triggers
 		RealCollisionHandler(other);
 	}
-	public bool SetLastCheckpoint(Vector3 restartPos, Vector3 restartEulers, int checkpointNumber)
+	public bool SetLastCheckpoint(Vector3 restartPos, Vector3 restartEulers, CheckpointBehaviour checkpoint)
 	{
-		if(checkpointNumber > lastCheckpoint)
+		if(checkpoint != lastCheckpoint)
 		{
 			restartPosition = restartPos;
 			restartRotation = restartEulers;
-			lastCheckpoint = checkpointNumber;
-			lastCheckpointHealth = health;
+			lastCheckpoint = checkpoint;
+			lastCheckpointHealth = 100;
 			return true;
 		}
 		return false;

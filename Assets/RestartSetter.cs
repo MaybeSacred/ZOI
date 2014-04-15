@@ -12,10 +12,10 @@ public class RestartSetter : MonoBehaviour {
 	{
 		if(other.tag.Equals("Player"))
 		{
-			if(Util.player.SetLastCheckpoint(desiredPosition + transform.position, desiredRotation, checkPointNumber))
+			/*if(Util.player.SetLastCheckpoint(desiredPosition + transform.position, desiredRotation, checkPointNumber))
 			{
-				Util.theGUI.CheckpointReached();
-			}
+				
+			}*/
 		}
 	}
 }

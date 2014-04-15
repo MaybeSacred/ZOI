@@ -20,6 +20,7 @@ public class GameGUI : MonoBehaviour {
 	public GUIStyle decrementMouseSensitivityButtonStyle;
 	public GUIStyle incrementMouseSensitivityButtonStyle;
 	private CameraScript theCamera;
+	CheckpointBehaviour currentCheckpoint;
 	public Texture2D radarBackgroundTexture, radarBackgroundPingTexture;
 	public Texture2D nearEnemyBlipSameHeight, nearEnemyBlipDifferentHeight, farEnemyBlip,
 		nearCheckpointBlip, farCheckpointBlip;
@@ -173,7 +174,7 @@ public class GameGUI : MonoBehaviour {
 		GUILayout.EndArea();
 		if(timeSinceLastCheckpoint < checkpointDisplayTimeout)
 		{
-			timeSinceLastCheckpoint += Time.deltaTime;
+			timeSinceLastCheckpoint += .01f;
 			GUI.Box(new Rect(Screen.width/2-125, 0, 250, 30), GUIContent.none);
 			GUI.Label(new Rect(Screen.width/2-125, 0, 250, 30), "Checkpoint Reached...", currentStyle);
 		}
@@ -211,17 +212,17 @@ public class GameGUI : MonoBehaviour {
 	}
 	public void RemoveRadarObject(Transform theObject)
 	{
-		RadarObject objToRemove = new RadarObject(null, RadarObject.OBJECTTYPE.CHECKPOINT);
+		List<RadarObject> objToRemove = new List<RadarObject>();
 		foreach(RadarObject r in radar)
 		{
 			if(r.objectTransform == theObject)
 			{
-				objToRemove = r;
+				objToRemove.Add(r);
 			}
 		}
-		if(objToRemove.objectTransform != null)
+		foreach(RadarObject r in objToRemove)
 		{
-			radar.Remove(objToRemove);
+			radar.Remove(r);
 		}
 	}
 	private void DrawRadar()
@@ -254,8 +255,8 @@ public class GameGUI : MonoBehaviour {
 				else
 				{
 					Matrix4x4 backup = GUI.matrix;
-					GUIUtility.RotateAroundPivot(Vector3.Angle(xzVectorToRO, xzCamera), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2));
 					xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
+					GUIUtility.RotateAroundPivot(Vector3.Angle(xzVectorToRO, xzCamera), new Vector2(xzVectorToRO.x + radarBackgroundTexture.width/2, Screen.height - radarBackgroundTexture.height/2 - xzVectorToRO.z));
 					GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - farEnemyBlip.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - farEnemyBlip.height/2,
 					 farEnemyBlip.width, farEnemyBlip.height), farEnemyBlip, currentStyle);
 					GUI.matrix = backup;
@@ -272,10 +273,6 @@ public class GameGUI : MonoBehaviour {
 		}
 		GUI.EndGroup();
 	}
-	public void CheckpointReached()
-	{
-		timeSinceLastCheckpoint = 0;
-	}
 	private void DebugStats()
 	{
 		if(debug)
@@ -284,6 +281,15 @@ public class GameGUI : MonoBehaviour {
 			GUILayout.Label(Util.player.rigidbody.velocity.magnitude.ToString());
 			GUILayout.Label(Util.mainCamera.distanceToTarget.ToString());
 			GUILayout.EndArea();
+		}
+	}
+
+	public void SetNextCheckpoint (CheckpointBehaviour nextCheckpoint)
+	{
+		if(nextCheckpoint != null)
+		{
+			currentCheckpoint = nextCheckpoint;
+			timeSinceLastCheckpoint = 0;
 		}
 	}
 }

@@ -13,12 +13,14 @@ public class Util : MonoBehaviour {
 	public static int PLAYERWEAPONSIGNORELAYERS;
 	public static MusicSystem ms;
 	public static float currentTimeScale = 1;
+	public CheckpointBehaviour firstCheckpoint;
 
 	public static bool isPaused{get; private set;}
 	void Start () {
 		PLAYERWEAPONSIGNORELAYERS = ~(1<<LayerMask.NameToLayer("Player") | 1<<LayerMask.NameToLayer("Ignore Raycast") | 1<<LayerMask.NameToLayer("BulletLayer"));
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();
+		theGUI.SetNextCheckpoint(firstCheckpoint);
 		mainCamera = this.GetComponentInChildren<CameraScript>();
 		ms = this.GetComponentInChildren<MusicSystem>();
 	}
