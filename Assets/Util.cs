@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Diagnostics;
 
@@ -20,9 +20,9 @@ public class Util : MonoBehaviour {
 		PLAYERWEAPONSIGNORELAYERS = ~(1<<LayerMask.NameToLayer("Player") | 1<<LayerMask.NameToLayer("Ignore Raycast") | 1<<LayerMask.NameToLayer("BulletLayer"));
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();
-		theGUI.SetNextCheckpoint(firstCheckpoint);
 		mainCamera = this.GetComponentInChildren<CameraScript>();
 		ms = this.GetComponentInChildren<MusicSystem>();
+		theGUI.SetNextCheckpoint(firstCheckpoint);
 	}
 	/*Handles details of firing a BasicBullet
 	 *Should be used by all objects attempting to fire a bullet

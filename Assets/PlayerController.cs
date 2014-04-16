@@ -180,14 +180,7 @@ public class PlayerController : MonoBehaviour
 					Quaternion tempQuat;
 					if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 					{
-						if(hit.distance < 10)
-						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-cannonGO.position);
-						}
-						else
-						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-cannonGO.position);
-						}
+						tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-cannonGO.position);
 					}
 					else
 					{
@@ -227,14 +220,7 @@ public class PlayerController : MonoBehaviour
 						Quaternion tempQuat;
 						if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 						{
-							if(hit.distance < 10)
-							{
-								tempQuat = Quaternion.LookRotation(theCam.transform.forward*10+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
-							}
-							else
-							{
-								tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
-							}
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
 						}
 						else
 						{
@@ -332,7 +318,7 @@ public class PlayerController : MonoBehaviour
 		if(Input.GetKeyDown("r"))
 		{
 			transform.rotation = Quaternion.identity;
-			transform.localPosition += new Vector3(0, 5, 0);
+			transform.localPosition += new Vector3(0, 3, 0);
 		}
 		/*Weapon cycling*/
 		if (Input.GetKeyDown("tab"))
