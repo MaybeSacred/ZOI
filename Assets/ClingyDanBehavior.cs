@@ -88,6 +88,7 @@ public class ClingyDanBehavior : BaseEnemy {
 		{
 			deathTimeoutTimer += Time.deltaTime;
 			Util.theGUI.RemoveRadarObject(transform);
+			deathParticles.Play();
 			if(attachedBarrier != null)
 			{
 				attachedBarrier.UnregisterEnemy();

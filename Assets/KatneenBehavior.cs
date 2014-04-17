@@ -36,7 +36,6 @@ public class KatneenBehavior : BaseEnemy {
 	public float laserRandomness;
 	private Vector3 startPlayerDirection;
 	private bool isLaserLockedOn;
-	public ParticleSystem deathPS;
 	void Start () {
 		if(attachedBarrier != null)
 		{
@@ -241,6 +240,7 @@ public class KatneenBehavior : BaseEnemy {
 		if(!breakingDown)
 		{
 			currentLaser = null;
+			deathParticles.Play();
 			deathTimeoutTimer += Time.deltaTime;
 			turret.gameObject.AddComponent<Rigidbody>();
 			gameObject.GetComponent<SpringJoint>().breakForce = 0;

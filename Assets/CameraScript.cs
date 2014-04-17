@@ -99,9 +99,18 @@ public class CameraScript : MonoBehaviour {
 				{
 					camera.fieldOfView = Mathf.Lerp(camera.fieldOfView, startFOV, 10*Time.deltaTime);
 				}
-				transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
+				if(isZoomed)
+				{
+					transform.localPosition = new Vector3(Util.player.transform.localPosition.x - .5f * cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
+					                                      Util.player.transform.localPosition.y + .66f * cameraOffset.y, 
+					                                      Util.player.transform.localPosition.z - .5f * cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
+				}
+				else
+				{
+					transform.localPosition = new Vector3(Util.player.transform.localPosition.x - cameraOffset.x*Mathf.Sin(Mathf.Deg2Rad*transform.eulerAngles.y), 
 				                                      Util.player.transform.localPosition.y + cameraOffset.y, 
 				                                      Util.player.transform.localPosition.z - cameraOffset.x*Mathf.Cos(Mathf.Deg2Rad*transform.eulerAngles.y));
+				}
 				distanceToTarget = detect.distance;
 				ShakeCamera();
 			}

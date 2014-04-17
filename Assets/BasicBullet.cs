@@ -45,7 +45,10 @@ public class BasicBullet : MonoBehaviour {
 	{
 		if(other.gameObject.tag.Equals("Deflective")&&deflectable)
 		{
-			rigidbody.velocity = (transform.position - other.transform.position).normalized*deflectionSpeed;
+			if(!rigidbody.isKinematic)
+			{
+				rigidbody.velocity = (transform.position - other.transform.position).normalized*deflectionSpeed;
+			}
 			rigidbody.useGravity = true;
 		}
 		else 

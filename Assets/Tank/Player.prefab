@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: 99.3061523, y: 3.2184608, z: -448.324585}
+  m_LocalPosition: {x: 22.9240723, y: -1.81205678, z: 129.548584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1855,7 +1855,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 50
   m_Drag: .25
-  m_AngularDrag: .100000001
+  m_AngularDrag: .330000013
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
@@ -1960,7 +1960,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.900004506, y: -.722940445, z: 1.60000205}
+  m_ConnectedAnchor: {x: -.900024712, y: -.722940445, z: 1.60012245}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1989,7 +1989,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .900004506, y: -.722940445, z: -1.60000205}
+  m_ConnectedAnchor: {x: .900024712, y: -.722940445, z: -1.60012245}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   - {fileID: 19800024}
   - {fileID: 19800016}
   - {fileID: 19800020}
-  centerOfMassAdjustment: .949999988
+  centerOfMassAdjustment: .800000012
   deathTimeout: 3
   restartPosition: {x: 0, y: 0, z: 0}
   restartRotation: {x: 0, y: 0, z: 0}

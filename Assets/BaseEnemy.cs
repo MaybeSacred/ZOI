@@ -11,6 +11,7 @@ public abstract class BaseEnemy : MonoBehaviour, PlayerEvent
 	protected List<GameObject> colliders;
 	public BarrierBehavior attachedBarrier;
 	protected bool calledBarrier;
+	public ParticleSystem deathParticles;
 	void Awake()
 	{
 		if(attachedBarrier != null)

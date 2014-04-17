@@ -1045,10 +1045,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90312d0f0e14bb049bdbf85a3f78b75a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextPointTime: 0
-  cameraLookOffset: 0
-  pointsToLookAt: []
-  rotationSpeed: 0
+  nextPointTime: 8
+  cameraLookOffset: 30
+  pointsToLookAt:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rotationSpeed: 5
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

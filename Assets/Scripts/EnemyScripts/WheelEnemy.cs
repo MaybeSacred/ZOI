@@ -114,6 +114,7 @@ public class WheelEnemy : BaseEnemy {
 	{
 		ParticleSystem ps = Instantiate(explosionPS, transform.position, transform.rotation) as ParticleSystem;
 		Util.theGUI.RemoveRadarObject(transform);
+		deathParticles.Play();
 		ps.GetComponent<BasicExplosion>().explosionDuration = explosionDuration;
 		ps.GetComponent<BasicExplosion>().shieldDamage = shieldDamage;
 		ps.GetComponent<BasicExplosion>().healthDamage = healthDamage;

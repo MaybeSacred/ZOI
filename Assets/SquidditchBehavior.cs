@@ -314,6 +314,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 			calledBarrier= true;
 			attachedBarrier.UnregisterEnemy();
 		}
+		deathParticles.Play();
 		deathTimeoutTimer += Time.deltaTime;
 		rigidbody.useGravity = true;
 		rigidbody.isKinematic = false;
