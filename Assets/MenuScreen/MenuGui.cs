@@ -46,7 +46,7 @@ public class MenuGui : MonoBehaviour {
 		GUI.Box(new Rect(imagex, imagey, imagewidth, imageheight), "", mainStyle);
 		GUI.Label(new Rect(imagex+200,imagey+100,100,100), "Main Menu", menuTitleStyle);
 		GUI.Label(new Rect(400,200,100,100), "Zone" + "\n" + "of" + "\n" + "Inaccessibility", titleStyle);
-		if(GUI.Button(new Rect(imagex+100,imagey+250,imagewidth-200,50), "Start Game", buttonStyle))
+		if(GUI.Button(new Rect(imagex+100,imagey+250,imagewidth-200,50), "Start New Game", buttonStyle))
 		{
 			Application.LoadLevel(1);
 		}

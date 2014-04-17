@@ -5480,7 +5480,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.79999995, y: .649999976, z: 5.32999992}
+  m_Size: {x: 2.4000001, y: .649999976, z: 5.32999992}
   m_Center: {x: 0, y: -.150000006, z: 0}
 --- !u!114 &100560923
 MonoBehaviour:
@@ -5505,12 +5505,12 @@ MonoBehaviour:
     totalSecondaryBullets: 3
     soundEffect: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   - secondaryCannonReloadTime: 0
-    firingRandomness: .100000001
+    firingRandomness: .109999999
     secondaryBulletEmitters: {fileID: 777961574}
     secondaryCannonFlashes: {fileID: 470242707}
     possibleSecondaries: {fileID: 11400000, guid: 1d2226000c2eaf8439b11ea0e43e3d1c,
       type: 2}
-    secondaryAutoFireTimes: .0700000003
+    secondaryAutoFireTimes: .0599999987
     totalSecondaryBullets: 1
     soundEffect: {fileID: 8300000, guid: ec1d5501f7557e14391592c7d67cd1ec, type: 3}
   - secondaryCannonReloadTime: 5
@@ -5578,12 +5578,12 @@ MonoBehaviour:
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12.5
   theCam: {fileID: 121397734}
-  forwardAcceleration: 41
+  forwardAcceleration: 40
   brakeForce: 60
-  maxSpeed: 12
+  maxSpeed: 15
   health: 100
   maxHealth: 100
-  maxSpeedRetardingForce: 80
+  maxSpeedRetardingForce: 70
 --- !u!33 &100560924
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7305,7 +7305,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 15000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -7439,7 +7439,7 @@ MonoBehaviour:
   healthBar: {fileID: 2800000, guid: 1739c03dbfaf0094ab9596c9bf8ace51, type: 3}
   cursorIcon: {fileID: 2800000, guid: 77f78428b519e0a4a8aaad845f68b4eb, type: 3}
   rechargingStrip: {fileID: 2800000, guid: e1493163f3cb00647a04647970a2db33, type: 3}
-  checkpointDisplayTimeout: 3
+  checkpointDisplayTimeout: 5
   debug: 1
   decrementMouseSensitivityButton:
     m_Text: 
@@ -7567,6 +7567,21 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  radarBackgroundTexture: {fileID: 2800000, guid: ad262ca1fb4bc3f4eb619ea65ef33be5,
+    type: 3}
+  radarBackgroundPingTexture: {fileID: 2800000, guid: 86272d4e2a9162546b949149e5c43d09,
+    type: 3}
+  nearEnemyBlipSameHeight: {fileID: 2800000, guid: fd10dca94dec43f4e86b18fc5d6cc9d0,
+    type: 3}
+  nearEnemyBlipDifferentHeight: {fileID: 2800000, guid: f08e39d315c158f479b29e421a592a58,
+    type: 3}
+  farEnemyBlip: {fileID: 2800000, guid: 3628c4faa9b835443b112358faf3d0ab, type: 3}
+  nearCheckpointBlip: {fileID: 2800000, guid: 7c3e21eca95c2324cab0fe7fd0cb0443, type: 3}
+  farCheckpointBlip: {fileID: 2800000, guid: 7060f11fba10bd946918b937407b6263, type: 3}
+  NEARRADARDISTANCE: 60
+  RADARGRAPHICALDISTANCE: 78
+  FARRADARGRAPHICALRADIUS: 80
+  radarMaxHeightDifference: 15
 --- !u!114 &121397738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24183,7 +24198,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1092343955}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!4 &331600494
 Transform:
@@ -25254,7 +25269,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   shield: {fileID: 260387894}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
-  shieldRechargeDelay: 5
+  shieldRechargeDelay: 7
   shieldRechargeRate: 33.2999992
   shieldMaterialRate: .0500000007
   rotationDelta: 30
@@ -25276,7 +25291,7 @@ MonoBehaviour:
   - {fileID: 5654461}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 18
+  laserLockedOnGroundRate: 21
   laserLostLockGroundRate: 6
   deltaAngleForLosingLocked: 120
   laserRandomness: 0
@@ -34814,7 +34829,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 10487092}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!138 &535891997
 FixedJoint:
@@ -36926,8 +36941,8 @@ MonoBehaviour:
   BackgroundVolume: .949999988
   PauseVolume: .550000012
   pauseFade: 1000
-  fadeIn: 3000
-  fadeOut: 3000
+  fadeIn: 0
+  fadeOut: 2000
   audioSources:
   - {fileID: 571058266}
   - {fileID: 571058265}
@@ -39752,7 +39767,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 613649176}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!135 &653871182
 SphereCollider:
@@ -41066,7 +41081,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   shield: {fileID: 369392567}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
-  shieldRechargeDelay: 5
+  shieldRechargeDelay: 7
   shieldRechargeRate: 33.2999992
   shieldMaterialRate: .0500000007
   rotationDelta: 30
@@ -41088,7 +41103,7 @@ MonoBehaviour:
   - {fileID: 1405657212}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 18
+  laserLockedOnGroundRate: 21
   laserLostLockGroundRate: 6
   deltaAngleForLosingLocked: 120
   laserRandomness: 0
@@ -45962,7 +45977,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1063417051}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!135 &730146045
 SphereCollider:
@@ -79878,7 +79893,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 349711037}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!138 &1263219558
 FixedJoint:
@@ -83013,7 +83028,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1769662273}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!138 &1296517950
 FixedJoint:
@@ -87233,7 +87248,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   shield: {fileID: 1511158265}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
-  shieldRechargeDelay: 5
+  shieldRechargeDelay: 7
   shieldRechargeRate: 33.2999992
   shieldMaterialRate: .0500000007
   rotationDelta: 30
@@ -87255,7 +87270,7 @@ MonoBehaviour:
   - {fileID: 1036324968}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 18
+  laserLockedOnGroundRate: 21
   laserLostLockGroundRate: 6
   deltaAngleForLosingLocked: 120
   laserRandomness: 0
@@ -89071,7 +89086,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1521512062}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!135 &1399486729
 SphereCollider:
@@ -94015,7 +94030,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1715019407}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!135 &1460141944
 SphereCollider:
@@ -95233,7 +95248,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1277055648}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!138 &1479571043
 FixedJoint:
@@ -96744,7 +96759,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 1217487289}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!135 &1491326950
 SphereCollider:
@@ -97616,7 +97631,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   shield: {fileID: 1328762412}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
-  shieldRechargeDelay: 5
+  shieldRechargeDelay: 7
   shieldRechargeRate: 33.2999992
   shieldMaterialRate: .0500000007
   rotationDelta: 30
@@ -97638,7 +97653,7 @@ MonoBehaviour:
   - {fileID: 1318044667}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 18
+  laserLockedOnGroundRate: 21
   laserLostLockGroundRate: 6
   deltaAngleForLosingLocked: 120
   laserRandomness: 0
@@ -97877,7 +97892,7 @@ MonoBehaviour:
   attachedBarrier: {fileID: 0}
   shield: {fileID: 1213147662}
   shieldMat: {fileID: 2100000, guid: 0833f695c01c5c844abfc43e0a19a3bb, type: 2}
-  shieldRechargeDelay: 5
+  shieldRechargeDelay: 7
   shieldRechargeRate: 33.2999992
   shieldMaterialRate: .0500000007
   rotationDelta: 30
@@ -97899,7 +97914,7 @@ MonoBehaviour:
   - {fileID: 1792954050}
   currentLaser: {fileID: 0}
   laserDuration: 3
-  laserLockedOnGroundRate: 18
+  laserLockedOnGroundRate: 21
   laserLostLockGroundRate: 6
   deltaAngleForLosingLocked: 120
   laserRandomness: 0
@@ -120617,7 +120632,7 @@ MonoBehaviour:
   fireRate: .125
   reloadTime: 3
   bulletEmitter: {fileID: 724038715}
-  firingRandomness: .0850000009
+  firingRandomness: .0799999982
   currentBullet: {fileID: 11400000, guid: 5416c72bfbf635b4fbc717b63aeb1ece, type: 2}
 --- !u!135 &1882755073
 SphereCollider:
@@ -131906,6 +131921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d08b5d5cb3357f4084e80e484774339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstCheckpoint: {fileID: 0}
 --- !u!1 &2057983230
 GameObject:
   m_ObjectHideFlags: 0
