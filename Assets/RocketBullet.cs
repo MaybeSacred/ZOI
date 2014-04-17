@@ -6,7 +6,6 @@ public class RocketBullet : BasicBullet {
 	public Transform targetedTransform;
 	public float timeBetweenChecks;
 	public float checkRadius;
-	public float secondCheckRadius;
 	private float checkTimer;
 	public float rocketStrength;
 	public float maxSpeed;
@@ -22,9 +21,9 @@ public class RocketBullet : BasicBullet {
 		{
 			if(checkTimer > timeBetweenChecks)
 			{
-				if(Physics.CheckCapsule(transform.position, transform.position + transform.forward*2*checkRadius, checkRadius, 1<<10))
+				if(Physics.CheckSphere(transform.position, checkRadius, 1<<10))
 				{
-					Collider[] colliderz = Physics.OverlapSphere(transform.position, secondCheckRadius, 1<<10);
+					Collider[] colliderz = Physics.OverlapSphere(transform.position, checkRadius, 1<<10);
 					if(colliderz.Length > 0)
 					{
 						int temp = Mathf.FloorToInt(Random.Range(0, colliderz.Length));
@@ -65,7 +64,7 @@ public class RocketBullet : BasicBullet {
 		rigidbody.AddForce(transform.forward*rocketStrength);
 		if(rigidbody.velocity.magnitude > maxSpeed)
 		{
-			rigidbody.AddForce(-transform.forward*.5f);
+			rigidbody.AddForce(-transform.forward*.25f);
 		}
 		if(timeOutCounter > 0)
 		{

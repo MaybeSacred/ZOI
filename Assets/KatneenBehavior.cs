@@ -36,6 +36,7 @@ public class KatneenBehavior : BaseEnemy {
 	public float laserRandomness;
 	private Vector3 startPlayerDirection;
 	private bool isLaserLockedOn;
+	public ParticleSystem lockOnParticles;
 	void Start () {
 		if(attachedBarrier != null)
 		{
@@ -43,6 +44,7 @@ public class KatneenBehavior : BaseEnemy {
 		}
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.materials[1] = shieldMat;
+		lockOnParticles.emissionRate = 0;
 	}
 	void Update () 
 	{
@@ -79,8 +81,7 @@ public class KatneenBehavior : BaseEnemy {
 						}
 						currentLaser.transform.rotation = Quaternion.LookRotation(lockedOnPoint - bulletEmitter.position);
 						RaycastHit hit;
-						Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2));
-						if(hit.distance != 0)
+						if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
 						{
 							currentLaser.transform.localScale =  new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, hit.distance/2f);
 							currentLaser.transform.position = currentLaser.transform.forward*hit.distance/2f+bulletEmitter.position;
@@ -121,6 +122,7 @@ public class KatneenBehavior : BaseEnemy {
 							Vector3 futureDistanceVector = distance + lookAheadTime*Util.player.rigidbody.velocity;
 							turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, Quaternion.LookRotation(futureDistanceVector), rotationDelta*Time.deltaTime);
 						}
+						lockOnParticles.emissionRate = 50 * fireTimer;
 						warningLight.range = finalWarningLightRange*(fireTimer-warmupTime)/(fireRate-warmupTime);
 					}
 					else
@@ -128,6 +130,7 @@ public class KatneenBehavior : BaseEnemy {
 						Vector3 futureDistanceVector = distance + lookAheadTime*Util.player.rigidbody.velocity;
 						turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, Quaternion.LookRotation(futureDistanceVector), rotationDelta*Time.deltaTime);
 						warningLight.range = postShotLightDropoff*(1-fireTimer);
+						lockOnParticles.emissionRate = 0;
 					}
 					fireTimer += Time.deltaTime;
 				}

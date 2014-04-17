@@ -2213,14 +2213,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeaps:
-  - secondaryCannonReloadTime: 10
-    firingRandomness: .0299999993
+  - secondaryCannonReloadTime: 13
+    firingRandomness: .0500000007
     secondaryBulletEmitters: {fileID: 400072}
     secondaryCannonFlashes: {fileID: 19800010}
     possibleSecondaries: {fileID: 11400000, guid: d31d7132e8faf0c44ac17d449eea3e08,
       type: 2}
     secondaryAutoFireTimes: 1
-    totalSecondaryBullets: 3
+    totalSecondaryBullets: 2
     soundEffect: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   - secondaryCannonReloadTime: 0
     firingRandomness: .109999999
