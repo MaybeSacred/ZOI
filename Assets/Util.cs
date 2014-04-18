@@ -32,7 +32,15 @@ public class Util : MonoBehaviour {
 		theGUI = this.GetComponentInChildren<GameGUI>();
 		mainCamera = this.GetComponentInChildren<CameraScript>();
 		ms = this.GetComponentInChildren<MusicSystem>();
-		theGUI.SetNextCheckpoint(firstCheckpoint);
+		CheckpointBehaviour[] checkpoints = this.GetComponentsInChildren<CheckpointBehaviour>();
+		for(int i = 0; i < checkpoints.Length; i++)
+		{
+			if(checkpoints[i].isFirstCheckpoint)
+			{
+				theGUI.SetNextCheckpoint(checkpoints[i]);
+				break;
+			}
+		}
 	}
 	/*Handles details of firing a BasicBullet
 	 *Should be used by all objects attempting to fire a bullet

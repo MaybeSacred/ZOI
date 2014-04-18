@@ -8,6 +8,8 @@ using System.Collections;
 public class CheckpointBehaviour : MonoBehaviour
 {
 	public Transform letterC;
+
+	public bool isFirstCheckpoint;
 	public float letterCRotateSpeed;
 	public Material savedSwitchMaterial;
 	private Material unSavedSwitchMaterial;
