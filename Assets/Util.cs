@@ -17,7 +17,17 @@ public class Util : MonoBehaviour {
 
 	public static bool isPaused{get; private set;}
 	void Start () {
+		DontDestroyOnLoad(this);
 		PLAYERWEAPONSIGNORELAYERS = ~(1<<LayerMask.NameToLayer("Player") | 1<<LayerMask.NameToLayer("Ignore Raycast") | 1<<LayerMask.NameToLayer("BulletLayer"));
+		player = this.GetComponentInChildren<PlayerController>();
+		theGUI = this.GetComponentInChildren<GameGUI>();
+		mainCamera = this.GetComponentInChildren<CameraScript>();
+		ms = this.GetComponentInChildren<MusicSystem>();
+		theGUI.SetNextCheckpoint(firstCheckpoint);
+	}
+	public void LoadLevel(int levelNum)
+	{
+		Application.LoadLevel(levelNum);
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();
 		mainCamera = this.GetComponentInChildren<CameraScript>();
