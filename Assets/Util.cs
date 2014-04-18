@@ -56,20 +56,17 @@ public class Util : MonoBehaviour {
 			T bb = (T)Instantiate (t, inPosition, inRotation);
 			bb.rigidbody.velocity = inSpeed;
 	}
-
-	public static void FlipPausedState ()
+	public static void Pause()
 	{
-		isPaused = !isPaused;
-		if(isPaused)
-		{
-			Time.timeScale = 0;
-			ms.pauseMusic(true);
-		}
-		else
-		{
-			Time.timeScale = currentTimeScale;
-			ms.pauseMusic(false);
-		}
+		isPaused = true;
+		Time.timeScale = 0;
+		ms.pauseMusic(true);
+	}
+	public static void UnPause()
+	{
+		isPaused = false;
+		Time.timeScale = 1;
+		ms.pauseMusic(false);
 	}
 
 	public static BasicBullet FireLaserType<T>(T t, Vector3 beginPosition, Vector3 endPosition, Quaternion inRotation) where T : BasicBullet

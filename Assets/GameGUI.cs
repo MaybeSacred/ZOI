@@ -68,7 +68,10 @@ public class GameGUI : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown("escape"))
 		{
-			Util.FlipPausedState();
+			if(Util.isPaused)
+				Util.UnPause();
+			else
+				Util.Pause();
 		}
 	}
 	void InGameGUI()
@@ -201,6 +204,11 @@ public class GameGUI : MonoBehaviour {
 		}
 		GUI.TextArea(new Rect(0, 0, 224, 48), theCamera.GetCurrentMouseSensitivity().ToString(), currentStyle);
 		GUI.EndGroup();
+		if(GUI.Button(new Rect(0, 180, 224, 48), "Go to Menu", currentStyle))
+		{
+			Util.UnPause();
+			Application.LoadLevel("L00_StartScreen");
+		}
 		GUI.EndGroup();
 	}
 	public void AddRadarObject(Transform theObject, RadarObject.OBJECTTYPE type)
@@ -314,7 +322,7 @@ public class GameGUI : MonoBehaviour {
 				}
 				else
 				{
-					Debug.Log("WTF Mate?");
+					Debug.Log("Error with Game Radar");
 				}
 			}
 		}

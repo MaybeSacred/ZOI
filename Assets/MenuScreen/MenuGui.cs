@@ -111,7 +111,27 @@ public class MenuGui : MonoBehaviour {
 	void LevelSelect()
 	{
 		GUI.BeginGroup(new Rect(border, border, Screen.width - 2*border, Screen.height-2*border));
-		if(GUI.Button(new Rect(155,imageheight/2+125,200,50), "Back", buttonStyle))
+		if(GUI.Button(new Rect(Screen.width/2 -border - 150, 60, 300, 60), "Antarcticle", buttonStyle))
+		{
+			Application.LoadLevel("L01_OpeningCliff");
+		}
+		if(GUI.Button(new Rect(Screen.width/2 -border - 150, 120, 300, 60), "Plateaued", buttonStyle))
+		{
+			Application.LoadLevel("L02_FlatLakes");
+		}
+		if(GUI.Button(new Rect(Screen.width/2 -border - 150, 180,300, 60), "Tight Ally", buttonStyle))
+		{
+			Application.LoadLevel("L03_AlleyWay");
+		}
+		if(GUI.Button(new Rect(Screen.width/2 -border - 150, 240, 300, 60), "Gorged", buttonStyle))
+		{
+			Application.LoadLevel("L04A_Gorge");
+		}
+		if(GUI.Button(new Rect(Screen.width/2 -border - 150, 300, 300, 60), "End", buttonStyle))
+		{
+			Application.LoadLevel("L04B_Gorge");
+		}
+		if(GUI.Button(new Rect(Screen.width/2 - border - 100, Screen.height - 2*border - 50, 200, 50), "Back", buttonStyle))
 		{
 			state = MenuState.MAIN;
 		}
