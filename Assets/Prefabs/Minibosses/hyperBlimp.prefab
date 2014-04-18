@@ -2112,8 +2112,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100124}
-  m_LocalRotation: {x: 0, y: -.794832647, z: 0, w: .606828749}
-  m_LocalPosition: {x: 761.825562, y: 98.948967, z: 1919.23035}
+  m_LocalRotation: {x: 0, y: -.928527832, z: 0, w: .371262819}
+  m_LocalPosition: {x: 707.248291, y: 45.1220551, z: 1938.88574}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400066}
@@ -4295,6 +4295,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400150}
   bulletEmitterLight: {fileID: 10800002}
   graphics: {fileID: 400016}
@@ -4356,6 +4357,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400050}
   bulletEmitterLight: {fileID: 10800014}
   graphics: {fileID: 400032}
@@ -4483,6 +4485,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400062}
   bulletEmitterLight: {fileID: 10800008}
   graphics: {fileID: 400132}
@@ -4526,6 +4529,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400156}
   bulletEmitterLight: {fileID: 10800006}
   graphics: {fileID: 400018}
@@ -4600,6 +4604,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400128}
   bulletEmitterLight: {fileID: 10800016}
   graphics: {fileID: 400074}
@@ -4710,6 +4715,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400022}
   bulletEmitterLight: {fileID: 10800010}
   graphics: {fileID: 400082}
@@ -4753,6 +4759,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400078}
   bulletEmitterLight: {fileID: 10800004}
   graphics: {fileID: 400106}
@@ -4814,6 +4821,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400144}
   bulletEmitterLight: {fileID: 10800012}
   graphics: {fileID: 400000}
@@ -4857,6 +4865,7 @@ MonoBehaviour:
   maxHealth: 30
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   bulletEmitterGO: {fileID: 400014}
   bulletEmitterLight: {fileID: 10800000}
   graphics: {fileID: 400138}
@@ -4896,10 +4905,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b13e08e3d7345643904387e24d625bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3500
-  maxHealth: 3500
+  health: 2500
+  maxHealth: 2500
   deathTimeout: 10
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   encirclingRotationAngle: .5
   deathPullForce: 2200
   enginePS: {fileID: 19800008}

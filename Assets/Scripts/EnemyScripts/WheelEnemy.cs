@@ -15,6 +15,7 @@ public class WheelEnemy : BaseEnemy {
 	private Vector3 initialPosition;
 	public float awakeningLeeWayTime;
 	private float isAwakeningLeeWayTimer;
+	public AudioSource whistle;
 	// Use this for initialization
 	void Start () {
 		rigidbody.useGravity = false;
@@ -128,6 +129,7 @@ public class WheelEnemy : BaseEnemy {
 		isAwakening = true;
 		rigidbody.useGravity = true;
 		rigidbody.AddForce(initialPopUpForce * transform.right);
+		whistle.Play();
 	}
 	public override void OnPlayerExit()
 	{

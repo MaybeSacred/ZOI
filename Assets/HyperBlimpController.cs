@@ -166,6 +166,30 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 		rigidbody.isKinematic = false;
 		rigidbody.velocity = transform.forward*movementSpeed;
 	}
+	public override void OnPlayerEnter ()
+	{
+		base.OnPlayerEnter ();
+		foreach(Transform ring in rings)
+		{
+			BlimpRingPiece[] pieces = ring.GetComponentsInChildren<BlimpRingPiece>();
+			foreach(BlimpRingPiece p in pieces)
+			{
+				p.OnPlayerEnter();
+			}
+		}
+	}
+	public override void OnPlayerExit ()
+	{
+		base.OnPlayerExit ();
+		foreach(Transform ring in rings)
+		{
+			BlimpRingPiece[] pieces = ring.GetComponentsInChildren<BlimpRingPiece>();
+			foreach(BlimpRingPiece p in pieces)
+			{
+				p.OnPlayerExit();
+			}
+		}
+	}
 	public void RemovePiece(bool isEnginePiece)
 	{
 		if(isEnginePiece)

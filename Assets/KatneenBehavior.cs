@@ -122,7 +122,7 @@ public class KatneenBehavior : BaseEnemy {
 							Vector3 futureDistanceVector = distance + lookAheadTime*Util.player.rigidbody.velocity;
 							turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, Quaternion.LookRotation(futureDistanceVector), rotationDelta*Time.deltaTime);
 						}
-						lockOnParticles.emissionRate = 50 * fireTimer;
+						lockOnParticles.emissionRate = 50 * (fireTimer-warmupTime);
 						warningLight.range = finalWarningLightRange*(fireTimer-warmupTime)/(fireRate-warmupTime);
 					}
 					else
