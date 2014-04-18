@@ -341,7 +341,7 @@ public class GameGUI : MonoBehaviour {
 			}
 			currentCheckpoint = nextCheckpoint;
 			AddRadarObject(currentCheckpoint.transform, RadarObject.OBJECTTYPE.CHECKPOINT);
-			timeSinceLastCheckpoint = 0;
 		}
+		timeSinceLastCheckpoint = 0;
 	}
 }

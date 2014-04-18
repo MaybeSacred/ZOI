@@ -11,7 +11,8 @@ public class MenuGui : MonoBehaviour {
 	public GUIStyle currentSensitivityStyle;
 	public GUIStyle menuTitleStyle; //IceCaps font, white size 65
 	public GUIStyle titleStyle; //IceCaps white size 115, aligned middle center
-	private enum MenuState{MAIN, OPTIONS, LEVELSELECT, CREDITS}
+	public GUIStyle textStuff;
+	private enum MenuState{MAIN, OPTIONS, LEVELSELECT, CREDITS, HOWTOPLAY}
 	MenuState state;
 	private CameraScript theCamera;
 
@@ -57,9 +58,36 @@ public class MenuGui : MonoBehaviour {
 				Credits();
 				break;
 			}
+			case MenuState.HOWTOPLAY:
+			{
+				HowToPlay();
+				break;
+			}
 		}
 	}
 	int border = 15;
+	void HowToPlay()
+	{
+		GUI.BeginGroup(new Rect(border, border, Screen.width - 2*border, Screen.height-2*border));
+		GUI.Label(new Rect(0, 0, Screen.width - 2*border, 50), "Instructions", menuTitleStyle);
+		GUI.Label(new Rect(0, 75, Screen.width/2 - border, 50), "W/S", textStuff);
+		GUI.Label(new Rect(0, 150, Screen.width/2 - border, 50), "A/D", textStuff);
+		GUI.Label(new Rect(0, 225, Screen.width/2 - border, 50), "Tab/1/2/3", textStuff);
+		GUI.Label(new Rect(0, 300, Screen.width/2 - border, 50), "Left Click", textStuff);
+		GUI.Label(new Rect(0, 375, Screen.width/2 - border, 50), "Right Click", textStuff);
+		GUI.Label(new Rect(0, 450, Screen.width/2 - border, 50), "Scroll Wheel", textStuff);
+		GUI.Label(new Rect(Screen.width/2, 75, Screen.width/2 - border, 50), "Forwards/Backwards", textStuff);
+		GUI.Label(new Rect(Screen.width/2, 150, Screen.width/2 - border, 50), "Steer", textStuff);
+		GUI.Label(new Rect(Screen.width/2, 225, Screen.width/2 - border, 50), "Switch Weapon", textStuff);
+		GUI.Label(new Rect(Screen.width/2, 300, Screen.width/2 - border, 50), "Fire Cannon", textStuff);
+		GUI.Label(new Rect(Screen.width/2, 375, Screen.width/2 - border, 50), "Fire Secondary", textStuff);
+		GUI.Label(new Rect(Screen.width/2, 450, Screen.width/2 - border, 50), "Zoom", textStuff);
+		if(GUI.Button(new Rect(Screen.width/2 - border - 100, Screen.height - 2*border - 50, 200, 50), "Back", buttonStyle))
+		{
+			state = MenuState.MAIN;
+		}
+		GUI.EndGroup();
+	}
 	void Credits()
 	{
 		
@@ -96,7 +124,7 @@ public class MenuGui : MonoBehaviour {
 		GUI.Label(new Rect(400,200,100,100), "Zone" + "\n" + "of" + "\n" + "Inaccessibility", titleStyle);
 		if(GUI.Button(new Rect(imagex+100,imagey+200,imagewidth-200,50), "Start Game", buttonStyle))
 		{
-			Application.LoadLevel(1);
+			Application.LoadLevel("L01_OpeningCliff");
 		}
 		if(GUI.Button(new Rect(imagex+100,imagey+260,imagewidth-200,50), "Level Select", buttonStyle))
 		{
@@ -106,9 +134,9 @@ public class MenuGui : MonoBehaviour {
 		{
 			state = MenuState.CREDITS;
 		}
-		if(GUI.Button(new Rect(imagex+100,imagey+380,imagewidth-200,50), "Options", buttonStyle))
+		if(GUI.Button(new Rect(imagex+100,imagey+380,imagewidth-200,50), "How To Play", buttonStyle))
 		{
-			state = MenuState.OPTIONS;
+			state = MenuState.HOWTOPLAY;
 		}
 	}
 
@@ -120,11 +148,11 @@ public class MenuGui : MonoBehaviour {
 		GUI.Label(new Rect(125,210,250,50), "Mouse Sensitivity", mouseSensitivityButtonStyle);
 		if(GUI.Button(new Rect(100,imageheight/2-35,50,50), "", leftButtonStyle)) 
 		{
-			theCamera.DecrementMouseSensitivity();
+			//theCamera.DecrementMouseSensitivity();
 		}
 		if(GUI.Button(new Rect(350,imageheight/2-35,50,50),"",rightButtonStyle))
 		{
-			theCamera.IncrementMouseSensitivity();
+			//theCamera.IncrementMouseSensitivity();
 		}
 		if(GUI.Button(new Rect(155,imageheight/2+125,200,50), "OK", buttonStyle))
 		{

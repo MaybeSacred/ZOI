@@ -166,6 +166,10 @@ public class PlayerController : MonoBehaviour
 				}
 			}
 		}
+		if(kemp > 150)
+		{
+			GameOver();
+		}
 	}
 	private void PrimaryWeaponCheck()
 	{
@@ -315,11 +319,11 @@ public class PlayerController : MonoBehaviour
 	private void HandleOtherInput()
 	{
 		//unstuck tool
-		if(Input.GetKeyDown("r"))
+		/*if(Input.GetKeyDown("r"))
 		{
 			transform.rotation = Quaternion.identity;
 			transform.localPosition += new Vector3(0, 3, 0);
-		}
+		}*/
 		/*Weapon cycling*/
 		if (Input.GetKeyDown("tab"))
 		{

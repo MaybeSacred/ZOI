@@ -30,6 +30,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	public float dodgeDuration;
 	public float healthRechargeRate;
 	private Vector3 medianPoint;
+	public float firingRandomness;
 	public float maxAcceptableDistFromPatrolMedian;
 	private bool isUnderAttack;
 	private bool danger;
@@ -82,16 +83,22 @@ public class RiggedyAnnBehavior : BaseEnemy {
 					Vector3 vectorToPlayer = Util.player.transform.position - transform.position;
 					if(vectorToPlayer.magnitude < standoffDistance)
 					{
-						Vector3 randomHemisphere = Util.GenerateRandomVector3(vectorToPlayer.normalized, Mathf.PI/2);
-						randomHemisphere.y = 0;
-						
+						if(fireTimer > fireRate)
+						{
+							Vector3 randomHemisphere = Util.GenerateRandomVector3(Util.player.transform.position - cannonBulletEmitter.position, firingRandomness);
+							GetComponent<AudioSource>().Play();
+							Util.Fire<BasicBullet>(currentBullet, cannonBulletEmitter.position, Quaternion.LookRotation(randomHemisphere), currentBullet.initialSpeed*randomHemisphere);
+							fireTimer = 0;
+						}
+						fireTimer += Time.deltaTime;
+						MoveTowardsPlayer(Util.player.transform.position - 20 * (Util.player.transform.position - transform.position));
 					}
 					else
 					{
 						MoveTowardsPlayer(Util.player.transform.position);
 					}
 				}
-				graphics.rigidbody.AddRelativeTorque(Vector3.up);
+				graphics.LookAt(Util.player.transform.position);
 				UpdateShield();
 			}
 		}
@@ -101,7 +108,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 		if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 		{
 			
-			HealthChange(shieldRechargeRate * Time.deltaTime, 0);
+			HealthChange(shieldRechargeRate * Time.deltaTime, healthRechargeRate*Time.deltaTime);
 			shield.renderer.enabled = true;
 			shield.collider.enabled = true;
 		}

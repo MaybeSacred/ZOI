@@ -91,6 +91,7 @@ public class KatneenBehavior : BaseEnemy {
 					else
 					{
 						currentLaser = null;
+						lockOnParticles.emissionRate = 0;
 					}
 					laserDurationTimer += Time.deltaTime;
 				}
@@ -98,6 +99,7 @@ public class KatneenBehavior : BaseEnemy {
 				{
 					if(fireTimer > warmupTime)
 					{
+						lockOnParticles.emissionRate = 50 * (fireTimer-warmupTime);
 						if(fireTimer > fireRate-lookAheadTime)
 						{
 							if(lockedOnDirection == Vector3.zero)
@@ -122,7 +124,6 @@ public class KatneenBehavior : BaseEnemy {
 							Vector3 futureDistanceVector = distance + lookAheadTime*Util.player.rigidbody.velocity;
 							turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, Quaternion.LookRotation(futureDistanceVector), rotationDelta*Time.deltaTime);
 						}
-						lockOnParticles.emissionRate = 50 * (fireTimer-warmupTime);
 						warningLight.range = finalWarningLightRange*(fireTimer-warmupTime)/(fireRate-warmupTime);
 					}
 					else
@@ -130,7 +131,6 @@ public class KatneenBehavior : BaseEnemy {
 						Vector3 futureDistanceVector = distance + lookAheadTime*Util.player.rigidbody.velocity;
 						turret.transform.rotation = Quaternion.RotateTowards(turret.transform.rotation, Quaternion.LookRotation(futureDistanceVector), rotationDelta*Time.deltaTime);
 						warningLight.range = postShotLightDropoff*(1-fireTimer);
-						lockOnParticles.emissionRate = 0;
 					}
 					fireTimer += Time.deltaTime;
 				}
@@ -268,10 +268,6 @@ public class KatneenBehavior : BaseEnemy {
 	
 	public override void OnPlayerExit()
 	{
-		if(deathTimeoutTimer <=0)
-		{
-			isAwake = false;
-			warningLight.range = 0;
-		}
+	
 	}
 }
