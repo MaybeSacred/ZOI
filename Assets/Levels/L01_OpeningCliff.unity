@@ -47375,7 +47375,7 @@ Transform:
   m_PrefabInternal: {fileID: 1968153038}
   m_GameObject: {fileID: 845233775}
   m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: 278.687561, y: 52.8994675, z: -501.427002}
+  m_LocalPosition: {x: -5.02426147, y: -.479999989, z: 59.1171875}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1079157989}
@@ -65145,7 +65145,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899977148, y: -.722938538, z: -1.60004127}
+  m_ConnectedAnchor: {x: -.899977148, y: -.722940445, z: -1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -85169,7 +85169,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899977148, y: -.722938538, z: 1.60004127}
+  m_ConnectedAnchor: {x: .899977148, y: -.722940445, z: 1.60004127}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -89184,7 +89184,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.900004506, y: -.722938538, z: 1.60000205}
+  m_ConnectedAnchor: {x: -.8999843, y: -.722940445, z: 1.59988165}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -112248,15 +112248,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400044, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 278.687561
+      value: -5.02426147
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 52.8994675
+      value: -.479999989
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -501.427002
+      value: 59.1171875
       objectReference: {fileID: 0}
     - target: {fileID: 400044, guid: 0acdc64ced132334c83f7b5f9867858e, type: 2}
       propertyPath: m_LocalRotation.x
@@ -119136,7 +119136,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .900004506, y: -.722938538, z: -1.60000205}
+  m_ConnectedAnchor: {x: .8999843, y: -.722940445, z: -1.59988165}
   m_UseSpring: 1
   m_Spring:
     spring: 5
