@@ -343,10 +343,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77ca9ab0d3b57d14f879360a23b08cdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2000
-  maxHealth: 2000
+  health: 1100
+  maxHealth: 1100
   deathTimeout: 4
   attachedBarrier: {fileID: 0}
+  deathParticles: {fileID: 0}
   lookAheadTime: .150000006
   rotationDelta: 60
   firingDistance: 0
