@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
 					if(colliders.Contains(x))
 					{
 						colliders.Remove(x);
-						hitsAgainSansDisabled.Remove(x);
 					}
 				}
 				hitsAgainTimer = 0;

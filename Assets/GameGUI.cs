@@ -58,11 +58,13 @@ public class GameGUI : MonoBehaviour {
 		if(Util.isPaused)
 		{
 			PauseScreen();
+			Screen.lockCursor = false;
 		}
 		else
 		{
 			InGameGUI();
 			DebugStats();
+			Screen.lockCursor = true;
 		}
 	}
 	void Update () {

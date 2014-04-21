@@ -27,7 +27,7 @@ public class MenuGui : MonoBehaviour {
 		imagey = 0;
 		imagewidth = 500;
 		imageheight = Screen.height;
-	
+		Screen.lockCursor = false;
 	}
 
 	void Update () {
@@ -97,11 +97,13 @@ public class MenuGui : MonoBehaviour {
 		GUI.Label(new Rect(0, 150, Screen.width/2 - border, 50), "Chris Tansey", menuTitleStyle);
 		GUI.Label(new Rect(0, 225, Screen.width/2 - border, 50), "Erica Pramer", menuTitleStyle);
 		GUI.Label(new Rect(0, 300, Screen.width/2 - border, 50), "Jay Belmont", menuTitleStyle);
+		GUI.Label(new Rect(0, 375, Screen.width/2 - border, 50), "Jordan Hobgood", menuTitleStyle);
 		GUI.Label(new Rect(Screen.width/2, 0, Screen.width/2 - border, 50), "Lead Designer", menuTitleStyle);
 		GUI.Label(new Rect(Screen.width/2, 75, Screen.width/2 - border, 50), "Level Modeler", menuTitleStyle);
 		GUI.Label(new Rect(Screen.width/2, 150, Screen.width/2 - border, 50), "Enemy Designer", menuTitleStyle);
 		GUI.Label(new Rect(Screen.width/2, 225, Screen.width/2 - border, 50), "GUI Designer", menuTitleStyle);
-		GUI.Label(new Rect(Screen.width/2, 300, Screen.width/2 - border, 50), "Enemy Modeleler", menuTitleStyle);
+		GUI.Label(new Rect(Screen.width/2, 300, Screen.width/2 - border, 50), "Modeleler", menuTitleStyle);
+		GUI.Label(new Rect(Screen.width/2, 375, Screen.width/2 - border, 50), "Sound Engineer", menuTitleStyle);
 		if(GUI.Button(new Rect(Screen.width/2 - border - 100, Screen.height - 2*border - 50, 200, 50), "Back", buttonStyle))
 		{
 			state = MenuState.MAIN;

@@ -25,6 +25,7 @@ public class CameraScript : MonoBehaviour {
 	private bool spiderFeeding;
 	public float feedTimer, feedDuration, feedTimeStart;
 	void Start () {
+		Screen.lockCursor = true;
 		SetCurrentMouseSensitivity(numberOfMouseSensitivityStates/2);
 		yAxisUpperAngleBound += 360;
 		startFOV = camera.fieldOfView;
@@ -36,7 +37,6 @@ public class CameraScript : MonoBehaviour {
 	void Update () {
 		if(!Util.isPaused || cameraIsActiveWhenPaused)
 		{
-			Screen.lockCursor = true;
 			if(Util.player.isAlive)
 			{
 				mousePos.x = Input.GetAxis("Mouse X");
