@@ -27,10 +27,20 @@ public class RocketBullet : BasicBullet {
 					if(colliderz.Length > 0)
 					{
 						int temp = Mathf.FloorToInt(Random.Range(0, colliderz.Length));
-						if(colliderz[temp].gameObject.GetComponent<BaseEnemy>().health > 0)
+						BaseEnemy bemp = colliderz[temp].gameObject.GetComponent<BaseEnemy>();
+						if(bemp != null)
 						{
 							lifetimeTimer = 0;
 							targetedTransform = colliderz[temp].transform;
+						}
+						else
+						{
+							bemp = colliderz[temp].transform.parent.GetComponent<BaseEnemy>();
+							if(bemp != null)
+							{
+								lifetimeTimer = 0;
+								targetedTransform = colliderz[temp].transform;
+							}
 						}
 					}
 				}
