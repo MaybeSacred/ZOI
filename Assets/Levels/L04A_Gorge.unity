@@ -16987,6 +16987,7 @@ GameObject:
   - 4: {fileID: 214959118}
   - 33: {fileID: 214959120}
   - 23: {fileID: 214959119}
+  - 64: {fileID: 214959121}
   m_Layer: 0
   m_Name: Moutain_small_range
   m_TagString: Untagged
@@ -17036,6 +17037,19 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214959117}
+  m_Mesh: {fileID: 4300004, guid: 601cff43d0bcdf84c91b0c602f72dcaa, type: 3}
+--- !u!64 &214959121
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214959117}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
   m_Mesh: {fileID: 4300004, guid: 601cff43d0bcdf84c91b0c602f72dcaa, type: 3}
 --- !u!1 &217698705
 GameObject:
@@ -51558,9 +51572,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffd5b5099899df4eb64936c4a334db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  maxHealth: 500
-  deathTimeout: 10
+  health: 1000
+  maxHealth: 1000
+  deathTimeout: 12
   attachedBarrier: {fileID: 0}
   deathParticles: {fileID: 0}
   lookAheadTime: .150000006
@@ -71511,8 +71525,8 @@ Transform:
   - {fileID: 454234274}
   - {fileID: 222353609}
   - {fileID: 778731935}
-  - {fileID: 964937629}
   - {fileID: 1739080582}
+  - {fileID: 964937629}
   - {fileID: 635098076}
   - {fileID: 36308955}
   - {fileID: 242787736}

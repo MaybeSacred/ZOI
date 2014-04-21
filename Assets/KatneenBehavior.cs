@@ -268,6 +268,6 @@ public class KatneenBehavior : BaseEnemy {
 	
 	public override void OnPlayerExit()
 	{
-	
+		isAwake = false;
 	}
 }
