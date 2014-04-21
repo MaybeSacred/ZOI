@@ -38,10 +38,10 @@ public class KatneenBehavior : BaseEnemy {
 	private bool isLaserLockedOn;
 	public ParticleSystem lockOnParticles;
 	void Start () {
-		if(attachedBarrier != null)
+		/*if(attachedBarrier != null)
 		{
 			attachedBarrier.RegisterEnemy();
-		}
+		}*/
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.materials[1] = shieldMat;
 		lockOnParticles.emissionRate = 0;

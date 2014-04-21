@@ -1800,7 +1800,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.25
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1833,7 +1833,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: .699999988
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -3083,7 +3083,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 001a0dc767e3a96429b17b46fa09ec16, type: 2}
       propertyPath: attachedBarrier
       value: 
-      objectReference: {fileID: 1573617009}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 001a0dc767e3a96429b17b46fa09ec16, type: 2}
   m_RootGameObject: {fileID: 1026116190}
@@ -7101,6 +7101,14 @@ Prefab:
     - target: {fileID: 400000, guid: 478b31f058c9de64bac2cd066746c75f, type: 2}
       propertyPath: m_LocalRotation.w
       value: -.523985982
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 478b31f058c9de64bac2cd066746c75f, type: 2}
+      propertyPath: openingVector.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 478b31f058c9de64bac2cd066746c75f, type: 2}
+      propertyPath: openingVector.z
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 478b31f058c9de64bac2cd066746c75f, type: 2}
@@ -12084,9 +12092,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ffd5b5099899df4eb64936c4a334db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
-  maxHealth: 500
-  deathTimeout: 10
+  health: 1000
+  maxHealth: 1000
+  deathTimeout: 12
   attachedBarrier: {fileID: 1573617009}
   deathParticles: {fileID: 0}
   lookAheadTime: .150000006
@@ -18596,7 +18604,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.25
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -18629,7 +18637,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: .699999988
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -35707,7 +35715,7 @@ MonoBehaviour:
   health: 50
   maxHealth: 50
   deathTimeout: .5
-  attachedBarrier: {fileID: 1573617009}
+  attachedBarrier: {fileID: 0}
   deathParticles: {fileID: 753458857}
   graphicalObject: {fileID: 1602008855}
   legs: {fileID: 1079842443}
@@ -37122,7 +37130,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.25
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -37155,7 +37163,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: .699999988
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -40696,7 +40704,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400010, guid: 897ba8d79cb942e489c4c99b9ca8b9f0, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 841.284607
+      value: 822.769897
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 897ba8d79cb942e489c4c99b9ca8b9f0, type: 2}
       propertyPath: m_LocalPosition.y
@@ -40704,7 +40712,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 897ba8d79cb942e489c4c99b9ca8b9f0, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -478.911316
+      value: -398.711456
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 897ba8d79cb942e489c4c99b9ca8b9f0, type: 2}
       propertyPath: m_LocalRotation.x
@@ -44025,7 +44033,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 001a0dc767e3a96429b17b46fa09ec16, type: 2}
       propertyPath: attachedBarrier
       value: 
-      objectReference: {fileID: 1573617009}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 001a0dc767e3a96429b17b46fa09ec16, type: 2}
   m_RootGameObject: {fileID: 753458850}
@@ -45347,7 +45355,7 @@ MonoBehaviour:
   health: 50
   maxHealth: 50
   deathTimeout: .5
-  attachedBarrier: {fileID: 1573617009}
+  attachedBarrier: {fileID: 0}
   deathParticles: {fileID: 1026116197}
   graphicalObject: {fileID: 1627432108}
   legs: {fileID: 1609679051}
@@ -52253,7 +52261,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.25
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -52286,7 +52294,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: .699999988
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -85646,7 +85654,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 1.25
+      scalar: 1.5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -85679,7 +85687,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: .699999988
+      scalar: .75
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -87062,7 +87070,7 @@ Transform:
   m_PrefabInternal: {fileID: 888836210}
   m_GameObject: {fileID: 2096111376}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 841.284607, y: 162.612488, z: -478.911316}
+  m_LocalPosition: {x: 822.769897, y: 162.612488, z: -398.711456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1760155383}
