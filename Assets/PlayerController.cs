@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
 	public float maxSpeedRetardingForce;
     #endregion
    
-    void Start () {
+    void Start (){
         //starting physics
         aSource = GetComponentInChildren<AudioSource>();
 		startWheelFriction = wheels[0].sidewaysFriction;
@@ -244,7 +244,14 @@ public class PlayerController : MonoBehaviour
 						cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
 						cannonRingFlash.Play();
 					}
-					aSource.PlayOneShot(playerWeaps[currentSecondaryWep].soundEffect);
+					if(currentSecondaryWep == 1)
+					{
+						aSource.PlayOneShot(playerWeaps[currentSecondaryWep].soundEffect, .1f);
+					}
+					else
+					{
+						aSource.PlayOneShot(playerWeaps[currentSecondaryWep].soundEffect);
+					}
 					playerWeaps[currentSecondaryWep].UseBullet();
 					secondaryAutoFireTimer -= playerWeaps[currentSecondaryWep].secondaryAutoFireTimes;
 				}
@@ -402,6 +409,7 @@ public class PlayerController : MonoBehaviour
 			else
 			{
 				wheelGroundEffects[i].enableEmission = false;
+				rigidbody.AddForceAtPosition(-4*transform.up, wheelGroundEffects[i].transform.position);
 			}
 		}
 	}

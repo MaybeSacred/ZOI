@@ -1142,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100044}
   m_LocalRotation: {x: 0, y: .996543825, z: 0, w: -.0830691457}
-  m_LocalPosition: {x: 22.9240723, y: -1.81205678, z: 129.548584}
+  m_LocalPosition: {x: -10.7095947, y: .417648315, z: 67.2697754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400030}
@@ -1931,7 +1931,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.899977148, y: -.722940445, z: -1.60004127}
+  m_ConnectedAnchor: {x: -.899982214, y: -.722946167, z: -1.60001111}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1960,7 +1960,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.900024712, y: -.722940445, z: 1.60012245}
+  m_ConnectedAnchor: {x: -.900004506, y: -.722946167, z: 1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -1989,7 +1989,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .900024712, y: -.722940445, z: -1.60012245}
+  m_ConnectedAnchor: {x: .900004506, y: -.722946167, z: -1.60000205}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2018,7 +2018,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: .899977148, y: -.722940445, z: 1.60004127}
+  m_ConnectedAnchor: {x: .899982214, y: -.722946167, z: 1.60001111}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -2292,13 +2292,13 @@ MonoBehaviour:
   maxSlope: 45
   slopeLinearDropOff: 25
   autotargetDeltaAngle: 75
-  steeringRate: 12
+  steeringRate: 12.5
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12.5
   theCam: {fileID: 0}
-  forwardAcceleration: 40
+  forwardAcceleration: 39
   brakeForce: 60
-  maxSpeed: 15
+  maxSpeed: 16
   health: 100
   maxHealth: 100
   maxSpeedRetardingForce: 70

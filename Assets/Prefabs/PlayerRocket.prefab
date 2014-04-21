@@ -95,7 +95,7 @@ MonoBehaviour:
   speed: {x: 0, y: 0, z: 0}
   initialSpeed: 15
   shieldDamage: 15
-  healthDamage: 35
+  healthDamage: 40
   timeOutCounter: 0
   deflectable: 0
   deflectionSpeed: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   timeBetweenChecks: .100000001
   checkRadius: 25
   rocketStrength: 15
-  maxSpeed: 45
+  maxSpeed: 50
   timeOutTime: 10
 --- !u!135 &13500000
 SphereCollider:

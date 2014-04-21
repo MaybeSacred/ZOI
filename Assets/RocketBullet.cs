@@ -27,16 +27,7 @@ public class RocketBullet : BasicBullet {
 					if(colliderz.Length > 0)
 					{
 						int temp = Mathf.FloorToInt(Random.Range(0, colliderz.Length));
-						if(colliderz[temp].transform.tag.Equals("EnemyGenerator"))
-						{
-							if(colliderz.Length > 1)
-							{
-								temp = (temp >= colliderz.Length-1?0:temp+1);
-								targetedTransform = colliderz[temp].transform;
-								lifetimeTimer = 0;
-							}
-						}
-						else
+						if(colliderz[temp].gameObject.GetComponent<BaseEnemy>().health > 0)
 						{
 							lifetimeTimer = 0;
 							targetedTransform = colliderz[temp].transform;
