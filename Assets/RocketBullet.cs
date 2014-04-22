@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RocketBullet : BasicBullet {
 	public float homingStrength;
-	public Transform targetedTransform;
+	private Transform targetedTransform;
 	public float timeBetweenChecks;
 	public float checkRadius;
 	private float checkTimer;
@@ -28,7 +28,7 @@ public class RocketBullet : BasicBullet {
 					{
 						int temp = Mathf.FloorToInt(Random.Range(0, colliderz.Length));
 						BaseEnemy bemp = colliderz[temp].gameObject.GetComponent<BaseEnemy>();
-						if(bemp != null)
+						if(bemp != null && bemp.health > 0)
 						{
 							lifetimeTimer = 0;
 							targetedTransform = colliderz[temp].transform;
@@ -36,7 +36,7 @@ public class RocketBullet : BasicBullet {
 						else
 						{
 							bemp = colliderz[temp].transform.parent.GetComponent<BaseEnemy>();
-							if(bemp != null)
+							if(bemp != null && bemp.health > 0)
 							{
 								lifetimeTimer = 0;
 								targetedTransform = colliderz[temp].transform;
