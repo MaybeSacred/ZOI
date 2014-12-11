@@ -242,7 +242,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 				if(shieldPct > 100)
 					shieldPct = 100;
 			}
-			if(healthDmg >= 0)
+			if(healthDmg >= 0 && shieldPct >= 100)
 			{
 				health += healthDmg;
 				if(health > maxHealth)

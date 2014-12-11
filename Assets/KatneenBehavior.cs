@@ -197,46 +197,46 @@ public class KatneenBehavior : BaseEnemy {
 	}
 	public override void HealthChange(float shieldDmg, float healthDmg)
 	{
-			if(shieldDmg >= 0 || healthDmg >= 0)
+		if(shieldDmg >= 0 || healthDmg >= 0)
+		{
+			if(shieldDmg >=0)
 			{
-				if(shieldDmg >=0)
+				shieldPct += shieldDmg;
+				if(shieldPct > 100)
+					shieldPct = 100;
+			}
+			if(healthDmg >= 0 && shieldPct >= 100)
+			{
+				health += healthDmg;
+				if(health > maxHealth)
+					health = maxHealth;
+			}
+		}
+		else
+		{
+			if(shieldPct > 0)
+			{
+				shieldPct += shieldDmg;
+				if(shieldPct < 0)
 				{
-					shieldPct += shieldDmg;
-					if(shieldPct > 100)
-						shieldPct = 100;
-				}
-				if(healthDmg >= 0)
-				{
-					health += healthDmg;
-					if(health > maxHealth)
-						health = maxHealth;
+					shieldPct = 0;
+					shield.collider.enabled = false;
 				}
 			}
 			else
 			{
-				if(shieldPct > 0)
+				health += healthDmg;
+				if(health < 0)
 				{
-					shieldPct += shieldDmg;
-					if(shieldPct < 0)
-					{
-						shieldPct = 0;
-						shield.collider.enabled = false;
-					}
+					health = 0;
 				}
-				else
+				if(health <= 0)
 				{
-					health += healthDmg;
-					if(health < 0)
-					{
-						health = 0;
-					}
-					if(health <= 0)
-					{
-						KillMe();
-					}
+					KillMe();
 				}
-				timeSinceLastHit = Time.timeSinceLevelLoad;
 			}
+			timeSinceLastHit = Time.timeSinceLevelLoad;
+		}
 	}
 	public override void KillMe()
 	{

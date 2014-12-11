@@ -56,6 +56,7 @@ Transform:
   m_Children:
   - {fileID: 400002}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!4 &400002
 Transform:
   m_ObjectHideFlags: 1
@@ -67,6 +68,7 @@ Transform:
   m_LocalScale: {x: 20.1316776, y: 20.1316776, z: 20.1316776}
   m_Children: []
   m_Father: {fileID: 400000}
+  m_RootOrder: 0
 --- !u!20 &2000000
 Camera:
   m_ObjectHideFlags: 1
@@ -94,8 +96,11 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
 --- !u!81 &8100000
 AudioListener:
   m_ObjectHideFlags: 1
@@ -629,22 +634,22 @@ MonoBehaviour:
   debug: 1
   decrementMouseSensitivityButton:
     m_Text: 
-    m_Image: {fileID: 2800000, guid: bbafa8aa8da273141b8065a4046b9755, type: 3}
+    m_Image: {fileID: 2800000, guid: 96024e46a70064babb61c742de8a1a75, type: 3}
     m_Tooltip: Decrease Mouse Sensitivity
   incrementMouseSensitivityButton:
     m_Text: 
-    m_Image: {fileID: 2800000, guid: e368a7d2cc4147f4a9a0be8551db982e, type: 3}
+    m_Image: {fileID: 2800000, guid: 011905da30a1b4f2bad1cc35dad2f596, type: 3}
     m_Tooltip: Increase Mouse Sensitivity
   decrementMouseSensitivityButtonStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: bbafa8aa8da273141b8065a4046b9755, type: 3}
+      m_Background: {fileID: 2800000, guid: 96024e46a70064babb61c742de8a1a75, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 2800000, guid: e368a7d2cc4147f4a9a0be8551db982e, type: 3}
+      m_Background: {fileID: 2800000, guid: 015c2fbadd8a14914800922cf0baa383, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Active:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: 015c2fbadd8a14914800922cf0baa383, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Focused:
       m_Background: {fileID: 0}
@@ -697,13 +702,13 @@ MonoBehaviour:
   incrementMouseSensitivityButtonStyle:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: e368a7d2cc4147f4a9a0be8551db982e, type: 3}
+      m_Background: {fileID: 2800000, guid: 011905da30a1b4f2bad1cc35dad2f596, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Hover:
-      m_Background: {fileID: 2800000, guid: bbafa8aa8da273141b8065a4046b9755, type: 3}
+      m_Background: {fileID: 2800000, guid: 714afc293798c46398c48f95f46e2be2, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Active:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: 714afc293798c46398c48f95f46e2be2, type: 3}
       m_TextColor: {r: 0, g: 0, b: 0, a: 1}
     m_Focused:
       m_Background: {fileID: 0}

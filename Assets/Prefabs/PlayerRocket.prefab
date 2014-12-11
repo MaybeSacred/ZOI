@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: .129999995, y: .129999995, z: .5}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -51,9 +52,8 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -99,11 +99,10 @@ MonoBehaviour:
   timeOutCounter: 0
   deflectable: 0
   deflectionSpeed: 0
-  homingStrength: 40
-  targetedTransform: {fileID: 0}
+  homingStrength: 2000
   timeBetweenChecks: .100000001
   checkRadius: 25
-  rocketStrength: 15
+  rocketStrength: 900
   maxSpeed: 50
   timeOutTime: 10
 --- !u!135 &13500000
@@ -1178,9 +1177,8 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0

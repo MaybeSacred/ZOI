@@ -11,7 +11,6 @@ public class RocketBullet : BasicBullet {
 	public float maxSpeed;
 	public float timeOutTime;
 	private float timeOutTimer;
-
 	void Start () {
 		rigidbody.velocity = speed;
 	}
@@ -26,7 +25,7 @@ public class RocketBullet : BasicBullet {
 					Collider[] colliderz = Physics.OverlapSphere(transform.position, checkRadius, 1<<10);
 					if(colliderz.Length > 0)
 					{
-						int temp = Mathf.FloorToInt(Random.Range(0, colliderz.Length));
+						int temp = Mathf.FloorToInt(Random.Range(0, (float)colliderz.Length));
 						BaseEnemy bemp = colliderz[temp].gameObject.GetComponent<BaseEnemy>();
 						if(bemp != null && bemp.health > 0)
 						{
@@ -59,26 +58,30 @@ public class RocketBullet : BasicBullet {
 			else
 			{
 				Vector3 distance = targetedTransform.position - transform.position;
-				rigidbody.AddTorque(homingStrength*Vector3.Cross(transform.forward, distance.normalized));
+				rigidbody.AddTorque(Time.deltaTime * homingStrength * Vector3.Cross(transform.forward, distance.normalized));
 			}
-		}
-		rigidbody.AddForce(transform.forward*rocketStrength);
-		if(rigidbody.velocity.magnitude > maxSpeed)
-		{
-			rigidbody.AddForce(-transform.forward*.25f);
 		}
 		if(timeOutCounter > 0)
 		{
 			if(timeOutCounter > endTime)
 			{
-				Destroy(this.gameObject);
+				Destroy(gameObject);
 			}
 			timeOutCounter += Time.deltaTime;
 		}
-		if(lifetimeTimer > lifetime)
+		else if(lifetimeTimer > lifetime)
 		{
 			timeOutCounter += Time.deltaTime;
+			DestroyMe();
 		}
 		lifetimeTimer += Time.deltaTime;
+	}
+	void FixedUpdate()
+	{
+		rigidbody.AddForce(transform.forward * rocketStrength * Time.deltaTime);
+		if(rigidbody.velocity.magnitude > maxSpeed)
+		{
+			rigidbody.AddForce(-transform.forward * .25f * Time.deltaTime);
+		}
 	}
 }

@@ -483,7 +483,7 @@ MonoBehaviour:
   maxDodgeDistance: 10
   dodgeDuration: .200000003
   healthRechargeRate: 25
-  firingRandomness: .0649999976
+  firingRandomness: .0500000007
   maxAcceptableDistFromPatrolMedian: 100
 --- !u!114 &11400004
 MonoBehaviour:
@@ -630,8 +630,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_Radius: 1
-  m_Speed: 18
-  m_Acceleration: 10
+  m_Speed: 17
+  m_Acceleration: 9
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 2
