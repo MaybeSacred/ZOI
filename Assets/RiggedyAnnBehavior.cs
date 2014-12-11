@@ -68,20 +68,21 @@ public class RiggedyAnnBehavior : BaseEnemy {
 					dodgeTimer += Time.deltaTime;
 					if(dodgeTimer < dodgeDuration)
 					{
-						transform.Translate(dodgeDist*Time.deltaTime*transform.right);
+						navAgent.Move(dodgeDist*Time.deltaTime*transform.right);
+						//transform.Translate();
 					}
 					else
 					{
 						dodgeTimer = 0;
 						danger = false;
-						navAgent.enabled = true;
+						//navAgent.enabled = true;
 						navAgent.SetDestination(transform.position);
 					}
 				}
 				else
 				{
 					Vector3 vectorToPlayer = Util.player.transform.position - transform.position;
-					if(vectorToPlayer.magnitude < standoffDistance)
+					if(vectorToPlayer.magnitude < Fuzzify(standoffDistance))
 					{
 						if(fireTimer > fireRate)
 						{
@@ -91,7 +92,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 							fireTimer = 0;
 						}
 						fireTimer += Time.deltaTime;
-						MoveTowardsPlayer(Util.player.transform.position - 20 * (Util.player.transform.position - transform.position));
+						MoveTowardsPlayer(Util.player.transform.position - 15 * (Util.player.transform.position - transform.position).normalized);
 					}
 					else
 					{
@@ -103,11 +104,13 @@ public class RiggedyAnnBehavior : BaseEnemy {
 			}
 		}
 	}
+	private float Fuzzify(float invalue){
+		return invalue * Random.Range(.9f, 1.1f);
+	}
 	private void UpdateShield()
 	{
 		if(Time.timeSinceLevelLoad > timeSinceLastHit + shieldRechargeDelay)
 		{
-			
 			HealthChange(shieldRechargeRate * Time.deltaTime, healthRechargeRate*Time.deltaTime);
 			shield.renderer.enabled = true;
 			shield.collider.enabled = true;
@@ -141,8 +144,9 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	public void Jump()
 	{
-		float chance = Random.Range (0, 3f);
-		if(chance>2.5f)
+		float chance = Random.Range (0, 1f);
+		//half the time we jump
+		if(chance > .5f)
 		{
 			RaycastHit hit;
 			float rightDistance;
@@ -183,7 +187,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 				}
 			}
 			danger = true;
-			navAgent.enabled = false;
+			//navAgent.enabled = false;
 		}
 	}
 	public override void KillMe()

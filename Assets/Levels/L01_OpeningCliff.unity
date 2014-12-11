@@ -1524,8 +1524,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf50a37400f3394b95cbd859a9cb1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
-  maxHealth: 300
+  health: 250
+  maxHealth: 250
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
   deathParticles: {fileID: 1370758931}
@@ -3233,11 +3233,11 @@ MonoBehaviour:
   deathParticles: {fileID: 68465592}
   graphicalObject: {fileID: 2061704002}
   legs: {fileID: 134276572}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
@@ -3763,7 +3763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpideySenseOwner: {fileID: 929213682}
-  cooldownDuration: .5
+  cooldownDuration: 1
 --- !u!135 &81758462
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9413,6 +9413,18 @@ Prefab:
     - target: {fileID: 400006, guid: 371c1cbfc1b48614990beaad8607eed8, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: 371c1cbfc1b48614990beaad8607eed8, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 14500002, guid: 371c1cbfc1b48614990beaad8607eed8, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.12499976
+      objectReference: {fileID: 0}
+    - target: {fileID: 14500000, guid: 371c1cbfc1b48614990beaad8607eed8, type: 2}
+      propertyPath: m_ConnectedAnchor.y
+      value: -.365465939
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 371c1cbfc1b48614990beaad8607eed8, type: 2}
@@ -22626,11 +22638,11 @@ MonoBehaviour:
   deathParticles: {fileID: 364695904}
   graphicalObject: {fileID: 1137554397}
   legs: {fileID: 874879212}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
@@ -40753,7 +40765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpideySenseOwner: {fileID: 38016516}
-  cooldownDuration: .5
+  cooldownDuration: 1
 --- !u!135 &720144321
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -52341,11 +52353,11 @@ MonoBehaviour:
   deathParticles: {fileID: 916429742}
   graphicalObject: {fileID: 1867771974}
   legs: {fileID: 1828425371}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
@@ -55045,8 +55057,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf50a37400f3394b95cbd859a9cb1ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 300
-  maxHealth: 300
+  health: 250
+  maxHealth: 250
   deathTimeout: 5
   attachedBarrier: {fileID: 0}
   deathParticles: {fileID: 1471783599}
@@ -64076,11 +64088,11 @@ MonoBehaviour:
   deathParticles: {fileID: 1051754853}
   graphicalObject: {fileID: 3437788}
   legs: {fileID: 1650929202}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
@@ -71065,11 +71077,11 @@ MonoBehaviour:
   deathParticles: {fileID: 1167226574}
   graphicalObject: {fileID: 798585712}
   legs: {fileID: 1621127775}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
@@ -78264,11 +78276,11 @@ MonoBehaviour:
   deathParticles: {fileID: 1290508913}
   graphicalObject: {fileID: 132315870}
   legs: {fileID: 1398492210}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
@@ -103460,11 +103472,11 @@ MonoBehaviour:
   deathParticles: {fileID: 1785157542}
   graphicalObject: {fileID: 1410934955}
   legs: {fileID: 414429949}
-  lookAheadTime: .200000003
-  movementForce: 75
-  initialPopUpForce: 1000
+  lookAheadTime: .150000006
+  movementForce: 90
+  initialPopUpForce: 1250
   explosionPS: {fileID: 19800000, guid: dd81832f14d5e104e8a0b53f9b08714f, type: 2}
-  shieldDamage: 34
+  shieldDamage: 50
   healthDamage: 34
   timeOutCounter: 3
   explosionDuration: .100000001
