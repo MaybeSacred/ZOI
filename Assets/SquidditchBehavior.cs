@@ -48,6 +48,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		if(deathTimeoutTimer > 0)
 		{
 			bulletEmitterLight.range = deathGlowConstant*(deathTimeout-deathTimeoutTimer);
+			deathParticles.transform.rotation = Quaternion.identity;
 			if(deathTimeoutTimer > deathTimeout)
 			{
 				Destroy(gameObject);
