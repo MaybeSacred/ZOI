@@ -694,6 +694,30 @@ Prefab:
       propertyPath: pointsToLookAt.Array.data[4]
       value: 
       objectReference: {fileID: 595928708}
+    - target: {fileID: 11400000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
+      propertyPath: buttonStyle.m_FontSize
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
+      propertyPath: titleStyle.m_FontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
+      propertyPath: titleStyle.m_ContentOffset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
+      propertyPath: titleStyle.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
+      propertyPath: titleStyle.m_Margin.m_Left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
+      propertyPath: titleStyle.m_Padding.m_Left
+      value: -400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3ca156ff0240c1f4caca9533a68121b8, type: 2}
   m_RootGameObject: {fileID: 589199156}
@@ -1697,7 +1721,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Padding:
-      m_Left: 0
+      m_Left: -400
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
@@ -1707,7 +1731,7 @@ MonoBehaviour:
       m_Top: 0
       m_Bottom: 0
     m_Font: {fileID: 12800000, guid: 36a6e0e09881149868f7fab0c9204a9d, type: 3}
-    m_FontSize: 115
+    m_FontSize: 60
     m_FontStyle: 0
     m_Alignment: 4
     m_WordWrap: 0
