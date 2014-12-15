@@ -89,22 +89,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prettyName: SK 919 Rokit
   side: 0
-  lifetime: 15
+  lifetime: 5
   explosionPS: {fileID: 19800000, guid: 45ad1500742563d469def44d577b46f5, type: 2}
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
   initialSpeed: 15
   shieldDamage: 15
-  healthDamage: 40
+  healthDamage: 35
   timeOutCounter: 0
   deflectable: 0
   deflectionSpeed: 0
   homingStrength: 2000
   timeBetweenChecks: .100000001
-  checkRadius: 25
+  checkRadius: 15
   rocketStrength: 900
   maxSpeed: 50
-  timeOutTime: 10
+  timeOutTime: 5
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1
