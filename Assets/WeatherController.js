@@ -12,20 +12,21 @@ function Start () {
 }
 
 function Update () {
-	if(currentTime > timeTilNextChange)
-	{
-		waxing = !waxing;
-		currentTime -= timeTilNextChange;
-		timeTilNextChange = Random.Range(minStart, maxStart);
-	}
-	if(waxing)
-	{
-		weather.emissionRate = Mathf.Lerp(minEmission, maxEmission, currentTime/timeTilNextChange);
-		
-	}
-	else
-	{
-		weather.emissionRate = Mathf.Lerp(maxEmission, minEmission, currentTime/timeTilNextChange);
+	if(!Physics.Raycast(this.transform.position, Vector3.up, float.PositiveInfinity)){
+		if(currentTime > timeTilNextChange)
+		{
+			waxing = !waxing;
+			currentTime -= timeTilNextChange;
+			timeTilNextChange = Random.Range(minStart, maxStart);
+		}
+		if(waxing)
+		{
+			weather.emissionRate = Mathf.Lerp(minEmission, maxEmission, currentTime/timeTilNextChange);
+		}
+		else
+		{
+			weather.emissionRate = Mathf.Lerp(maxEmission, minEmission, currentTime/timeTilNextChange);
+		}
 	}
 	currentTime += Time.deltaTime;
 }

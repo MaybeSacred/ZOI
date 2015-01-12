@@ -189,4 +189,9 @@ public class CameraScript : MonoBehaviour {
 		spiderFeeding = true;
 		feedTimeStart = Time.time;
 	}
+	public void EndGame(){
+		GetComponent<GameGUI>().enabled = false;
+		GetComponent<EndingCamera>().enabled = true;
+		enabled = false;
+	}
 }
