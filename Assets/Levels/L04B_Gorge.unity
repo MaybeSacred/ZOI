@@ -9438,7 +9438,7 @@ Transform:
   - {fileID: 974172715}
   - {fileID: 1490398253}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!114 &195442454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23332,8 +23332,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 490744652}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0, z: 0}
+  m_LocalRotation: {x: -1, y: 0, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: 0, y: 0, z: 4.54300022}
   m_LocalScale: {x: .028571425, y: .0285714231, z: .0285714269}
   m_Children:
   - {fileID: 1381753293}
@@ -23359,13 +23359,13 @@ ParticleSystemRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_RenderMode: 1
-  m_MaxParticleSize: .100000001
+  m_RenderMode: 0
+  m_MaxParticleSize: .5
   m_CameraVelocityScale: 0
-  m_VelocityScale: 3
-  m_LengthScale: 25
+  m_VelocityScale: 7
+  m_LengthScale: 7
   m_SortingFudge: 0
-  m_NormalDirection: 0
+  m_NormalDirection: 1
   m_SortMode: 0
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
@@ -23382,13 +23382,13 @@ ParticleSystem:
   speed: 1
   randomSeed: 0
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 20
+      scalar: 17
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -23421,16 +23421,11 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 25
+      scalar: 12
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
           value: 1
           inSlope: 0
           outSlope: 0
@@ -23441,18 +23436,13 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
-          value: 0
+          value: .833333313
           inSlope: 0
           outSlope: 0
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-      minMaxState: 0
+      minMaxState: 3
     startColor:
       maxGradient:
         key0:
@@ -23545,10 +23535,10 @@ ParticleSystem:
         rgba: 4294967295
       maxColor:
         serializedVersion: 2
-        rgba: 3405767365
+        rgba: 2600460997
       minMaxState: 0
     startSize:
-      scalar: 1
+      scalar: 10
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -23615,12 +23605,12 @@ ParticleSystem:
       minMaxState: 0
     gravityModifier: 0
     inheritVelocity: 0
-    maxNumParticles: 1000
+    maxNumParticles: 100000
   ShapeModule:
     serializedVersion: 2
     enabled: 1
     type: 4
-    radius: 1
+    radius: .00999999978
     angle: 0
     length: 5
     boxX: 1
@@ -23633,16 +23623,11 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 20
+      scalar: 250
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-        - time: 1
           value: 1
           inSlope: 0
           outSlope: 0
@@ -23665,7 +23650,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 30
+    cnt0: 300
     cnt1: 30
     cnt2: 30
     cnt3: 30
@@ -24432,10 +24417,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.5
+  m_Radius: 2
   m_Height: 8
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 3}
+  m_Center: {x: 0, y: 0, z: 155.699997}
 --- !u!114 &490744657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24447,6 +24432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea5b89227bf54644ae2012c51986512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expandingTime: 5
 --- !u!1 &496919182
 GameObject:
   m_ObjectHideFlags: 0
@@ -27048,6 +27034,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 99abcf3499cd6d0488ae54a0669bf093, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6224c18d468d8734881b55929973a86f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 99abcf3499cd6d0488ae54a0669bf093, type: 3}
   m_RootGameObject: {fileID: 968695988}
@@ -53327,7 +53317,8 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 87be61bc566d5d24683eabfa894884aa, type: 2}
+  - {fileID: 2100000, guid: 6224c18d468d8734881b55929973a86f, type: 2}
+  - {fileID: 2100000, guid: 6224c18d468d8734881b55929973a86f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -58876,7 +58867,7 @@ Transform:
   - {fileID: 561723663}
   - {fileID: 489948396}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!114 &1074654265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77495,7 +77486,7 @@ Transform:
   - {fileID: 1090687528}
   - {fileID: 566283533}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
 --- !u!1 &1318871734
 GameObject:
   m_ObjectHideFlags: 0
@@ -82760,6 +82751,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bc7eb50132411f24491c95211d402a44, type: 2}
+    - target: {fileID: 400004, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 19b4b1441451ffd48b251fd615c163aa, type: 3}
   m_RootGameObject: {fileID: 1318625896}
@@ -82940,7 +82935,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1381753289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 159.399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 490744653}
@@ -116269,7 +116264,7 @@ Transform:
   - {fileID: 546942306}
   - {fileID: 597902749}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!114 &1995127503
 MonoBehaviour:
   m_ObjectHideFlags: 0

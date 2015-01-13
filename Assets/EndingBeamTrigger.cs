@@ -8,7 +8,6 @@ public class EndingBeamTrigger : MonoBehaviour {
 	
 	}
 	void OnTriggerEnter(){
-		Debug.Log("here");
-		GetComponentInParent<Ending>().particleSystem.Play();
+		GetComponentInParent<Ending>().ActivateBeam();
 	}
 }
