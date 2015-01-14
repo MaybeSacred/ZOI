@@ -11,7 +11,7 @@ public class Ending : MonoBehaviour {
 	}
 	void Update(){
 		if(playingEnding){
-			if(ps.startSize < expandingTime || infiniteExpand){
+			if(infiniteExpand){
 				ps.startSize += 10 * Time.deltaTime;
 			}
 		}
