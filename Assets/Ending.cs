@@ -17,14 +17,15 @@ public class Ending : MonoBehaviour {
 		}
 	}
 
-	public void ActivateBeam ()
-	{
+	public void ActivateBeam (){
 		playingEnding = true;
 		ps.Play();
+		Util.mainCamera.EndGame();
 	}
 
-	void OnTriggerEnter(){
-		infiniteExpand = true;
-		Util.mainCamera.EndGame();
+	void OnTriggerEnter(Collider other){
+		if(other.tag.Equals("Player")){
+			infiniteExpand = true;
+		}
 	}
 }

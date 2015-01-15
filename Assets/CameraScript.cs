@@ -192,6 +192,7 @@ public class CameraScript : MonoBehaviour {
 	public void EndGame(){
 		GetComponent<GameGUI>().enabled = false;
 		GetComponent<EndingCamera>().enabled = true;
+		GetComponent<EndingCamera>().SetVantagePoint();
 		enabled = false;
 	}
 }
