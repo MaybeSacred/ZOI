@@ -27,10 +27,9 @@ public class TriggerBoss : MonoBehaviour {
 				if(enemy != null)
 				{
 					((PlayerEvent)enemy.GetComponent<MonoBehaviour>()).OnPlayerEnter();
-					Destroy (dummies);
-					doors.CloseDoors();
 				}
 			}
+			doors.CloseDoors();
 		}
 	}
 }

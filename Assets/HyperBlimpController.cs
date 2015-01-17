@@ -83,28 +83,17 @@ public class HyperBlimpController : BaseEnemy, PlayerEvent {
 					transform.position += transform.forward*Time.deltaTime*Mathf.Lerp(movementSpeed, 0, timeIntoEnginesOff/timeToEnginesStopAfterShot);
 					timeIntoEnginesOff += Time.deltaTime;
 				}
-				Physics.Raycast(transform.position, -Vector3.up, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS & ~(1<<10));
-				if(transform.position.y - player.transform.position.y < hit.distance)
+				Physics.Raycast(transform.position, Vector3.down, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS & ~(1 << LayerMask.NameToLayer("EnemyLayer")));
+				if(hit.distance > desiredAltitude + altitudeDeadZone)
 				{
-					if(transform.position.y - player.transform.position.y > desiredAltitude + altitudeDeadZone)
-					{
-						transform.position -= new Vector3(0, altitudeChangeSpeed * Time.deltaTime, 0);
-					}
-					else if(transform.position.y - player.transform.position.y < desiredAltitude - altitudeDeadZone)
-					{
-						transform.position += new Vector3(0, altitudeChangeSpeed * Time.deltaTime, 0);
-					}
+					transform.position -= new Vector3(0, altitudeChangeSpeed * Time.deltaTime, 0);
 				}
-				else
+				else if(hit.distance < desiredAltitude - altitudeDeadZone)
 				{
-					if(hit.distance > desiredAltitude + altitudeDeadZone)
-					{
-						transform.position -= new Vector3(0, altitudeChangeSpeed * Time.deltaTime, 0);
-					}
-					else if(hit.distance < desiredAltitude - altitudeDeadZone)
-					{
-						transform.position += new Vector3(0, altitudeChangeSpeed * Time.deltaTime, 0);
-					}
+					transform.position += new Vector3(0, altitudeChangeSpeed * Time.deltaTime, 0);
+				}
+				else {
+					transform.position += new Vector3(0, (desiredAltitude - hit.distance)/altitudeDeadZone * altitudeChangeSpeed * Time.deltaTime, 0);
 				}
 			}
 		}

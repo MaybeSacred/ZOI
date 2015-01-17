@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeaps:
-  - secondaryCannonReloadTime: 13
+  - secondaryCannonReloadTime: 12.5
     firingRandomness: .0500000007
     secondaryBulletEmitters: {fileID: 400072}
     secondaryCannonFlashes: {fileID: 19800010}
@@ -2269,12 +2269,12 @@ MonoBehaviour:
     totalSecondaryBullets: 2
     soundEffect: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   - secondaryCannonReloadTime: 0
-    firingRandomness: .109999999
+    firingRandomness: .100000001
     secondaryBulletEmitters: {fileID: 400010}
     secondaryCannonFlashes: {fileID: 19800034}
     possibleSecondaries: {fileID: 11400000, guid: 1d2226000c2eaf8439b11ea0e43e3d1c,
       type: 2}
-    secondaryAutoFireTimes: .0599999987
+    secondaryAutoFireTimes: .0700000003
     totalSecondaryBullets: 1
     soundEffect: {fileID: 8300000, guid: ec1d5501f7557e14391592c7d67cd1ec, type: 3}
   - secondaryCannonReloadTime: 5
@@ -2283,7 +2283,7 @@ MonoBehaviour:
     secondaryCannonFlashes: {fileID: 19800008}
     possibleSecondaries: {fileID: 11400000, guid: e015884f125455941a11fa195578db70,
       type: 2}
-    secondaryAutoFireTimes: .200000003
+    secondaryAutoFireTimes: .25
     totalSecondaryBullets: 6
     soundEffect: {fileID: 8300000, guid: 84bbc36dea3138d40adb7d34c922e474, type: 3}
   primaryWeapClip: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
@@ -2335,8 +2335,8 @@ MonoBehaviour:
   primaryBullet: {fileID: 11400000, guid: a69af5fa9509ca54c8867b5ab7a36d25, type: 2}
   body: {fileID: 400044}
   turret: {fileID: 400048}
-  maxSlope: 45
-  slopeLinearDropOff: 25
+  maxSlope: 42
+  slopeLinearDropOff: 7
   autotargetDeltaAngle: 75
   steeringRate: 12.5
   steeringCenteringCoeff: .660000026
@@ -2347,7 +2347,7 @@ MonoBehaviour:
   maxSpeed: 14
   health: 100
   maxHealth: 100
-  maxSpeedRetardingForce: 68
+  maxSpeedRetardingForce: 65
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
