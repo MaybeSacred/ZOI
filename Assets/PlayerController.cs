@@ -584,10 +584,6 @@ public class PlayerController : MonoBehaviour
 	}
 	public void PlayerDeath()
 	{
-		/*PlayerController pc = ((GameObject)Instantiate(this.gameObject, restartPosition, Quaternion.Euler(restartRotation))).GetComponent<PlayerController>();
-		theCam.GetComponent<CameraScript>().player = pc;
-		Util.player = pc;
-		Destroy(gameObject);*/
 		deathTimeoutTimer = 0;
 		for(int i = 0; i < wheelGroundEffects.Length; i++)
 		{
