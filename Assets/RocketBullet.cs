@@ -72,7 +72,7 @@ public class RocketBullet : BasicBullet {
 		else if(lifetimeTimer > lifetime)
 		{
 			timeOutCounter += Time.deltaTime;
-			DestroyMe();
+			DestroyMe(transform.position);
 		}
 		lifetimeTimer += Time.deltaTime;
 	}

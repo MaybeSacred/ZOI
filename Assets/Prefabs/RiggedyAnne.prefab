@@ -195,7 +195,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 387.870758, y: 160.792389, z: 316.333801}
+  m_LocalPosition: {x: 64.8725891, y: 160.597275, z: 933.318115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -480,9 +480,9 @@ MonoBehaviour:
   shieldMaterialRate: .0500000007
   standoffDistance: 75
   detectionTimeout: 6
-  maxDodgeDistance: 10
+  maxDodgeDistance: 8
   dodgeDuration: .200000003
-  healthRechargeRate: 25
+  healthRechargeRate: 10
   firingRandomness: .0500000007
   maxAcceptableDistFromPatrolMedian: 100
 --- !u!114 &11400004

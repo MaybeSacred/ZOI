@@ -23,6 +23,10 @@ public class Util : MonoBehaviour {
 		theGUI = this.GetComponentInChildren<GameGUI>();
 		mainCamera = this.GetComponentInChildren<CameraScript>();
 		ms = this.GetComponentInChildren<MusicSystem>();
+		if(ms == null){
+			ms = (MusicSystem)Instantiate(Resources.Load<MusicSystem>("MusicSystem"));
+			ms.transform.parent = mainCamera.transform;
+		}
 		theGUI.SetNextCheckpoint(firstCheckpoint);
 	}
 	public void LoadLevel(int levelNum)
@@ -33,6 +37,10 @@ public class Util : MonoBehaviour {
 		theGUI = this.GetComponentInChildren<GameGUI>();
 		mainCamera = this.GetComponentInChildren<CameraScript>();
 		ms = this.GetComponentInChildren<MusicSystem>();
+		if(ms == null){
+			ms = (MusicSystem)Instantiate(Resources.Load<MusicSystem>("MusicSystem"));
+			ms.transform.parent = mainCamera.transform;
+		}
 		CheckpointBehaviour[] checkpoints = this.GetComponentsInChildren<CheckpointBehaviour>();
 		for(int i = 0; i < checkpoints.Length; i++)
 		{

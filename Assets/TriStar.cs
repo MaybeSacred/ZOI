@@ -92,10 +92,6 @@ public class TriStar : BaseEnemy {
 					Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
 				}
 			}
-			if(other.tag.Equals("Bullet"))
-			{
-				other.GetComponent<BasicBullet>().DestroyMe();
-			}
 		}
 	}
 }

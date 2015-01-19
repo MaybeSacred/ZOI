@@ -39,11 +39,16 @@ public class BasicBullet : MonoBehaviour {
 
 	public void OnCollisionEnter(Collision other)
 	{
-		DestroyMe();
+		Vector3 collisionPoint = Vector3.zero;
+		foreach(ContactPoint c in other.contacts){
+			collisionPoint += c.point;
+		}
+		collisionPoint = (other.contacts.Length > 0?collisionPoint/other.contacts.Length:transform.position);
+		DestroyMe(collisionPoint);
 	}
 	public void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.tag.Equals("Deflective")&&deflectable)
+		if(other.gameObject.tag.Equals("Deflective") && deflectable)
 		{
 			if(!rigidbody.isKinematic)
 			{
@@ -53,12 +58,15 @@ public class BasicBullet : MonoBehaviour {
 		}
 		else 
 		{
-			//DestroyMe();
+			if(other.gameObject.layer != LayerMask.NameToLayer("Ignore Raycast")){
+				Vector3 collisionPoint = other.collider.ClosestPointOnBounds(transform.position);
+				DestroyMe(collisionPoint);
+			}
 		}
 	}
-	public virtual void DestroyMe()
+	public virtual void DestroyMe(Vector3 collisionPoint)
 	{
-		ParticleSystem ps = Instantiate(explosionPS, transform.position - rigidbody.velocity*Time.fixedDeltaTime, transform.rotation) as ParticleSystem;
+		ParticleSystem ps = Instantiate(explosionPS, collisionPoint, transform.rotation) as ParticleSystem;
 		rigidbody.isKinematic = true;
 		timeOutCounter += Time.deltaTime;
 		GetComponent<Collider>().enabled = false;

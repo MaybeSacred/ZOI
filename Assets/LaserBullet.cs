@@ -29,8 +29,8 @@ public class LaserBullet : BasicBullet {
 			timeOutCounter += Time.deltaTime;
 		}
 	}
-	public override void DestroyMe()
+	public override void DestroyMe(Vector3 input)
 	{
-		GetComponent<Collider>().enabled = false;
+		//GetComponent<Collider>().enabled = false;
 	}
 }

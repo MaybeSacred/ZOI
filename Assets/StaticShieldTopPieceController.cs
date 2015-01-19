@@ -47,10 +47,6 @@ public class StaticShieldTopPieceController : MonoBehaviour {
 				Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
 			}
 		}
-		if(other.tag.Equals("Bullet"))
-		{
-			other.GetComponent<BasicBullet>().DestroyMe();
-		}
 	}
 	public void HealthChange(float shieldDmg, float healthDmg)
 	{

@@ -185,10 +185,6 @@ public class KatneenBehavior : BaseEnemy {
 					Debug.Log("Incorrect tag assignment for tag \"Basic Explosion\"");
 				}
 			}
-			if(other.tag.Equals("Bullet"))
-			{
-				other.GetComponent<BasicBullet>().DestroyMe();
-			}
 		}
 	}
 	void OnTriggerEnter(Collider other)
