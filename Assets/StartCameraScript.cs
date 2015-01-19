@@ -22,7 +22,7 @@ public class StartCameraScript : MonoBehaviour {
 		if(pointTimer > nextPointTime)
 		{
 			pointTimer = 0;
-			if(currentLookAtPoint >= pointsToLookAt.Length)
+			if(currentLookAtPoint >= pointsToLookAt.Length - 1)
 			{
 				currentLookAtPoint = 0;
 			}

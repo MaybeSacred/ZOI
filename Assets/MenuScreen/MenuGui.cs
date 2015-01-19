@@ -12,8 +12,8 @@ public class MenuGui : MonoBehaviour {
 	public GUIStyle menuTitleStyle; //IceCaps font, white size 65
 	public GUIStyle titleStyle; //IceCaps white size 115, aligned middle center
 	public GUIStyle textStuff;
-	private enum MenuState{MAIN, OPTIONS, LEVELSELECT, CREDITS, HOWTOPLAY}
-	MenuState state;
+	public RectTransform MAIN, OPTIONS, LEVELSELECT, CREDITS, HOWTOPLAY;
+	RectTransform currentPanel;
 	private CameraScript theCamera;
 
 	int imagex,imagey,imagewidth,imageheight;
@@ -22,21 +22,31 @@ public class MenuGui : MonoBehaviour {
 
 		//stuff that makes it snow :D
 		theCamera = GetComponent<CameraScript>();
-		state = MenuState.MAIN;
+		currentPanel = MAIN;
+		MAIN.gameObject.SetActive(false);
+		OPTIONS.gameObject.SetActive(false);
+		LEVELSELECT.gameObject.SetActive(false);
+		CREDITS.gameObject.SetActive(false);
+		HOWTOPLAY.gameObject.SetActive(false);
+		SwitchToPanel(MAIN);
 		imagex = Screen.width-490;
 		imagey = 0;
 		imagewidth = 500;
 		imageheight = Screen.height;
 		Screen.lockCursor = false;
 	}
-
+	void SwitchToPanel(RectTransform switchTo){
+		currentPanel.gameObject.SetActive(false);
+		currentPanel = switchTo;
+		currentPanel.gameObject.SetActive(true);
+	}
 	void Update () {
 
 	}
 
 	void OnGUI()
 	{
-		switch(state)
+		/*switch(state)
 		{
 			case MenuState.MAIN:
 			{
@@ -63,10 +73,32 @@ public class MenuGui : MonoBehaviour {
 				HowToPlay();
 				break;
 			}
-		}
+		}*/
 	}
 	int border = 15;
-	void HowToPlay()
+	public void SwitchToPlayInstructions(){
+		SwitchToPanel(HOWTOPLAY);
+	}
+	public void BackToMain(){
+		SwitchToPanel(MAIN);
+	}
+	public void SwitchToCredits(){
+		SwitchToPanel(CREDITS);
+	}
+	public void SwitchToLevelSelect(){
+		SwitchToPanel(LEVELSELECT);
+	}
+	public void SwitchToOptions(){
+		SwitchToPanel(OPTIONS);
+	}
+	public void Quit(){
+		Application.Quit();
+	}
+	public void LoadLevel(string levelToLoad){
+		FindObjectOfType<MusicSystem>().transform.parent = null;
+		Application.LoadLevel(levelToLoad);
+	}
+	/*void HowToPlay()
 	{
 		GUI.BeginGroup(new Rect(border, border, Screen.width - 2*border, Screen.height-2*border));
 		GUI.Label(new Rect(0, 0, Screen.width - 2*border, 50), "Instructions", menuTitleStyle);
@@ -161,7 +193,6 @@ public class MenuGui : MonoBehaviour {
 			state = MenuState.HOWTOPLAY;
 		}
 	}
-
 	void Options()
 	{
 		GUI.BeginGroup(new Rect(Screen.width/2 - imagewidth/2, Screen.height/2 - 300, imagewidth, imageheight));
@@ -182,6 +213,5 @@ public class MenuGui : MonoBehaviour {
 		}
 		GUI.TextArea(new Rect(235, imageheight/2-35, 224, 48), theCamera.GetCurrentMouseSensitivity().ToString(), currentSensitivityStyle);
 		GUI.EndGroup();
-	}
-
+	}*/
 }

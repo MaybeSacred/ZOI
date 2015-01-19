@@ -27,6 +27,7 @@ public class Util : MonoBehaviour {
 	}
 	public void LoadLevel(int levelNum)
 	{
+		ms.transform.parent = null;
 		Application.LoadLevel(levelNum);
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();

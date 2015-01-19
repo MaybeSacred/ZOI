@@ -41,11 +41,26 @@ public class MusicSystem: MonoBehaviour {
 		Background
 	}
 	
+	public void ChangeMasterVolume(float change){
+		MasterVolume = Mathf.Clamp01(change);
+	}
 	// Use this for initialization
 	void Start () {
+		DontDestroyOnLoad(transform.gameObject);
 		randomizePhrases();
 	}
-	
+	void OnLevelWasLoaded(int input){
+		CameraScript cs = FindObjectOfType<CameraScript>();
+		StartCameraScript scs = FindObjectOfType<StartCameraScript>();
+		if(cs != null){
+			transform.parent = cs.transform;
+			transform.localPosition = Vector3.zero;
+		}
+		else if(scs != null){
+			transform.parent = scs.transform;
+			transform.localPosition = Vector3.zero;
+		}
+	}
 	// Update is called once per frame
 	void Update () {
 		adjustVolumes();
@@ -75,23 +90,23 @@ public class MusicSystem: MonoBehaviour {
 			
 			//Calc desired volume
 			float desiredVol = volumes[counter];
-			desiredVol = desiredVol - (1 - MasterVolume);
+			desiredVol *= MasterVolume;
 			
 			if (groups[counter] == Group.Battle){
-				desiredVol = desiredVol - (1 - BattleVolume);
+				desiredVol *= BattleVolume;
 			}else{
-				desiredVol = desiredVol - (1 - BackgroundVolume);
+				desiredVol *= BackgroundVolume;
 			}
 			
 			if (paused){
-				desiredVol = desiredVol - (1 - PauseVolume);
+				desiredVol *= PauseVolume;
 			}
 			
 			desiredVol = Mathf.Clamp (desiredVol, 0, 1);
-			
 			//If Volumes are not equal
 			if (!Mathf.Approximately(currentVol, desiredVol)){
-				
+				audioSources[counter].volume = Mathf.Lerp(currentVol, desiredVol, Time.deltaTime * fadeIn);
+				/*
 				//Save the start time and initial volume
 				if (!lerpStarts.ContainsKey(counter)){
 					lerpStarts.Add(counter, Time.time);
@@ -125,7 +140,7 @@ public class MusicSystem: MonoBehaviour {
 					lerpStarts.Remove(counter);
 					origVolumes.Remove(counter);
 					direction.Remove(counter);
-				}
+				}*/
 			}
 		}
 	}
