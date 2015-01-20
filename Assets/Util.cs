@@ -51,6 +51,20 @@ public class Util : MonoBehaviour {
 			}
 		}
 	}
+	void Update(){
+		if(Input.GetKeyDown("m"))
+		{
+			if(Util.isPaused){
+				Util.UnPause();
+			}
+			else{
+				Util.Pause();
+			}
+		}
+		if(Input.GetMouseButtonDown(0) && !isPaused){
+			Screen.lockCursor = true;
+		}
+	}
 	/*Handles details of firing a BasicBullet
 	 *Should be used by all objects attempting to fire a bullet
 	 */
@@ -70,12 +84,14 @@ public class Util : MonoBehaviour {
 		isPaused = true;
 		Time.timeScale = 0;
 		ms.pauseMusic(true);
+		theGUI.OnPause();
 	}
 	public static void UnPause()
 	{
 		isPaused = false;
 		Time.timeScale = 1;
 		ms.pauseMusic(false);
+		theGUI.OnUnPause();
 	}
 
 	public static BasicBullet FireLaserType<T>(T t, Vector3 beginPosition, Vector3 endPosition, Quaternion inRotation) where T : BasicBullet

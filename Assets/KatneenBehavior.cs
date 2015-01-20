@@ -51,7 +51,7 @@ public class KatneenBehavior : BaseEnemy {
 		if(deathTimeoutTimer > 0)
 		{
 			currentLaser = null;
-			warningLight.range = deathTimeoutTimer*deathGlowConstant;
+			warningLight.range = Mathf.Pow(deathTimeoutTimer / 2 -deathTimeoutTimer, 2) * deathGlowConstant;
 			if(deathTimeoutTimer > deathTimeout)
 			{
 				Destroy(transform.parent.gameObject);

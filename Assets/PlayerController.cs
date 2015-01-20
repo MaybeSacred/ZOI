@@ -468,6 +468,7 @@ public class PlayerController : MonoBehaviour
 
 	public void RealCollisionHandler(Collider other)
 	{
+        
         //handles explosions with tags
 		if(other.tag.Equals("BasicExplosion"))
 		{
@@ -490,7 +491,7 @@ public class PlayerController : MonoBehaviour
 		{
 			try
 			{
-				if(!colliders.Contains(other.gameObject)||(disabledControlsTimer==0&&deathTimeoutTimer==0))
+				if(!colliders.Contains(other.gameObject)||(disabledControlsTimer == 0 && deathTimeoutTimer == 0))
 				{
 					SpiderbotBehavior be = (SpiderbotBehavior)other.gameObject.GetComponent<SpiderbotBehavior>();
 					colliders.Add(other.gameObject);
@@ -553,7 +554,7 @@ public class PlayerController : MonoBehaviour
 			try
 			{
 				BasicBullet be = (BasicBullet)(other.GetComponent<BasicBullet>());
-				HealthChange(-be.shieldDamage*Time.fixedDeltaTime, -be.healthDamage*Time.fixedDeltaTime);
+				HealthChange(-be.shieldDamage * Time.fixedDeltaTime, -be.healthDamage * Time.fixedDeltaTime);
 			}
 			catch(System.InvalidCastException ie)
 			{

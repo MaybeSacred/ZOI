@@ -358,8 +358,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
-  m_LocalRotation: {x: -.0214848183, y: -.487641692, z: .00613315916, w: .872757971}
-  m_LocalPosition: {x: 380.27063, y: 167.369781, z: 1254.28699}
+  m_LocalRotation: {x: -.00333564426, y: .0259684585, z: -.0147097763, w: .999548972}
+  m_LocalPosition: {x: 205.564545, y: 162.686813, z: 507.728058}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400022}
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   laserDuration: 3
   laserLockedOnGroundRate: 30
   laserLostLockGroundRate: 9
-  deltaAngleForLosingLocked: 105
+  deltaAngleForLosingLocked: 90
   laserRandomness: 0
   lockOnParticles: {fileID: 19800004}
 --- !u!114 &11400004
@@ -1147,7 +1147,7 @@ SpringJoint:
   m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 380.280884, y: 168.36879, z: 1254.24353}
+  m_ConnectedAnchor: {x: 205.593781, y: 163.686356, z: 507.720612}
   m_Spring: 300
   m_Damper: .300000012
   m_MinDistance: 0

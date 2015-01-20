@@ -173,8 +173,9 @@ public class CameraScript : MonoBehaviour {
 	{
 		SetCurrentMouseSensitivity(mouseSensitivityState+1);
 	}
-	public void SetCurrentMouseSensitivity(int sensitivity)
+	public void SetCurrentMouseSensitivity(float intivity)
 	{
+		int sensitivity = Mathf.RoundToInt(intivity);
 		mouseSensitivityState = Mathf.Clamp(sensitivity, 0, numberOfMouseSensitivityStates);
 		mouseSensitivity = Vector2.Lerp(Vector2.one*mouseSensitivityRange.x, Vector2.one*mouseSensitivityRange.y, ((float)mouseSensitivityState)/numberOfMouseSensitivityStates);
 		mouseSensitivity.y = -mouseSensitivity.y;

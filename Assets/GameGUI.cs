@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
-public class GameGUI : MonoBehaviour {
+public class GameGUI : MonoBehaviour, Pauseable {
+	//gui classic
 	public GUIStyle currentStyle;
 	public Vector2 primaryWepStartPoint;
 	private float dotUpdateDelta;
@@ -32,6 +33,11 @@ public class GameGUI : MonoBehaviour {
 	public float FARRADARGRAPHICALRADIUS;
 	public float radarMaxHeightDifference;
 	private List<RadarObject> radar;
+	
+	//new gui objects
+	public GameObject inGamePanel, pausePanel;
+	public RectTransform healthMask, shieldMask;
+	public RectTransform[] primaryCannonUpdateDots, secondaryCannonUpdateDots;
 	public struct RadarObject
 	{
 		public Transform objectTransform;
@@ -52,31 +58,44 @@ public class GameGUI : MonoBehaviour {
 		theCamera = GetComponent<CameraScript>();
 		timeSinceLastCheckpoint = checkpointDisplayTimeout;
 		dotUpdateDelta = Util.player.primaryCannonReloadTime/4;
+		OnUnPause();
 	}
-	void OnGUI()
-	{
-		if(Util.isPaused)
-		{
-			PauseScreen();
-			Screen.lockCursor = false;
-		}
-		else
-		{
-			InGameGUI();
-			DebugStats();
-			Screen.lockCursor = true;
+	void OnGUI(){
+		if(inGamePanel.activeSelf){
+			shieldMask.offsetMax = new Vector2(-(1 - Util.player.shieldPct/100)*360 - 20, shieldMask.offsetMax.y);
+			healthMask.offsetMax = new Vector2(-(1 - Util.player.health/Util.player.maxHealth)*360 - 20, healthMask.offsetMax.y);
+			if (Util.player.primaryCannonTimer > dotUpdateDelta && Util.player.primaryCannonTimer < 4*dotUpdateDelta)
+			{
+				primaryCannonUpdateDots[0].gameObject.SetActive(true);
+				if(Util.player.primaryCannonTimer > 2*dotUpdateDelta)
+				{
+					primaryCannonUpdateDots[1].gameObject.SetActive(true);
+				}
+				if(Util.player.primaryCannonTimer > 3*dotUpdateDelta)
+				{
+					primaryCannonUpdateDots[2].gameObject.SetActive(true);
+				}
+			}
+			else{
+				foreach(RectTransform p in primaryCannonUpdateDots){
+					p.gameObject.SetActive(false);
+				}
+			}
+			if(Util.player.playerWeaps[Util.player.currentSecondaryWep].HasBullet() && Util.player.playerWeaps[Util.player.currentSecondaryWep].totalSecondaryBullets > 1)
+			{
+				for(int i = 0; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
+				{
+					secondaryCannonUpdateDots[i].gameObject.SetActive(true);
+				}
+			}
+			else{
+				foreach(RectTransform p in secondaryCannonUpdateDots){
+					p.gameObject.SetActive(false);
+				}
+			}
 		}
 	}
-	void Update () {
-		if(Input.GetKeyDown("escape"))
-		{
-			if(Util.isPaused)
-				Util.UnPause();
-			else
-				Util.Pause();
-		}
-	}
-	void InGameGUI()
+	/*void InGameGUI()
 	{
 		GUI.BeginGroup(new Rect(0, 0, 256, 68));
 		GUI.Box(new Rect(0, 0, 256, 68), GUIContent.none);
@@ -188,7 +207,8 @@ public class GameGUI : MonoBehaviour {
 			GUI.Label(new Rect(Screen.width/2-125, 0, 250, 30), "Checkpoint Reached...", currentStyle);
 		}
 		DrawRadar();
-	}
+	}*/
+	/*
 	void PauseScreen()
 	{
 		GUI.BeginGroup(new Rect(Screen.width/2 - 112, Screen.height/2 - 128, 224, 256));
@@ -212,7 +232,7 @@ public class GameGUI : MonoBehaviour {
 			Application.LoadLevel("L00_StartScreen");
 		}
 		GUI.EndGroup();
-	}
+	}*/
 	public void AddRadarObject(Transform theObject, RadarObject.OBJECTTYPE type)
 	{
 		foreach(RadarObject r in radar)
@@ -330,6 +350,7 @@ public class GameGUI : MonoBehaviour {
 		}
 		GUI.EndGroup();
 	}
+	/*
 	private void DebugStats()
 	{
 		if(debug)
@@ -340,6 +361,7 @@ public class GameGUI : MonoBehaviour {
 			GUILayout.EndArea();
 		}
 	}
+	*/
 
 	public void SetNextCheckpoint (CheckpointBehaviour nextCheckpoint)
 	{
@@ -354,4 +376,26 @@ public class GameGUI : MonoBehaviour {
 		}
 		timeSinceLastCheckpoint = 0;
 	}
+
+	#region Pauseable implementation
+
+
+	public void OnPause ()
+	{
+		inGamePanel.SetActive(false);
+		pausePanel.SetActive(true);
+		Screen.lockCursor = false;
+	}
+
+
+	public void OnUnPause ()
+	{
+		inGamePanel.SetActive(true);
+		pausePanel.SetActive(false);
+		Screen.lockCursor = true;
+	}
+
+
+	#endregion
+
 }
