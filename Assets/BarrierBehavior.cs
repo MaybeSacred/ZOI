@@ -15,11 +15,11 @@ public class BarrierBehavior : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(barrierTimer > 0&&closingDoors==false)
+		if(barrierTimer > 0 && closingDoors == false)
 		{
 			barrierTimer += Time.deltaTime;
-			leftGate.position += openingVector*Time.deltaTime;
-			rightGate.position -= openingVector*Time.deltaTime;
+			leftGate.localPosition += openingVector*Time.deltaTime;
+			rightGate.localPosition -= openingVector*Time.deltaTime;
 			if((barrierTimer > timeToMove))
 			{
 				if(closeBehindPlayer==false)

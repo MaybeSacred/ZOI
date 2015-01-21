@@ -152,6 +152,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 				checkpointText.gameObject.SetActive(false);
 			}
 			//radar stuff
+			//camera vector projected onto ground plane
 			Vector3 xzCamera = new Vector3(Util.mainCamera.transform.forward.x, 0, Util.mainCamera.transform.forward.z);
 			for(int i = 0; i < radar.Count; i++)
 			{
@@ -159,21 +160,29 @@ public class GameGUI : MonoBehaviour, Pauseable {
 				{
 					if(radar[i].type == RadarObject.OBJECTTYPE.ENEMY)
 					{
+						//vector to the object we wish to display
 						Vector3 vectorToRO = radar[i].objectTransform.position - Util.player.transform.position;
+						//and also projecting it on the ground plane
 						Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
+						//rotates the vector to have camera vector as its' forward direction, i.e. from xz coordinates to x(camera)z(camera) coordinates
 						xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;
 						if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
 						{
+							//display normal sized if height difference is less than radarMax
 							if(Mathf.Abs(vectorToRO.y) < radarMaxHeightDifference)
 							{
+								//bring the radar blip in a little graphically
 								xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+								//if the radar object does not have the right image, destroy the old, instantiate and set up the right one
 								if(!radar[i].image.name.Contains(radarEnemyBlip.name)){
 									Destroy(radar[i].image);
 									radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(radarEnemyBlip) as UnityEngine.UI.Image);
 									SetImageUp(radar[i].image);
 								}
+								//finally, set the position of the blip relative to parent radar background
 								radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
 							}
+							//otherwise display smaller graphic
 							else
 							{
 								xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
@@ -185,13 +194,17 @@ public class GameGUI : MonoBehaviour, Pauseable {
 								radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
 							}
 						}
+						//when a blip is outside the radar's range, we show a flattened graphic
+						//this graphic must be oriented to look right on the edge of the radar disc i.e. major axis is tangential to radar circle
 						else{
+							//adjust vector to radar object to lie roughly on outer edge of graphic
 							xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
 							if(!radar[i].image.name.Contains(radarEnemyFarBlip.name)){
 								Destroy(radar[i].image);
 								radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(radarEnemyFarBlip) as UnityEngine.UI.Image);
 								SetImageUp(radar[i].image);
 							}
+							//rotate around z axis
 							if(xzVectorToRO.x >=0){
 								radar[i].image.rectTransform.localRotation = Quaternion.AngleAxis(Vector3.Angle(xzVectorToRO, -Vector3.forward), Vector3.forward);
 								radar[i].image.rectTransform.localEulerAngles = new Vector3(0, 0, radar[i].image.rectTransform.localEulerAngles.z);
@@ -226,6 +239,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 								radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(farCheckpointBlip) as UnityEngine.UI.Image);
 								SetImageUp(radar[i].image);
 							}
+							//account for x-axis
 							if(xzVectorToRO.x >=0){
 								radar[i].image.rectTransform.localRotation = Quaternion.AngleAxis(Vector3.Angle(xzVectorToRO, -Vector3.forward), Vector3.forward);
 								radar[i].image.rectTransform.localEulerAngles = new Vector3(0, 0, radar[i].image.rectTransform.localEulerAngles.z);
@@ -407,6 +421,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 		foreach(RadarObject r in objToRemove)
 		{
 			radar.Remove(r);
+			Destroy(r.image);
 		}
 	}
 	/*private void DrawRadar()

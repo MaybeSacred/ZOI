@@ -12,7 +12,8 @@ public class MenuGui : MonoBehaviour {
 	public GUIStyle menuTitleStyle; //IceCaps font, white size 65
 	public GUIStyle titleStyle; //IceCaps white size 115, aligned middle center
 	public GUIStyle textStuff;
-	public RectTransform MAIN, OPTIONS, LEVELSELECT, CREDITS, HOWTOPLAY;
+	public RectTransform MAIN, OPTIONS, LEVELSELECT, CREDITS, HOWTOPLAY, HUDEXAMPLE;
+	public GameObject mainGameGUI;
 	RectTransform currentPanel;
 	private CameraScript theCamera;
 
@@ -28,6 +29,7 @@ public class MenuGui : MonoBehaviour {
 		LEVELSELECT.gameObject.SetActive(false);
 		CREDITS.gameObject.SetActive(false);
 		HOWTOPLAY.gameObject.SetActive(false);
+		HUDEXAMPLE.gameObject.SetActive(false);
 		SwitchToPanel(MAIN);
 		imagex = Screen.width-490;
 		imagey = 0;
@@ -36,6 +38,7 @@ public class MenuGui : MonoBehaviour {
 		Screen.lockCursor = false;
 	}
 	void SwitchToPanel(RectTransform switchTo){
+		mainGameGUI.SetActive(false);
 		currentPanel.gameObject.SetActive(false);
 		currentPanel = switchTo;
 		currentPanel.gameObject.SetActive(true);
@@ -90,6 +93,10 @@ public class MenuGui : MonoBehaviour {
 	}
 	public void SwitchToOptions(){
 		SwitchToPanel(OPTIONS);
+	}
+	public void SwitchToHUD(){
+		SwitchToPanel(HUDEXAMPLE);
+		mainGameGUI.SetActive(true);
 	}
 	public void Quit(){
 		Application.Quit();
