@@ -87,13 +87,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb834da612f0fac40b5a7e1fc0c78d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prettyName: SK 919 Rokit
+  prettyName: SK 919 Rocket
   side: 0
-  lifetime: 5
+  lifetime: 7
   explosionPS: {fileID: 19800000, guid: 45ad1500742563d469def44d577b46f5, type: 2}
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
-  initialSpeed: 15
+  initialSpeed: 18
   shieldDamage: 15
   healthDamage: 35
   timeOutCounter: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   deflectionSpeed: 0
   homingStrength: 2000
   timeBetweenChecks: .100000001
-  checkRadius: 15
+  checkRadius: 18
   rocketStrength: 900
   maxSpeed: 50
   timeOutTime: 5

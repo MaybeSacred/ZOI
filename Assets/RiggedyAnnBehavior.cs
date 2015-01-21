@@ -91,7 +91,9 @@ public class RiggedyAnnBehavior : BaseEnemy {
 							fireTimer = 0;
 						}
 						fireTimer += Time.deltaTime;
-						MoveTowardsPlayer(Util.player.transform.position - 15 * (Util.player.transform.position - transform.position).normalized);
+						if(navAgent.remainingDistance < 3 || (Util.player.transform.position - navAgent.destination).magnitude > standoffDistance / 1.5f){
+							MoveTowardsPlayer(Util.player.transform.position - 25 * (Util.player.transform.position - transform.position + 12 * Random.insideUnitSphere).normalized);
+						}
 					}
 					else
 					{
@@ -135,7 +137,7 @@ public class RiggedyAnnBehavior : BaseEnemy {
 	}
 	private void MoveTowardsPlayer(Vector3 vectorToPlayer)
 	{
-		if(updateCounter%framesToSkip == 0)
+		if(updateCounter % framesToSkip == 0)
 		{
 			navAgent.SetDestination(vectorToPlayer);
 		}

@@ -26,7 +26,7 @@ public class CheckpointBehaviour : MonoBehaviour
 		switch (other.gameObject.tag) 
 		{
 			case "Player":
-				if(Util.player.SetLastCheckpoint(transform.position, desiredRotation, this))
+				if(Util.player.SetLastCheckpoint(transform.position, transform.eulerAngles, this))
 				{
 					Util.theGUI.SetNextCheckpoint(nextCheckpoint);
 				}

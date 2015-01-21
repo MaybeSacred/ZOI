@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 public class GameGUI : MonoBehaviour, Pauseable {
 	//gui classic
-	public GUIStyle currentStyle;
-	public Vector2 primaryWepStartPoint;
 	private float dotUpdateDelta;
 	public Texture2D secondaryIcon;
 	public Texture2D secondaryIconGreyed;
@@ -13,8 +11,6 @@ public class GameGUI : MonoBehaviour, Pauseable {
 	private CameraScript theCamera;
 	CheckpointBehaviour currentCheckpoint;
 	public Texture2D radarBackgroundTexture, radarBackgroundPingTexture;
-	public Texture2D nearEnemyBlipSameHeight, nearEnemyBlipDifferentHeight, farEnemyBlip,
-		nearCheckpointBlip, farCheckpointBlip;
 	public float NEARRADARDISTANCE;
 	/// <summary>
 	/// This depends on the graphical radius of the radar circle graphic
@@ -30,18 +26,21 @@ public class GameGUI : MonoBehaviour, Pauseable {
 	public RectTransform[] primaryCannonUpdateDots, secondaryCannonUpdateDots;
 	public RectTransform grenadeMask, rocketMask;
 	public UnityEngine.UI.RawImage[] grenadeAmmunitionCounts, rocketsAmmunitionCounts;
-	public UnityEngine.UI.Text secondaryDisplayText;
+	public UnityEngine.UI.Text secondaryDisplayText, debugSpeed, debugWeaponRaycastDistance, checkpointText;
+	public UnityEngine.UI.Image radarBackground, radarEnemyBlip, radarEnemyFarBlip, radarEnemyDifferentHeightBlip, checkpointBlip, farCheckpointBlip;
 	public struct RadarObject
 	{
 		public Transform objectTransform;
+		public UnityEngine.UI.Image image;
 		public OBJECTTYPE type;
 		public enum OBJECTTYPE{ENEMY, CHECKPOINT};
 		public string name;
-		public RadarObject(Transform o, OBJECTTYPE t, string n)
+		public RadarObject(Transform o, OBJECTTYPE t, string n, UnityEngine.UI.Image inImage)
 		{
 			objectTransform = o;
 			type = t;
 			name = n;
+			image = inImage;
 		}
 	}
 	void Awake() {
@@ -59,14 +58,25 @@ public class GameGUI : MonoBehaviour, Pauseable {
 			debugPanel.gameObject.SetActive(false);
 		}
 	}
+	/// <summary>
+	/// For setting up radar blip images
+	/// </summary>
+	/// <param name="inImage">In image.</param>
+	void SetImageUp(UnityEngine.UI.Image inImage){
+		inImage.rectTransform.SetParent(radarBackground.rectTransform, false);
+		inImage.rectTransform.localScale = new Vector3(1, 1, 1);
+		inImage.rectTransform.localRotation = Quaternion.identity;
+	}
 	void OnGUI(){
 		if(inGamePanel.activeSelf){
 			//debug check and display
 			if(Input.GetKeyDown("o")){
 				debug = !debug;
+				debugPanel.gameObject.SetActive(debug);
 			}
 			if(debug){
-				debugPanel.gameObject.SetActive(true);
+				debugSpeed.text = Util.player.rigidbody.velocity.magnitude.ToString();
+				debugWeaponRaycastDistance.text = Util.mainCamera.distanceToTarget.ToString();
 			}
 			//shield, health, and other masking images
 			shieldMask.offsetMax = new Vector2(-(1 - Util.player.shieldPct / 100) * 360 - 20, shieldMask.offsetMax.y);
@@ -99,7 +109,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 			}
 			if(Util.player.playerWeaps[Util.player.currentSecondaryWep].HasBullet() && Util.player.playerWeaps[Util.player.currentSecondaryWep].autoFireTime > .15f)
 			{
-				for(int i = 0; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].totalBullets; i++)
+				for(int i = 0; i < 6; i++)
 				{
 					if(i < Util.player.playerWeaps[Util.player.currentSecondaryWep].bulletsLeft){
 						secondaryCannonUpdateDots[i].gameObject.SetActive(true);
@@ -133,7 +143,110 @@ public class GameGUI : MonoBehaviour, Pauseable {
 			}
 			//current secondary text grab and display
 			secondaryDisplayText.text = Util.player.playerWeaps[Util.player.currentSecondaryWep].bullet.prettyName;
+			//Checkpoint displaying
+			if(timeSinceLastCheckpoint < checkpointDisplayTimeout)
+			{
+				checkpointText.gameObject.SetActive(true);
+			}
+			else{
+				checkpointText.gameObject.SetActive(false);
+			}
+			//radar stuff
+			Vector3 xzCamera = new Vector3(Util.mainCamera.transform.forward.x, 0, Util.mainCamera.transform.forward.z);
+			for(int i = 0; i < radar.Count; i++)
+			{
+				if(radar[i].objectTransform != null)
+				{
+					if(radar[i].type == RadarObject.OBJECTTYPE.ENEMY)
+					{
+						Vector3 vectorToRO = radar[i].objectTransform.position - Util.player.transform.position;
+						Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
+						xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;
+						if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
+						{
+							if(Mathf.Abs(vectorToRO.y) < radarMaxHeightDifference)
+							{
+								xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+								if(!radar[i].image.name.Contains(radarEnemyBlip.name)){
+									Destroy(radar[i].image);
+									radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(radarEnemyBlip) as UnityEngine.UI.Image);
+									SetImageUp(radar[i].image);
+								}
+								radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
+							}
+							else
+							{
+								xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+								if(!radar[i].image.name.Contains(radarEnemyDifferentHeightBlip.name)){
+									Destroy(radar[i].image);
+									radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(radarEnemyDifferentHeightBlip) as UnityEngine.UI.Image);
+									SetImageUp(radar[i].image);
+								}
+								radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
+							}
+						}
+						else{
+							xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
+							if(!radar[i].image.name.Contains(radarEnemyFarBlip.name)){
+								Destroy(radar[i].image);
+								radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(radarEnemyFarBlip) as UnityEngine.UI.Image);
+								SetImageUp(radar[i].image);
+							}
+							if(xzVectorToRO.x >=0){
+								radar[i].image.rectTransform.localRotation = Quaternion.AngleAxis(Vector3.Angle(xzVectorToRO, -Vector3.forward), Vector3.forward);
+								radar[i].image.rectTransform.localEulerAngles = new Vector3(0, 0, radar[i].image.rectTransform.localEulerAngles.z);
+							}
+							else{
+								radar[i].image.rectTransform.localRotation = Quaternion.AngleAxis(Vector3.Angle(xzVectorToRO, Vector3.forward), Vector3.forward);
+								radar[i].image.rectTransform.localEulerAngles = new Vector3(0, 0, radar[i].image.rectTransform.localEulerAngles.z);
+							}
+							radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
+						}
+					}
+					else if(radar[i].type == RadarObject.OBJECTTYPE.CHECKPOINT)
+					{
+						Vector3 vectorToRO = radar[i].objectTransform.position - Util.player.transform.position;
+						Vector3 xzVectorToRO = new Vector3(vectorToRO.x, 0, vectorToRO.z);
+						xzVectorToRO = Quaternion.Inverse(Quaternion.LookRotation(xzCamera)) * xzVectorToRO;
+						if(xzVectorToRO.magnitude < NEARRADARDISTANCE)
+						{
+							xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
+							if(!radar[i].image.name.Contains(checkpointBlip.name)){
+								Destroy(radar[i].image);
+								radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(checkpointBlip) as UnityEngine.UI.Image);
+								SetImageUp(radar[i].image);
+							}
+							radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
+						}
+						else
+						{
+							xzVectorToRO = xzVectorToRO.normalized * FARRADARGRAPHICALRADIUS;
+							if(!radar[i].image.name.Contains(farCheckpointBlip.name)){
+								Destroy(radar[i].image);
+								radar[i] = new RadarObject(radar[i].objectTransform, radar[i].type, radar[i].name, Instantiate(farCheckpointBlip) as UnityEngine.UI.Image);
+								SetImageUp(radar[i].image);
+							}
+							if(xzVectorToRO.x >=0){
+								radar[i].image.rectTransform.localRotation = Quaternion.AngleAxis(Vector3.Angle(xzVectorToRO, -Vector3.forward), Vector3.forward);
+								radar[i].image.rectTransform.localEulerAngles = new Vector3(0, 0, radar[i].image.rectTransform.localEulerAngles.z);
+							}
+							else{
+								radar[i].image.rectTransform.localRotation = Quaternion.AngleAxis(Vector3.Angle(xzVectorToRO, Vector3.forward), Vector3.forward);
+								radar[i].image.rectTransform.localEulerAngles = new Vector3(0, 0, radar[i].image.rectTransform.localEulerAngles.z);
+							}
+							radar[i].image.rectTransform.anchoredPosition3D = new Vector3(xzVectorToRO.x, xzVectorToRO.z, 0);
+						}
+					}
+					else
+					{
+						Debug.Log("Error with Game Radar");
+					}
+				}
+			}
 		}
+	}
+	void Update(){
+		timeSinceLastCheckpoint += Time.deltaTime;
 	}
 	/*void InGameGUI()
 	{
@@ -240,12 +353,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 		}
 		GUILayout.EndArea();
 		GUILayout.EndArea();
-		if(timeSinceLastCheckpoint < checkpointDisplayTimeout)
-		{
-			timeSinceLastCheckpoint += .01f;
-			GUI.Box(new Rect(Screen.width/2-125, 0, 250, 30), GUIContent.none);
-			GUI.Label(new Rect(Screen.width/2-125, 0, 250, 30), "Checkpoint Reached...", currentStyle);
-		}
+		
 		DrawRadar();
 	}*/
 	/*
@@ -282,7 +390,9 @@ public class GameGUI : MonoBehaviour, Pauseable {
 				return;
 			}
 		}
-		radar.Add(new RadarObject(theObject, type, theObject.name));
+		RadarObject ro = new RadarObject(theObject, type, theObject.name, (type == RadarObject.OBJECTTYPE.CHECKPOINT?Instantiate(checkpointBlip) as UnityEngine.UI.Image:Instantiate(radarEnemyBlip) as UnityEngine.UI.Image));
+		SetImageUp(ro.image);
+		radar.Add(ro);
 	}
 	public void RemoveRadarObject(Transform theObject)
 	{
@@ -299,7 +409,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 			radar.Remove(r);
 		}
 	}
-	private void DrawRadar()
+	/*private void DrawRadar()
 	{
 		GUI.BeginGroup(new Rect(0, Screen.height - radarBackgroundTexture.height, radarBackgroundTexture.width, radarBackgroundTexture.height));
 		GUI.Box(new Rect(0, 0, radarBackgroundTexture.width, radarBackgroundTexture.height), radarBackgroundTexture, currentStyle);
@@ -319,7 +429,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 						{
 							xzVectorToRO *= RADARGRAPHICALDISTANCE/NEARRADARDISTANCE;
 							GUI.Box(new Rect(xzVectorToRO.x + radarBackgroundTexture.width/2 - nearEnemyBlipDifferentHeight.width/2, -xzVectorToRO.z + radarBackgroundTexture.height/2 - nearEnemyBlipDifferentHeight.height/2,
-							                 nearEnemyBlipDifferentHeight.width, nearEnemyBlipDifferentHeight.height), nearEnemyBlipDifferentHeight, currentStyle);
+							    nearEnemyBlipDifferentHeight.width, nearEnemyBlipDifferentHeight.height), nearEnemyBlipDifferentHeight, currentStyle);
 						}
 						else
 						{
@@ -389,7 +499,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 			}
 		}
 		GUI.EndGroup();
-	}
+	}*/
 	/*
 	private void DebugStats()
 	{

@@ -576,7 +576,7 @@ public class PlayerController : MonoBehaviour
 		if(checkpoint != lastCheckpoint)
 		{
 			restartPosition = restartPos;
-			restartRotation = restartEulers;
+			restartRotation = transform.eulerAngles;
 			lastCheckpoint = checkpoint;
 			lastCheckpointHealth = 100;
 			return true;
