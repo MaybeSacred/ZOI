@@ -69,7 +69,6 @@ public class RiggedyAnnBehavior : BaseEnemy {
 					if(dodgeTimer < dodgeDuration)
 					{
 						navAgent.Move(dodgeDist*Time.deltaTime*transform.right);
-						//transform.Translate();
 					}
 					else
 					{

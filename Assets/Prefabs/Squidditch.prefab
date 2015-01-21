@@ -297,8 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858e6046b1d2dff4684c4b71f3eb488d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 90
-  maxHealth: 90
+  health: 125
+  maxHealth: 125
   deathTimeout: 3
   attachedBarrier: {fileID: 0}
   deathParticles: {fileID: 19800002}
@@ -317,15 +317,15 @@ MonoBehaviour:
   movementError: .150000006
   waitTime: .5
   rotationDelta: 2
-  firingDistance: 40
-  attachedFiringDistance: 50
-  standOffDistance: 10
-  fireRate: 1.75
+  firingDistance: 75
+  attachedFiringDistance: 75
+  standOffDistance: 30
+  fireRate: 2
   bulletEmitter: {fileID: 400006}
   currentBullet: {fileID: 11400000, guid: e97c907a7819d934e9db7042f4f1774e, type: 2}
   deathGlowConstant: 1.65999997
   currentLaser: {fileID: 0}
-  laserDuration: 1.5
+  laserDuration: 2
   laserGroundRate: 0
   laserRandomness: 0
   isAttachedToGameObject: 0

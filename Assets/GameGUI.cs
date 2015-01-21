@@ -5,21 +5,11 @@ public class GameGUI : MonoBehaviour, Pauseable {
 	public GUIStyle currentStyle;
 	public Vector2 primaryWepStartPoint;
 	private float dotUpdateDelta;
-	public Texture2D fireUpdateDot;
 	public Texture2D secondaryIcon;
 	public Texture2D secondaryIconGreyed;
-	public Texture2D shieldBar;
-	public Texture2D healthBar;
-	public Texture2D cursorIcon;
-	public Texture2D rechargingStrip;
-	private float startSecondaryReloadBarScaleX;
 	private float timeSinceLastCheckpoint;
 	public float checkpointDisplayTimeout;
 	public bool debug;
-	public GUIContent decrementMouseSensitivityButton;
-	public GUIContent incrementMouseSensitivityButton;
-	public GUIStyle decrementMouseSensitivityButtonStyle;
-	public GUIStyle incrementMouseSensitivityButtonStyle;
 	private CameraScript theCamera;
 	CheckpointBehaviour currentCheckpoint;
 	public Texture2D radarBackgroundTexture, radarBackgroundPingTexture;
@@ -35,9 +25,12 @@ public class GameGUI : MonoBehaviour, Pauseable {
 	private List<RadarObject> radar;
 	
 	//new gui objects
-	public GameObject inGamePanel, pausePanel;
+	public GameObject inGamePanel, pausePanel, debugPanel;
 	public RectTransform healthMask, shieldMask;
 	public RectTransform[] primaryCannonUpdateDots, secondaryCannonUpdateDots;
+	public RectTransform grenadeMask, rocketMask;
+	public UnityEngine.UI.RawImage[] grenadeAmmunitionCounts, rocketsAmmunitionCounts;
+	public UnityEngine.UI.Text secondaryDisplayText;
 	public struct RadarObject
 	{
 		public Transform objectTransform;
@@ -59,11 +52,34 @@ public class GameGUI : MonoBehaviour, Pauseable {
 		timeSinceLastCheckpoint = checkpointDisplayTimeout;
 		dotUpdateDelta = Util.player.primaryCannonReloadTime/4;
 		OnUnPause();
+		if(debug){
+			debugPanel.gameObject.SetActive(true);
+		}
+		else{
+			debugPanel.gameObject.SetActive(false);
+		}
 	}
 	void OnGUI(){
 		if(inGamePanel.activeSelf){
-			shieldMask.offsetMax = new Vector2(-(1 - Util.player.shieldPct/100)*360 - 20, shieldMask.offsetMax.y);
-			healthMask.offsetMax = new Vector2(-(1 - Util.player.health/Util.player.maxHealth)*360 - 20, healthMask.offsetMax.y);
+			//debug check and display
+			if(Input.GetKeyDown("o")){
+				debug = !debug;
+			}
+			if(debug){
+				debugPanel.gameObject.SetActive(true);
+			}
+			//shield, health, and other masking images
+			shieldMask.offsetMax = new Vector2(-(1 - Util.player.shieldPct / 100) * 360 - 20, shieldMask.offsetMax.y);
+			healthMask.offsetMax = new Vector2(-(1 - Util.player.health / Util.player.maxHealth) * 360 - 20, healthMask.offsetMax.y);
+			if(!Util.player.playerWeaps[0].IsFullyLoaded())
+			{
+				grenadeMask.offsetMax = new Vector2(-(1 - Util.player.playerWeaps[0].cannonReloadTimers / Util.player.playerWeaps[0].cannonReloadTime) * 190 - 5, grenadeMask.offsetMax.y);
+			}
+			if(!Util.player.playerWeaps[2].IsFullyLoaded())
+			{
+				rocketMask.offsetMax = new Vector2(-(1 - Util.player.playerWeaps[2].cannonReloadTimers / Util.player.playerWeaps[2].cannonReloadTime) * 190 - 5, rocketMask.offsetMax.y);
+			}
+			//displays around cursor
 			if (Util.player.primaryCannonTimer > dotUpdateDelta && Util.player.primaryCannonTimer < 4*dotUpdateDelta)
 			{
 				primaryCannonUpdateDots[0].gameObject.SetActive(true);
@@ -81,11 +97,16 @@ public class GameGUI : MonoBehaviour, Pauseable {
 					p.gameObject.SetActive(false);
 				}
 			}
-			if(Util.player.playerWeaps[Util.player.currentSecondaryWep].HasBullet() && Util.player.playerWeaps[Util.player.currentSecondaryWep].totalSecondaryBullets > 1)
+			if(Util.player.playerWeaps[Util.player.currentSecondaryWep].HasBullet() && Util.player.playerWeaps[Util.player.currentSecondaryWep].autoFireTime > .15f)
 			{
-				for(int i = 0; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].secondaryBulletsLeft; i++)
+				for(int i = 0; i < Util.player.playerWeaps[Util.player.currentSecondaryWep].totalBullets; i++)
 				{
-					secondaryCannonUpdateDots[i].gameObject.SetActive(true);
+					if(i < Util.player.playerWeaps[Util.player.currentSecondaryWep].bulletsLeft){
+						secondaryCannonUpdateDots[i].gameObject.SetActive(true);
+					}
+					else{
+						secondaryCannonUpdateDots[i].gameObject.SetActive(false);
+					}
 				}
 			}
 			else{
@@ -93,6 +114,25 @@ public class GameGUI : MonoBehaviour, Pauseable {
 					p.gameObject.SetActive(false);
 				}
 			}
+			//grenade and rocket ammo displays
+			for(int i = 0; i < grenadeAmmunitionCounts.Length; i++){
+				if(i < Util.player.playerWeaps[0].bulletsLeft){
+					grenadeAmmunitionCounts[i].texture = secondaryIcon;
+				}
+				else{
+					grenadeAmmunitionCounts[i].texture = secondaryIconGreyed;
+				}
+			}
+			for(int i = 0; i < rocketsAmmunitionCounts.Length; i++){
+				if(i < Util.player.playerWeaps[2].bulletsLeft){
+					rocketsAmmunitionCounts[i].texture = secondaryIcon;
+				}
+				else{
+					rocketsAmmunitionCounts[i].texture = secondaryIconGreyed;
+				}
+			}
+			//current secondary text grab and display
+			secondaryDisplayText.text = Util.player.playerWeaps[Util.player.currentSecondaryWep].bullet.prettyName;
 		}
 	}
 	/*void InGameGUI()

@@ -38,10 +38,6 @@ public class KatneenBehavior : BaseEnemy {
 	private bool isLaserLockedOn;
 	public ParticleSystem lockOnParticles;
 	void Start () {
-		/*if(attachedBarrier != null)
-		{
-			attachedBarrier.RegisterEnemy();
-		}*/
 		shieldMat = (Material)Instantiate(shieldMat);
 		shield.renderer.materials[1] = shieldMat;
 		lockOnParticles.emissionRate = 0;
@@ -51,7 +47,7 @@ public class KatneenBehavior : BaseEnemy {
 		if(deathTimeoutTimer > 0)
 		{
 			currentLaser = null;
-			warningLight.range = Mathf.Pow(deathTimeoutTimer / 2 -deathTimeoutTimer, 2) * deathGlowConstant;
+			warningLight.range = (deathTimeout/2 - Mathf.Pow((deathTimeoutTimer - deathTimeout / 2), 2)) * deathGlowConstant;
 			if(deathTimeoutTimer > deathTimeout)
 			{
 				Destroy(transform.parent.gameObject);

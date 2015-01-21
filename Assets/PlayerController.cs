@@ -209,13 +209,13 @@ public class PlayerController : MonoBehaviour
 	{
 		if(Input.GetMouseButtonDown(1) || Input.GetKeyDown("space"))
 		{
-			secondaryAutoFireTimer = playerWeaps[currentSecondaryWep].secondaryAutoFireTimes;
+			secondaryAutoFireTimer = playerWeaps[currentSecondaryWep].autoFireTime;
 		}
 		if(Input.GetMouseButton(1) || Input.GetKey("space"))
 		{
-			if(playerWeaps[currentSecondaryWep].secondaryBulletsLeft > 0)
+			if(playerWeaps[currentSecondaryWep].bulletsLeft > 0)
 			{
-				if(secondaryAutoFireTimer > playerWeaps[currentSecondaryWep].secondaryAutoFireTimes)
+				if(secondaryAutoFireTimer > playerWeaps[currentSecondaryWep].autoFireTime)
 				{
 					if(Quaternion.Angle(theCam.transform.rotation, cannonGO.rotation) < autotargetDeltaAngle)
 					{
@@ -223,23 +223,23 @@ public class PlayerController : MonoBehaviour
 						Quaternion tempQuat;
 						if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hit, float.PositiveInfinity, Util.PLAYERWEAPONSIGNORELAYERS))
 						{
-							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position);
+							tempQuat = Quaternion.LookRotation(theCam.transform.forward*hit.distance+theCam.transform.position-playerWeaps[currentSecondaryWep].bulletEmitter.position);
 						}
 						else
 						{
-							tempQuat = Quaternion.LookRotation(playerWeaps[currentSecondaryWep].secondaryBulletEmitters.forward);
+							tempQuat = Quaternion.LookRotation(playerWeaps[currentSecondaryWep].bulletEmitter.forward);
 						}
 						Vector3 randomTemp = Util.GenerateRandomVector3(tempQuat*Vector3.forward, playerWeaps[currentSecondaryWep].firingRandomness);
-						Util.Fire(playerWeaps[currentSecondaryWep].possibleSecondaries, playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position,
-						          Quaternion.LookRotation(randomTemp), playerWeaps[currentSecondaryWep].possibleSecondaries.initialSpeed*randomTemp.normalized);
+						Util.Fire(playerWeaps[currentSecondaryWep].bullet, playerWeaps[currentSecondaryWep].bulletEmitter.position,
+						          Quaternion.LookRotation(randomTemp), playerWeaps[currentSecondaryWep].bullet.initialSpeed*randomTemp.normalized);
 					}
 					else
 					{
-						Vector3 randomTemp = Util.GenerateRandomVector3(playerWeaps[currentSecondaryWep].secondaryBulletEmitters.forward, playerWeaps[currentSecondaryWep].firingRandomness);
-						Util.Fire(playerWeaps[currentSecondaryWep].possibleSecondaries, playerWeaps[currentSecondaryWep].secondaryBulletEmitters.position,
-						          Quaternion.LookRotation(randomTemp), playerWeaps[currentSecondaryWep].possibleSecondaries.initialSpeed * randomTemp.normalized);
+						Vector3 randomTemp = Util.GenerateRandomVector3(playerWeaps[currentSecondaryWep].bulletEmitter.forward, playerWeaps[currentSecondaryWep].firingRandomness);
+						Util.Fire(playerWeaps[currentSecondaryWep].bullet, playerWeaps[currentSecondaryWep].bulletEmitter.position,
+						          Quaternion.LookRotation(randomTemp), playerWeaps[currentSecondaryWep].bullet.initialSpeed * randomTemp.normalized);
 					}
-					if(playerWeaps[currentSecondaryWep].secondaryBulletEmitters == primaryBulletEmitter)
+					if(playerWeaps[currentSecondaryWep].bulletEmitter == primaryBulletEmitter)
 					{
 						cannonGraphics.localPosition = initialCannonPosition-cannonKickbackDistance;
 						cannonRingFlash.Play();
@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour
 						aSource.PlayOneShot(playerWeaps[currentSecondaryWep].soundEffect);
 					}
 					playerWeaps[currentSecondaryWep].UseBullet();
-					secondaryAutoFireTimer -= playerWeaps[currentSecondaryWep].secondaryAutoFireTimes;
+					secondaryAutoFireTimer -= playerWeaps[currentSecondaryWep].autoFireTime;
 				}
 				else
 				{
@@ -891,56 +891,56 @@ public class PlayerController : MonoBehaviour
 	[System.Serializable]
 	public class PlayerWepDefinition{
 		
-		public float secondaryCannonReloadTimers{get; private set;}
-		public float secondaryCannonReloadTime;
+		public float cannonReloadTimers{get; private set;}
+		public float cannonReloadTime;
 		public float firingRandomness;
-		public int secondaryBulletsLeft{get; private set;}
-		public Transform secondaryBulletEmitters;
-		public ParticleSystem secondaryCannonFlashes;
-		public BasicBullet possibleSecondaries;
-		public float secondaryAutoFireTimes;
-		public int totalSecondaryBullets;
+		public int bulletsLeft{get; private set;}
+		public Transform bulletEmitter;
+		public ParticleSystem cannonFlash;
+		public BasicBullet bullet;
+		public float autoFireTime;
+		public int totalBullets;
 		public AudioClip soundEffect;
 		public PlayerWepDefinition() {
-			secondaryBulletsLeft = totalSecondaryBullets;
-			secondaryCannonReloadTimers = secondaryCannonReloadTime;
+			bulletsLeft = totalBullets;
+			cannonReloadTimers = cannonReloadTime;
 		}
 		public void UpdateReloadTimer()
 		{
-			if(secondaryBulletsLeft < totalSecondaryBullets)
+			if(bulletsLeft < totalBullets)
 			{
-				if(secondaryCannonReloadTimers > secondaryCannonReloadTime)
+				if(cannonReloadTimers > cannonReloadTime)
 				{
-					secondaryBulletsLeft++;
-					if(secondaryBulletsLeft > totalSecondaryBullets)
+					bulletsLeft++;
+					if(bulletsLeft > totalBullets)
 					{
-						secondaryBulletsLeft = totalSecondaryBullets;
+						bulletsLeft = totalBullets;
 					}
 					else
 					{
-						secondaryCannonReloadTimers = 0;
+						cannonReloadTimers = 0;
 					}
 				}
 				else
 				{
-					secondaryCannonReloadTimers += Time.deltaTime;
+					cannonReloadTimers += Time.deltaTime;
 				}
 			}
 		}
 		public bool HasBullet()
 		{
-			return secondaryBulletsLeft > 0;
+			return bulletsLeft > 0;
 		}
 		public bool IsFullyLoaded()
 		{
-			return secondaryBulletsLeft == totalSecondaryBullets;
+			return bulletsLeft == totalBullets;
 		}
 		public void UseBullet()
 		{
-			if(secondaryBulletsLeft > 0)
+			if(bulletsLeft > 0)
 			{
-				secondaryBulletsLeft--;
-				secondaryCannonFlashes.Play();
+				bulletsLeft--;
+				cannonFlash.Play();
 			}
 		}
 	}

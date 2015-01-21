@@ -469,21 +469,21 @@ MonoBehaviour:
   friends: []
   graphics: {fileID: 400002}
   framesToSkip: 5
-  fireRate: 4
+  fireRate: 3
   cannonBulletEmitter: {fileID: 400014}
   rocketBulletEmitter: {fileID: 400010}
   currentBullet: {fileID: 11400000, guid: 3449660f0c33a564ea97356b37e55c20, type: 2}
   shield: {fileID: 400004}
   shieldMat: {fileID: 2100000, guid: a0c9f35e381ed7c4d910c236bb22a77b, type: 2}
   shieldRechargeDelay: 5
-  shieldRechargeRate: 33.2999992
+  shieldRechargeRate: 20
   shieldMaterialRate: .0500000007
   standoffDistance: 75
-  detectionTimeout: 6
-  maxDodgeDistance: 8
+  detectionTimeout: 8
+  maxDodgeDistance: 10
   dodgeDuration: .200000003
   healthRechargeRate: 10
-  firingRandomness: .0500000007
+  firingRandomness: .125
   maxAcceptableDistFromPatrolMedian: 100
 --- !u!114 &11400004
 MonoBehaviour:
@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpideySenseOwner: {fileID: 11400002}
-  cooldownDuration: 1
+  cooldownDuration: 3
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -52,7 +52,7 @@ public class Util : MonoBehaviour {
 		}
 	}
 	void Update(){
-		if(Input.GetKeyDown("m"))
+		if(Input.GetKeyDown("p"))
 		{
 			if(Util.isPaused){
 				Util.UnPause();

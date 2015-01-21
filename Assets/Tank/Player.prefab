@@ -2259,32 +2259,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeaps:
-  - secondaryCannonReloadTime: 12.5
+  - cannonReloadTime: 12.5
     firingRandomness: .0500000007
-    secondaryBulletEmitters: {fileID: 400072}
-    secondaryCannonFlashes: {fileID: 19800010}
-    possibleSecondaries: {fileID: 11400000, guid: d31d7132e8faf0c44ac17d449eea3e08,
-      type: 2}
-    secondaryAutoFireTimes: 1
-    totalSecondaryBullets: 2
+    bulletEmitter: {fileID: 400072}
+    cannonFlash: {fileID: 19800010}
+    bullet: {fileID: 11400000, guid: d31d7132e8faf0c44ac17d449eea3e08, type: 2}
+    autoFireTime: .75
+    totalBullets: 2
     soundEffect: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
-  - secondaryCannonReloadTime: 0
+  - cannonReloadTime: 0
     firingRandomness: .100000001
-    secondaryBulletEmitters: {fileID: 400010}
-    secondaryCannonFlashes: {fileID: 19800034}
-    possibleSecondaries: {fileID: 11400000, guid: 1d2226000c2eaf8439b11ea0e43e3d1c,
-      type: 2}
-    secondaryAutoFireTimes: .0700000003
-    totalSecondaryBullets: 1
+    bulletEmitter: {fileID: 400010}
+    cannonFlash: {fileID: 19800034}
+    bullet: {fileID: 11400000, guid: 1d2226000c2eaf8439b11ea0e43e3d1c, type: 2}
+    autoFireTime: .0799999982
+    totalBullets: 1
     soundEffect: {fileID: 8300000, guid: ec1d5501f7557e14391592c7d67cd1ec, type: 3}
-  - secondaryCannonReloadTime: 5
+  - cannonReloadTime: 5
     firingRandomness: 0
-    secondaryBulletEmitters: {fileID: 400094}
-    secondaryCannonFlashes: {fileID: 19800008}
-    possibleSecondaries: {fileID: 11400000, guid: e015884f125455941a11fa195578db70,
-      type: 2}
-    secondaryAutoFireTimes: .25
-    totalSecondaryBullets: 6
+    bulletEmitter: {fileID: 400094}
+    cannonFlash: {fileID: 19800008}
+    bullet: {fileID: 11400000, guid: e015884f125455941a11fa195578db70, type: 2}
+    autoFireTime: .25
+    totalBullets: 6
     soundEffect: {fileID: 8300000, guid: 84bbc36dea3138d40adb7d34c922e474, type: 3}
   primaryWeapClip: {fileID: 8300000, guid: 38d54624d5c0c104a9d09f7692364d64, type: 3}
   strafeSteeringEngaged: 0
@@ -2295,7 +2292,7 @@ MonoBehaviour:
   - {fileID: 19800024}
   - {fileID: 19800016}
   - {fileID: 19800020}
-  centerOfMassAdjustment: .899999976
+  centerOfMassAdjustment: .949999988
   deathTimeout: 3
   restartPosition: {x: 0, y: 0, z: 0}
   restartRotation: {x: 0, y: 0, z: 0}
@@ -2336,9 +2333,9 @@ MonoBehaviour:
   body: {fileID: 400044}
   turret: {fileID: 400048}
   maxSlope: 42
-  slopeLinearDropOff: 7
+  slopeLinearDropOff: 10
   autotargetDeltaAngle: 75
-  steeringRate: 12.5
+  steeringRate: 11.5
   steeringCenteringCoeff: .660000026
   bodyRotationEpsilon: 12.5
   theCam: {fileID: 0}
