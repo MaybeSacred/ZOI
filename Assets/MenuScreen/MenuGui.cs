@@ -49,34 +49,7 @@ public class MenuGui : MonoBehaviour {
 
 	void OnGUI()
 	{
-		/*switch(state)
-		{
-			case MenuState.MAIN:
-			{
-				MenuScreen();
-				break;
-			}
-			case MenuState.OPTIONS:
-			{
-				Options();
-				break;
-			}
-			case MenuState.LEVELSELECT:
-			{
-				LevelSelect();
-				break;
-			}
-			case MenuState.CREDITS:
-			{
-				Credits();
-				break;
-			}
-			case MenuState.HOWTOPLAY:
-			{
-				HowToPlay();
-				break;
-			}
-		}*/
+		
 	}
 	int border = 15;
 	public void SwitchToPlayInstructions(){
