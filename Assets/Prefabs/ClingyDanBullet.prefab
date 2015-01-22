@@ -29,10 +29,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.559021, y: 8.15332985, z: 27.9064655}
-  m_LocalScale: {x: .150000006, y: .150000006, z: 1.25}
+  m_LocalPosition: {x: 386.138245, y: -.271872938, z: 2228.59985}
+  m_LocalScale: {x: .150000006, y: .150000006, z: .449999988}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!23 &2300000
 Renderer:
   m_ObjectHideFlags: 1
@@ -51,9 +52,8 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!33 &3300000
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -68,9 +68,9 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   serializedVersion: 2
-  m_Mass: .0500000007
-  m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_Mass: .200000003
+  m_Drag: .0500000007
+  m_AngularDrag: .150000006
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 2
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdf447b0581fe3e4db97bad0bce65eb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4dd6cde82937f21488fd51ee41e10f1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prettyName: 
@@ -93,12 +93,16 @@ MonoBehaviour:
   explosionPS: {fileID: 19800000, guid: fa6d64ca02e34714fbb4f658e7e4bf67, type: 2}
   acceleration: {x: 0, y: 0, z: 0}
   speed: {x: 0, y: 0, z: 0}
-  initialSpeed: 55
-  shieldDamage: 12
-  healthDamage: 12
+  initialSpeed: 30
+  shieldDamage: 13
+  healthDamage: 10
   timeOutCounter: 0
   deflectable: 0
   deflectionSpeed: 0
+  homingStrength: 120
+  rocketStrength: 90
+  maxSpeed: 40
+  timeOutTime: 5
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -108,8 +112,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: .0799999982
-  m_Height: 9
+  m_Radius: .129999995
+  m_Height: 3
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &19800000
@@ -162,7 +166,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
     startSpeed:
-      scalar: 1
+      scalar: .5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -198,10 +202,10 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 2701123126
+          rgba: 3036667446
         key1:
           serializedVersion: 2
-          rgba: 2768209251
+          rgba: 3036644707
         key2:
           serializedVersion: 2
           rgba: 0
@@ -289,7 +293,7 @@ ParticleSystem:
         rgba: 4290117541
       minMaxState: 1
     startSize:
-      scalar: .400000006
+      scalar: .449999988
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -351,7 +355,7 @@ ParticleSystem:
     serializedVersion: 2
     enabled: 1
     type: 0
-    radius: .5
+    radius: .100000001
     angle: 25
     length: 5
     boxX: 1
@@ -364,7 +368,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 40
+      scalar: 55
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -476,7 +480,7 @@ ParticleSystem:
         m_PostInfinity: 2
       minMaxState: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       maxGradient:
         key0:
@@ -487,7 +491,7 @@ ParticleSystem:
           rgba: 4294967295
         key2:
           serializedVersion: 2
-          rgba: 0
+          rgba: 4278190080
         key3:
           serializedVersion: 2
           rgba: 0
@@ -513,14 +517,14 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 9830
-        atime2: 65535
-        atime3: 0
+        atime2: 43369
+        atime3: 65535
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 4
       minGradient:
         key0:
           serializedVersion: 2
@@ -1172,9 +1176,8 @@ ParticleSystemRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
   m_RenderMode: 0
   m_MaxParticleSize: .5
   m_CameraVelocityScale: 0

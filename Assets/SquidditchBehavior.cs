@@ -169,13 +169,13 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 			if(laserDurationTimer < laserDuration)
 			{
 				Quaternion lookAtPlayerQuat = Quaternion.LookRotation(Util.player.transform.position - bulletEmitter.position);
-				currentLaser.transform.rotation = Quaternion.Slerp(currentLaser.transform.rotation, lookAtPlayerQuat, .09f*Time.deltaTime*(laserAngularMomentum));
+				currentLaser.transform.rotation = Quaternion.Slerp(currentLaser.transform.rotation, lookAtPlayerQuat, .11f*Time.deltaTime*(laserAngularMomentum));
 				laserAngularMomentum = (1-laserMomentumDecay)*Quaternion.Angle(lookAtPlayerQuat, currentLaser.transform.rotation) + laserMomentumDecay*laserAngularMomentum;
 				RaycastHit hit;
 				if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
 				{
-					currentLaser.transform.localScale =  new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, hit.distance/2f);
-					currentLaser.transform.position = currentLaser.transform.forward*hit.distance/2f+bulletEmitter.position;
+					currentLaser.transform.localScale =  new Vector3(currentLaser.transform.localScale.x, currentLaser.transform.localScale.y, hit.distance/1.99f);
+					currentLaser.transform.position = currentLaser.transform.forward*hit.distance/2.01f+bulletEmitter.position;
 				}
 			}
 			else
@@ -188,7 +188,7 @@ public class SquidditchBehavior : BaseEnemy, PlayerEvent {
 		{
 			if(fireTimer > fireRate)
 			{
-				currentLaser = (LaserBullet)Util.FireLaserType(currentBullet, bulletEmitter.position, Util.player.transform.position, Quaternion.LookRotation(Util.GenerateRandomVector3(Util.player.transform.position - bulletEmitter.position, .12f)));
+				currentLaser = (LaserBullet)Util.FireLaserType(currentBullet, bulletEmitter.position, Util.player.transform.position, Quaternion.LookRotation(Util.GenerateRandomVector3(Util.player.transform.position - bulletEmitter.position, .10f)));
 				GetComponent<AudioSource>().Play();
 				RaycastHit hit;
 				if(Physics.Raycast(bulletEmitter.position, currentLaser.transform.forward, out hit, float.PositiveInfinity, ~(1<<8 | 1<<2)))
