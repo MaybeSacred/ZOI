@@ -291,6 +291,9 @@ public class GameGUI : MonoBehaviour, Pauseable {
 			Destroy(r.image);
 		}
 	}
+	public void ReturnToStartScreen(){
+		Application.LoadLevel("L00_StartScreen");
+	}
 	public void SetNextCheckpoint (CheckpointBehaviour nextCheckpoint)
 	{
 		if(nextCheckpoint != null)
