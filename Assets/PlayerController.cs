@@ -138,7 +138,6 @@ public class PlayerController : MonoBehaviour
 		else if(controlsDisabled)
 		{
 			disabledControlsTimer+=Time.deltaTime;
-
 			if(disabledControlsTimer>disabledControlsDuration)
 			{
 				controlsDisabled = false;
@@ -316,11 +315,7 @@ public class PlayerController : MonoBehaviour
 		{
 			//torque and braking while the vehicle is not being moved by player
 			strafeSteeringEngaged = false;
-			for(int i = 0; i < wheels.Length; i++)
-			{
-				wheels[i].motorTorque = 0;
-				wheels[i].brakeTorque = brakeForce;
-			}
+			Brake();
 		}
 	}
 	private void HandleOtherInput()
@@ -743,6 +738,16 @@ public class PlayerController : MonoBehaviour
 		}
 		MoveFollowCamera(true, angle);
 	}
+
+	public void Brake ()
+	{
+		for(int i = 0; i < wheels.Length; i++)
+		{
+			wheels[i].motorTorque = 0;
+			wheels[i].brakeTorque = brakeForce;
+		}
+	}
+	
 	private void MoveFollowCamera(bool forward, float angleDiff)
 	{
 		if(forward)

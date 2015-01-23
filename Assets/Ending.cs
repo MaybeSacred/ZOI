@@ -4,6 +4,7 @@ using System.Collections;
 public class Ending : MonoBehaviour {
 	bool playingEnding = false, infiniteExpand;
 	public float expandingTime;
+	private float expandingTimeTimer = 0;
 	ParticleSystem ps;
 	// Use this for initialization
 	void Start () {
@@ -11,9 +12,19 @@ public class Ending : MonoBehaviour {
 	}
 	void Update(){
 		if(playingEnding){
-			Util.player.MoveTowardsPosition(transform.position);
-			if(infiniteExpand){
+			if(expandingTimeTimer > expandingTime){
+				if(expandingTimeTimer > 2 * expandingTime){
+					Application.LoadLevel("L00_StartScreen");
+				}
+				expandingTimeTimer += Time.deltaTime;
+			}
+			else if(infiniteExpand){
+				expandingTimeTimer += Time.deltaTime;
 				ps.startSize += 10 * Time.deltaTime;
+				Util.player.Brake();
+			}
+			else{
+				Util.player.MoveTowardsPosition(transform.position);
 			}
 		}
 	}
