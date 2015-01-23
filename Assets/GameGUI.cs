@@ -292,7 +292,7 @@ public class GameGUI : MonoBehaviour, Pauseable {
 		}
 	}
 	public void ReturnToStartScreen(){
-		Application.LoadLevel("L00_StartScreen");
+		FindObjectOfType<Util>().LoadStartScreen();
 	}
 	public void SetNextCheckpoint (CheckpointBehaviour nextCheckpoint)
 	{

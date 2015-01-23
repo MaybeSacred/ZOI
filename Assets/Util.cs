@@ -17,7 +17,7 @@ public class Util : MonoBehaviour {
 
 	public static bool isPaused{get; private set;}
 	void Start () {
-		//DontDestroyOnLoad(this);
+		isPaused = false;
 		PLAYERWEAPONSIGNORELAYERS = ~(1<<LayerMask.NameToLayer("Player") | 1<<LayerMask.NameToLayer("Ignore Raycast") | 1<<LayerMask.NameToLayer("BulletLayer"));
 		player = this.GetComponentInChildren<PlayerController>();
 		theGUI = this.GetComponentInChildren<GameGUI>();
@@ -28,6 +28,24 @@ public class Util : MonoBehaviour {
 			ms.transform.parent = mainCamera.transform;
 		}
 		theGUI.SetNextCheckpoint(firstCheckpoint);
+	}
+	void OnLevelWasLoaded(){
+		
+	}
+	public void LoadStartScreen(){
+		ms.transform.parent = null;
+		Application.LoadLevel("L00_StartScreen");
+		MusicSystem[] musicSystems = GetComponentsInChildren<MusicSystem>();
+		if(musicSystems != null && musicSystems.Length > 1){
+			for(int i = 1; i < musicSystems.Length; i++){
+				Destroy(musicSystems[i]);
+			}
+			ms = musicSystems[0];
+		}
+		if(ms == null){
+			ms = (MusicSystem)Instantiate(Resources.Load<MusicSystem>("MusicSystem"));
+			ms.transform.parent = mainCamera.transform;
+		}
 	}
 	public void LoadLevel(int levelNum)
 	{
