@@ -191,7 +191,7 @@ public class CameraScript : MonoBehaviour {
 		feedTimeStart = Time.time;
 	}
 	public void EndGame(){
-		GetComponent<GameGUI>().enabled = false;
+		GetComponent<GameGUI>().DeActivate();
 		GetComponent<EndingCamera>().enabled = true;
 		GetComponent<EndingCamera>().SetVantagePoint();
 		enabled = false;

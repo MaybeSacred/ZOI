@@ -51,7 +51,6 @@ public class MenuGui : MonoBehaviour {
 	{
 		
 	}
-	int border = 15;
 	public void SwitchToPlayInstructions(){
 		SwitchToPanel(HOWTOPLAY);
 	}

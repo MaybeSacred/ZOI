@@ -7,7 +7,9 @@ public class EndingBeamTrigger : MonoBehaviour {
 	void Start () {
 	
 	}
-	void OnTriggerEnter(){
-		GetComponentInParent<Ending>().ActivateBeam();
+	void OnTriggerEnter(Collider other){
+		if(other.tag.Equals("Player")){
+			GetComponentInParent<Ending>().ActivateBeam();
+		}
 	}
 }

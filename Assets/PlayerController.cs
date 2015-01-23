@@ -105,8 +105,9 @@ public class PlayerController : MonoBehaviour
 				colliders.Remove(hitsAgain);
 				disabledControlsTimer = 0;
 			}
-		}else if (disabledControlsTimer>disabledControlsDuration+0f)
+		}else if (disabledControlsTimer>disabledControlsDuration+0f){
 			disabledControlsTimer = 0;
+		}
         //handles when the player does not exist and is respawning
 		if(!Util.isPaused&&!controlsDisabled)
 		{
@@ -294,7 +295,7 @@ public class PlayerController : MonoBehaviour
 			else
 
 			{
-				MoveFollowCamera(true);
+				MoveFollowCamera(true, -Mathf.DeltaAngle(body.transform.eulerAngles.y,theCam.transform.eulerAngles.y));
 			}
 			keyDown = true;
 		}
@@ -307,7 +308,7 @@ public class PlayerController : MonoBehaviour
 			}
 			else
 			{
-				MoveFollowCamera(false);
+				MoveFollowCamera(false, -Mathf.DeltaAngle(body.transform.eulerAngles.y,theCam.transform.eulerAngles.y));
 			}
 			keyDown = true;
 		}
@@ -496,10 +497,9 @@ public class PlayerController : MonoBehaviour
 					SpiderbotBehavior be = (SpiderbotBehavior)other.gameObject.GetComponent<SpiderbotBehavior>();
 					colliders.Add(other.gameObject);
 					Util.mainCamera.SendMessage("SpiderEating",be.cinematicAngle.transform);
-					controlsDisabled = true;
+					DisablePlayerControl(be.stunDuration);
 					frozenTransform = true;
 					initialFrozenPosition = transform.position;
-					disabledControlsDuration = be.stunDuration;
 					hitsAgain = other.gameObject;
 					HealthChange(-be.shieldDamage, -be.healthDamage);
 				}
@@ -518,10 +518,9 @@ public class PlayerController : MonoBehaviour
 				{
 					WebActions wa = (WebActions)other.GetComponent<WebActions>();
 					colliders.Add(other.gameObject);
-					controlsDisabled = true;
 					frozenTransform = true;
 					initialFrozenPosition = transform.position;
-					disabledControlsDuration = wa.freezeTime;
+					DisablePlayerControl(wa.freezeTime);
 					hitsAgain= other.gameObject;
 				}
 			}
@@ -570,6 +569,10 @@ public class PlayerController : MonoBehaviour
 	{
         //only consistent triggers
 		RealCollisionHandler(other);
+	}
+	public void DisablePlayerControl(float disableTime){
+		controlsDisabled = true;
+		disabledControlsDuration = disableTime;
 	}
 	public bool SetLastCheckpoint(Vector3 restartPos, Vector3 restartEulers, CheckpointBehaviour checkpoint)
 	{
@@ -727,11 +730,23 @@ public class PlayerController : MonoBehaviour
 			}
 		}
 	}
-	private void MoveFollowCamera(bool forward)
+	public void MoveTowardsPosition(Vector3 point){
+		Vector3 vecToPoint = (point - transform.position);
+		vecToPoint.y = 0;
+		//Debug.Log(Vector3.Angle(Vector3.forward, vecToPoint));
+		float angle;
+		if(vecToPoint.x > 0){
+			angle = -Mathf.DeltaAngle(body.transform.eulerAngles.y, Vector3.Angle(Vector3.forward, vecToPoint));
+		}
+		else{
+			angle = -Mathf.DeltaAngle(body.transform.eulerAngles.y, -Vector3.Angle(Vector3.forward, vecToPoint));
+		}
+		MoveFollowCamera(true, angle);
+	}
+	private void MoveFollowCamera(bool forward, float angleDiff)
 	{
 		if(forward)
 		{
-			float angleDiff = -Mathf.DeltaAngle(body.transform.eulerAngles.y,theCam.transform.eulerAngles.y);
 			if(!wasForwardKeyDown)
 			{
 				if(Mathf.Abs(Vector2.Angle(new Vector2(rigidbody.velocity.x, rigidbody.velocity.z), new Vector2(body.transform.forward.x, body.transform.forward.z))) > 90)
@@ -810,7 +825,6 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			float angleDiff = -Mathf.DeltaAngle(body.transform.eulerAngles.y,theCam.transform.eulerAngles.y);
 			if(wasForwardKeyDown)
 			{
 				if(Mathf.Abs(Vector2.Angle(new Vector2(rigidbody.velocity.x, rigidbody.velocity.z), new Vector2(-body.transform.forward.x, -body.transform.forward.z))) > 90)

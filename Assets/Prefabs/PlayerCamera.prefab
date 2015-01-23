@@ -14,6 +14,7 @@ GameObject:
   - 81: {fileID: 8100000}
   - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11412534}
   m_Layer: 0
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -959,8 +960,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: -4.90621948, y: 0, z: -432.19165}
+  m_LocalRotation: {x: 0, y: .946361542, z: 0, w: .323109597}
+  m_LocalPosition: {x: -3916.20996, y: -275.160004, z: -5550.41016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22439650}
@@ -984,7 +985,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 15000
-  field of view: 75
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -1120,6 +1121,20 @@ MonoBehaviour:
     type: 2}
   checkpointBlip: {fileID: 11450520, guid: 020c286009d4a144198a99e435dc437c, type: 2}
   farCheckpointBlip: {fileID: 11476598, guid: a1eb7a95f2038cb45ac06f4585bf6144, type: 2}
+--- !u!114 &11412534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce4f045c695ac044834767f96be66fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleVantages:
+  - {x: -568.869995, y: -105.470001, z: -6484.56982}
+  - {x: -519.119995, y: -105.5, z: -6489.20996}
 --- !u!114 &11420476
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2697,7 +2712,7 @@ Canvas:
   serializedVersion: 2
   m_RenderMode: 1
   m_Camera: {fileID: 2000000}
-  m_PlaneDistance: 1
+  m_PlaneDistance: .400000006
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0

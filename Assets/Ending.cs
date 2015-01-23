@@ -11,6 +11,7 @@ public class Ending : MonoBehaviour {
 	}
 	void Update(){
 		if(playingEnding){
+			Util.player.MoveTowardsPosition(transform.position);
 			if(infiniteExpand){
 				ps.startSize += 10 * Time.deltaTime;
 			}
@@ -19,6 +20,7 @@ public class Ending : MonoBehaviour {
 
 	public void ActivateBeam (){
 		playingEnding = true;
+		Util.player.DisablePlayerControl(10);
 		ps.Play();
 		Util.mainCamera.EndGame();
 	}
