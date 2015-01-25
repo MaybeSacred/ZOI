@@ -22,6 +22,8 @@ public class GameGUI : MonoBehaviour, Pauseable {
 	
 	//new gui objects
 	public GameObject inGamePanel, pausePanel, debugPanel;
+	//Quickfix around bug panels
+	public RectTransform volumeSlider, mouseSlider;
 	public RectTransform healthMask, shieldMask;
 	public RectTransform[] primaryCannonUpdateDots, secondaryCannonUpdateDots;
 	public RectTransform grenadeMask, rocketMask;
@@ -45,6 +47,16 @@ public class GameGUI : MonoBehaviour, Pauseable {
 	}
 	void Awake() {
 		radar = new List<RadarObject>();
+		RectTransform volumeSldr = Instantiate(volumeSlider, volumeSlider.position, Quaternion.identity) as RectTransform;
+		RectTransform mouseSldr = Instantiate(mouseSlider, mouseSlider.position, Quaternion.identity) as RectTransform;
+		volumeSldr.SetParent(pausePanel.transform);
+		volumeSldr.localPosition = volumeSlider.localPosition;
+		volumeSldr.localScale = new Vector3(1, 1, 1);
+		volumeSldr.localRotation = Quaternion.identity;
+		mouseSldr.SetParent(pausePanel.transform);
+		mouseSldr.localPosition = mouseSlider.localPosition;
+		mouseSldr.localScale = new Vector3(1, 1, 1);
+		mouseSldr.localRotation = Quaternion.identity;
 	}
 	void Start () {
 		theCamera = GetComponent<CameraScript>();

@@ -44,9 +44,6 @@ public class MusicSystem: MonoBehaviour {
 	public void ChangeMasterVolume(float change){
 		MasterVolume = Mathf.Clamp01(change);
 	}
-	void OnDestroy(){
-		Debug.Log("dead");
-	}
 	// Use this for initialization
 	void Start () {
 		DontDestroyOnLoad(transform.gameObject);
